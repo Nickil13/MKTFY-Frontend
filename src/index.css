@@ -1,13 +1,58 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+*,
+::before,
+::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1,
+h2 {
+    margin-bottom: 1rem;
+}
+
+main {
+    margin-top: 100px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    max-width: 70rem;
+    margin: 0 auto;
+}
+
+/* Layout */
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    margin: 3rem 0 2rem 0;
+}
+
+.btn {
+    padding: 0.5rem 1.5rem;
+    border: none;
+    outline: none;
+    margin: 1rem 0;
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+}
+
+.btn:hover {
+    background-color: pink;
+}
+
+/* My table */
+.my-table td {
+    border: 1px solid black;
+}
+.my-table__title {
+    text-align: center;
+    text-decoration: underline;
 }
