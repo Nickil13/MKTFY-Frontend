@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="405" height="124" viewBox="0 0 405 124">
+  <defs>
+    <filter id="Secondary_button_purple" x="0" y="0" width="405" height="124" filterUnits="userSpaceOnUse">
+      <feOffset dy="5" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feFlood flood-opacity="0.141"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Secondary_button_purple)">
+    <rect id="Secondary_button_purple-2" data-name="Secondary_button_purple" width="345" height="64" rx="32" transform="translate(30 25)" fill="#6318af"/>
+  </g>
+</svg>

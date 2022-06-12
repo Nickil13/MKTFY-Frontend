@@ -6,7 +6,7 @@ function App() {
     // const [isLoggedIn, setIsLoggedIn] = useState(false);
     return (
         <Router>
-            <main className="bg-purple-200 h-screen">
+            <main className="">
                 <Routes>
                     <Route path="/" element={<Login />} />
                     {/* <Route

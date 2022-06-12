@@ -11,8 +11,14 @@
         @apply text-lg;
     }
 
-    p,
+    /* p,
     button {
         @apply text-base;
+    } */
+}
+
+@layer components {
+    .btn {
+        @apply text-white font-bold shadow-1 rounded-full w-btn py-5 text-base;
     }
 }
