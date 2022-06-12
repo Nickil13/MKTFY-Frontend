@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Login from "./pages/Login";
+import Login from "./views/Login";
 
 function App() {
     // const [isLoggedIn, setIsLoggedIn] = useState(false);
     return (
         <Router>
-            <main>
+            <main className="bg-purple-200 h-screen">
                 <Routes>
+                    <Route path="/" element={<Login />} />
                     {/* <Route
                         path="/"
                         element={
