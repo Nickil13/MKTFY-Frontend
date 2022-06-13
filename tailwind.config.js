@@ -29,6 +29,7 @@ module.exports = {
             },
             gold: "#FFBA00",
             "dark-gray": "#2A2E43",
+            black: "#262627",
         },
         fontSize: {
             "2xs": "0.75rem",
@@ -39,7 +40,8 @@ module.exports = {
             lg: "2.5rem",
         },
         boxShadow: {
-            1: "0px 5px 20px #00000024",
+            btn: "0px 5px 20px #00000024",
+            modal: "0px 7px 12px #00000024",
         },
         extend: {
             backgroundImage: {
@@ -52,6 +54,9 @@ module.exports = {
             },
             width: {
                 btn: "345px",
+            },
+            borderRadius: {
+                modal: "10px",
             },
         },
     },
