@@ -15,10 +15,22 @@
     button {
         @apply text-base;
     } */
+    label {
+        @apply text-gray-400 font-semibold;
+    }
+    input {
+        @apply placeholder:text-gray-200 border border-gray-100 mb-1 mt-3 p-5 text-base font-semibold rounded;
+    }
 }
 
 @layer components {
     .btn {
         @apply text-white font-bold rounded-full w-btn py-5 text-base;
+    }
+    .input-control {
+        @apply flex flex-col;
+    }
+    .input-error-msg {
+        @apply text-xs text-red invisible;
     }
 }
