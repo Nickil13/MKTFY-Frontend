@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import logo from "../assets/images/logo.svg";
 
-
 import {
     ForgotPasswordModal,
     LoginModal,
@@ -9,11 +8,12 @@ import {
     ResetPasswordModal,
     VerifyResetModal,
 } from "../components";
+
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useModalContext } from "../context/ModalContext";
 
 export default function Login() {
-    const {showModal, setShowModal} = useModalContext();
+    const { showModal, setShowModal } = useModalContext();
     let navigate = useNavigate();
 
     const handleLoginClick = () => {
@@ -56,27 +56,22 @@ export default function Login() {
             {/* Login Modal */}
             {showModal && (
                 <div className="absolute flex items-center justify-center inset-0 bg-black bg-opacity-50">
-                        <Routes>
-                            <Route path="/login" element={<LoginModal />} />
-                            <Route
-                                path="/register"
-                                element={<RegisterModal />}
-                            />
-                            <Route
-                                path="/forgot-password"
-                                element={<ForgotPasswordModal />}
-                            />
-                            <Route
-                                path="/verify-reset"
-                                element={<VerifyResetModal />}
-                            />
-                            <Route
-                                path="/reset-password"
-                                element={<ResetPasswordModal />}
-                            />
-                        </Routes>
-                        
-                    
+                    <Routes>
+                        <Route path="/login" element={<LoginModal />} />
+                        <Route path="/register" element={<RegisterModal />} />
+                        <Route
+                            path="/forgot-password"
+                            element={<ForgotPasswordModal />}
+                        />
+                        <Route
+                            path="/verify-reset"
+                            element={<VerifyResetModal />}
+                        />
+                        <Route
+                            path="/reset-password"
+                            element={<ResetPasswordModal />}
+                        />
+                    </Routes>
                 </div>
             )}
         </div>
