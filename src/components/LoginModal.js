@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import iconHide from "../assets/images/icon_eye_hide.svg";
 
 export default function LoginModal() {
@@ -42,12 +43,12 @@ export default function LoginModal() {
                     </span>
                 </div>
                 <div className="flex justify-end">
-                    <a
+                    <Link
                         className="text-gold underline text-xs font-semibold"
-                        href="#"
+                        to="/forgot-password"
                     >
                         I forgot my password
-                    </a>
+                    </Link>
                 </div>
 
                 <button className="btn bg-gray-100 mt-16">Login</button>

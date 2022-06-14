@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import logo from "../assets/images/logo.svg";
 
 import closeIcon from "../assets/images/icon_close.svg";
-import { LoginModal, RegisterModal } from "../components";
+import {
+    ForgotPasswordModal,
+    LoginModal,
+    RegisterModal,
+    ResetPasswordModal,
+    VerifyResetModal,
+} from "../components";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 export default function Login() {
@@ -55,6 +61,18 @@ export default function Login() {
                             <Route
                                 path="/register"
                                 element={<RegisterModal />}
+                            />
+                            <Route
+                                path="/forgot-password"
+                                element={<ForgotPasswordModal />}
+                            />
+                            <Route
+                                path="/verify-reset"
+                                element={<VerifyResetModal />}
+                            />
+                            <Route
+                                path="/reset-password"
+                                element={<ResetPasswordModal />}
                             />
                         </Routes>
                         <span

@@ -33,4 +33,7 @@
     .input-error-msg {
         @apply text-xs text-red invisible;
     }
+    .modal-text {
+        @apply text-base font-semibold text-gray-300;
+    }
 }

@@ -7,7 +7,7 @@ export default function RegisterModal() {
             <h1 className="text-purple-200 font-bold mb-8">
                 Welcome to MKTFY!
             </h1>
-            <p>
+            <p className="modal-text">
                 It's nice to meet you. At MKTFY you are able to buy, sell and
                 donate awesome stuff to a community of awesome people. Please
                 fill out the form below to get started.
