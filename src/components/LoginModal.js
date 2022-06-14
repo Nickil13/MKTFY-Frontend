@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import iconHide from "../assets/images/icon_eye_hide.svg";
-
+import ModalWrapper from "./ModalWrapper";
 export default function LoginModal() {
     return (
+        <ModalWrapper>
         <div className="w-full flex flex-col items-center">
             <h1 className="text-purple-200 text-center font-bold mb-8">
                 Welcome Back!
@@ -53,6 +54,6 @@ export default function LoginModal() {
 
                 <button className="btn bg-gray-100 mt-16">Login</button>
             </form>
-        </div>
+        </div></ModalWrapper>
     );
 }

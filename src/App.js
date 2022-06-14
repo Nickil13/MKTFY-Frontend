@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ModalContextProvider } from "./context/ModalContext";
 import Login from "./views/Login";
 
 function App() {
     // const [isLoggedIn, setIsLoggedIn] = useState(false);
     return (
         <Router>
+            <ModalContextProvider>
             <main className="">
                 <Routes>
                     <Route path="/*" element={<Login />} />
@@ -22,6 +24,7 @@ function App() {
                     /> */}
                 </Routes>
             </main>
+            </ModalContextProvider>
         </Router>
     );
 }

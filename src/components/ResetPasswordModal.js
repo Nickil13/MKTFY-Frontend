@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import iconHide from "../assets/images/icon_eye_hide.svg";
 import { FaCheckCircle } from "react-icons/fa";
+import ModalWrapper from "./ModalWrapper";
 
 export default function ResetPasswordModal() {
     const [password, setPassword] = useState("");
@@ -14,6 +15,7 @@ export default function ResetPasswordModal() {
     };
     console.log("rendering reset password modal");
     return (
+        <ModalWrapper goBack>
         <div className="w-full flex flex-col items-center">
             <h1 className="text-purple-200 text-center font-bold mb-3">
                 Reset Password
@@ -93,6 +95,6 @@ export default function ResetPasswordModal() {
 
                 <button className="btn bg-gray-100 mt-16">Set Password</button>
             </form>
-        </div>
+        </div></ModalWrapper>
     );
 }

@@ -1,9 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import ModalWrapper from "./ModalWrapper";
 
 export default function ForgotPasswordModal() {
     let navigate = useNavigate();
     return (
+        <ModalWrapper goBack>
         <div className="w-full flex flex-col items-center">
             <h1 className="text-purple-200 text-center font-bold mb-3">
                 Forgot Your Password?
@@ -38,6 +40,6 @@ export default function ForgotPasswordModal() {
                     Submit
                 </button>
             </form>
-        </div>
+        </div></ModalWrapper>
     );
 }

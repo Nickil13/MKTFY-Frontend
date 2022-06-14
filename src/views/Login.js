@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import logo from "../assets/images/logo.svg";
 
-import closeIcon from "../assets/images/icon_close.svg";
+
 import {
     ForgotPasswordModal,
     LoginModal,
@@ -10,9 +10,10 @@ import {
     VerifyResetModal,
 } from "../components";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import { useModalContext } from "../context/ModalContext";
 
 export default function Login() {
-    const [showModal, setShowModal] = useState(false);
+    const {showModal, setShowModal} = useModalContext();
     let navigate = useNavigate();
 
     const handleLoginClick = () => {
@@ -55,7 +56,6 @@ export default function Login() {
             {/* Login Modal */}
             {showModal && (
                 <div className="absolute flex items-center justify-center inset-0 bg-black bg-opacity-50">
-                    <div className="relative flex flex-col items-center bg-white w-4/5 max-w-3xl  my-auto py-16 px-32 rounded-modal shadow-modal">
                         <Routes>
                             <Route path="/login" element={<LoginModal />} />
                             <Route
@@ -75,13 +75,8 @@ export default function Login() {
                                 element={<ResetPasswordModal />}
                             />
                         </Routes>
-                        <span
-                            className="absolute top-7 right-7 cursor-pointer"
-                            onClick={() => setShowModal(false)}
-                        >
-                            <img src={closeIcon} alt="close x icon" />
-                        </span>
-                    </div>
+                        
+                    
                 </div>
             )}
         </div>
