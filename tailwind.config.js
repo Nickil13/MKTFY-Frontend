@@ -39,10 +39,7 @@ module.exports = {
             base: "1.25rem",
             lg: "2.5rem",
         },
-        boxShadow: {
-            btn: "0px 5px 20px #00000024",
-            modal: "0px 7px 12px #00000024",
-        },
+
         extend: {
             backgroundImage: {
                 "login-clouds": "url(../assets/images/background_begin.svg)",
@@ -55,12 +52,22 @@ module.exports = {
             width: {
                 btn: "345px",
             },
+            margin: {
+                15: "60px",
+            },
+            padding: {
+                15: "60px",
+            },
             maxWidth: {
                 input: "532px",
                 modal: "808px",
             },
             borderRadius: {
                 modal: "10px",
+            },
+            boxShadow: {
+                btn: "0px 5px 20px #00000024",
+                modal: "0px 7px 12px #00000024",
             },
         },
     },

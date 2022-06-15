@@ -2,6 +2,10 @@ import React from "react";
 import iconHide from "../../assets/images/icon_eye_hide.svg";
 
 export default function RegisterModal() {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Submit and store user data
+    };
     return (
         <>
             <h1 className="text-purple-200 font-bold mb-8">
@@ -12,7 +16,7 @@ export default function RegisterModal() {
                 donate awesome stuff to a community of awesome people. Please
                 fill out the form below to get started.
             </p>
-            <form action="">
+            <form onSubmit={handleSubmit}>
                 <div className="input-control flex flex-col mb-2">
                     <label
                         className="text-gray-400 font-semibold"
@@ -51,7 +55,9 @@ export default function RegisterModal() {
                     <span>Your password is incorrect</span>
                 </div>
                 <a href="#">I forgot my password</a>
-                <button className="btn bg-gray-100">Login</button>
+                <button type="submit" className="btn bg-gray-100">
+                    Login
+                </button>
             </form>
         </>
     );

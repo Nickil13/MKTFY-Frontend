@@ -32,13 +32,13 @@ export default function Login() {
                 <img className="w-64" src={logo} alt="mktfy logo" />
                 <div className="flex flex-col mt-14">
                     <button
-                        className="btn bg-gold shadow-btn mb-4"
+                        className="btn bg-gold mb-4"
                         onClick={handleLoginClick}
                     >
                         Login
                     </button>
                     <button
-                        className="btn bg-purple-500 shadow-btn"
+                        className="btn bg-purple-500 "
                         onClick={handleCreateAccountClick}
                     >
                         Create Account

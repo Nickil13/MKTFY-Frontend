@@ -7,8 +7,9 @@ import { useModalContext } from "../../context/ModalContext";
 export default function ModalWrapper({ goBack, children }) {
     let navigate = useNavigate();
     const { setShowModal } = useModalContext();
+
     return (
-        <div className="relative flex flex-col items-center bg-white w-4/5  max-w-modal my-auto py-16 px-32 rounded-modal shadow-modal">
+        <div className="relative flex flex-col items-center bg-white w-4/5  max-w-modal my-auto py-15 px-36 rounded-modal shadow-modal">
             {children}
             <span
                 className="absolute top-7 right-7 cursor-pointer"
@@ -21,7 +22,6 @@ export default function ModalWrapper({ goBack, children }) {
                     className="absolute top-7 left-7 cursor-pointer"
                     onClick={() => navigate(-1)}
                 >
-                    {" "}
                     <img src={backIcon} alt="back arrow icon" />
                 </span>
             )}

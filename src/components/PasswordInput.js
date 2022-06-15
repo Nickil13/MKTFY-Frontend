@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import iconHide from "../assets/images/icon_eye_hide.svg";
 
-export default function PasswordInput({ password, onChange }) {
+export default function PasswordInput({ value, onChange, name, lastchild }) {
     const inputRef = useRef(null);
     const toggleShowPassword = () => {
         if (inputRef) {
@@ -13,15 +13,17 @@ export default function PasswordInput({ password, onChange }) {
         }
     };
     return (
-        <div className="input-control">
-            <label htmlFor="password">Password</label>
+        <div className={`input-control ${!lastchild && "mb-2"}`}>
+            <label className="capitalize" htmlFor="password">
+                {name}
+            </label>
             <div className="relative">
                 <input
                     className="w-full"
                     type="password"
-                    id="password"
-                    name="password"
-                    value={password}
+                    id={name}
+                    name={name}
+                    value={value}
                     placeholder="Your password"
                     ref={inputRef}
                     onChange={onChange}
@@ -38,3 +40,7 @@ export default function PasswordInput({ password, onChange }) {
         </div>
     );
 }
+
+PasswordInput.defaultProps = {
+    name: "password",
+};

@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Input from "../Input";
+import ModalWrapper from "./ModalWrapper";
 
 export default function VerifyResetModal() {
+    const [verificationCode, setVerificationCode] = useState("");
     let navigate = useNavigate();
     let email = "george.carlson@g*****";
 
@@ -14,48 +17,43 @@ export default function VerifyResetModal() {
         navigate("/reset-password");
     };
     return (
-        <div className="w-full flex flex-col items-center">
+        <ModalWrapper goBack>
             <h1 className="text-purple-200 text-center font-bold mb-3">
                 Reset Your Password?
             </h1>
-            <p className="modal-text mb-16">
-                A code has been sent to your email{" "}
-                <span className="text-gray-500">{email}</span>. Please enter the
-                verification code below.
+            <p className="modal-text mb-15">
+                A code has been sent to your email
+                <span className="text-gray-500"> {email}</span>. Please enter
+                the verification code below.
             </p>
             <form
                 className="w-full flex flex-col content-center"
                 onSubmit={handleSubmit}
             >
-                <div className="input-control">
-                    <label htmlFor="verify">Verification Code</label>
+                <Input
+                    name="verification code"
+                    placeholder="00 - 00 - 00"
+                    value={verificationCode}
+                    setValue={setVerificationCode}
+                    lastchild
+                />
 
-                    <input
-                        type="text"
-                        id="verify"
-                        name="verify"
-                        placeholder="00 - 00 - 00"
-                    />
-
-                    <span className="input-error-msg">
-                        Your verification code is incorrect.
-                    </span>
-                </div>
                 <div className="flex justify-end">
                     <span
                         onClick={handleResendCode}
-                        className="text-gold underline text-xs font-semibold"
+                        className="text-gold underline text-xs font-semibold cursor-pointer"
                     >
                         I didn't receive the code. Please sent it again
                     </span>
                 </div>
                 <button
                     type="submit"
-                    className="btn bg-purple-500 mt-10 mx-auto"
+                    className="btn bg-purple-500 hover:bg-purple-400 mt-10 mx-auto"
+                    disabled={verificationCode.length < 6}
                 >
                     Submit
                 </button>
             </form>
-        </div>
+        </ModalWrapper>
     );
 }

@@ -2,18 +2,38 @@ import React, { useState, useMemo } from "react";
 import iconHide from "../../assets/images/icon_eye_hide.svg";
 import { FaCheckCircle } from "react-icons/fa";
 import ModalWrapper from "./ModalWrapper";
+import PasswordInput from "../PasswordInput";
+import { useNavigate } from "react-router-dom";
 
 export default function ResetPasswordModal() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     // const [correctLength, setCorrectLength] = useState(true);
     const correctLength = useMemo(() => password.length > 5, [password]);
+    const hasUppercase = useMemo(() => checkUppercase(), [password]);
+    const hasNumber = true;
+    const criteriaMet = correctLength && hasUppercase && hasNumber;
+    const [passwordStrength, setPasswordStrength] = useState("weak");
+    let navigate = useNavigate();
 
+    function checkUppercase() {
+        console.log("function abc");
+        let hasUppercase = false;
+        for (let i = 0; i < password.length; i++) {
+            if (password[i] == password[i].toUpperCase()) {
+                hasUppercase = true;
+            }
+        }
+        return hasUppercase;
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("Resetting password.");
+        //Loading Screen -> Login
+        navigate("/login");
     };
     console.log("rendering reset password modal");
+
     return (
         <ModalWrapper goBack>
             <div className="w-full flex flex-col items-center">
@@ -28,52 +48,23 @@ export default function ResetPasswordModal() {
                     className="w-full flex flex-col content-center"
                     onSubmit={handleSubmit}
                 >
-                    <div className="input-control mb-2">
-                        <label htmlFor="password">Password</label>
-                        <div className="relative">
-                            <input
-                                className="w-full"
-                                type="password"
-                                id="password"
-                                name="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                                placeholder="Your password"
-                            />
-                            <img
-                                className="absolute mt-1 top-1/2 -translate-y-1/2 right-5 w-6"
-                                src={iconHide}
-                                alt="hide password eye icon"
-                            />
-                        </div>
-
-                        <span className="input-error-msg">
-                            Your password is incorrect
+                    <div className="relative">
+                        <PasswordInput
+                            password={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            lastchild
+                        />
+                        <span className="absolute top-1 left-20 text-gold font-semibold text-2xs capitalize">
+                            {passwordStrength}
                         </span>
                     </div>
-                    <div className="input-control">
-                        <label htmlFor="confirm-password">
-                            Confirm Password
-                        </label>
-                        <div className="relative">
-                            <input
-                                className="w-full"
-                                type="password"
-                                id="confirm-password"
-                                name="confirm-password"
-                                placeholder="Your password"
-                            />
-                            <img
-                                className="absolute mt-1 top-1/2 -translate-y-1/2 right-5 w-6"
-                                src={iconHide}
-                                alt="hide password eye icon"
-                            />
-                        </div>
+                    <PasswordInput
+                        name="confirm password"
+                        password={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        lastchild
+                    />
 
-                        <span className="input-error-msg">
-                            Your password is incorrect
-                        </span>
-                    </div>
                     <div>
                         <div className="flex items-center">
                             <FaCheckCircle
@@ -86,16 +77,32 @@ export default function ResetPasswordModal() {
                             <span>At least 6 characters</span>
                         </div>
                         <div className="flex items-center">
-                            <FaCheckCircle className="text-gray-100 w-5 h-5 mr-3" />
+                            <FaCheckCircle
+                                className={`${
+                                    hasUppercase
+                                        ? "text-purple-200"
+                                        : "text-gray-100"
+                                } w-5 h-5 mr-3`}
+                            />
                             <span>1 Uppercase</span>
                         </div>
                         <div className="flex items-center">
-                            <FaCheckCircle className="text-gray-100 w-5 h-5 mr-3" />
+                            <FaCheckCircle
+                                className={`${
+                                    hasNumber
+                                        ? "text-purple-200"
+                                        : "text-gray-100"
+                                } w-5 h-5 mr-3`}
+                            />
                             <span>1 Number</span>
                         </div>
                     </div>
 
-                    <button className="btn bg-gray-100 mt-16">
+                    <button
+                        type="submit"
+                        className="btn bg-purple-500 hover:bg-purple-400 mx-auto mt-15"
+                        disabled={!criteriaMet}
+                    >
                         Set Password
                     </button>
                 </form>

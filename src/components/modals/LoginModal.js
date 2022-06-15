@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Input from "../Input";
 import PasswordInput from "../PasswordInput";
 import ModalWrapper from "./ModalWrapper";
 
@@ -8,49 +9,49 @@ export default function LoginModal() {
     const [password, setPassword] = useState("");
     let navigate = useNavigate();
 
+    const handleLogin = (e) => {
+        e.preventDefault();
+        console.log("logging in");
+        navigate("/dashboard");
+    };
+
     return (
         <ModalWrapper>
-            <div className="w-full flex flex-col items-center">
-                <h1 className="text-purple-200 text-center font-bold mb-8">
-                    Welcome Back!
-                </h1>
-                <form className="w-full flex flex-col content-center">
-                    <div className="input-control mb-2">
-                        <label htmlFor="email">Email</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={email}
-                            placeholder="Your email"
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                        <span className="input-error-msg">
-                            Your email is incorrect
-                        </span>
-                    </div>
-                    <PasswordInput
-                        password={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <div className="flex justify-end">
-                        <Link
-                            className="text-gold underline text-xs font-semibold"
-                            to="/forgot-password"
-                        >
-                            I forgot my password
-                        </Link>
-                    </div>
-
-                    <button
-                        className="btn bg-gold  mt-16 mx-auto"
-                        disabled={!email && !password}
-                        onClick={() => navigate("/dashboard")}
+            <h1 className="text-purple-200 text-center font-bold mb-8">
+                Welcome Back!
+            </h1>
+            <form
+                className="w-full flex flex-col content-center"
+                onSubmit={handleLogin}
+            >
+                <Input
+                    name="email"
+                    type={email}
+                    value={email}
+                    setValue={setEmail}
+                />
+                <PasswordInput
+                    password={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    lastchild
+                />
+                <div className="flex justify-end">
+                    <Link
+                        className="text-gold underline text-xs font-semibold"
+                        to="/forgot-password"
                     >
-                        Login
-                    </button>
-                </form>
-            </div>
+                        I forgot my password
+                    </Link>
+                </div>
+
+                <button
+                    type="submit"
+                    className="btn bg-gold  mt-15 mx-auto"
+                    disabled={!email && !password}
+                >
+                    Login
+                </button>
+            </form>
         </ModalWrapper>
     );
 }
