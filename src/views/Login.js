@@ -7,7 +7,7 @@ import {
     RegisterModal,
     ResetPasswordModal,
     VerifyResetModal,
-} from "../components";
+} from "../components/modals";
 
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useModalContext } from "../context/ModalContext";

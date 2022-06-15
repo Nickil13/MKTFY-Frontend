@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import iconHide from "../assets/images/icon_eye_hide.svg";
+import iconHide from "../../assets/images/icon_eye_hide.svg";
 import { FaCheckCircle } from "react-icons/fa";
 import ModalWrapper from "./ModalWrapper";
 

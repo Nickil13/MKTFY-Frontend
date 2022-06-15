@@ -55,6 +55,10 @@ module.exports = {
             width: {
                 btn: "345px",
             },
+            maxWidth: {
+                input: "532px",
+                modal: "808px",
+            },
             borderRadius: {
                 modal: "10px",
             },

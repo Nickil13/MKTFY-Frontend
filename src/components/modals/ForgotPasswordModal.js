@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ModalWrapper from "./ModalWrapper";
+import iconHide from "../../assets/images/icon_eye_hide.svg";
 
 export default function ForgotPasswordModal() {
     let navigate = useNavigate();
