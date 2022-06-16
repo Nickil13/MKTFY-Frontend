@@ -17,7 +17,6 @@ export default function ResetPasswordModal() {
     let navigate = useNavigate();
 
     function checkUppercase() {
-        console.log("function abc");
         let hasUppercase = false;
         for (let i = 0; i < password.length; i++) {
             if (password[i] == password[i].toUpperCase()) {

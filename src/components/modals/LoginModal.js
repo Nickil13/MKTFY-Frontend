@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useModalContext } from "../../context/ModalContext";
 import Input from "../Input";
 import PasswordInput from "../PasswordInput";
 import ModalWrapper from "./ModalWrapper";
@@ -7,11 +8,13 @@ import ModalWrapper from "./ModalWrapper";
 export default function LoginModal() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { setShowModal } = useModalContext();
     let navigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
         console.log("logging in");
+        setShowModal(false);
         navigate("/dashboard");
     };
 

@@ -9,7 +9,7 @@ import {
     VerifyResetModal,
 } from "../components/modals";
 
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Outlet } from "react-router-dom";
 import { useModalContext } from "../context/ModalContext";
 
 export default function Login() {
@@ -56,7 +56,8 @@ export default function Login() {
             {/* Login Modal */}
             {showModal && (
                 <div className="absolute flex items-center justify-center inset-0 bg-black bg-opacity-50">
-                    <Routes>
+                    <Outlet />
+                    {/* <Routes>
                         <Route path="/login" element={<LoginModal />} />
                         <Route path="/register" element={<RegisterModal />} />
                         <Route
@@ -71,7 +72,7 @@ export default function Login() {
                             path="/reset-password"
                             element={<ResetPasswordModal />}
                         />
-                    </Routes>
+                    </Routes> */}
                 </div>
             )}
         </div>
