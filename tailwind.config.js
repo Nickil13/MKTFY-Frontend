@@ -22,6 +22,7 @@ module.exports = {
                 600: "#434344",
             },
             purple: {
+                100: "#9349DE",
                 200: "#8840D9",
                 400: "#6E20BE",
                 500: "#6318AF",
@@ -31,6 +32,7 @@ module.exports = {
             "dark-gray": "#2A2E43",
             black: "#262627",
             beige: { 100: "#FFFFFF99", 200: "#F7F7F7" },
+            transparent: "transparent",
         },
         fontSize: {
             "2xs": "0.75rem",
@@ -49,6 +51,7 @@ module.exports = {
                     "url(../assets/images/Image_about_us_header.png)",
                 "about-header-lg":
                     "url(../assets/images/Image_about_us_header@2x.png)",
+                checkbox: "url(../assets/images/check_box-24px.svg)",
             },
             width: {
                 btn: "345px",

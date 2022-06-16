@@ -29,7 +29,7 @@ export default function LoginModal() {
             >
                 <Input
                     name="email"
-                    type={email}
+                    type="email"
                     value={email}
                     setValue={setEmail}
                 />

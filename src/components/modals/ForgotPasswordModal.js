@@ -26,7 +26,7 @@ export default function ForgotPasswordModal() {
             >
                 <Input
                     name="email"
-                    type={email}
+                    type="email"
                     value={email}
                     setValue={setEmail}
                     lastchild

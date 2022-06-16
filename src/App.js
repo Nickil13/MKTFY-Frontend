@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
+    CreatePasswordModal,
     ForgotPasswordModal,
     LoginModal,
     RegisterModal,
@@ -10,7 +11,7 @@ import {
 
 import RequireAuth from "./utils/RequireAuth";
 
-import { Dashboard, ErrorPage, Login } from "./views";
+import { Dashboard, ErrorPage, LoadingPage, Login } from "./views";
 
 function App() {
     return (
@@ -28,8 +29,12 @@ function App() {
                         path="reset-password"
                         element={<ResetPasswordModal />}
                     />
+                    <Route
+                        path="create-password"
+                        element={<CreatePasswordModal />}
+                    />
                 </Route>
-
+                <Route path="loading" element={<LoadingPage />} />
                 <Route
                     path="dashboard"
                     element={
@@ -49,7 +54,14 @@ function App() {
                         element={<div>A specific listing</div>}
                     />
                 </Route>
-
+                <Route
+                    path="terms-of-service"
+                    element={<div>Terms of service</div>}
+                />
+                <Route
+                    path="privacy-policy"
+                    element={<div>Privacy policy</div>}
+                />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
         </Router>

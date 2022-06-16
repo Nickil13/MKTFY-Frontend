@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import iconHide from "../../assets/images/icon_eye_hide.svg";
 import ModalWrapper from "./ModalWrapper";
 import Input from "../Input";
+import { useNavigate } from "react-router-dom";
 
 export default function RegisterModal() {
     const [firstName, setFirstName] = useState("");
@@ -10,12 +11,15 @@ export default function RegisterModal() {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
+    let navigate = useNavigate();
 
     const notAllFieldsFilled =
-        !firstName && !lastName && !email && !phoneNumber && !address && !city;
+        !firstName || !lastName || !email || !phoneNumber || !address || !city;
+
     const handleSubmit = (e) => {
         e.preventDefault();
         // Submit and store user data
+        navigate("/create-password");
     };
 
     return (
@@ -48,7 +52,7 @@ export default function RegisterModal() {
                         />
                         <Input
                             name="email"
-                            type={email}
+                            type="email"
                             value={email}
                             setValue={setEmail}
                             backgroundColor="bg-beige-100"
@@ -74,7 +78,10 @@ export default function RegisterModal() {
                             <select
                                 name="city"
                                 id="city"
-                                className="bg-beige-100 "
+                                className="bg-beige-100"
+                                onChange={(e) => {
+                                    setCity(e.target.value);
+                                }}
                             >
                                 <option
                                     value="default"
@@ -84,7 +91,7 @@ export default function RegisterModal() {
                                 </option>
                                 <option value="Calgary">Calgary</option>
                                 <option value="Brooks">Brooks</option>
-                                <option value="Calgary">Calgary</option>
+                                <option value="Camrose">Camrose</option>
                             </select>
                         </div>
                         <button
