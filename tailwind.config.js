@@ -30,6 +30,7 @@ module.exports = {
             gold: "#FFBA00",
             "dark-gray": "#2A2E43",
             black: "#262627",
+            beige: { 100: "#FFFFFF99", 200: "#F7F7F7" },
         },
         fontSize: {
             "2xs": "0.75rem",
@@ -61,6 +62,8 @@ module.exports = {
             maxWidth: {
                 input: "532px",
                 modal: "808px",
+                "modal-lg": "1360px",
+                select: "256px",
             },
             borderRadius: {
                 modal: "10px",

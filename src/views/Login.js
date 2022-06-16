@@ -1,15 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import logo from "../assets/images/logo.svg";
 
-import {
-    ForgotPasswordModal,
-    LoginModal,
-    RegisterModal,
-    ResetPasswordModal,
-    VerifyResetModal,
-} from "../components/modals";
-
-import { Routes, Route, useNavigate, Outlet } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 import { useModalContext } from "../context/ModalContext";
 
 export default function Login() {
@@ -57,22 +49,6 @@ export default function Login() {
             {showModal && (
                 <div className="absolute flex items-center justify-center inset-0 bg-black bg-opacity-50">
                     <Outlet />
-                    {/* <Routes>
-                        <Route path="/login" element={<LoginModal />} />
-                        <Route path="/register" element={<RegisterModal />} />
-                        <Route
-                            path="/forgot-password"
-                            element={<ForgotPasswordModal />}
-                        />
-                        <Route
-                            path="/verify-reset"
-                            element={<VerifyResetModal />}
-                        />
-                        <Route
-                            path="/reset-password"
-                            element={<ResetPasswordModal />}
-                        />
-                    </Routes> */}
                 </div>
             )}
         </div>

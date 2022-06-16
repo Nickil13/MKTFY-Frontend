@@ -7,13 +7,15 @@ export default function Input({
     value,
     setValue,
     lastchild,
+    backgroundColor,
 }) {
     return (
-        <div className={`input-control ${!lastchild && "mb-2"}`}>
+        <div className={`input-control ${!lastchild && "mb-2"} `}>
             <label className="capitalize" htmlFor={name}>
                 {name}
             </label>
             <input
+                className={`${backgroundColor && backgroundColor}`}
                 type={type}
                 id={name}
                 name={name}

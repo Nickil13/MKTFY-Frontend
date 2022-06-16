@@ -18,7 +18,8 @@
     label {
         @apply text-gray-400 font-semibold;
     }
-    input {
+    input,
+    select {
         @apply placeholder:text-gray-200 border border-gray-100 mb-1 mt-3 p-5 text-base font-semibold rounded focus:outline-purple-400 focus:outline-1;
     }
 }

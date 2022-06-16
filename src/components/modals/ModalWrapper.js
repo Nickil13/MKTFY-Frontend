@@ -4,12 +4,18 @@ import closeIcon from "../../assets/images/icon_close.svg";
 import backIcon from "../../assets/images/icon_right_arrowhead.svg";
 import { useModalContext } from "../../context/ModalContext";
 
-export default function ModalWrapper({ goBack, children }) {
+export default function ModalWrapper({ goBack, children, largeWrapper }) {
     let navigate = useNavigate();
     const { setShowModal } = useModalContext();
 
     return (
-        <div className="relative flex flex-col items-center bg-white w-4/5  max-w-modal my-auto py-15 px-36 rounded-modal shadow-modal">
+        <div
+            className={`relative flex flex-col bg-white w-4/5 my-auto  rounded-modal shadow-modal ${
+                largeWrapper
+                    ? "max-w-modal-lg pt-4 pl-28"
+                    : "max-w-modal py-15 px-36"
+            }`}
+        >
             {children}
             <span
                 className="absolute top-7 right-7 cursor-pointer"
