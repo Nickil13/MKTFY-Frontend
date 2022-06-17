@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import iconHide from "../../assets/images/icon_eye_hide.svg";
 import ModalWrapper from "./ModalWrapper";
 import Input from "../Input";
 import Select from "../Select";
@@ -90,7 +89,7 @@ export default function RegisterModal() {
                         ></Select>
                         <button
                             type="submit"
-                            className="bg-gold btn mt-52"
+                            className="bg-gold-200 btn mt-52"
                             disabled={notAllFieldsFilled}
                         >
                             Next

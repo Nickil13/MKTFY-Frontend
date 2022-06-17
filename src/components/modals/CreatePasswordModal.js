@@ -53,7 +53,7 @@ export default function CreatePasswordModal() {
                             onChange={(e) => setPassword(e.target.value)}
                             lastchild
                         />
-                        <span className="absolute top-1 left-20 text-gold font-semibold text-2xs capitalize">
+                        <span className="absolute top-1 left-20 text-gold-200 font-semibold text-2xs capitalize">
                             {passwordStrength}
                         </span>
                     </div>

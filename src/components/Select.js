@@ -48,7 +48,9 @@ export default function Select({
                     type="button"
                     aria-haspopup="listbox"
                     aria-expanded={toggleOptions}
-                    className="w-full text-left p-5"
+                    className={`w-full text-left p-[17px] border-[3px] border-transparent rounded  ${
+                        showOptions && "border-purple-200"
+                    }`}
                     onClick={toggleOptions}
                 >
                     {value || options[0]}

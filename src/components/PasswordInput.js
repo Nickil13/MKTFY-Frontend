@@ -3,6 +3,7 @@ import { ReactComponent as IconHide } from "../assets/images/icon_eye_hide.svg";
 
 export default function PasswordInput({ value, onChange, name, lastchild }) {
     const inputRef = useRef(null);
+
     const toggleShowPassword = () => {
         if (inputRef) {
             if (inputRef.current.type === "password") {
@@ -12,6 +13,7 @@ export default function PasswordInput({ value, onChange, name, lastchild }) {
             }
         }
     };
+
     return (
         <div className={`input-control ${!lastchild && "mb-2"}`}>
             <label className="capitalize" htmlFor="password">

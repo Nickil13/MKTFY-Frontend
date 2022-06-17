@@ -41,7 +41,7 @@ export default function VerifyResetModal() {
                 <div className="flex justify-end">
                     <span
                         onClick={handleResendCode}
-                        className="text-gold underline text-xs font-semibold cursor-pointer"
+                        className="text-gold-200 underline text-xs font-semibold cursor-pointer"
                     >
                         I didn't receive the code. Please sent it again
                     </span>

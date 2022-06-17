@@ -40,7 +40,7 @@ export default function LoginModal() {
                 />
                 <div className="flex justify-end">
                     <Link
-                        className="text-gold underline text-xs font-semibold"
+                        className="text-gold-200 underline text-xs font-semibold"
                         to="/forgot-password"
                     >
                         I forgot my password
@@ -49,7 +49,7 @@ export default function LoginModal() {
 
                 <button
                     type="submit"
-                    className="btn bg-gold  mt-15 mx-auto"
+                    className="btn bg-gold-200 hover:bg-gold-100  mt-15 mx-auto"
                     disabled={!email && !password}
                 >
                     Login
