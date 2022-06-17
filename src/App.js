@@ -10,14 +10,21 @@ import {
 } from "./components/modals";
 
 import RequireAuth from "./utils/RequireAuth";
-
+import { ModalContextProvider } from "./context/ModalContext";
 import { Dashboard, ErrorPage, LoadingPage, Login } from "./views";
 
 function App() {
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<Login />}>
+                <Route
+                    path="/"
+                    element={
+                        <ModalContextProvider>
+                            <Login />
+                        </ModalContextProvider>
+                    }
+                >
                     <Route path="login" element={<LoginModal />} />
                     <Route path="register" element={<RegisterModal />} />
                     <Route

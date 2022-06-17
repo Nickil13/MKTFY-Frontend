@@ -20,6 +20,7 @@ module.exports = {
                 400: "#6B6B6C",
                 500: "#4D4D4D",
                 600: "#434344",
+                700: "#2A2E43",
             },
             purple: {
                 100: "#9349DE",
@@ -66,7 +67,6 @@ module.exports = {
                 input: "532px",
                 modal: "808px",
                 "modal-lg": "1360px",
-                select: "256px",
             },
             borderRadius: {
                 modal: "10px",
@@ -74,6 +74,7 @@ module.exports = {
             boxShadow: {
                 btn: "0px 5px 20px #00000024",
                 modal: "0px 7px 12px #00000024",
+                dropdown: "0px 3px 6px #00000029",
             },
         },
     },

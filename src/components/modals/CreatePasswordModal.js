@@ -16,6 +16,7 @@ export default function CreatePasswordModal() {
     const [passwordStrength, setPasswordStrength] = useState("weak");
     let navigate = useNavigate();
     let location = useLocation();
+
     function checkUppercase() {
         let hasUppercase = false;
         for (let i = 0; i < password.length; i++) {

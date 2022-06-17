@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import closeIcon from "../../assets/images/icon_close.svg";
-import backIcon from "../../assets/images/icon_right_arrowhead.svg";
+import { ReactComponent as CloseIcon } from "../../assets/images/icon_close.svg";
+import { ReactComponent as BackIcon } from "../../assets/images/icon_back.svg";
 import { useModalContext } from "../../context/ModalContext";
 
 export default function ModalWrapper({ goBack, children, largeWrapper }) {
@@ -18,7 +18,7 @@ export default function ModalWrapper({ goBack, children, largeWrapper }) {
             className={`relative flex flex-col bg-white w-4/5 my-auto  rounded-modal shadow-modal ${
                 largeWrapper
                     ? "max-w-modal-lg pt-4 pl-28"
-                    : "max-w-modal py-15 px-32"
+                    : "max-w-modal py-15 px-[138px]"
             }`}
         >
             {children}
@@ -26,14 +26,14 @@ export default function ModalWrapper({ goBack, children, largeWrapper }) {
                 className="absolute top-7 right-7 cursor-pointer"
                 onClick={closeModal}
             >
-                <img src={closeIcon} alt="close x icon" />
+                <CloseIcon />
             </span>
             {goBack && (
                 <span
                     className="absolute top-7 left-7 cursor-pointer"
                     onClick={() => navigate(-1)}
                 >
-                    <img src={backIcon} alt="back arrow icon" />
+                    <BackIcon />
                 </span>
             )}
         </div>

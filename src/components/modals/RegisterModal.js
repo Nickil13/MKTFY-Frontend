@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import iconHide from "../../assets/images/icon_eye_hide.svg";
 import ModalWrapper from "./ModalWrapper";
 import Input from "../Input";
+import Select from "../Select";
 import { useNavigate } from "react-router-dom";
+
+const CITY_OPTIONS = ["Calgary", "Brooks", "Camrose"];
 
 export default function RegisterModal() {
     const [firstName, setFirstName] = useState("");
@@ -22,6 +25,9 @@ export default function RegisterModal() {
         navigate("/create-password");
     };
 
+    React.useEffect(() => {
+        console.log(city);
+    }, [city]);
     return (
         <ModalWrapper largeWrapper>
             <h1 className="text-purple-200 font-bold mb-3">
@@ -73,27 +79,15 @@ export default function RegisterModal() {
                             placeholder={"Default Pickup Address"}
                             backgroundColor="bg-beige-100"
                         />
-                        <div className="input-control max-w-select">
-                            <label htmlFor="city">City</label>
-                            <select
-                                name="city"
-                                id="city"
-                                className="bg-beige-100"
-                                onChange={(e) => {
-                                    setCity(e.target.value);
-                                }}
-                            >
-                                <option
-                                    value="default"
-                                    className="text-gray-200"
-                                >
-                                    City name
-                                </option>
-                                <option value="Calgary">Calgary</option>
-                                <option value="Brooks">Brooks</option>
-                                <option value="Camrose">Camrose</option>
-                            </select>
-                        </div>
+                        <Select
+                            name="city"
+                            bg="bg-beige-100"
+                            phtext="text-gray-200"
+                            setValue={setCity}
+                            options={CITY_OPTIONS}
+                            value={city}
+                            width="1/2"
+                        ></Select>
                         <button
                             type="submit"
                             className="bg-gold btn mt-52"

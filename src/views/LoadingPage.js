@@ -27,11 +27,17 @@ export default function LoadingPage() {
             navigate("/dashboard");
         } else if (from === "/reset-password") {
             navigate("/login");
+        } else {
+            navigate("/");
         }
     };
     return (
-        <div className="bg-login-clouds bg-cover bg-no-repeat h-screen">
-            <div className="flex flex-col items-center justify-center h-screen">
+        <div className="relative bg-login-clouds bg-cover bg-no-repeat h-screen">
+            <div className="absolute t-0 l-0 pt-20 pl-36">
+                <img src={logo} alt="mktfy logo" />
+            </div>
+
+            <div className="flex flex-col items-center justify-center h-screen ">
                 <div className="w-[352px] h-[352px]" ref={animation}></div>
             </div>
         </div>
