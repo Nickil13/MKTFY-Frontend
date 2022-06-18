@@ -49,8 +49,6 @@ module.exports = {
                 "grey-clouds": "url(../assets/images/background_grey.svg)",
                 "about-header":
                     "url(../assets/images/Image_about_us_header.png)",
-                "about-header-lg":
-                    "url(../assets/images/Image_about_us_header@2x.png)",
                 checkbox: "url(../assets/images/check_box-24px.svg)",
             },
             width: {

@@ -11,7 +11,13 @@ import {
 
 import RequireAuth from "./utils/RequireAuth";
 import { ModalContextProvider } from "./context/ModalContext";
-import { Dashboard, ErrorPage, LoadingPage, Login } from "./views";
+import {
+    Dashboard,
+    ErrorPage,
+    LoadingPage,
+    Login,
+    TermsOfService,
+} from "./views";
 
 function App() {
     return (
@@ -61,10 +67,7 @@ function App() {
                         element={<div>A specific listing</div>}
                     />
                 </Route>
-                <Route
-                    path="terms-of-service"
-                    element={<div>Terms of service</div>}
-                />
+                <Route path="terms-of-service" element={<TermsOfService />} />
                 <Route
                     path="privacy-policy"
                     element={<div>Privacy policy</div>}

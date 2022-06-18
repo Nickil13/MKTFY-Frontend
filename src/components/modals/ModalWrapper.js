@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as CloseIcon } from "../../assets/images/icon_close.svg";
-import { ReactComponent as BackIcon } from "../../assets/images/icon_back.svg";
+import { BackArrow } from "../icons";
 import { useModalContext } from "../../context/ModalContext";
 
 export default function ModalWrapper({ goBack, children, largeWrapper }) {
@@ -33,7 +33,7 @@ export default function ModalWrapper({ goBack, children, largeWrapper }) {
                     className="absolute top-7 left-7 cursor-pointer"
                     onClick={() => navigate(-1)}
                 >
-                    <BackIcon />
+                    <BackArrow />
                 </span>
             )}
         </div>

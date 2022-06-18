@@ -1,8 +1,8 @@
 import React from "react";
-import { ReactComponent as Logo } from "../assets/images/logo.svg";
 import { useNavigate, Outlet } from "react-router-dom";
 import { useModalContext } from "../context/ModalContext";
-import Button from "../components/Button";
+import { Button } from "../components";
+import { Logo } from "../components/icons";
 
 export default function Login() {
     const { showModal, setShowModal } = useModalContext();
@@ -21,9 +21,7 @@ export default function Login() {
     return (
         <div className="bg-login-clouds bg-cover bg-no-repeat h-screen">
             <div className="flex flex-col justify-center items-center w-full h-screen pt-24">
-                <div className="w-64">
-                    <Logo className="fill-purple-200" />
-                </div>
+                <Logo width="w-64" />
 
                 <div className="flex flex-col mt-14">
                     <Button
