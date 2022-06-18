@@ -3,6 +3,7 @@ import ModalWrapper from "./ModalWrapper";
 import Input from "../Input";
 import Select from "../Select";
 import { useNavigate } from "react-router-dom";
+import Button from "../Button";
 
 const CITY_OPTIONS = ["Calgary", "Brooks", "Camrose"];
 
@@ -87,13 +88,15 @@ export default function RegisterModal() {
                             value={city}
                             width="1/2"
                         ></Select>
-                        <button
+                        <Button
                             type="submit"
-                            className="bg-gold-200 btn mt-52"
+                            color="gold"
+                            margins="mt-52"
+                            centered
                             disabled={notAllFieldsFilled}
                         >
                             Next
-                        </button>
+                        </Button>
                     </div>
                 </form>
                 <p className="text-sm-17 text-gray-300">

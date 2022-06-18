@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useModalContext } from "../../context/ModalContext";
+import Button from "../Button";
 import Input from "../Input";
 import PasswordInput from "../PasswordInput";
 import ModalWrapper from "./ModalWrapper";
@@ -46,14 +47,15 @@ export default function LoginModal() {
                         I forgot my password
                     </Link>
                 </div>
-
-                <button
+                <Button
                     type="submit"
-                    className="btn bg-gold-200 hover:bg-gold-100  mt-15 mx-auto"
+                    color="gold"
+                    margins="mt-15"
+                    centered
                     disabled={!email && !password}
                 >
                     Login
-                </button>
+                </Button>
             </form>
         </ModalWrapper>
     );

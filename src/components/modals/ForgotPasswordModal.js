@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../Input";
+import Button from "../Button";
 import ModalWrapper from "./ModalWrapper";
 
 export default function ForgotPasswordModal() {
@@ -31,14 +32,14 @@ export default function ForgotPasswordModal() {
                     setValue={setEmail}
                     lastchild
                 />
-
-                <button
+                <Button
                     type="submit"
                     disabled={!email}
-                    className="btn bg-purple-500 hover:bg-purple-400 mt-15 mx-auto"
+                    margins="mt-15"
+                    centered
                 >
                     Submit
-                </button>
+                </Button>
             </form>
         </ModalWrapper>
     );

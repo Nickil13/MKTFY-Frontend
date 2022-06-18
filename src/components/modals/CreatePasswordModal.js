@@ -2,6 +2,7 @@ import React, { useState, useMemo } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import ModalWrapper from "./ModalWrapper";
 import PasswordInput from "../PasswordInput";
+import Button from "../Button";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 
 export default function CreatePasswordModal() {
@@ -135,13 +136,15 @@ export default function CreatePasswordModal() {
                             </Link>
                         </p>
                     </div>
-                    <button
+
+                    <Button
                         type="submit"
-                        className="btn bg-purple-500 hover:bg-purple-400 mx-auto mt-10"
+                        margins="mt-10"
+                        centered
                         disabled={!criteriaMet}
                     >
                         Create Account
-                    </button>
+                    </Button>
                 </form>
             </div>
         </ModalWrapper>

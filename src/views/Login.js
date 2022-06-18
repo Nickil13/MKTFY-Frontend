@@ -2,6 +2,7 @@ import React from "react";
 import { ReactComponent as Logo } from "../assets/images/logo.svg";
 import { useNavigate, Outlet } from "react-router-dom";
 import { useModalContext } from "../context/ModalContext";
+import Button from "../components/Button";
 
 export default function Login() {
     const { showModal, setShowModal } = useModalContext();
@@ -25,18 +26,16 @@ export default function Login() {
                 </div>
 
                 <div className="flex flex-col mt-14">
-                    <button
-                        className="btn bg-gold-200 mb-4"
+                    <Button
+                        margins="mb-4"
+                        color="gold"
                         onClick={handleLoginClick}
                     >
                         Login
-                    </button>
-                    <button
-                        className="btn bg-purple-500 "
-                        onClick={handleCreateAccountClick}
-                    >
+                    </Button>
+                    <Button onClick={handleCreateAccountClick}>
                         Create Account
-                    </button>
+                    </Button>
                 </div>
             </div>
             <div className="absolute left-20 bottom-10 text-sm-17">

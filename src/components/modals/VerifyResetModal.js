@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../Input";
+import Button from "../Button";
 import ModalWrapper from "./ModalWrapper";
 
 export default function VerifyResetModal() {
@@ -46,13 +47,14 @@ export default function VerifyResetModal() {
                         I didn't receive the code. Please sent it again
                     </span>
                 </div>
-                <button
+                <Button
                     type="submit"
-                    className="btn bg-purple-500 hover:bg-purple-400 mt-10 mx-auto"
+                    margins="mt-10"
+                    centered
                     disabled={verificationCode.length < 6}
                 >
                     Submit
-                </button>
+                </Button>
             </form>
         </ModalWrapper>
     );

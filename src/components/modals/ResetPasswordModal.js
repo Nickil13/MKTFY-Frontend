@@ -2,6 +2,7 @@ import React, { useState, useMemo } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import ModalWrapper from "./ModalWrapper";
 import PasswordInput from "../PasswordInput";
+import Button from "../Button";
 import { useNavigate, useLocation } from "react-router-dom";
 
 export default function ResetPasswordModal() {
@@ -96,14 +97,14 @@ export default function ResetPasswordModal() {
                             <span>1 Number</span>
                         </div>
                     </div>
-
-                    <button
+                    <Button
                         type="submit"
-                        className="btn bg-purple-500 hover:bg-purple-400 mx-auto mt-15"
+                        margins="mt-15"
+                        centered
                         disabled={!criteriaMet}
                     >
                         Set Password
-                    </button>
+                    </Button>
                 </form>
             </div>
         </ModalWrapper>
