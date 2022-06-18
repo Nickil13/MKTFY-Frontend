@@ -16,6 +16,7 @@ import {
     ErrorPage,
     LoadingPage,
     Login,
+    PrivacyPolicy,
     TermsOfService,
 } from "./views";
 
@@ -68,10 +69,8 @@ function App() {
                     />
                 </Route>
                 <Route path="terms-of-service" element={<TermsOfService />} />
-                <Route
-                    path="privacy-policy"
-                    element={<div>Privacy policy</div>}
-                />
+
+                <Route path="privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
         </Router>

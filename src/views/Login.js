@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, Outlet } from "react-router-dom";
+import { useNavigate, useLocation, Outlet } from "react-router-dom";
 import { useModalContext } from "../context/ModalContext";
 import { Button } from "../components";
 import { Logo } from "../components/icons";
@@ -7,6 +7,15 @@ import { Logo } from "../components/icons";
 export default function Login() {
     const { showModal, setShowModal } = useModalContext();
     let navigate = useNavigate();
+    let location = useLocation();
+
+    React.useEffect(() => {
+        // When returning to this route, check if the route includes a modal
+        // If so and the modal is not showing, show it.
+        if (location.pathname.length > 1 && !showModal) {
+            setShowModal(true);
+        }
+    }, [location]);
 
     const handleLoginClick = () => {
         setShowModal(true);
