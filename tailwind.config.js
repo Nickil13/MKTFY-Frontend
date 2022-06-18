@@ -57,11 +57,15 @@ module.exports = {
             width: {
                 btn: "345px",
             },
+            height: {
+                footer: "609px",
+            },
             margin: {
                 15: "60px",
             },
             padding: {
                 15: "60px",
+                footer: "609px",
             },
             maxWidth: {
                 input: "532px",
@@ -75,6 +79,7 @@ module.exports = {
                 btn: "0px 5px 20px #00000024",
                 modal: "0px 7px 12px #00000024",
                 dropdown: "0px 3px 6px #00000029",
+                card: "0px 4px 15px #00000024",
             },
         },
     },

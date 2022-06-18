@@ -4,7 +4,7 @@ import MktfyWordmark from "../../assets/images/MKTFY_wordmark.svg";
 
 export default function Footer() {
     return (
-        <footer className="relative bg-login-clouds h-[609px] bg-cover bg-top">
+        <footer className="absolute bottom-0 w-full bg-login-clouds h-footer bg-cover bg-top">
             <div className="absolute inset-0 bg-gradient-to-b from-[#000000]  h-full"></div>
 
             <div className="absolute flex flex-col inset-0 bg-[#000000]/70  h-full ">

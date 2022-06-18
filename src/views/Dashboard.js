@@ -4,7 +4,7 @@ import Footer from "../components/layout/Footer";
 
 export default function Dashboard() {
     return (
-        <div>
+        <div className="relative min-h-screen pb-footer">
             <nav className="h-[191px] bg-purple-500">
                 <div className="max-w-[1636px] bg-purple-200 mx-auto">
                     {/* logo */}
@@ -14,9 +14,10 @@ export default function Dashboard() {
                     {/* create listing icon*/}
                 </div>
             </nav>
-            <main className="relative bg-gray-cloud-gray h-screen">
-                <div className="absolute inset-0 bg-gray-clouds"></div>
-                <Outlet />
+            <main className="relative bg-gray-cloud-gray min-h-screen">
+                <div className="min-h-screen bg-gray-clouds">
+                    <Outlet />
+                </div>
             </main>
             <Footer />
         </div>

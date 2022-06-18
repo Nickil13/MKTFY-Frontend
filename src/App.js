@@ -14,6 +14,7 @@ import { ModalContextProvider } from "./context/ModalContext";
 import {
     Dashboard,
     ErrorPage,
+    Home,
     LoadingPage,
     Login,
     PrivacyPolicy,
@@ -57,7 +58,7 @@ function App() {
                         </RequireAuth>
                     }
                 >
-                    <Route index element={<div>Home</div>} />
+                    <Route index element={<Home />} />
                     <Route path="listings" element={<div>All Listings</div>} />
                     <Route
                         path="listings/:category"
