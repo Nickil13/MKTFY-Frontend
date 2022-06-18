@@ -59,6 +59,8 @@ module.exports = {
             },
             height: {
                 footer: "609px",
+                section: "480px",
+                card: "351px",
             },
             margin: {
                 15: "60px",
@@ -66,6 +68,9 @@ module.exports = {
             padding: {
                 15: "60px",
                 footer: "609px",
+            },
+            minWidth: {
+                card: "236px",
             },
             maxWidth: {
                 input: "532px",
