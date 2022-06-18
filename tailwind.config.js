@@ -21,6 +21,9 @@ module.exports = {
                 500: "#4D4D4D",
                 600: "#434344",
                 700: "#2A2E43",
+                "cloud-gray": "#F4F4F5",
+                footer: "#888889",
+                "footer-border": "#707070",
             },
             purple: {
                 100: "#9349DE",
@@ -46,7 +49,7 @@ module.exports = {
         extend: {
             backgroundImage: {
                 "login-clouds": "url(../assets/images/background_begin.svg)",
-                "grey-clouds": "url(../assets/images/background_grey.svg)",
+                "gray-clouds": "url(../assets/images/background_grey.svg)",
                 "about-header":
                     "url(../assets/images/Image_about_us_header.png)",
                 checkbox: "url(../assets/images/check_box-24px.svg)",
