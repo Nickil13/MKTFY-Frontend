@@ -53,6 +53,7 @@ module.exports = {
                 "about-header":
                     "url(../assets/images/Image_about_us_header.png)",
                 checkbox: "url(../assets/images/check_box-24px.svg)",
+                "mobile-banner": "url(../assets/images/Banner_mask.png)",
             },
             width: {
                 btn: "345px",
@@ -76,6 +77,7 @@ module.exports = {
                 input: "532px",
                 modal: "808px",
                 "modal-lg": "1360px",
+                card: "236px",
             },
             borderRadius: {
                 modal: "10px",

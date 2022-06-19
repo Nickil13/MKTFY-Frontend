@@ -48,7 +48,7 @@ export default function Login() {
             <div className="absolute left-20 bottom-10 text-sm-17">
                 <p className="text-white">
                     Find out more about us!
-                    <a href="#" className="text-gold-200 font-bold ml-1">
+                    <a href="" className="text-gold-200 font-bold ml-1">
                         Visit our website
                     </a>
                 </p>

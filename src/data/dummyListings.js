@@ -41,7 +41,7 @@ export const dummyListings = [
 
     {
         Id: 4,
-        ProdName: "Homemade Pancakes",
+        ProdName: "Homemade Pancakes with Real Maple Sytrup",
         Description: "Buttermilk pancakes with fresh strawberries and nutella.",
         Category: "furniture",
         Condition: "new",
@@ -161,7 +161,7 @@ export const dummyListings = [
 
     {
         Id: 13,
-        ProdName: "Seashell",
+        ProdName: "Seashell from the NZ coast",
         Description: "Best headphones ever",
         Category: "cars",
         Condition: "used",
