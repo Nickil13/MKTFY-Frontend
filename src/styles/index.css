@@ -47,4 +47,7 @@
     .modal-text {
         @apply text-base font-semibold text-gray-300;
     }
+    .home-section {
+        @apply relative px-5 p-7 bg-white rounded h-section;
+    }
 }
