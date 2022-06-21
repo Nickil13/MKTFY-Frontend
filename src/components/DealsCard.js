@@ -3,7 +3,7 @@ import React from "react";
 export default function DealsCard({ Images, ProdName, Price }) {
     return (
         <div className="flex flex-col min-w-card  max-w-card h-card mr-[20px] bg-white rounded-xl overflow-hidden shadow-card">
-            <div className="overflow-hidden h-[235px]">
+            <div className="overflow-hidden h-card-img-sm">
                 <img
                     className="object-cover w-full h-full"
                     src={Images[0]}

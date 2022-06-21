@@ -9,8 +9,8 @@ export default function ListingCard({
     Description,
 }) {
     return (
-        <div className="flex py-6 px-14">
-            <div className="max-w-card min-w-card shadow-card rounded-lg overflow-hidden">
+        <div className="flex py-6 px-14 min-h-listing-card">
+            <div className="max-w-card min-w-card h-card-img shadow-card rounded-lg overflow-hidden">
                 <img
                     className="
                                 object-cover w-full h-full"

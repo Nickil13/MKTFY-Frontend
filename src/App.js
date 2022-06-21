@@ -19,6 +19,7 @@ import {
     LoadingPage,
     Login,
     PrivacyPolicy,
+    SingleListing,
     TermsOfService,
 } from "./views";
 
@@ -62,8 +63,8 @@ function App() {
                     <Route index element={<Home />} />
                     <Route path="listings" element={<Listings />} />
                     <Route
-                        path="listings/:id"
-                        element={<div>A specific listing</div>}
+                        path="listings/:category/:id"
+                        element={<SingleListing />}
                     />
                 </Route>
                 <Route path="terms-of-service" element={<TermsOfService />} />

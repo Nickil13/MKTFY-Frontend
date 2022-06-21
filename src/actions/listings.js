@@ -4,21 +4,21 @@ const getListings = (params, amount) => {
     let newListings = [];
     if (dummyListings) {
         const { city, category, condition } = params;
-
+        newListings = [...dummyListings];
         if (category) {
-            newListings = dummyListings.filter(
+            newListings = newListings.filter(
                 (listing) => listing.Category === category
             );
         }
 
         if (city) {
-            newListings = dummyListings.filter(
+            newListings = newListings.filter(
                 (listing) => listing.City === city
             );
         }
 
         if (condition) {
-            newListings = dummyListings.filter(
+            newListings = newListings.filter(
                 (listing) => listing.Condition === condition
             );
         }
@@ -31,6 +31,9 @@ const getListings = (params, amount) => {
     return newListings;
 };
 
+const getListingById = () => {
+    return dummyListings[0];
+};
 const getDeals = () => {
     let deals = [];
     if (dummyListings) {
@@ -47,4 +50,4 @@ const getMoreDeals = () => {
     return deals;
 };
 
-export { getListings, getDeals, getMoreDeals };
+export { getListings, getListingById, getDeals, getMoreDeals };

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { getListings } from "../actions/listings";
 import { ListingCard, Sidebar } from "../components";
 
@@ -26,7 +26,6 @@ export default function Listings() {
             }
 
             // Get filtered listings
-            console.log(params);
             const data = getListings(params);
             setListings(data);
         }
@@ -81,10 +80,12 @@ export default function Listings() {
                         {listings.length > 0 &&
                             listings.map((listing) => {
                                 return (
-                                    <ListingCard
+                                    <Link
                                         key={listing.Id}
-                                        {...listing}
-                                    />
+                                        to={`/dashboard/listings/${listing.Category}/${listing.Id}`}
+                                    >
+                                        <ListingCard {...listing} />
+                                    </Link>
                                 );
                             })}
                     </div>

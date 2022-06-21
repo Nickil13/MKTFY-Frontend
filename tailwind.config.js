@@ -44,6 +44,7 @@ module.exports = {
             "sm-16": "1rem",
             "sm-17": "1.0625rem",
             base: "1.25rem",
+            "lg-36": "2.25rem",
             lg: "2.5rem",
         },
 
@@ -63,6 +64,8 @@ module.exports = {
                 footer: "609px",
                 section: "480px",
                 card: "351px",
+                "card-img": "264px",
+                "card-img-sm": "235px",
             },
             margin: {
                 15: "60px",
@@ -70,6 +73,9 @@ module.exports = {
             padding: {
                 15: "60px",
                 footer: "609px",
+            },
+            minHeight: {
+                "listing-card": "312px",
             },
             minWidth: {
                 card: "236px",
