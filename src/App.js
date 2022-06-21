@@ -15,6 +15,7 @@ import {
     Dashboard,
     ErrorPage,
     Home,
+    Listings,
     LoadingPage,
     Login,
     PrivacyPolicy,
@@ -59,13 +60,9 @@ function App() {
                     }
                 >
                     <Route index element={<Home />} />
-                    <Route path="listings" element={<div>All Listings</div>} />
+                    <Route path="listings" element={<Listings />} />
                     <Route
-                        path="listings/:category"
-                        element={<div>Listings</div>}
-                    />
-                    <Route
-                        path="listings/:category/:id"
+                        path="listings/:id"
                         element={<div>A specific listing</div>}
                     />
                 </Route>

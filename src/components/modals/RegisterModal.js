@@ -4,8 +4,7 @@ import Input from "../Input";
 import Select from "../Select";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button";
-
-const CITY_OPTIONS = ["Calgary", "Brooks", "Camrose"];
+import { CITY_OPTIONS } from "../../data/variables";
 
 export default function RegisterModal() {
     const [firstName, setFirstName] = useState("");

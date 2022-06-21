@@ -21,7 +21,7 @@ export default function PasswordInput({ value, onChange, name, lastchild }) {
             </label>
             <div className="relative">
                 <input
-                    className="w-full"
+                    className="form-input w-full"
                     type="password"
                     id={name}
                     name={name}

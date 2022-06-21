@@ -26,6 +26,7 @@ module.exports = {
                 "footer-border": "#707070",
             },
             purple: {
+                50: "#A54BC033",
                 100: "#9349DE",
                 200: "#8840D9",
                 400: "#6E20BE",

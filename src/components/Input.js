@@ -15,7 +15,7 @@ export default function Input({
                 {name}
             </label>
             <input
-                className={`${backgroundColor && backgroundColor}`}
+                className={`form-input ${backgroundColor && backgroundColor}`}
                 type={type}
                 id={name}
                 name={name}

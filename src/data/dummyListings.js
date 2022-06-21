@@ -81,7 +81,8 @@ export const dummyListings = [
     {
         Id: 7,
         ProdName: "Plants",
-        Description: "Best headphones ever",
+        Description:
+            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio reprehenderit rerum praesentium modi doloremque a assumenda tempore?",
         Category: "real estate",
         Condition: "used",
         Price: 200.0,
@@ -108,7 +109,8 @@ export const dummyListings = [
     {
         Id: 9,
         ProdName: "Boat",
-        Description: "Best headphones ever",
+        Description:
+            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio reprehenderit rerum praesentium modi doloremque a assumenda tempore?",
         Category: "real estate",
         Condition: "new",
         Price: 2570.55,
@@ -121,7 +123,8 @@ export const dummyListings = [
     {
         Id: 10,
         ProdName: "Sandwich",
-        Description: "Best headphones ever",
+        Description:
+            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio reprehenderit rerum praesentium modi doloremque a assumenda tempore?",
         Category: "real estate",
         Condition: "new",
         Price: 27.32,
@@ -135,7 +138,8 @@ export const dummyListings = [
     {
         Id: 11,
         ProdName: "Morning alarm",
-        Description: "Best headphones ever",
+        Description:
+            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio reprehenderit rerum praesentium modi doloremque a assumenda tempore?",
         Category: "cars",
         Condition: "used",
         Price: 500.0,
@@ -148,7 +152,8 @@ export const dummyListings = [
     {
         Id: 12,
         ProdName: "Scarf",
-        Description: "Best headphones ever",
+        Description:
+            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio reprehenderit rerum praesentium modi doloremque a assumenda tempore?",
         Category: "cars",
         Condition: "used",
         Price: 75.0,
@@ -162,7 +167,8 @@ export const dummyListings = [
     {
         Id: 13,
         ProdName: "Seashell from the NZ coast",
-        Description: "Best headphones ever",
+        Description:
+            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio reprehenderit rerum praesentium modi doloremque a assumenda tempore?",
         Category: "cars",
         Condition: "used",
         Price: 18.0,
@@ -175,7 +181,8 @@ export const dummyListings = [
     {
         Id: 14,
         ProdName: "Camera",
-        Description: "Best headphones ever",
+        Description:
+            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio reprehenderit rerum praesentium modi doloremque a assumenda tempore?",
         Category: "cars",
         Condition: "used",
         Price: 215.0,
@@ -202,7 +209,8 @@ export const dummyListings = [
     {
         Id: 16,
         ProdName: "Fresh prouduce",
-        Description: "Best headphones ever",
+        Description:
+            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio reprehenderit rerum praesentium modi doloremque a assumenda tempore?",
         Category: "cars",
         Condition: "new",
         Price: 50.0,

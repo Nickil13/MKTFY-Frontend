@@ -1,11 +1,27 @@
 import { dummyListings } from "../data/dummyListings";
 
-const getListings = (category, amount) => {
+const getListings = (params, amount) => {
     let newListings = [];
     if (dummyListings) {
-        newListings = dummyListings.filter(
-            (listing) => listing.Category === category
-        );
+        const { city, category, condition } = params;
+
+        if (category) {
+            newListings = dummyListings.filter(
+                (listing) => listing.Category === category
+            );
+        }
+
+        if (city) {
+            newListings = dummyListings.filter(
+                (listing) => listing.City === city
+            );
+        }
+
+        if (condition) {
+            newListings = dummyListings.filter(
+                (listing) => listing.Condition === condition
+            );
+        }
 
         if (amount) {
             newListings = newListings.slice(0, amount);

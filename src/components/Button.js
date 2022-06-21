@@ -4,6 +4,7 @@ export default function Button({
     children,
     type,
     color,
+    width,
     onClick,
     disabled,
     centered,
@@ -11,7 +12,7 @@ export default function Button({
 }) {
     return (
         <button
-            className={`btn ${
+            className={`btn ${width} ${
                 color === "purple"
                     ? "bg-purple-500 hover:bg-purple-400"
                     : color === "gold" && "bg-gold-200 hover:bg-gold-100"
@@ -28,4 +29,5 @@ export default function Button({
 Button.defaultProps = {
     type: "button",
     color: "purple",
+    width: "w-btn",
 };

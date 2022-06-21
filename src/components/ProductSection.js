@@ -1,15 +1,21 @@
 import React, { useState } from "react";
-import { ProductCard } from "../components";
+import { ProductCard } from ".";
 import { Link } from "react-router-dom";
 import { getListings } from "../actions/listings";
 
-export default function CardSection({ title, category, cardLimit, margins }) {
+export default function ProductSection({
+    title,
+    category,
+    cardLimit,
+    margins,
+}) {
     const [listings, setListings] = useState([]);
 
     React.useEffect(() => {
-        let data = getListings(category, cardLimit);
+        let params = { category };
+        let data = getListings(params, cardLimit);
         setListings(data);
-    }, []);
+    }, [category, cardLimit]);
 
     return (
         <section className={`home-section ${margins}`}>
@@ -26,7 +32,7 @@ export default function CardSection({ title, category, cardLimit, margins }) {
                 })}
             </div>
             <Link
-                to={`listings/${category}`}
+                to={`listings/?category=${category}`}
                 className="absolute right-7 bottom-7 text-purple-100 text-xs"
             >
                 Explore Now

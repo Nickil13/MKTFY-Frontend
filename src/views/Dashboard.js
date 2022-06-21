@@ -15,7 +15,7 @@ export default function Dashboard() {
                 </div>
             </nav>
             <main className="relative bg-gray-cloud-gray min-h-screen">
-                <div className="min-h-screen bg-gray-clouds bg-cover bg-fixed bg-center bg-no-repeat">
+                <div className="min-h-screen bg-gray-clouds bg-cover bg-fixed bg-center bg-no-repeat pt-8 pb-32 px-[142px]">
                     <Outlet />
                 </div>
             </main>
