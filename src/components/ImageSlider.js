@@ -7,7 +7,7 @@ export default function ImageSlider({ images, name }) {
         <div className="flex mx-8 mr-36">
             {/* Image Slider */}
             <div className="flex flex-col items-center  mr-9">
-                <SliderArrow className="rotate-90 mb-[10px]" />
+                <SliderArrow className="rotate-90 mb-2.5" />
                 <div className="flex flex-col flex-grow gap-[10px]">
                     {images.length > 0 &&
                         images.map((image, index) => {

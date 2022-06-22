@@ -11,7 +11,7 @@ export default function FilterItem({ value, filterCategory, children }) {
     };
     return (
         <li
-            className={`block px-12 py-[10px] cursor-pointer hover:text-purple-200 capitalize ${
+            className={`block px-12 py-2.5 cursor-pointer hover:text-purple-200 capitalize ${
                 isActive && "bg-beige-200"
             }`}
             onClick={handleFilterClick}

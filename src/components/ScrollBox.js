@@ -7,7 +7,7 @@ export default function ScrollBox({ children }) {
 
     const mouseDownHandler = (e) => {
         let ele = scrollBox.current;
-        if (ele) {
+        if (ele && ele.contains(e.target)) {
             const newPos = {
                 left: ele.scrollLeft,
                 top: ele.scrollTop,
@@ -17,9 +17,9 @@ export default function ScrollBox({ children }) {
             setPos({ ...newPos });
             ele.style.cursor = "grabbing";
             ele.style.userselect = "none";
-        }
 
-        setMouseDown(true);
+            setMouseDown(true);
+        }
     };
     const mouseMoveHandler = (e) => {
         let ele = scrollBox.current;

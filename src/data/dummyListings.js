@@ -43,7 +43,7 @@ export const dummyListings = [
 
     {
         Id: 4,
-        ProdName: "Homemade Pancakes with Real Maple Sytrup",
+        ProdName: "Homemade Pancakes with Real Maple Syrup",
         Description: "Buttermilk pancakes with fresh strawberries and nutella.",
         Category: "furniture",
         Condition: "new",
