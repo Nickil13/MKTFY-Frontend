@@ -1,8 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function DealsCard({ Images, ProdName, Price }) {
+export default function DealsCard({ Id, Images, ProdName, Price }) {
+    let navigate = useNavigate();
     return (
-        <div className="flex flex-col min-w-card  max-w-card h-card mr-[20px] bg-white rounded-xl overflow-hidden shadow-card">
+        <div
+            className="flex flex-col min-w-card  max-w-card h-card mr-[20px] bg-white rounded-xl overflow-hidden shadow-card"
+            onClick={() =>
+                navigate(`/dashboard/deals/${Id}`, {
+                    state: { name: ProdName },
+                })
+            }
+        >
             <div className="overflow-hidden h-card-img-sm">
                 <img
                     className="object-cover w-full h-full"

@@ -31,8 +31,12 @@ const getListings = (params, amount) => {
     return newListings;
 };
 
-const getListingById = () => {
-    return dummyListings[0];
+const getListingById = (id) => {
+    let newListing = {};
+    if (dummyListings) {
+        newListing = dummyListings.find((listing) => listing.Id == id);
+    }
+    return newListing;
 };
 const getDeals = () => {
     let deals = [];

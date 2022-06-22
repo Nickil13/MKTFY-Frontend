@@ -11,16 +11,14 @@ export default function SingleListing() {
     React.useEffect(() => {
         if (!listing) {
             const data = getListingById(id);
-            console.log(data);
             setListing(data);
         }
     }, [listing]);
 
     return (
-        <div>
-            {/* Breadcrumbs */}
+        <div className="mt-12">
             {listing ? (
-                <div className="flex flex-wrap bg-white pt-7 pb-12 px-16">
+                <div className="flex bg-white pt-7 pb-12 px-16 mt-5">
                     <ImageSlider
                         images={listing.Images}
                         name={listing.ProdName}

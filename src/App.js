@@ -66,6 +66,8 @@ function App() {
                         path="listings/:category/:id"
                         element={<SingleListing />}
                     />
+                    <Route path="deals" element={<Listings deals />} />
+                    <Route path="deals/:id" element={<SingleListing />} />
                 </Route>
                 <Route path="terms-of-service" element={<TermsOfService />} />
 

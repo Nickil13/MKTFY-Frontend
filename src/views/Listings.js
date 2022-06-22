@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { getListings } from "../actions/listings";
 import { ListingCard, Sidebar } from "../components";
 
-export default function Listings() {
+export default function Listings({ deals }) {
     const [listings, setListings] = useState([]);
-    let location = useLocation();
+    let navigate = useNavigate();
     let [searchParams] = useSearchParams();
 
     React.useEffect(() => {
@@ -31,39 +31,27 @@ export default function Listings() {
         }
     }, [searchParams]);
 
+    const handleCardClick = (id, category, name) => {
+        let city = searchParams.get("city") || "Calgary";
+        // Navigate to the specific listing and pass on information about the city and the listing name
+        let listingsUrl = `/dashboard/listings/${category}/${id}`;
+        let dealsUrl = `/dashboard/deals/${id}`;
+        navigate(!deals ? listingsUrl : dealsUrl, {
+            state: { name, city },
+        });
+    };
     return (
         <div>
-            {/* Breadcrumbs */}
-            <div className="mb-11">
-                <ul className="flex">
-                    {location?.pathname
-                        ?.split("/")
-                        .slice(1)
-                        .map((crumb, index) => {
-                            const lastCrumbIndex =
-                                location.pathname.split("/").slice(1) - 1;
-                            return (
-                                <li
-                                    key={index}
-                                    className={`capitalize ${
-                                        index !== lastCrumbIndex && "mr-1"
-                                    }`}
-                                >
-                                    {crumb}
-                                    {index !== lastCrumbIndex && ">"}
-                                </li>
-                            );
-                        })}
-                </ul>
-            </div>
-            <div>
+            <div className="mt-11">
                 <div className="flex items-center justify-between mb-15">
                     <h1 className="text-lg text-gray-600 font-bold">
                         Popular
                         <span className="capitalize">
-                            {` ${searchParams?.get("category")} `}
+                            {!deals
+                                ? ` ${searchParams?.get("category")} `
+                                : " Deals "}
                         </span>
-                        in {searchParams?.get("city")}
+                        in {searchParams?.get("city") || "Calgary"}
                     </h1>
                     <div>
                         <span className="text-base">
@@ -80,12 +68,17 @@ export default function Listings() {
                         {listings.length > 0 &&
                             listings.map((listing) => {
                                 return (
-                                    <Link
+                                    <ListingCard
+                                        {...listing}
                                         key={listing.Id}
-                                        to={`/dashboard/listings/${listing.Category}/${listing.Id}`}
-                                    >
-                                        <ListingCard {...listing} />
-                                    </Link>
+                                        onClick={() =>
+                                            handleCardClick(
+                                                listing.Id,
+                                                listing.Category,
+                                                listing.ProdName
+                                            )
+                                        }
+                                    />
                                 );
                             })}
                     </div>

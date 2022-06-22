@@ -1,4 +1,5 @@
 import AppBanner from "./AppBanner";
+import BreadCrumbs from "./BreadCrumbs";
 import Button from "./Button";
 import DealsCard from "./DealsCard";
 import DealsSection from "./DealsSection";
@@ -15,6 +16,7 @@ import Sidebar from "./Sidebar";
 
 export {
     AppBanner,
+    BreadCrumbs,
     Button,
     DealsCard,
     DealsSection,
