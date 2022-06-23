@@ -4,7 +4,7 @@ import AppStore from "../assets/images/App Store.svg";
 
 export default function AppBanner() {
     return (
-        <div className="flex bg-mobile-banner h-[545.7px]">
+        <div className="flex bg-mobile-banner bg-no-repeat h-[545.7px]">
             <div className="ml-auto mt-auto m-[74px] w-[875px]">
                 <h2 className="text-white text-lg font-bold mb-2">
                     Bring your market with you

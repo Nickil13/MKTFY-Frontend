@@ -1,17 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import MktfyWordmark from "../../assets/images/MKTFY_wordmark.svg";
+import { FOOTER_LINKS } from "../../data/variables";
 
 export default function Footer() {
     return (
-        <footer className="absolute bottom-0 w-full bg-login-clouds h-footer bg-cover bg-top">
-            <div className="absolute inset-0 bg-gradient-to-b from-[#000000]  h-full"></div>
-
-            <div className="absolute flex flex-col inset-0 bg-[#000000]/70  h-full ">
-                <div className="px-32 pt-28">
-                    <div className="grid grid-cols-3 gap-3">
+        <footer className="absolute bottom-0 w-full bg-login-clouds h-footer bg-cover bg-cloud-position">
+            {/* Background overlay with gradient */}
+            <div className="absolute inset-0 bg-gradient-to-b  from-[#000000] h-full"></div>
+            <div className="absolute flex flex-col inset-0 bg-[#000000]/70 h-full ">
+                <div className="px-32 pt-28 flex-grow">
+                    <div className="flex gap-1">
                         {/* Logo & motto*/}
-                        <div className="max-w-[270px]">
+                        <div className="w-footer-column mr-40">
                             <img
                                 className="w-36 mb-11"
                                 src={MktfyWordmark}
@@ -25,34 +26,23 @@ export default function Footer() {
                             </p>
                         </div>
                         {/*Sitemap */}
-                        <div className="max-w-[270px] mt-20">
+                        <div className="w-footer-column mt-16">
                             <h2 className="text-base font-semibold text-white mb-11">
                                 Jump To
                             </h2>
                             <ul className="text-white text-sm-17">
-                                <li className="mb-7">
-                                    <Link to="/account-info">
-                                        Account Information
-                                    </Link>
-                                </li>
-                                <li className="mb-7">
-                                    <Link to="/terms-of-service">
-                                        Terms &amp; Services
-                                    </Link>
-                                </li>
-                                <li className="mb-7">
-                                    <Link to="/privacy-policy">
-                                        Privacy Policy
-                                    </Link>
-                                </li>
-                                <li className="mb-7">
-                                    <Link to="/faq">FAQ</Link>
-                                </li>
+                                {FOOTER_LINKS.map(({ name, path }, index) => {
+                                    return (
+                                        <li className="mb-7" key={index}>
+                                            <Link to={path}>{name}</Link>
+                                        </li>
+                                    );
+                                })}
                             </ul>
                         </div>
 
                         {/* Contact info/location*/}
-                        <div className="max-w-[270px] mt-20">
+                        <div className="w-footer-column mt-16">
                             <h2 className="text-base font-semibold text-white mb-11">
                                 MKTFY
                             </h2>
@@ -69,8 +59,9 @@ export default function Footer() {
                         </div>
                     </div>
                 </div>
-                <div className="bg-transparent p-8 text-center border-t border-gray-footer-border w-full max-w-[1138px] m-auto">
-                    {/* Divider and copyright*/}
+
+                {/* Divider and copyright*/}
+                <div className="bg-transparent p-8 text-center border-t border-gray-footer-border w-full max-w-[1138px] mx-auto mt-14">
                     <p className="text-gray-footer text-sm-17">
                         Copyright @Launchpad by Vog 2021
                     </p>

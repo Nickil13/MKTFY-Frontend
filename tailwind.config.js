@@ -59,9 +59,11 @@ module.exports = {
             },
             width: {
                 btn: "345px",
+                "footer-column": "270px",
             },
             height: {
-                footer: "609px",
+                footer: "615px",
+                nav: "191px",
                 section: "480px",
                 card: "351px",
                 "card-img": "264px",
@@ -72,7 +74,8 @@ module.exports = {
             },
             padding: {
                 15: "60px",
-                footer: "609px",
+                footer: "615px",
+                nav: "191px",
             },
             minHeight: {
                 "listing-card": "312px",
@@ -94,6 +97,9 @@ module.exports = {
                 modal: "0px 7px 12px #00000024",
                 dropdown: "0px 3px 6px #00000029",
                 card: "0px 4px 15px #00000024",
+            },
+            backgroundPosition: {
+                "cloud-position": "50% 20%",
             },
         },
     },
