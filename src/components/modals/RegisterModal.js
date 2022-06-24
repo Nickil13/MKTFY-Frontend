@@ -86,6 +86,7 @@ export default function RegisterModal() {
                             options={CITY_OPTIONS}
                             value={city}
                             width="1/2"
+                            preselected
                         ></Select>
                         <Button
                             type="submit"

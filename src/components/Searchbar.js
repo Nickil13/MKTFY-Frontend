@@ -45,7 +45,7 @@ export default function Searchbar() {
                 className="flex flex-grow justify-between items-center px-12"
             >
                 <label
-                    className="text-xs font-normal text-[#000000]/50 flex-shrink-0"
+                    className="text-xs text-[#000000]/50 flex-shrink-0"
                     htmlFor="search"
                 >
                     Search on <strong>MKTFY</strong>

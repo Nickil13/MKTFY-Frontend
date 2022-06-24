@@ -6,9 +6,14 @@ export default function Select({
     options,
     bg,
     phtext,
+    phtextvalue,
     width,
     value,
     setValue,
+    preselected,
+    padding,
+    style,
+    fontSize,
 }) {
     const [showOptions, setShowOptions] = useState(false);
     const select = useRef(null);
@@ -36,11 +41,16 @@ export default function Select({
             className={`relative ${width === "1/2" ? "w-1/2" : "w-full"}`}
             ref={select}
         >
-            <label htmlFor={name} className="capitalize">
+            <label
+                htmlFor={name}
+                className={`capitalize ${
+                    style === "listing" ? "text-gray-700" : "semibold"
+                } ${fontSize}`}
+            >
                 {name}
             </label>
             <div
-                className={`relative custom-select cursor-pointer text-ellipsis overflow-hidden whitespace-nowrap p-0 ${bg} ${
+                className={`relative custom-select cursor-pointer text-ellipsis overflow-hidden whitespace-nowrap p-0 ${bg} ${fontSize} ${
                     !value && phtext
                 }`}
             >
@@ -48,12 +58,16 @@ export default function Select({
                     type="button"
                     aria-haspopup="listbox"
                     aria-expanded={toggleOptions}
-                    className={`w-full text-left p-[17px] border-[3px] border-transparent rounded  ${
+                    className={`w-full text-left ${padding} border-transparent rounded capitalize text-gray-500 ${
                         showOptions && "border-purple-200"
-                    }`}
+                    }${fontSize}`}
                     onClick={toggleOptions}
                 >
-                    {value || options[0]}
+                    {value
+                        ? value
+                        : !(preselected && phtextvalue)
+                        ? phtextvalue
+                        : options[0]}
                 </button>
 
                 <DropdownArrow
@@ -71,7 +85,7 @@ export default function Select({
                     options.map((option, index) => {
                         return (
                             <li
-                                className={`p-5 text-base cursor-pointer hover:bg-beige-200
+                                className={`p-5 text-base cursor-pointer hover:bg-beige-200 capitalize ${fontSize}
                                             ${
                                                 value === option
                                                     ? "text-purple-100"
@@ -93,5 +107,6 @@ export default function Select({
 Select.defaultProps = {
     bg: "bg-white",
     phtext: "text-gray-700",
+    padding: "p-[17px]",
     options: [],
 };

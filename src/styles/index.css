@@ -16,7 +16,7 @@
         @apply text-base;
     } */
     label {
-        @apply text-gray-400 font-semibold;
+        @apply text-gray-400;
     }
     /* input[type="text"],
     input[type="password"],
@@ -24,6 +24,10 @@
     .form-input,
     .custom-select {
         @apply placeholder:text-gray-200 border border-gray-100 mb-1 mt-3 p-5 text-base font-semibold rounded focus:outline-purple-400 focus:outline-1;
+    }
+
+    .listing-input {
+        @apply px-5 py-4 rounded border text-xs border-[#D1D1D1] focus:outline-purple-400 focus:outline-1;
     }
 
     .hide-scrollbar {
@@ -37,7 +41,7 @@
 
 @layer components {
     .btn {
-        @apply text-white font-bold rounded-full py-5 text-base shadow-btn disabled:bg-gray-100 disabled:shadow-none disabled:pointer-events-none;
+        @apply text-white font-bold rounded-full shadow-btn disabled:bg-gray-100 disabled:shadow-none disabled:pointer-events-none;
     }
     .input-control {
         @apply flex flex-col max-w-input;

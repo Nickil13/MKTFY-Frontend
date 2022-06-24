@@ -1,3 +1,4 @@
+import CreateListing from "./CreateListing";
 import Dashboard from "./Dashboard";
 import ErrorPage from "./ErrorPage";
 import Home from "./Home";
@@ -9,6 +10,7 @@ import SingleListing from "./SingleListing";
 import TermsOfService from "./TermsOfService";
 
 export {
+    CreateListing,
     Dashboard,
     ErrorPage,
     Home,

@@ -16,7 +16,7 @@ export default function PasswordInput({ value, onChange, name, lastchild }) {
 
     return (
         <div className={`input-control ${!lastchild && "mb-2"}`}>
-            <label className="capitalize" htmlFor="password">
+            <label className="capitalize font-semibold" htmlFor="password">
                 {name}
             </label>
             <div className="relative">

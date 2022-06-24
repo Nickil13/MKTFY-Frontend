@@ -8,14 +8,24 @@ export default function Input({
     setValue,
     lastchild,
     backgroundColor,
+    style,
 }) {
     return (
         <div className={`input-control ${!lastchild && "mb-2"} `}>
-            <label className="capitalize" htmlFor={name}>
+            <label
+                className={`capitalize ${
+                    style === "listing"
+                        ? "mb-2.5 text-gray-700 text-xs"
+                        : "font-semibold"
+                }`}
+                htmlFor={name}
+            >
                 {name}
             </label>
             <input
-                className={`form-input ${backgroundColor && backgroundColor}`}
+                className={`${
+                    style === "listing" ? "listing-input" : "form-input"
+                } ${backgroundColor && backgroundColor}`}
                 type={type}
                 id={name}
                 name={name}
@@ -23,6 +33,7 @@ export default function Input({
                 placeholder={placeholder || `Your ${name}`}
                 onChange={(e) => setValue(e.target.value)}
             />
+
             <span className="input-error-msg">Your {name} is incorrect</span>
         </div>
     );
@@ -31,4 +42,5 @@ export default function Input({
 Input.defaultProps = {
     name: "input",
     type: "text",
+    style: "form-input",
 };

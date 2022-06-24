@@ -93,7 +93,7 @@ export default function Sidebar() {
                             <div className="flex flex-col mr-11">
                                 <label
                                     htmlFor="fromPrice"
-                                    className="text-gray-500 font-normal"
+                                    className="text-gray-500"
                                 >
                                     From
                                 </label>
@@ -107,7 +107,7 @@ export default function Sidebar() {
                             <div className="flex flex-col">
                                 <label
                                     htmlFor="toPrice"
-                                    className="text-gray-500 font-normal"
+                                    className="text-gray-500"
                                 >
                                     To
                                 </label>
