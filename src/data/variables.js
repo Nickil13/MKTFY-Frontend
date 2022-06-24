@@ -1,5 +1,5 @@
 const CATEGORY_TYPES = ["cars", "furniture", "electronics", "real estate"];
-const CITY_OPTIONS = ["Calgary", "Camrose", "Brooks"];
+const CITY_OPTIONS = ["Brooks", "Calgary", "Camrose"];
 const CONDITIONS = ["new", "used"];
 const NAV_CATEGORIES = ["deals", ...CATEGORY_TYPES];
 const FOOTER_LINKS = [

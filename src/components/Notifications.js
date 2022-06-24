@@ -5,7 +5,7 @@ import Dropdown from "./Dropdown";
 function NotificationItem({ children, date, bg }) {
     return (
         <div
-            className={`flex items-center h-[96px] ${bg} px-4  shadow-[0px_2px_0px_#00000015]`}
+            className={`flex items-center h-[96px] ${bg} px-4  shadow-[0px_1px_0px_#00000015]`}
         >
             <div className="bg-purple-500 text-white font-bold text-xs mr-4 rounded-full px-1.5 py-5">
                 MKTFY

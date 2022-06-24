@@ -2,10 +2,8 @@ import React from "react";
 import MktfyWordmark from "../../assets/images/MKTFY_wordmark.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { NAV_CATEGORIES } from "../../data/variables";
-import { ReactComponent as DropdownArrow } from "../../assets/images/dropdown.svg";
-
 import { ReactComponent as AddCircle } from "../../assets/images/add_circle_outline-24px.svg";
-import { ReactComponent as SearchIcon } from "../../assets/images/search-24px.svg";
+import Searchbar from "../Searchbar";
 import Notifications from "../Notifications";
 import UserMenu from "../UserMenu";
 
@@ -27,32 +25,7 @@ export default function Navbar() {
                     {/* search toolbar: search, categories, city dropdown */}
 
                     {/* search bar */}
-                    <div className="flex items-center w-[1012px] bg-white h-[60px] rounded-lg mr-12 divide-x-2 divide-gray-100">
-                        <div className="px-12 text-gray-600 font-semibold">
-                            All
-                        </div>
-
-                        <form
-                            action=""
-                            className="flex flex-grow justify-between items-center px-12"
-                        >
-                            <label
-                                className="text-xs font-normal text-[#000000]/50"
-                                htmlFor="search"
-                            >
-                                Search on <strong>MKTFY</strong>
-                            </label>
-                            <input type="text" id="search" name="search" />
-                            <button>
-                                <SearchIcon className="fill-gray-500" />
-                            </button>
-                        </form>
-
-                        <div className="flex items-center px-8 text-gray-600 text-base">
-                            <DropdownArrow className="fill-gray-500" />
-                            Calgary
-                        </div>
-                    </div>
+                    <Searchbar />
 
                     <div className="flex ">
                         {/* user dropdown */}
