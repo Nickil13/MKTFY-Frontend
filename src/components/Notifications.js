@@ -28,8 +28,10 @@ export default function Notifications() {
             {/* Notification Dropdown */}
             <Dropdown
                 width="w-[375px]"
+                pos="top-16 right-[42px]"
                 showing={notificationsShowing}
                 setShowing={setNotificationsShowing}
+                arrowRight
             >
                 <div>
                     <h2 className="text-xs font-bold pt-5 pb-7 px-4">

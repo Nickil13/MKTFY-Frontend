@@ -6,6 +6,7 @@ export default function BreadCrumbs({ crumbs }) {
     if (!crumbs || crumbs.length <= 1) {
         return null;
     }
+
     return (
         <ul className="flex">
             {crumbs.map(({ name, path }, index) => {

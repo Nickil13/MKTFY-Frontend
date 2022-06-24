@@ -47,7 +47,7 @@ export default function SingleListing() {
                         </div>
                         {/* Listing owner information */}
                         <div className="flex">
-                            <div className="inline-block text-white rounded-full bg-purple-500 py-[13px] px-[18px] font-bold shadow-btn  mr-2.5">
+                            <div className="inline-block circle-letter text-sm-16 py-[13px] px-[18px]">
                                 M
                             </div>
                             <div>

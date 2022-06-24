@@ -1,6 +1,6 @@
 import { CATEGORY_TYPES } from "../data/variables";
 
-const BLACKLIST = ["listings"];
+const BLACKLIST = ["listings", ""];
 
 export const generateCrumbs = (location, searchParams) => {
     let newCrumbs = [];

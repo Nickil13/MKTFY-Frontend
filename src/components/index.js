@@ -12,6 +12,7 @@ import ProductSection from "./ProductSection";
 import ScrollBox from "./ScrollBox";
 import Select from "./Select";
 import Sidebar from "./Sidebar";
+import UserMenu from "./UserMenu";
 
 import { DealsCard, ProductCard, ListingCard } from "./cards";
 
@@ -33,4 +34,5 @@ export {
     ScrollBox,
     Select,
     Sidebar,
+    UserMenu,
 };

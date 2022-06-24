@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import MktfyWordmark from "../../assets/images/MKTFY_wordmark.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { NAV_CATEGORIES } from "../../data/variables";
 import { ReactComponent as DropdownArrow } from "../../assets/images/dropdown.svg";
 
 import { ReactComponent as AddCircle } from "../../assets/images/add_circle_outline-24px.svg";
 import { ReactComponent as SearchIcon } from "../../assets/images/search-24px.svg";
 import Notifications from "../Notifications";
+import UserMenu from "../UserMenu";
 
 export default function Navbar() {
+    let navigate = useNavigate();
     return (
         <nav className="fixed top-0 w-full z-50 flex items-center justify-center h-nav bg-purple-500">
             <div className="absolute top-0 right-0 w-full h-[24px] bg-[#000000]/10"></div>
@@ -54,25 +56,14 @@ export default function Navbar() {
 
                     <div className="flex ">
                         {/* user dropdown */}
-                        <button className="mr-9">
-                            <p className="text-xs text-gray-100 font-normal">
-                                Welcome back,
-                                <span className="flex items-center font-semibold text-base text-gold-200">
-                                    <DropdownArrow className="fill-gold-200" />
-                                    George Calson
-                                </span>
-                            </p>
-                        </button>
+                        <UserMenu />
 
                         <Notifications />
 
-                        {/* create listing icon*/}
+                        {/* Create listing button*/}
                         <button
-                            className="flex items-center justify-center 
-                    text-white
-                    font-semibold
-                    text-xs pl-3 pr-5 w-[153px]
-                py-1 rounded-full bg-gold-200 hover:bg-gold-100 shadow-btn"
+                            className="flex items-center justify-center text-white font-semibold text-xs pl-3 pr-5 w-[153px] py-1 rounded-full bg-gold-200 hover:bg-gold-100 shadow-btn"
+                            onClick={() => navigate("create-listing")}
                         >
                             <AddCircle className="mr-1" />
                             Create Listing

@@ -3,10 +3,17 @@ const CITY_OPTIONS = ["Calgary", "Camrose", "Brooks"];
 const CONDITIONS = ["new", "used"];
 const NAV_CATEGORIES = ["deals", ...CATEGORY_TYPES];
 const FOOTER_LINKS = [
-    { name: "Account Information", path: "/account-info" },
+    { name: "Account Information", path: "account/info" },
     { name: "Terms & Services", path: "/terms-of-service" },
     { name: "Privacy Policy", path: "/privacy-policy" },
-    { name: "FAQ", path: "/faq" },
+    { name: "FAQ", path: "faq" },
+];
+
+const USER_MENU_LINKS = [
+    { name: "Account Information", path: "account/info" },
+    { name: "Change Password", path: "account/change-password" },
+    { name: "My Purchases", path: "account/my-purchases" },
+    { name: "My Listings", path: "account/my-listings" },
 ];
 
 export {
@@ -15,4 +22,5 @@ export {
     CONDITIONS,
     FOOTER_LINKS,
     NAV_CATEGORIES,
+    USER_MENU_LINKS,
 };
