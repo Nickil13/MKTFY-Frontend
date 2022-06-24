@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { getListingById } from "../actions/listings";
 import { Button, ImageSlider } from "../components";
 import TagIcon from "../assets/images/local_offer-24px.svg";
+import { formatPrice } from "../utils/helpers";
 
 export default function SingleListing() {
     const { id } = useParams();
@@ -16,7 +17,7 @@ export default function SingleListing() {
     }, [listing]);
 
     return (
-        <div className="mt-12">
+        <div className="">
             {listing ? (
                 <div className="flex bg-white pt-7 pb-12 px-16 mt-5">
                     <ImageSlider
@@ -26,10 +27,12 @@ export default function SingleListing() {
 
                     {/* Listing Content */}
                     <div className="flex-grow">
-                        <h1 className="text-gray-600 font-semibold mb-3">
+                        <h1 className="text-gray-600 font-semibold mb-3 capitalize">
                             {listing.ProdName}
                         </h1>
-                        <span className="block text-purple-500 text-lg-36 font-bold mb-4">{`$ ${listing.Price}`}</span>
+                        <span className="block text-purple-500 text-lg-36 font-bold mb-4">
+                            {formatPrice(listing.Price)}
+                        </span>
                         <Button
                             disabled
                             width="max-w-input w-full"
@@ -37,7 +40,7 @@ export default function SingleListing() {
                         >
                             Sold out
                         </Button>
-                        <span className="block text-purple-500 font-semibold text-xs rounded bg-purple-50 px-[6px] py-[1px] my-4 uppercase max-w-[48px]">
+                        <span className="block condition-tag max-w-[48px]">
                             {listing.Condition}
                         </span>
                         <div className="mb-6">

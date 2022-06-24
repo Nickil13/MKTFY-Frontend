@@ -1,4 +1,5 @@
 import React from "react";
+import { formatPrice } from "../utils/helpers";
 
 export default function ListingCard({
     ProdName,
@@ -28,10 +29,10 @@ export default function ListingCard({
                     <p className="capitalize">{Category}</p>
                 </div>
 
-                <p className="text-purple-500 text-base font-bold">{`$ ${Price}`}</p>
-                <span className="inline-block text-purple-500 font-semibold text-xs rounded bg-purple-50 px-[6px] py-[1px] my-4 uppercase">
-                    {Condition}
-                </span>
+                <p className="text-purple-500 text-base font-bold">
+                    {formatPrice(Price)}
+                </p>
+                <span className="inline-block condition-tag">{Condition}</span>
                 <p className="text-[18px]">{Description}</p>
             </div>
         </div>

@@ -48,3 +48,17 @@ export const generateCrumbs = (location, searchParams) => {
 
     return newCrumbs;
 };
+
+export function formatPrice(price) {
+    let newPrice = price.toFixed(2);
+    let decIndex = newPrice.indexOf(".");
+    let numCommas = (decIndex - 1) / 3;
+    if (numCommas >= 1) {
+        let i = decIndex;
+        do {
+            i -= 3;
+            newPrice = newPrice.slice(0, i) + "," + newPrice.slice(i);
+        } while (i > 3);
+    }
+    return `$ ${newPrice}`;
+}

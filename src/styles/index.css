@@ -51,4 +51,7 @@
     .home-section {
         @apply relative px-5 p-7 bg-white rounded h-section;
     }
+    .condition-tag {
+        @apply text-purple-500 font-semibold text-xs rounded bg-purple-50 px-[6px] py-[1px] my-4 uppercase;
+    }
 }
