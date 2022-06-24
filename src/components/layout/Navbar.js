@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import MktfyWordmark from "../../assets/images/MKTFY_wordmark.svg";
 import { Link } from "react-router-dom";
 import { NAV_CATEGORIES } from "../../data/variables";
 import { ReactComponent as DropdownArrow } from "../../assets/images/dropdown.svg";
-import AlertBell from "../../assets/images/Group 1553.svg";
+
 import { ReactComponent as AddCircle } from "../../assets/images/add_circle_outline-24px.svg";
 import { ReactComponent as SearchIcon } from "../../assets/images/search-24px.svg";
+import Notifications from "../Notifications";
 
 export default function Navbar() {
     return (
@@ -62,12 +63,9 @@ export default function Navbar() {
                                 </span>
                             </p>
                         </button>
-                        {/* alert icon */}
-                        <img
-                            className="w-[24px] mr-[71px]"
-                            src={AlertBell}
-                            alt="Alert bell icon"
-                        />
+
+                        <Notifications />
+
                         {/* create listing icon*/}
                         <button
                             className="flex items-center justify-center 

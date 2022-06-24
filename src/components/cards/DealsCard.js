@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { formatPrice } from "../utils/helpers";
+import { formatPrice } from "../../utils/helpers";
 
 export default function DealsCard({ Id, Images, ProdName, Price }) {
     let navigate = useNavigate();

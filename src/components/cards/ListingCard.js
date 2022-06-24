@@ -1,5 +1,5 @@
 import React from "react";
-import { formatPrice } from "../utils/helpers";
+import { formatPrice } from "../../utils/helpers";
 
 export default function ListingCard({
     ProdName,

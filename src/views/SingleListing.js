@@ -17,7 +17,7 @@ export default function SingleListing() {
     }, [listing]);
 
     return (
-        <div className="">
+        <div>
             {listing ? (
                 <div className="flex bg-white pt-7 pb-12 px-16 mt-5">
                     <ImageSlider
@@ -33,12 +33,8 @@ export default function SingleListing() {
                         <span className="block text-purple-500 text-lg-36 font-bold mb-4">
                             {formatPrice(listing.Price)}
                         </span>
-                        <Button
-                            disabled
-                            width="max-w-input w-full"
-                            margins="mb-3.5"
-                        >
-                            Sold out
+                        <Button width="max-w-input w-full" margins="mb-3.5">
+                            I want this!
                         </Button>
                         <span className="block condition-tag max-w-[48px]">
                             {listing.Condition}
