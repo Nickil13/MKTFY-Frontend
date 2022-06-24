@@ -44,15 +44,22 @@ export default function Listings({ deals }) {
         <div>
             <div className="mt-11">
                 <div className="flex items-center justify-between mb-15">
-                    <h1 className="text-lg text-gray-600 font-bold">
-                        Popular
-                        <span className="capitalize">
-                            {!deals
-                                ? ` ${searchParams?.get("category")} `
-                                : " Deals "}
-                        </span>
-                        in {searchParams?.get("city") || "Calgary"}
-                    </h1>
+                    {searchParams?.get("category") ? (
+                        <h1 className="text-lg text-gray-600 font-bold">
+                            Popular
+                            <span className="capitalize">
+                                {!deals
+                                    ? ` ${searchParams?.get("category")} `
+                                    : " Deals "}
+                            </span>
+                            in {searchParams?.get("city") || "Calgary"}
+                        </h1>
+                    ) : (
+                        <h1 className="text-lg text-gray-600 font-bold">
+                            All Listings in{" "}
+                            {searchParams?.get("city") || "Calgary"}
+                        </h1>
+                    )}
                     <div>
                         <span className="text-base">
                             Showing 10 of 100 results

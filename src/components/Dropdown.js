@@ -29,7 +29,7 @@ export default function Dropdown({
             }`}
             ref={dropdown}
         >
-            {/* Top right arrow */}
+            {/* Top arrow */}
             <div
                 className={`absolute -top-[19px] ${
                     arrowRight ? "right-[30px]" : "left-[30px]"

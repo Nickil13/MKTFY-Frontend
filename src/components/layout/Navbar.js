@@ -22,15 +22,12 @@ export default function Navbar() {
                             alt="mktfy wordmark"
                         />
                     </Link>
-                    {/* search toolbar: search, categories, city dropdown */}
 
                     {/* search bar */}
                     <Searchbar />
 
-                    <div className="flex ">
-                        {/* user dropdown */}
+                    <div className="flex">
                         <UserMenu />
-
                         <Notifications />
 
                         {/* Create listing button*/}
