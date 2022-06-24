@@ -5,18 +5,21 @@ import Button from "../Button";
 import Input from "../Input";
 import PasswordInput from "../PasswordInput";
 import ModalWrapper from "./ModalWrapper";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function LoginModal() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { setShowModal } = useModalContext();
     let navigate = useNavigate();
+    const { loginWithRedirect } = useAuth0();
 
     const handleLogin = (e) => {
         e.preventDefault();
         console.log("logging in");
-        setShowModal(false);
-        navigate("/dashboard");
+        loginWithRedirect();
+        // setShowModal(false);
+        // navigate("/dashboard");
     };
 
     return (
