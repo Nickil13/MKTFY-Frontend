@@ -14,6 +14,11 @@ export default function ModalWrapper({
     let navigate = useNavigate();
     const { setShowModal } = useModalContext();
 
+    React.useEffect(() => {
+        document.body.style.overflow = "hidden";
+        return () => (document.body.style.overflow = "unset");
+    }, []);
+
     const closeModal = () => {
         setShowModal(false);
 

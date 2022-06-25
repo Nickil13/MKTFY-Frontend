@@ -3,8 +3,11 @@ import { Outlet, useLocation, useSearchParams } from "react-router-dom";
 import { BreadCrumbs } from "../components";
 import { Navbar, Footer } from "../components/layout";
 import { generateCrumbs } from "../utils/helpers";
+import { useModalContext } from "../context/ModalContext";
+import { UploadImageModal } from "../components/modals";
 
 export default function Dashboard() {
+    const { showModal } = useModalContext();
     let location = useLocation();
     let [searchParams] = useSearchParams();
     let crumbs = generateCrumbs(location, searchParams);
@@ -19,6 +22,14 @@ export default function Dashboard() {
                 </div>
             </main>
             <Footer />
+            {/* Upload Image Modal */}
+            {showModal && (
+                <div className="absolute flex items-center justify-center inset-0 bg-black bg-opacity-50 h-screen z-[70]">
+                    <UploadImageModal
+                    // handleUploadImage={handleUploadImage}
+                    />
+                </div>
+            )}
         </div>
     );
 }

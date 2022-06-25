@@ -36,7 +36,7 @@ export default function UploadImageModal({ handleUploadImage }) {
     const onSubmit = (e) => {
         e.preventDefault();
         // Upload Image
-        handleUploadImage(uploadedImage, imageName);
+        // handleUploadImage(uploadedImage, imageName);
         setShowModal(false);
     };
 

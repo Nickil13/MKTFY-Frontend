@@ -38,7 +38,7 @@ export default function CreateListing() {
     const [price, setPrice] = useState("");
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
-    const { showModal, setShowModal } = useModalContext();
+    const { setShowModal } = useModalContext();
     const [image, setImage] = useState(null);
     const [imageName, setImageName] = useState("");
 
@@ -192,14 +192,6 @@ export default function CreateListing() {
                         </Button>
                     </form>
                 </div>
-                {/* Upload Image Modal */}
-                {showModal && (
-                    <div className="absolute flex items-center justify-center inset-0 bg-black bg-opacity-50">
-                        <UploadImageModal
-                            handleUploadImage={handleUploadImage}
-                        />
-                    </div>
-                )}
             </div>
         </div>
     );
