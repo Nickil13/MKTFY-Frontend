@@ -27,8 +27,13 @@ export default function RegisterModal() {
     React.useEffect(() => {
         console.log(city);
     }, [city]);
+
     return (
-        <ModalWrapper largeWrapper>
+        <ModalWrapper
+            maxWidth="max-w-modal-lg"
+            padding="pt-4 pl-28"
+            portalModal
+        >
             <h1 className="text-purple-200 font-bold mb-3">
                 Welcome to MKTFY!
             </h1>
@@ -48,12 +53,14 @@ export default function RegisterModal() {
                             value={firstName}
                             setValue={setFirstName}
                             backgroundColor="bg-beige-100"
+                            errorMessage
                         />
                         <Input
                             name="last name"
                             value={lastName}
                             setValue={setLastName}
                             backgroundColor="bg-beige-100"
+                            errorMessage
                         />
                         <Input
                             name="email"
@@ -61,6 +68,7 @@ export default function RegisterModal() {
                             value={email}
                             setValue={setEmail}
                             backgroundColor="bg-beige-100"
+                            errorMessage
                         />
                         <Input
                             name="phone"
@@ -68,6 +76,7 @@ export default function RegisterModal() {
                             setValue={setPhoneNumber}
                             placeholder={"+1 (000) 000 - 0000"}
                             backgroundColor="bg-beige-100"
+                            errorMessage
                         />
                     </div>
                     <div className="col-start-2">
@@ -77,6 +86,7 @@ export default function RegisterModal() {
                             setValue={setAddress}
                             placeholder={"Default Pickup Address"}
                             backgroundColor="bg-beige-100"
+                            errorMessage
                         />
                         <Select
                             name="city"

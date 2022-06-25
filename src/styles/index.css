@@ -11,23 +11,30 @@
         @apply text-lg;
     }
 
-    /* p,
-    button {
-        @apply text-base;
-    } */
     label {
         @apply text-gray-400;
     }
-    /* input[type="text"],
-    input[type="password"],
-    input[type="email"], */
-    .form-input,
-    .custom-select {
-        @apply placeholder:text-gray-200 border border-gray-100 mb-1 mt-3 p-5 text-base font-semibold rounded focus:outline-purple-400 focus:outline-1;
+
+    /* Base for all inputs */
+    .base-input {
+        @apply border border-gray-100 rounded focus:outline-purple-400 focus:outline-1;
     }
 
-    .listing-input {
-        @apply px-5 py-4 rounded border text-xs border-[#D1D1D1] focus:outline-purple-400 focus:outline-1;
+    /* Input Styles for inputs & their labels */
+    .form-input-style input {
+        @apply base-input mb-1 p-5 text-base placeholder:text-gray-200 font-semibold;
+    }
+
+    .listing-input-style input,
+    .listing-input-style textarea {
+        @apply base-input mb-[18px] px-5 py-[18px] text-xs placeholder:text-[#2a2e43]/50;
+    }
+    .listing-input-style label {
+        @apply mb-2.5 text-gray-700 text-xs font-normal;
+    }
+
+    .custom-select {
+        @apply base-input mb-1 p-5 text-base placeholder:text-gray-200;
     }
 
     .hide-scrollbar {

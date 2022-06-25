@@ -20,7 +20,7 @@ export default function LoginModal() {
     };
 
     return (
-        <ModalWrapper>
+        <ModalWrapper portalModal>
             <h1 className="text-purple-200 text-center font-bold mb-8">
                 Welcome Back!
             </h1>
@@ -33,6 +33,7 @@ export default function LoginModal() {
                     type="email"
                     value={email}
                     setValue={setEmail}
+                    errorMessage
                 />
                 <PasswordInput
                     password={password}

@@ -15,13 +15,15 @@ export default function PasswordInput({ value, onChange, name, lastchild }) {
     };
 
     return (
-        <div className={`input-control ${!lastchild && "mb-2"}`}>
-            <label className="capitalize font-semibold" htmlFor="password">
+        <div
+            className={`input-control form-input-style ${!lastchild && "mb-2"}`}
+        >
+            <label className="capitalize font-semibold mb-3" htmlFor="password">
                 {name}
             </label>
             <div className="relative">
                 <input
-                    className="form-input w-full"
+                    className="w-full"
                     type="password"
                     id={name}
                     name={name}

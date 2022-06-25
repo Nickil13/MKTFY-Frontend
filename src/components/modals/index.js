@@ -4,6 +4,7 @@ import LoginModal from "./LoginModal";
 import ModalWrapper from "./ModalWrapper";
 import RegisterModal from "./RegisterModal";
 import ResetPasswordModal from "./ResetPasswordModal";
+import UploadImageModal from "./UploadImageModal";
 import VerifyResetModal from "./VerifyResetModal";
 
 export {
@@ -13,5 +14,6 @@ export {
     ModalWrapper,
     RegisterModal,
     ResetPasswordModal,
+    UploadImageModal,
     VerifyResetModal,
 };

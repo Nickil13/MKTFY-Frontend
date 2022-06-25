@@ -35,7 +35,7 @@ export default function CreatePasswordModal() {
     };
 
     return (
-        <ModalWrapper goBack>
+        <ModalWrapper goBack portalModal>
             <div className="w-full flex flex-col items-center">
                 <h1 className="text-purple-200 text-center font-bold mb-3">
                     Create Password

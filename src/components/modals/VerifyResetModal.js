@@ -18,7 +18,7 @@ export default function VerifyResetModal() {
         navigate("/reset-password");
     };
     return (
-        <ModalWrapper goBack>
+        <ModalWrapper goBack portalModal>
             <h1 className="text-purple-200 text-center font-bold mb-3">
                 Reset Your Password?
             </h1>
@@ -37,6 +37,7 @@ export default function VerifyResetModal() {
                     value={verificationCode}
                     setValue={setVerificationCode}
                     lastchild
+                    errorMessage
                 />
 
                 <div className="flex justify-end">

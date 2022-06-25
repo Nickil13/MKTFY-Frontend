@@ -13,7 +13,7 @@ export default function ForgotPasswordModal() {
         navigate("/verify-reset");
     };
     return (
-        <ModalWrapper goBack>
+        <ModalWrapper goBack portalModal>
             <h1 className="text-purple-200 text-center font-bold mb-3">
                 Forgot Your Password?
             </h1>
@@ -31,6 +31,7 @@ export default function ForgotPasswordModal() {
                     value={email}
                     setValue={setEmail}
                     lastchild
+                    errorMessage
                 />
                 <Button
                     type="submit"

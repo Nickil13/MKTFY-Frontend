@@ -4,22 +4,28 @@ import { ReactComponent as CloseIcon } from "../../assets/images/icon_close.svg"
 import { BackArrow } from "../icons";
 import { useModalContext } from "../../context/ModalContext";
 
-export default function ModalWrapper({ goBack, children, largeWrapper }) {
+export default function ModalWrapper({
+    goBack,
+    children,
+    maxWidth,
+    padding,
+    portalModal,
+}) {
     let navigate = useNavigate();
     const { setShowModal } = useModalContext();
 
     const closeModal = () => {
         setShowModal(false);
-        navigate("/");
+
+        /* If the modal is for the login portal, navigate to the main page. */
+        if (portalModal) {
+            navigate("/");
+        }
     };
 
     return (
         <div
-            className={`relative flex flex-col bg-white w-4/5 my-auto  rounded-modal shadow-modal ${
-                largeWrapper
-                    ? "max-w-modal-lg pt-4 pl-28"
-                    : "max-w-modal py-15 px-[138px]"
-            }`}
+            className={`relative flex flex-col bg-white w-4/5 my-auto  rounded-modal shadow-modal ${maxWidth} ${padding}`}
         >
             {children}
             <span
@@ -39,3 +45,8 @@ export default function ModalWrapper({ goBack, children, largeWrapper }) {
         </div>
     );
 }
+
+ModalWrapper.defaultProps = {
+    maxWidth: "max-w-modal",
+    padding: "py-15 px-[138px]",
+};

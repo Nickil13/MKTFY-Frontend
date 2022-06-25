@@ -10,7 +10,7 @@ import {
 } from "./components/modals";
 
 import RequireAuth from "./utils/RequireAuth";
-import { ModalContextProvider } from "./context/ModalContext";
+
 import {
     CreateListing,
     Dashboard,
@@ -29,14 +29,7 @@ function App() {
         <Router>
             <Routes>
                 {/* Login Portal */}
-                <Route
-                    path="/"
-                    element={
-                        <ModalContextProvider>
-                            <Login />
-                        </ModalContextProvider>
-                    }
-                >
+                <Route path="/" element={<Login />}>
                     <Route path="login" element={<LoginModal />} />
                     <Route path="register" element={<RegisterModal />} />
                     <Route
