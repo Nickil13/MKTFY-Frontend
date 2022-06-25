@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @layer base {
     html {
         font-family: "Open Sans", "sans-serif";
@@ -11,19 +10,8 @@
         @apply text-lg;
     }
 
-    /* p,
-    button {
-        @apply text-base;
-    } */
     label {
-        @apply text-gray-400 font-semibold;
-    }
-    /* input[type="text"],
-    input[type="password"],
-    input[type="email"], */
-    .form-input,
-    .custom-select {
-        @apply placeholder:text-gray-200 border border-gray-100 mb-1 mt-3 p-5 text-base font-semibold rounded focus:outline-purple-400 focus:outline-1;
+        @apply text-gray-400;
     }
 
     .hide-scrollbar {
@@ -37,7 +25,7 @@
 
 @layer components {
     .btn {
-        @apply text-white font-bold rounded-full py-5 text-base shadow-btn disabled:bg-gray-100 disabled:shadow-none disabled:pointer-events-none;
+        @apply text-white font-bold rounded-full shadow-btn disabled:bg-gray-100 disabled:shadow-none disabled:pointer-events-none;
     }
     .input-control {
         @apply flex flex-col max-w-input;
@@ -56,5 +44,34 @@
     }
     .circle-letter {
         @apply bg-purple-500 text-white font-bold text-xs  mr-2.5 rounded-full px-5 py-3.5 shadow-btn;
+    }
+
+    /* Base for all inputs */
+    .base-input {
+        @apply border border-gray-100 rounded focus:outline-purple-400 focus:outline-1;
+    }
+
+    /* Input Styles for inputs & their labels */
+    .form-input-style input {
+        @apply base-input mb-1 p-5 text-base placeholder:text-gray-200 font-semibold;
+    }
+
+    .listing-input-style input,
+    .listing-input-style textarea {
+        @apply base-input px-5 py-[18px] text-xs placeholder:text-[#2a2e43]/50;
+    }
+    .listing-input-style label {
+        @apply mb-2.5 text-gray-700 font-normal;
+    }
+
+    .listing-input-style li {
+        @apply text-xs;
+    }
+
+    .listing-select-btn {
+        @apply px-5 py-4 text-xs text-gray-700;
+    }
+    .select-btn {
+        @apply font-semibold text-base text-gray-500;
     }
 }

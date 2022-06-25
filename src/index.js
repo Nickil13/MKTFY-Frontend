@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/index.css";
 import App from "./App";
+import { ModalContextProvider } from "./context/ModalContext";
+
 import { Auth0Provider } from "@auth0/auth0-react";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -12,6 +14,8 @@ root.render(
         clientId={process.env.REACT_APP_CLIENT_ID}
         redirectUri={"http://localhost:3001"}
     >
-        <App />
+        <ModalContextProvider>
+            <App />
+        </ModalContextProvider>
     </Auth0Provider>
 );

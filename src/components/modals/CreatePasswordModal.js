@@ -35,7 +35,7 @@ export default function CreatePasswordModal() {
     };
 
     return (
-        <ModalWrapper goBack>
+        <ModalWrapper goBack portalModal>
             <div className="w-full flex flex-col items-center">
                 <h1 className="text-purple-200 text-center font-bold mb-3">
                     Create Password
@@ -102,7 +102,7 @@ export default function CreatePasswordModal() {
                     <div className="flex mt-15">
                         <div className="mr-2">
                             <label
-                                className={`block w-6 h-6  border-2 rounded-sm border-purple-100 ${
+                                className={`block w-6 h-6  border-2 rounded-sm font-semibold border-purple-100 ${
                                     agreedToToS &&
                                     "bg-checkbox border-none bg-center bg-no-repeat"
                                 }`}

@@ -5,10 +5,13 @@ export default function Select({
     name,
     options,
     bg,
-    phtext,
+    phcolor,
     width,
     value,
     setValue,
+    preselected,
+    styleClass,
+    margins,
 }) {
     const [showOptions, setShowOptions] = useState(false);
     const select = useRef(null);
@@ -33,27 +36,37 @@ export default function Select({
     };
     return (
         <div
-            className={`relative ${width === "1/2" ? "w-1/2" : "w-full"}`}
+            className={`relative ${styleClass} ${
+                width === "1/2" ? "w-1/2" : "w-full"
+            } ${margins}`}
             ref={select}
         >
-            <label htmlFor={name} className="capitalize">
+            <label htmlFor={name} className="capitalize semibold">
                 {name}
             </label>
             <div
-                className={`relative custom-select cursor-pointer text-ellipsis overflow-hidden whitespace-nowrap p-0 ${bg} ${
-                    !value && phtext
-                }`}
+                className={`base-input mb-1 mt-2.5 relative cursor-pointer text-ellipsis overflow-hidden whitespace-nowrap p-0 ${bg}`}
             >
                 <button
                     type="button"
                     aria-haspopup="listbox"
                     aria-expanded={toggleOptions}
-                    className={`w-full text-left p-[17px] border-[3px] border-transparent rounded  ${
-                        showOptions && "border-purple-200"
-                    }`}
+                    className={`w-full ${
+                        styleClass === "listing-input-style"
+                            ? "listing-select-btn"
+                            : "select-btn"
+                    }  ${
+                        value && "capitalize"
+                    } text-left p-[16px] border-[3px] rounded ${
+                        showOptions ? "border-purple-200" : "border-transparent"
+                    } ${!value && phcolor} `}
                     onClick={toggleOptions}
                 >
-                    {value || options[0]}
+                    {value
+                        ? value
+                        : !preselected
+                        ? `Select a ${name}`
+                        : options[0]}
                 </button>
 
                 <DropdownArrow
@@ -71,13 +84,9 @@ export default function Select({
                     options.map((option, index) => {
                         return (
                             <li
-                                className={`p-5 text-base cursor-pointer hover:bg-beige-200
-                                            ${
-                                                value === option
-                                                    ? "text-purple-100"
-                                                    : ""
-                                            }
-                                        `}
+                                className={`p-5 cursor-pointer hover:bg-beige-200 capitalize text-base ${
+                                    value === option && "text-purple-100"
+                                }`}
                                 key={index}
                                 onClick={() => handleOptionClick(option)}
                             >
@@ -92,6 +101,6 @@ export default function Select({
 
 Select.defaultProps = {
     bg: "bg-white",
-    phtext: "text-gray-700",
+    phcolor: "text-gray-700",
     options: [],
 };

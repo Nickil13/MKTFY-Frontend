@@ -9,8 +9,9 @@ export const generateCrumbs = (location, searchParams) => {
 
     for (let i = 0; i < crumbs.length; i++) {
         let crumb = crumbs[i];
-        if (crumb.includes("%20")) {
+        if (crumb.includes("%20") || crumb.includes("-")) {
             crumb = crumb.replace("%20", " ");
+            crumb = crumb.replace("-", " ");
         }
         if (crumb === "dashboard") {
             newCrumbs.push({ name: "home", path: "/dashboard" });

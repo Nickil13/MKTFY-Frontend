@@ -10,8 +10,9 @@ import {
 } from "./components/modals";
 
 import RequireAuth from "./utils/RequireAuth";
-import { ModalContextProvider } from "./context/ModalContext";
+
 import {
+    CreateListing,
     Dashboard,
     ErrorPage,
     Home,
@@ -27,14 +28,8 @@ function App() {
     return (
         <Router>
             <Routes>
-                <Route
-                    path="/"
-                    element={
-                        <ModalContextProvider>
-                            <Login />
-                        </ModalContextProvider>
-                    }
-                >
+                {/* Login Portal */}
+                <Route path="/" element={<Login />}>
                     <Route path="login" element={<LoginModal />} />
                     <Route path="register" element={<RegisterModal />} />
                     <Route
@@ -52,6 +47,8 @@ function App() {
                     />
                 </Route>
                 <Route path="loading" element={<LoadingPage />} />
+
+                {/* The Dashboard */}
                 <Route
                     path="dashboard"
                     element={
@@ -61,6 +58,8 @@ function App() {
                     }
                 >
                     <Route index element={<Home />} />
+
+                    {/* Listings & Deals */}
                     <Route path="listings" element={<Listings />} />
                     <Route
                         path="listings/:category/:id"
@@ -68,10 +67,16 @@ function App() {
                     />
                     <Route path="deals" element={<Listings deals />} />
                     <Route path="deals/:id" element={<SingleListing />} />
-                </Route>
-                <Route path="terms-of-service" element={<TermsOfService />} />
 
+                    {/* Create Listing */}
+                    <Route path="create-listing" element={<CreateListing />} />
+                </Route>
+
+                {/* ToS and PP Pages */}
+                <Route path="terms-of-service" element={<TermsOfService />} />
                 <Route path="privacy-policy" element={<PrivacyPolicy />} />
+
+                {/* 404 Error Page */}
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
         </Router>
