@@ -115,8 +115,9 @@ export default function CreateListing() {
                             value={name}
                             setValue={setName}
                             styleClass="listing-input-style"
+                            margins="mb-[18px]"
                         />
-                        <div className="input-control listing-input-style">
+                        <div className="input-control listing-input-style mb-[18px]">
                             <label htmlFor="description">Description</label>
                             <textarea
                                 className="resize-none"
@@ -132,29 +133,28 @@ export default function CreateListing() {
                         <Select
                             name="category"
                             options={CATEGORY_TYPES}
-                            phtextvalue="Select a category"
                             value={category}
                             setValue={setCategory}
-                            phtext="text-[#2A2E43]/50"
-                            padding="px-5 py-4"
-                            fontSize=" text-xs"
+                            phcolor="text-[#2A2E43]/50"
+                            styleClass="listing-input-style"
+                            margins="mb-[18px]"
                         />
-                        <div className="grid grid-cols-2 gap-3 mt-4">
+                        <div className="grid grid-cols-2 gap-3 mt-4 mb-[18px]">
                             <Select
                                 name="condition"
                                 options={CONDITIONS}
-                                phtextvalue="Select a condition"
                                 value={condition}
                                 setValue={setCondition}
-                                phtext="text-[#2A2E43]/50 text-xs"
-                                padding="px-5 py-4"
-                                fontSize=" text-xs"
+                                phcolor="text-[#2A2E43]/50"
+                                styleClass="listing-input-style"
                             />
                             <Input
                                 name="price"
                                 value={price}
                                 setValue={setPrice}
                                 styleClass="listing-input-style"
+                                margins="mb-[18px]"
+                                lastchild
                             />
                         </div>
                         <Input
@@ -162,17 +162,15 @@ export default function CreateListing() {
                             value={address}
                             setValue={setAddress}
                             styleClass="listing-input-style"
-                            lastchild
+                            margins="mb-[18px]"
                         />
                         <Select
                             name="city"
                             options={CITY_OPTIONS}
-                            phtextvalue="Select a city"
                             value={city}
                             setValue={setCity}
-                            phtext="text-[#2A2E43]/50 text-xs"
-                            padding="px-5 py-4"
-                            fontSize=" text-xs"
+                            phcolor="text-[#2A2E43]/50"
+                            styleClass="listing-input-style"
                         />
                         <Button
                             type="submit"

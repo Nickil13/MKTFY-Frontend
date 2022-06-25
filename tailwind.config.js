@@ -46,6 +46,7 @@ module.exports = {
             base: "1.25rem",
             "lg-36": "2.25rem",
             lg: "2.5rem",
+            inherit: "inherit",
         },
 
         extend: {

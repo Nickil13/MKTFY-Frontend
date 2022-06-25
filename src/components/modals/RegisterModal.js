@@ -24,10 +24,6 @@ export default function RegisterModal() {
         navigate("/create-password");
     };
 
-    React.useEffect(() => {
-        console.log(city);
-    }, [city]);
-
     return (
         <ModalWrapper
             maxWidth="max-w-modal-lg"
@@ -91,7 +87,6 @@ export default function RegisterModal() {
                         <Select
                             name="city"
                             bg="bg-beige-100"
-                            phtext="text-gray-200"
                             setValue={setCity}
                             options={CITY_OPTIONS}
                             value={city}

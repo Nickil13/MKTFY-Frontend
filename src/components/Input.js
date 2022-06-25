@@ -8,11 +8,12 @@ export default function Input({
     setValue,
     lastchild,
     backgroundColor,
+    margins,
     styleClass,
     errorMessage,
 }) {
     return (
-        <div className={`input-control ${!lastchild && "mb-2"} ${styleClass}`}>
+        <div className={`input-control ${styleClass} ${!lastchild && margins}`}>
             <label className={`capitalize font-semibold mb-3`} htmlFor={name}>
                 {name}
             </label>
@@ -38,5 +39,6 @@ export default function Input({
 Input.defaultProps = {
     name: "input",
     type: "text",
+    margins: "mb-2",
     styleClass: "form-input-style",
 };

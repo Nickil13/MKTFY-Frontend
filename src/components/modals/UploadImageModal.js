@@ -73,7 +73,7 @@ export default function UploadImageModal({ handleUploadImage }) {
                 <div className="flex items-center mb-5">
                     <label
                         htmlFor="img"
-                        className="w-[256px] rounded border border-[#6B6B6C53] text-gray-footer text-base font-semibold text-center bg-[#8888892E] mr-5 cursor-pointer"
+                        className="w-[256px] rounded border border-[#6B6B6C53] text-gray-footer text-base font-semibold text-center bg-[#8888892E] mr-5 cursor-pointer  py-1.5"
                     >
                         Choose Files
                     </label>

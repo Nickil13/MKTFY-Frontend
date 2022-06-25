@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @layer base {
     html {
         font-family: "Open Sans", "sans-serif";
@@ -13,28 +12,6 @@
 
     label {
         @apply text-gray-400;
-    }
-
-    /* Base for all inputs */
-    .base-input {
-        @apply border border-gray-100 rounded focus:outline-purple-400 focus:outline-1;
-    }
-
-    /* Input Styles for inputs & their labels */
-    .form-input-style input {
-        @apply base-input mb-1 p-5 text-base placeholder:text-gray-200 font-semibold;
-    }
-
-    .listing-input-style input,
-    .listing-input-style textarea {
-        @apply base-input mb-[18px] px-5 py-[18px] text-xs placeholder:text-[#2a2e43]/50;
-    }
-    .listing-input-style label {
-        @apply mb-2.5 text-gray-700 text-xs font-normal;
-    }
-
-    .custom-select {
-        @apply base-input mb-1 p-5 text-base placeholder:text-gray-200;
     }
 
     .hide-scrollbar {
@@ -67,5 +44,34 @@
     }
     .circle-letter {
         @apply bg-purple-500 text-white font-bold text-xs  mr-2.5 rounded-full px-5 py-3.5 shadow-btn;
+    }
+
+    /* Base for all inputs */
+    .base-input {
+        @apply border border-gray-100 rounded focus:outline-purple-400 focus:outline-1;
+    }
+
+    /* Input Styles for inputs & their labels */
+    .form-input-style input {
+        @apply base-input mb-1 p-5 text-base placeholder:text-gray-200 font-semibold;
+    }
+
+    .listing-input-style input,
+    .listing-input-style textarea {
+        @apply base-input px-5 py-[18px] text-xs placeholder:text-[#2a2e43]/50;
+    }
+    .listing-input-style label {
+        @apply mb-2.5 text-gray-700 font-normal;
+    }
+
+    .listing-input-style li {
+        @apply text-xs;
+    }
+
+    .listing-select-btn {
+        @apply px-5 py-4 text-xs text-gray-700;
+    }
+    .select-btn {
+        @apply font-semibold text-base text-gray-500;
     }
 }
