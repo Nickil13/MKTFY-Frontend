@@ -63,3 +63,13 @@ export function formatPrice(price) {
     }
     return `$ ${newPrice}`;
 }
+
+export function checkUppercase(password) {
+    let hasUppercase = false;
+    for (let i = 0; i < password.length; i++) {
+        if (password[i] == password[i].toUpperCase()) {
+            hasUppercase = true;
+        }
+    }
+    return hasUppercase;
+}

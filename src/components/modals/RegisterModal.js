@@ -7,12 +7,12 @@ import Button from "../Button";
 import { CITY_OPTIONS } from "../../data/variables";
 
 export default function RegisterModal() {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
-    const [address, setAddress] = useState("");
-    const [city, setCity] = useState("");
+    const [firstName, setFirstName] = useState("Nicki");
+    const [lastName, setLastName] = useState("L");
+    const [email, setEmail] = useState("nickitest@gmail.com");
+    const [phoneNumber, setPhoneNumber] = useState("14031234567");
+    const [address, setAddress] = useState("123 street");
+    const [city, setCity] = useState("Calgary");
     let navigate = useNavigate();
 
     const notAllFieldsFilled =
@@ -20,8 +20,16 @@ export default function RegisterModal() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Submit and store user data
-        navigate("/create-password");
+        // Submit and pass user data
+        const userInfo = {
+            firstName,
+            lastName,
+            email,
+            phoneNumber,
+            address,
+            city,
+        };
+        navigate("/create-password", { state: { userInfo } });
     };
 
     return (

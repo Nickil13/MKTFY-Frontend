@@ -3,11 +3,20 @@ import { useNavigate, useLocation, Outlet } from "react-router-dom";
 import { useModalContext } from "../context/ModalContext";
 import { Button } from "../components";
 import { Logo } from "../components/icons";
+import { useUserContext } from "../context/UserContext";
 
 export default function Login() {
     const { showModal, setShowModal } = useModalContext();
     let navigate = useNavigate();
     let location = useLocation();
+    const { isAuthenticated } = useUserContext();
+
+    React.useEffect(() => {
+        console.log(`Is Authenticated: ${isAuthenticated}`);
+        if (isAuthenticated) {
+            navigate("/dashboard");
+        }
+    }, [isAuthenticated]);
 
     React.useEffect(() => {
         // When returning to this route, check if the route includes a modal

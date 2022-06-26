@@ -4,34 +4,46 @@ import ModalWrapper from "./ModalWrapper";
 import PasswordInput from "../PasswordInput";
 import Button from "../Button";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useUserContext } from "../../context/UserContext";
+import { checkUppercase } from "../../utils/helpers";
+import { useModalContext } from "../../context/ModalContext";
 
 export default function CreatePasswordModal() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [agreedToToS, setAgreedToToS] = useState(false);
     const correctLength = useMemo(() => password.length > 5, [password]);
-    const hasUppercase = useMemo(() => checkUppercase(), [password]);
+    const hasUppercase = useMemo(() => checkUppercase(password), [password]);
     const hasNumber = true;
     const criteriaMet =
         correctLength && hasUppercase && hasNumber && agreedToToS;
     const [passwordStrength, setPasswordStrength] = useState("weak");
     let navigate = useNavigate();
     let location = useLocation();
+    const { login, signup, signupSuccess } = useUserContext();
+    const { setShowModal } = useModalContext();
 
-    function checkUppercase() {
-        let hasUppercase = false;
-        for (let i = 0; i < password.length; i++) {
-            if (password[i] == password[i].toUpperCase()) {
-                hasUppercase = true;
-            }
+    React.useEffect(() => {
+        if (signupSuccess) {
+            // Close modal
+            setShowModal(false);
+
+            //Login
+            login();
+
+            //Loading Screen -> Dashboard
+            navigate("/loading", { state: { prevPath: location.pathname } });
         }
-        return hasUppercase;
-    }
+    }, [signupSuccess]);
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Resetting password.");
-        //Loading Screen -> Login
-        navigate("/loading", { state: { prevPath: location.pathname } });
+        console.log("Creating account.");
+        const userInfo = { ...location.state.userInfo, password: "@Testing1" };
+        console.log(userInfo);
+        signup(userInfo);
+        //Loading Screen -> Dashboard
+        // navigate("/loading", { state: { prevPath: location.pathname } });
     };
 
     return (

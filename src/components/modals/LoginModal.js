@@ -17,10 +17,10 @@ export default function LoginModal() {
     const handleLogin = (e) => {
         e.preventDefault();
         console.log("logging in");
-        // login();
+        login();
 
-        setShowModal(false);
-        navigate("/dashboard");
+        // setShowModal(false);
+        // navigate("/dashboard");
     };
 
     return (
