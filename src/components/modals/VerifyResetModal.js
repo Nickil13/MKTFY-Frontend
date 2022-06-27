@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Input from "../Input";
 import Button from "../Button";
 import ModalWrapper from "./ModalWrapper";
+import { LoginInput } from "../inputs";
 
 export default function VerifyResetModal() {
     const [verificationCode, setVerificationCode] = useState("");
@@ -31,14 +31,15 @@ export default function VerifyResetModal() {
                 className="w-full flex flex-col content-center"
                 onSubmit={handleSubmit}
             >
-                <Input
+                <LoginInput
                     name="verification code"
                     placeholder="00 - 00 - 00"
                     value={verificationCode}
                     setValue={setVerificationCode}
+                    lastchild
                 />
 
-                <div className="flex justify-end">
+                <div className="flex justify-end mt-2">
                     <span
                         onClick={handleResendCode}
                         className="text-gold-200 underline text-xs font-semibold cursor-pointer"

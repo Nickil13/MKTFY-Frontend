@@ -5,7 +5,6 @@ import DealsSection from "./DealsSection";
 import Dropdown from "./Dropdown";
 import FilterItem from "./FilterItem";
 import ImageSlider from "./ImageSlider";
-import Input from "./Input";
 import Notifications from "./Notifications";
 import PasswordRequirement from "./PasswordRequirement";
 import ProductSection from "./ProductSection";
@@ -25,7 +24,6 @@ export {
     Dropdown,
     FilterItem,
     ImageSlider,
-    Input,
     Notifications,
     ListingCard,
     PasswordRequirement,

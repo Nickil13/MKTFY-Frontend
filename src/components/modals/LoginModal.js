@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useModalContext } from "../../context/ModalContext";
 import Button from "../Button";
-import Input from "../Input";
-import { PasswordInput } from "../inputs";
+import { PasswordInput, LoginInput } from "../inputs";
 import ModalWrapper from "./ModalWrapper";
 import { useUserContext } from "../../context/UserContext";
-import { LoginInput } from "../inputs";
 
 export default function LoginModal() {
     const [email, setEmail] = useState("");

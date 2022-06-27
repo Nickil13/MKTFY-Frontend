@@ -85,6 +85,9 @@ export const getMaxInputLength = (inputType) => {
         { inputType: "email", max: 320 },
         { inputType: "phone", max: 11 },
         { inputType: "address", max: 60 },
+        { inputType: "verification", max: 6 },
+        { inputType: "product name", max: 40 },
+        { inputType: "description", max: 100 },
     ];
     let maxValue = 50;
     for (let i = 0; i < inputMaxValues.length; i++) {

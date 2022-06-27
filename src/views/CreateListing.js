@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { ReactComponent as CameraIcon } from "../assets/images/add_a_photo-24px.svg";
-import { Button, Input, Select } from "../components";
+import { Button, Select } from "../components";
 import { CATEGORY_TYPES, CITY_OPTIONS, CONDITIONS } from "../data/variables";
-import { UploadImageModal } from "../components/modals";
 import { useModalContext } from "../context/ModalContext";
 import { ReactComponent as CloseIcon } from "../assets/images/orange_close-24.svg";
+import { ListingInput } from "../components/inputs";
 
 function ImageSquare({ image, imageName, active, handleRemoveImage, index }) {
     if (active)
@@ -110,17 +110,21 @@ export default function CreateListing() {
                         onSubmit={handleCreateListing}
                         className="max-w-[520px]"
                     >
-                        <Input
+                        <ListingInput
                             name="product name"
                             value={name}
                             setValue={setName}
-                            styleClass="listing-input-style"
-                            margins="mb-[18px]"
                         />
-                        <div className="input-control listing-input-style mb-[18px]">
-                            <label htmlFor="description">Description</label>
+
+                        <div className="input-control mb-[18px]">
+                            <label
+                                htmlFor="description"
+                                className="capitalize text-gray-700 mb-3"
+                            >
+                                Description
+                            </label>
                             <textarea
-                                className="resize-none"
+                                className="resize-none listing-input"
                                 name="description"
                                 id="description"
                                 placeholder="Your description"
@@ -148,21 +152,18 @@ export default function CreateListing() {
                                 phcolor="text-[#2A2E43]/50"
                                 styleClass="listing-input-style"
                             />
-                            <Input
+                            <ListingInput
                                 name="price"
                                 value={price}
                                 setValue={setPrice}
-                                styleClass="listing-input-style"
-                                margins="mb-[18px]"
+                                placeholder="Type the price"
                                 lastchild
                             />
                         </div>
-                        <Input
+                        <ListingInput
                             name="address"
                             value={address}
                             setValue={setAddress}
-                            styleClass="listing-input-style"
-                            margins="mb-[18px]"
                         />
                         <Select
                             name="city"

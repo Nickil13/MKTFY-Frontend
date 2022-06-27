@@ -54,13 +54,17 @@
         @apply base-input mb-1 p-5 text-base placeholder:text-gray-200 font-semibold;
     }
 
-    .listing-input-style input,
+    /* .listing-input-style input,
     .listing-input-style textarea {
-        @apply base-input px-5 py-[18px] text-xs placeholder:text-[#2a2e43]/50;
+        @apply base-input px-5 py-[18px] text-xs placeholder:text-[#2a2e43]/50 ;
+    } */
+    .listing-input {
+        @apply base-input px-5 py-[18px] text-xs placeholder:text-[#2a2e43]/50 text-gray-700;
     }
-    .listing-input-style label {
+
+    /* .listing-input-style label {
         @apply mb-2.5 text-gray-700 font-normal;
-    }
+    } */
 
     .listing-input-style li {
         @apply text-xs;

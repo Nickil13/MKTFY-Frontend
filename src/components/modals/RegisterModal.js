@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ModalWrapper from "./ModalWrapper";
-import Input from "../Input";
 import Select from "../Select";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button";
