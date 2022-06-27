@@ -34,6 +34,6 @@ Button.defaultProps = {
     type: "button",
     color: "purple",
     width: "w-btn",
-    padding: "py-5",
+    padding: "py-[19px]",
     fontSize: "text-base",
 };

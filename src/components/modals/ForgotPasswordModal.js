@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Input from "../Input";
+import { LoginInput } from "../inputs";
 import Button from "../Button";
 import ModalWrapper from "./ModalWrapper";
 
@@ -25,13 +25,12 @@ export default function ForgotPasswordModal() {
                 className="w-full flex flex-col content-center"
                 onSubmit={handleForgotPassword}
             >
-                <Input
+                <LoginInput
                     name="email"
                     type="email"
                     value={email}
                     setValue={setEmail}
                     lastchild
-                    errorMessage
                 />
                 <Button
                     type="submit"

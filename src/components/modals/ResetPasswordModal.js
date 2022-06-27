@@ -1,39 +1,37 @@
 import React, { useState, useMemo } from "react";
-import { FaCheckCircle } from "react-icons/fa";
 import ModalWrapper from "./ModalWrapper";
-import PasswordInput from "../PasswordInput";
+import { PasswordInput } from "../inputs";
 import Button from "../Button";
+import PasswordRequirement from "../PasswordRequirement";
 import { useNavigate, useLocation } from "react-router-dom";
+import { checkUppercase, checkContainsNumber } from "../../utils/helpers";
 
 export default function ResetPasswordModal() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    // const [correctLength, setCorrectLength] = useState(true);
-    const correctLength = useMemo(() => password.length > 5, [password]);
-    const hasUppercase = useMemo(() => checkUppercase(), [password]);
-    const hasNumber = true;
+    const [passwordsMatching, setPasswordsMatching] = useState(true);
+    const correctLength = password.length > 5;
+    const hasUppercase = useMemo(() => checkUppercase(password), [password]);
+    const hasNumber = checkContainsNumber(password);
     const criteriaMet = correctLength && hasUppercase && hasNumber;
-    const [passwordStrength, setPasswordStrength] = useState("weak");
+    const passwordStrength = criteriaMet ? "strong" : "weak";
     let navigate = useNavigate();
     let location = useLocation();
 
-    function checkUppercase() {
-        let hasUppercase = false;
-        for (let i = 0; i < password.length; i++) {
-            if (password[i] == password[i].toUpperCase()) {
-                hasUppercase = true;
-            }
-        }
-        return hasUppercase;
-    }
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log("Resetting password.");
         //Loading Screen -> Login
         navigate("/loading", { state: { prevPath: location.pathname } });
     };
-    console.log("rendering reset password modal");
 
+    const checkPasswordsMatching = () => {
+        if (password == confirmPassword) {
+            setPasswordsMatching(true);
+        } else {
+            setPasswordsMatching(false);
+        }
+    };
     return (
         <ModalWrapper goBack portalModal>
             <div className="w-full flex flex-col items-center">
@@ -52,9 +50,15 @@ export default function ResetPasswordModal() {
                         <PasswordInput
                             password={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            lastchild
+                            onBlur={checkPasswordsMatching}
                         />
-                        <span className="absolute top-1 left-20 text-gold-200 font-semibold text-2xs capitalize">
+                        <span
+                            className={`absolute top-1 left-20 ${
+                                passwordStrength === "weak"
+                                    ? "text-gold-200"
+                                    : "text-green"
+                            } font-semibold text-2xs capitalize`}
+                        >
                             {passwordStrength}
                         </span>
                     </div>
@@ -62,46 +66,33 @@ export default function ResetPasswordModal() {
                         name="confirm password"
                         password={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
+                        onBlur={checkPasswordsMatching}
+                        invalid={!passwordsMatching}
+                        errorMessage
                         lastchild
                     />
 
-                    <div>
-                        <div className="flex items-center">
-                            <FaCheckCircle
-                                className={`${
-                                    correctLength
-                                        ? "text-purple-200"
-                                        : "text-gray-100"
-                                } w-5 h-5 mr-3`}
-                            />
-                            <span>At least 6 characters</span>
-                        </div>
-                        <div className="flex items-center">
-                            <FaCheckCircle
-                                className={`${
-                                    hasUppercase
-                                        ? "text-purple-200"
-                                        : "text-gray-100"
-                                } w-5 h-5 mr-3`}
-                            />
-                            <span>1 Uppercase</span>
-                        </div>
-                        <div className="flex items-center">
-                            <FaCheckCircle
-                                className={`${
-                                    hasNumber
-                                        ? "text-purple-200"
-                                        : "text-gray-100"
-                                } w-5 h-5 mr-3`}
-                            />
-                            <span>1 Number</span>
-                        </div>
+                    <div className="mt-2">
+                        <PasswordRequirement requirement={correctLength}>
+                            At least 6 characters
+                        </PasswordRequirement>
+                        <PasswordRequirement requirement={hasUppercase}>
+                            1 Uppercase
+                        </PasswordRequirement>
+                        <PasswordRequirement requirement={hasNumber} lastchild>
+                            1 Number
+                        </PasswordRequirement>
                     </div>
                     <Button
                         type="submit"
-                        margins="mt-15"
+                        margins="mt-28"
                         centered
-                        disabled={!criteriaMet}
+                        disabled={
+                            !criteriaMet ||
+                            !passwordsMatching ||
+                            !password ||
+                            !confirmPassword
+                        }
                     >
                         Set Password
                     </Button>

@@ -36,8 +36,6 @@ export default function VerifyResetModal() {
                     placeholder="00 - 00 - 00"
                     value={verificationCode}
                     setValue={setVerificationCode}
-                    lastchild
-                    errorMessage
                 />
 
                 <div className="flex justify-end">

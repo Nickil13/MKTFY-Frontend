@@ -1,26 +1,27 @@
 import React, { useState, useMemo } from "react";
-import { FaCheckCircle } from "react-icons/fa";
+
 import ModalWrapper from "./ModalWrapper";
-import PasswordInput from "../PasswordInput";
+import { PasswordInput } from "../inputs";
+import PasswordRequirement from "../PasswordRequirement";
 import Button from "../Button";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
-import { checkUppercase } from "../../utils/helpers";
+import { checkUppercase, checkContainsNumber } from "../../utils/helpers";
 import { useModalContext } from "../../context/ModalContext";
 
 export default function CreatePasswordModal() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [agreedToToS, setAgreedToToS] = useState(false);
-    const correctLength = useMemo(() => password.length > 5, [password]);
+    const [passwordsMatching, setPasswordsMatching] = useState(true);
+    const correctLength = password.length > 5;
     const hasUppercase = useMemo(() => checkUppercase(password), [password]);
-    const hasNumber = true;
-    const criteriaMet =
-        correctLength && hasUppercase && hasNumber && agreedToToS;
-    const [passwordStrength, setPasswordStrength] = useState("weak");
+    const hasNumber = checkContainsNumber(password);
+    const criteriaMet = correctLength && hasUppercase && hasNumber;
+    const passwordStrength = criteriaMet ? "strong" : "weak";
     let navigate = useNavigate();
     let location = useLocation();
-    const { login, signup, signupSuccess } = useUserContext();
+    const { login, signup, signupSuccess, error } = useUserContext();
     const { setShowModal } = useModalContext();
 
     React.useEffect(() => {
@@ -38,12 +39,16 @@ export default function CreatePasswordModal() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Creating account.");
         const userInfo = { ...location.state.userInfo, password: "@Testing1" };
-        console.log(userInfo);
         signup(userInfo);
-        //Loading Screen -> Dashboard
-        // navigate("/loading", { state: { prevPath: location.pathname } });
+    };
+
+    const checkPasswordsMatching = () => {
+        if (password == confirmPassword) {
+            setPasswordsMatching(true);
+        } else {
+            setPasswordsMatching(false);
+        }
     };
 
     return (
@@ -64,9 +69,15 @@ export default function CreatePasswordModal() {
                         <PasswordInput
                             password={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            lastchild
+                            onBlur={checkPasswordsMatching}
                         />
-                        <span className="absolute top-1 left-20 text-gold-200 font-semibold text-2xs capitalize">
+                        <span
+                            className={`absolute top-1 left-20 ${
+                                passwordStrength === "weak"
+                                    ? "text-gold-200"
+                                    : "text-green"
+                            } font-semibold text-2xs capitalize`}
+                        >
                             {passwordStrength}
                         </span>
                     </div>
@@ -74,43 +85,24 @@ export default function CreatePasswordModal() {
                         name="confirm password"
                         password={confirmPassword}
                         onChange={(e) => setConfirmPassword(e.target.value)}
+                        onBlur={checkPasswordsMatching}
+                        invalid={!passwordsMatching}
+                        errorMessage
                         lastchild
                     />
 
-                    <div>
-                        <div className="flex items-center">
-                            <FaCheckCircle
-                                className={`${
-                                    correctLength
-                                        ? "text-purple-200"
-                                        : "text-gray-100"
-                                } w-5 h-5 mr-3`}
-                            />
-                            <span className="text-gray-500">
-                                At least 6 characters
-                            </span>
-                        </div>
-                        <div className="flex items-center">
-                            <FaCheckCircle
-                                className={`${
-                                    hasUppercase
-                                        ? "text-purple-200"
-                                        : "text-gray-100"
-                                } w-5 h-5 mr-3`}
-                            />
-                            <span className="text-gray-500">1 Uppercase</span>
-                        </div>
-                        <div className="flex items-center">
-                            <FaCheckCircle
-                                className={`${
-                                    hasNumber
-                                        ? "text-purple-200"
-                                        : "text-gray-100"
-                                } w-5 h-5 mr-3`}
-                            />
-                            <span className="text-gray-500">1 Number</span>
-                        </div>
+                    <div className="mt-2">
+                        <PasswordRequirement requirement={correctLength}>
+                            At least 6 characters
+                        </PasswordRequirement>
+                        <PasswordRequirement requirement={hasUppercase}>
+                            1 Uppercase
+                        </PasswordRequirement>
+                        <PasswordRequirement requirement={hasNumber}>
+                            1 Number
+                        </PasswordRequirement>
                     </div>
+
                     <div className="flex mt-15">
                         <div className="mr-2">
                             <label
@@ -153,7 +145,9 @@ export default function CreatePasswordModal() {
                         type="submit"
                         margins="mt-10"
                         centered
-                        disabled={!criteriaMet}
+                        disabled={
+                            !criteriaMet || !agreedToToS || !passwordsMatching
+                        }
                     >
                         Create Account
                     </Button>

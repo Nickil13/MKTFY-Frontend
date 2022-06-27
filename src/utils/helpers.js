@@ -67,9 +67,32 @@ export function formatPrice(price) {
 export function checkUppercase(password) {
     let hasUppercase = false;
     for (let i = 0; i < password.length; i++) {
-        if (password[i] == password[i].toUpperCase()) {
+        if (isNaN(password[i]) && password[i] == password[i].toUpperCase()) {
             hasUppercase = true;
         }
     }
     return hasUppercase;
 }
+
+export function checkContainsNumber(password) {
+    return /\d/.test(password);
+}
+
+export const getMaxInputLength = (inputType) => {
+    const inputMaxValues = [
+        { inputType: "first name", max: 256 },
+        { inputType: "last name", max: 256 },
+        { inputType: "email", max: 320 },
+        { inputType: "phone", max: 11 },
+        { inputType: "address", max: 60 },
+    ];
+    let maxValue = 50;
+    for (let i = 0; i < inputMaxValues.length; i++) {
+        if (inputType.includes(inputMaxValues[i].inputType)) {
+            maxValue = inputMaxValues[i].max;
+        }
+    }
+
+    console.log("Max value is: ", maxValue, inputType);
+    return maxValue;
+};

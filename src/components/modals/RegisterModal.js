@@ -5,6 +5,7 @@ import Select from "../Select";
 import { useNavigate } from "react-router-dom";
 import Button from "../Button";
 import { CITY_OPTIONS } from "../../data/variables";
+import { LoginInput } from "../inputs";
 
 export default function RegisterModal() {
     const [firstName, setFirstName] = useState("Nicki");
@@ -52,45 +53,40 @@ export default function RegisterModal() {
                     className="grid grid-cols-2 gap-x-5 "
                 >
                     <div className="col-start-1">
-                        <Input
+                        <LoginInput
                             name="first name"
                             value={firstName}
                             setValue={setFirstName}
                             backgroundColor="bg-beige-100"
-                            errorMessage
                         />
-                        <Input
+                        <LoginInput
                             name="last name"
                             value={lastName}
                             setValue={setLastName}
                             backgroundColor="bg-beige-100"
-                            errorMessage
                         />
-                        <Input
+                        <LoginInput
                             name="email"
                             type="email"
                             value={email}
                             setValue={setEmail}
                             backgroundColor="bg-beige-100"
-                            errorMessage
                         />
-                        <Input
+                        <LoginInput
                             name="phone"
                             value={phoneNumber}
                             setValue={setPhoneNumber}
                             placeholder={"+1 (000) 000 - 0000"}
                             backgroundColor="bg-beige-100"
-                            errorMessage
                         />
                     </div>
                     <div className="col-start-2">
-                        <Input
+                        <LoginInput
                             name="street address"
                             value={address}
                             setValue={setAddress}
                             placeholder={"Default Pickup Address"}
                             backgroundColor="bg-beige-100"
-                            errorMessage
                         />
                         <Select
                             name="city"
@@ -104,7 +100,7 @@ export default function RegisterModal() {
                         <Button
                             type="submit"
                             color="gold"
-                            margins="mt-52"
+                            margins="mt-48"
                             centered
                             disabled={notAllFieldsFilled}
                         >

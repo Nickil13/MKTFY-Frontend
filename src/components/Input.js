@@ -11,6 +11,8 @@ export default function Input({
     margins,
     styleClass,
     errorMessage,
+    invalid,
+    onBlur,
 }) {
     return (
         <div className={`input-control ${styleClass} ${!lastchild && margins}`}>
@@ -18,17 +20,18 @@ export default function Input({
                 {name}
             </label>
             <input
-                className={`${backgroundColor}`}
+                className={`${backgroundColor} ${invalid && "border-red"}`}
                 type={type}
                 id={name}
                 name={name}
                 value={value}
                 placeholder={placeholder || `Your ${name}`}
                 onChange={(e) => setValue(e.target.value)}
+                onBlur={onBlur}
             />
 
             {errorMessage && (
-                <span className="input-error-msg">
+                <span className="text-xs text-red">
                     Your {name} is incorrect
                 </span>
             )}

@@ -7,12 +7,11 @@ import { useUserContext } from "../context/UserContext";
 
 export default function Login() {
     const { showModal, setShowModal } = useModalContext();
+    const { isAuthenticated } = useUserContext();
     let navigate = useNavigate();
     let location = useLocation();
-    const { isAuthenticated } = useUserContext();
 
     React.useEffect(() => {
-        console.log(`Is Authenticated: ${isAuthenticated}`);
         if (isAuthenticated) {
             navigate("/dashboard");
         }
@@ -26,16 +25,6 @@ export default function Login() {
         }
     }, [location]);
 
-    const handleLoginClick = () => {
-        setShowModal(true);
-        navigate("/login");
-    };
-
-    const handleCreateAccountClick = () => {
-        setShowModal(true);
-        navigate("/register");
-    };
-
     return (
         <div className="bg-login-clouds bg-cover bg-no-repeat h-screen">
             <div className="flex flex-col justify-center items-center w-full h-screen pt-24">
@@ -45,11 +34,11 @@ export default function Login() {
                     <Button
                         margins="mb-4"
                         color="gold"
-                        onClick={handleLoginClick}
+                        onClick={() => navigate("/login")}
                     >
                         Login
                     </Button>
-                    <Button onClick={handleCreateAccountClick}>
+                    <Button onClick={() => navigate("/register")}>
                         Create Account
                     </Button>
                 </div>

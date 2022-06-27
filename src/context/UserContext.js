@@ -12,7 +12,9 @@ export const UserContextProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [signupSuccess, setSignupSuccess] = useState(false);
+    const [error, setError] = useState("");
 
+    console.log("rerendered");
     const webAuth = new auth0js.WebAuth({
         domain: process.env.REACT_APP_DOMAIN,
         clientID: process.env.REACT_APP_CLIENT_ID,
@@ -52,8 +54,9 @@ export const UserContextProvider = ({ children }) => {
                     done();
                 },
             },
-            (err) => {
-                console.log(err);
+            (error) => {
+                console.log(error);
+                setError(error.description);
                 setIsLoading(false);
             }
         );
@@ -89,9 +92,12 @@ export const UserContextProvider = ({ children }) => {
                     city,
                 },
             },
-            function (err) {
-                if (err) return console.log(err);
-                setSignupSuccess(true);
+            function (error) {
+                if (error) {
+                    setError(error.description);
+                } else {
+                    setSignupSuccess(true);
+                }
             }
         );
     };
@@ -105,6 +111,7 @@ export const UserContextProvider = ({ children }) => {
                 signupSuccess,
                 isLoading,
                 isAuthenticated,
+                error,
             }}
         >
             {children}

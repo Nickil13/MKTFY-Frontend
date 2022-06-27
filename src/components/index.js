@@ -7,7 +7,7 @@ import FilterItem from "./FilterItem";
 import ImageSlider from "./ImageSlider";
 import Input from "./Input";
 import Notifications from "./Notifications";
-import PasswordInput from "./PasswordInput";
+import PasswordRequirement from "./PasswordRequirement";
 import ProductSection from "./ProductSection";
 import ScrollBox from "./ScrollBox";
 import Select from "./Select";
@@ -28,7 +28,7 @@ export {
     Input,
     Notifications,
     ListingCard,
-    PasswordInput,
+    PasswordRequirement,
     ProductCard,
     ProductSection,
     ScrollBox,
