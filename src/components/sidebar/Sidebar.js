@@ -1,6 +1,6 @@
 import React from "react";
 import FilterItem from "./FilterItem";
-import { CATEGORY_TYPES, CITY_OPTIONS, CONDITIONS } from "../data/variables";
+import { CATEGORY_TYPES, CITY_OPTIONS, CONDITIONS } from "../../data/variables";
 
 export default function Sidebar() {
     return (

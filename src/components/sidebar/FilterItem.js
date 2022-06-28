@@ -1,7 +1,7 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
 
-export default function FilterItem({ value, filterCategory, children }) {
+export default function FilterLink({ value, filterCategory, children }) {
     let [searchParams, setSearchParams] = useSearchParams();
     let isActive = searchParams.get(filterCategory) === value;
 

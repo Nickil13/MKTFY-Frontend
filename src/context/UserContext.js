@@ -8,8 +8,10 @@ export const useUserContext = () => {
 };
 
 export const UserContextProvider = ({ children }) => {
-    const [token, setToken] = useState(sessionStorage.getItem("access_token"));
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    // const [token, setToken] = useState(sessionStorage.getItem("access_token"));
+    const [isAuthenticated, setIsAuthenticated] = useState(
+        sessionStorage.getItem("access_token")
+    );
     const [isLoading, setIsLoading] = useState(false);
     const [signupSuccess, setSignupSuccess] = useState(false);
     const [error, setError] = useState("");
@@ -34,11 +36,11 @@ export const UserContextProvider = ({ children }) => {
         }
     }, []);
 
-    React.useEffect(() => {
-        if (!isAuthenticated && token) {
-            setIsAuthenticated(true);
-        }
-    }, [token]);
+    // React.useEffect(() => {
+    //     if (!isAuthenticated && token) {
+    //         setIsAuthenticated(true);
+    //     }
+    // }, [token]);
 
     const login = (email, password) => {
         setIsLoading(true);
