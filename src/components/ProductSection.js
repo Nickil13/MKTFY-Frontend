@@ -32,7 +32,7 @@ export default function ProductSection({
                 })}
             </div>
             <Link
-                to={`listings/?category=${category}`}
+                to={`listings/${category}`}
                 className="absolute right-7 bottom-7 text-purple-100 text-xs"
             >
                 Explore Now

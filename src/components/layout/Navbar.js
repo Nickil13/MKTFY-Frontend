@@ -43,16 +43,12 @@ export default function Navbar() {
                 <div className="ml-36">
                     <ul className="flex gap-14 mt-6 mb-5">
                         {NAV_CATEGORIES.map((category, index) => {
-                            let path =
-                                category === "deals"
-                                    ? "deals"
-                                    : `listings/?category=${category}`;
                             return (
                                 <li
                                     key={index}
                                     className="text-white text-sm-17 font-semibold capitalize"
                                 >
-                                    <Link to={path}>
+                                    <Link to={`listings/${category}`}>
                                         {category === "cars"
                                             ? "cars & vehicles"
                                             : category}

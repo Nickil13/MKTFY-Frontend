@@ -63,6 +63,7 @@ function App() {
 
                     {/* Listings & Deals */}
                     <Route path="listings" element={<Listings />} />
+                    <Route path="listings/:category" element={<Listings />} />
                     <Route
                         path="listings/:category/:id"
                         element={<SingleListing />}
@@ -75,13 +76,13 @@ function App() {
                         path="listings/:category/:id/checkout/pickup"
                         element={<Pickup />}
                     />
-                    <Route path="deals" element={<Listings deals />} />
+                    {/* <Route path="deals" element={<Listings deals />} />
                     <Route path="deals/:id" element={<SingleListing />} />
                     <Route path="deals/:id/checkout" element={<Checkout />} />
                     <Route
                         path="deals/:id/checkout/pickup"
                         element={<Pickup />}
-                    />
+                    /> */}
                     {/* Create Listing */}
                     <Route path="create-listing" element={<CreateListing />} />
                 </Route>
