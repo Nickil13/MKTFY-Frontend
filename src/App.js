@@ -20,6 +20,7 @@ import {
     Listings,
     LoadingPage,
     Login,
+    MyPurchases,
     Pickup,
     PrivacyPolicy,
     SingleListing,
@@ -79,6 +80,12 @@ function App() {
 
                     {/* Create Listing */}
                     <Route path="create-listing" element={<CreateListing />} />
+
+                    {/* Account */}
+                    <Route path="account">
+                        <Route index element={<div>Account Info</div>} />
+                        <Route path="my-purchases" element={<MyPurchases />} />
+                    </Route>
                 </Route>
 
                 {/* ToS and PP Pages */}
