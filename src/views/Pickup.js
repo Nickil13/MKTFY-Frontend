@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { getListingById } from "../actions/listings";
-import { Button } from "../components";
 import { formatPrice } from "../utils/helpers";
 
-export default function Checkout() {
+export default function Pickup() {
     const { id } = useParams();
-    const [listing, setListing] = useState(null);
-    let navigate = useNavigate();
+    let location = useLocation();
+    const [listing, setListing] = useState(location.state.listing);
 
     React.useEffect(() => {
         if (!listing) {
@@ -20,7 +19,9 @@ export default function Checkout() {
 
     return (
         <div className="bg-white border border-beige-200 max-w-[532px] px-7 py-15 mt-[18px]">
-            <h1 className="text-purple-100 font-bold mb-7">Checkout</h1>
+            <h1 className="text-purple-100 font-bold mb-7">
+                Pickup Information
+            </h1>
             {/* Product Info */}
             <div className="flex shadow-[0px_1px_0px_#00000024] h-[125px]">
                 <div className="min-w-[226px]">
@@ -40,17 +41,25 @@ export default function Checkout() {
                     </span>
                 </div>
             </div>
-            <Button
-                width="w-full"
-                margins="mt-[138px] mb-[26px]"
-                onClick={() =>
-                    navigate("pickup", {
-                        state: { listing, name: listing.ProdName },
-                    })
-                }
-            >
-                Confirm
-            </Button>
+            {/* Pickup Information */}
+            <div className="mt-9 mb-[46px] pl-12">
+                <span className="block text-green text-xs mb-1.5">Pick up</span>
+                <div className="flex mb-6">
+                    <div className="inline-block circle-letter text-sm-16 py-3.5 px-[18px]">
+                        M
+                    </div>
+                    <div>
+                        <h2 className="font-bold mb-1">Matt Smith</h2>
+                        <span className="text-purple-100 text-xs">
+                            403-123-4567
+                        </span>
+                    </div>
+                </div>
+                <p className="text-xs text-[#313131]">
+                    Please pick up your purchase at 12 12ave SW, Calgary,
+                    Alberta
+                </p>
+            </div>
         </div>
     );
 }
