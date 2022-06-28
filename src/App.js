@@ -12,6 +12,7 @@ import {
 import RequireAuth from "./utils/RequireAuth";
 
 import {
+    Checkout,
     CreateListing,
     Dashboard,
     ErrorPage,
@@ -65,9 +66,13 @@ function App() {
                         path="listings/:category/:id"
                         element={<SingleListing />}
                     />
+                    <Route
+                        path="listings/:category/:id/checkout"
+                        element={<Checkout />}
+                    />
                     <Route path="deals" element={<Listings deals />} />
                     <Route path="deals/:id" element={<SingleListing />} />
-
+                    <Route path="deals/:id/checkout" element={<Checkout />} />
                     {/* Create Listing */}
                     <Route path="create-listing" element={<CreateListing />} />
                 </Route>

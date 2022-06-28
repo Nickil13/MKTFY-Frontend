@@ -1,3 +1,4 @@
+import Checkout from "./Checkout";
 import CreateListing from "./CreateListing";
 import Dashboard from "./Dashboard";
 import ErrorPage from "./ErrorPage";
@@ -10,6 +11,7 @@ import SingleListing from "./SingleListing";
 import TermsOfService from "./TermsOfService";
 
 export {
+    Checkout,
     CreateListing,
     Dashboard,
     ErrorPage,

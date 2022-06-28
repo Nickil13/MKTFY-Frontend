@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getListingById } from "../actions/listings";
 import { Button, ImageSlider } from "../components";
 import TagIcon from "../assets/images/local_offer-24px.svg";
@@ -8,6 +8,7 @@ import { formatPrice } from "../utils/helpers";
 export default function SingleListing() {
     const { id } = useParams();
     const [listing, setListing] = useState(null);
+    let navigate = useNavigate();
 
     React.useEffect(() => {
         if (!listing) {
@@ -33,7 +34,15 @@ export default function SingleListing() {
                         <span className="block text-purple-500 text-lg-36 font-bold mb-4">
                             {formatPrice(listing.Price)}
                         </span>
-                        <Button width="max-w-input w-full" margins="mb-3.5">
+                        <Button
+                            width="max-w-input w-full"
+                            margins="mb-3.5"
+                            onClick={() =>
+                                navigate(`checkout`, {
+                                    state: { name: listing.ProdName },
+                                })
+                            }
+                        >
                             I want this!
                         </Button>
                         <span className="block condition-tag max-w-[48px]">
