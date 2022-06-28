@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { useNavigate, useSearchParams, useParams } from "react-router-dom";
 import { getDeals, getListings } from "../actions/listings";
-import { ListingCard, Sidebar } from "../components";
+import { ListingCard, Pagination, Sidebar } from "../components";
 
 export default function Listings() {
     const [listings, setListings] = useState([]);
     const { category } = useParams();
     let navigate = useNavigate();
     let [searchParams] = useSearchParams();
+    let page = searchParams.get("page") || 1;
+    // let pageParam = searchParams.get("page") || 1;
+    // let page = 1;
 
     React.useEffect(() => {
-        console.log(listings);
         let params = { city: "", category, condition: "" };
         if (searchParams) {
             let city = searchParams.get("city");
@@ -72,28 +74,30 @@ export default function Listings() {
                     <Sidebar />
                     {/* Listings */}
                     {listings.length > 0 ? (
-                        <div className="bg-white w-full rounded pt-8 pb-12 divide-y divide-gray-100">
-                            {listings.length > 0 &&
-                                listings.map((listing) => {
-                                    return (
-                                        <ListingCard
-                                            {...listing}
-                                            key={listing.Id}
-                                            onClick={() =>
-                                                handleCardClick(
-                                                    listing.Id,
-                                                    listing.Category,
-                                                    listing.ProdName
-                                                )
-                                            }
-                                        />
-                                    );
-                                })}
+                        <div>
+                            <div className="bg-white w-full rounded pt-8 pb-12 divide-y divide-gray-100 mb-12">
+                                {listings.length > 0 &&
+                                    listings.map((listing) => {
+                                        return (
+                                            <ListingCard
+                                                {...listing}
+                                                key={listing.Id}
+                                                onClick={() =>
+                                                    handleCardClick(
+                                                        listing.Id,
+                                                        listing.Category,
+                                                        listing.ProdName
+                                                    )
+                                                }
+                                            />
+                                        );
+                                    })}
+                            </div>
+                            <Pagination page={page} pages={6} />
                         </div>
                     ) : (
                         <p>No listings found.</p>
                     )}
-                    <div>{/* Pagination */}</div>
                 </div>
             </div>
         </div>

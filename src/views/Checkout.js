@@ -44,7 +44,7 @@ export default function Checkout() {
                 width="w-full"
                 margins="mt-[138px] mb-[26px]"
                 onClick={() =>
-                    navigate("pickup", {
+                    navigate("pickup-information", {
                         state: { listing, name: listing.ProdName },
                     })
                 }

@@ -25,7 +25,7 @@ export const generateCrumbs = (location, searchParams) => {
 
             /* If the crumb is a category, set its name based on current city*/
         } else if (NAV_CATEGORIES.includes(crumb)) {
-            name = `Popular ${crumb} in ${
+            name = `${crumb} in ${
                 location.state?.city || searchParams.get("city") || "Calgary"
             }`;
 

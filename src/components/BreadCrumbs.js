@@ -21,7 +21,7 @@ export default function BreadCrumbs({ crumbs }) {
                         {!isLastCrumb ? (
                             <>
                                 <Link to={path}>{name}</Link>
-                                <CrumbArrow className="mx-[5px]" />
+                                <CrumbArrow className="mx-[5px] fill-purple-100" />
                             </>
                         ) : (
                             <span>{name}</span>
