@@ -6,7 +6,6 @@ import Home from "./Home";
 import Listings from "./Listings";
 import LoadingPage from "./LoadingPage";
 import Login from "./Login";
-import MyPurchases from "./MyPurchases";
 import Pickup from "./Pickup";
 import PrivacyPolicy from "./PrivacyPolicy";
 import SingleListing from "./SingleListing";
@@ -21,7 +20,6 @@ export {
     Listings,
     LoadingPage,
     Login,
-    MyPurchases,
     Pickup,
     PrivacyPolicy,
     SingleListing,

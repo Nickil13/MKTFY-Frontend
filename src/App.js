@@ -20,12 +20,18 @@ import {
     Listings,
     LoadingPage,
     Login,
-    MyPurchases,
     Pickup,
     PrivacyPolicy,
     SingleListing,
     TermsOfService,
 } from "./views";
+
+import {
+    ActiveItems,
+    MyListings,
+    MyPurchases,
+    SoldItems,
+} from "./views/account";
 
 function App() {
     return (
@@ -89,6 +95,10 @@ function App() {
                             path="my-purchases/:id/pickup-information"
                             element={<Pickup />}
                         />
+                        <Route path="my-listings" element={<MyListings />}>
+                            <Route index element={<ActiveItems />} />
+                            <Route path="sold" element={<SoldItems />} />
+                        </Route>
                     </Route>
                 </Route>
 

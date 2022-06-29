@@ -34,11 +34,11 @@ export default function Login() {
                     <Button
                         margins="mb-4"
                         color="gold"
-                        onClick={() => navigate("/login")}
+                        onClick={() => navigate("login")}
                     >
                         Login
                     </Button>
-                    <Button onClick={() => navigate("/register")}>
+                    <Button onClick={() => navigate("register")}>
                         Create Account
                     </Button>
                 </div>

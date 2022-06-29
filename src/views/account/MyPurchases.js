@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { getMyPurchases } from "../actions/purchases";
-import { PurchasesCard } from "../components";
+import { getMyPurchases } from "../../actions/purchases";
+import { PurchasesCard } from "../../components/cards";
 import { useNavigate } from "react-router-dom";
 
 export default function MyPurchases() {
@@ -29,25 +29,16 @@ export default function MyPurchases() {
             <div className="flex flex-col gap-2">
                 {purchases.length > 0 ? (
                     purchases.map((purchase, index) => {
-                        const {
-                            Id,
-                            DatePurchased,
-                            Images,
-                            ProdName,
-                            Price,
-                            Condition,
-                            Category,
-                        } = purchase;
                         return (
                             <PurchasesCard
                                 key={index}
-                                date={DatePurchased}
-                                image={Images[0]}
-                                title={ProdName}
-                                price={Price}
-                                condition={Condition}
+                                {...purchase}
                                 onClick={() =>
-                                    onCardClick(ProdName, Id, Category)
+                                    onCardClick(
+                                        purchase.ProdName,
+                                        purchase.Id,
+                                        purchase.Category
+                                    )
                                 }
                             />
                         );

@@ -1,4 +1,5 @@
 import { dummyListings } from "../data/dummyListings";
+import { dummyMyListings } from "../data/dummyMyListings";
 
 const getListings = (params, amount) => {
     let newListings = [];
@@ -54,4 +55,33 @@ const getMoreDeals = () => {
     return deals;
 };
 
-export { getListings, getListingById, getDeals, getMoreDeals };
+const getMyActiveListings = () => {
+    let myListings = [];
+    if (dummyMyListings) {
+        myListings = dummyMyListings.filter(
+            (listing) =>
+                listing.Status.toUpperCase() === "AVAILABLE" ||
+                listing.Status.toUpperCase() === "PENDING"
+        );
+    }
+    return myListings;
+};
+
+const getMySoldListings = () => {
+    let myListings = [];
+    if (dummyMyListings) {
+        myListings = dummyMyListings.filter(
+            (listing) => listing.Status.toUpperCase() === "SOLD"
+        );
+    }
+    return myListings;
+};
+
+export {
+    getListings,
+    getListingById,
+    getDeals,
+    getMoreDeals,
+    getMyActiveListings,
+    getMySoldListings,
+};

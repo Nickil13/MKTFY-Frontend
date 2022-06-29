@@ -17,7 +17,7 @@ export default function ImageSlider({ images, name }) {
             {/* Image Slider */}
             <div className="flex flex-col items-center  mr-9">
                 <SliderArrow
-                    className="rotate-90 mb-2.5"
+                    className="rotate-90 mb-2.5 cursor-pointer"
                     onClick={increaseIndex}
                 />
                 <div className="flex flex-col flex-grow gap-[10px]">
@@ -25,7 +25,7 @@ export default function ImageSlider({ images, name }) {
                         images.map((image, index) => {
                             return (
                                 <div
-                                    className={`h-[124px] w-[118px]  overflow-hidden  rounded-[10px] ${
+                                    className={`h-[124px] w-[118px] overflow-hidden cursor-pointer rounded-[10px] ${
                                         imageIndex === index &&
                                         "border border-purple-200 shadow-card"
                                     }`}
@@ -42,7 +42,7 @@ export default function ImageSlider({ images, name }) {
                         })}
                 </div>
                 <SliderArrow
-                    className="-rotate-90 mt-7"
+                    className="-rotate-90 mt-7 cursor-pointer"
                     onClick={decreaseIndex}
                 />
             </div>

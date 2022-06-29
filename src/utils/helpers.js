@@ -1,6 +1,6 @@
 import { NAV_CATEGORIES } from "../data/variables";
 
-const BLACKLIST = ["listings", ""];
+const BLACKLIST = ["listings", "sold"];
 
 export const generateCrumbs = (location, searchParams) => {
     let newCrumbs = [];
