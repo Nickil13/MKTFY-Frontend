@@ -85,6 +85,10 @@ function App() {
                     <Route path="account">
                         <Route index element={<div>Account Info</div>} />
                         <Route path="my-purchases" element={<MyPurchases />} />
+                        <Route
+                            path="my-purchases/:id/pickup-information"
+                            element={<Pickup />}
+                        />
                     </Route>
                 </Route>
 

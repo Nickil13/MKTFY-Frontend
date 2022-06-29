@@ -11,7 +11,7 @@ import ScrollBox from "./ScrollBox";
 import Select from "./Select";
 import UserMenu from "./UserMenu";
 
-import { DealsCard, ProductCard, ListingCard } from "./cards";
+import { DealsCard, ProductCard, PurchasesCard, ListingCard } from "./cards";
 import { Sidebar } from "./sidebar";
 export {
     AppBanner,
@@ -26,6 +26,7 @@ export {
     ListingCard,
     ProductCard,
     ProductSection,
+    PurchasesCard,
     ScrollBox,
     Sidebar,
     Select,

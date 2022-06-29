@@ -32,6 +32,11 @@ export const generateCrumbs = (location, searchParams) => {
             /* If the crumb is a number and a product name is stored in state */
         } else if (!isNaN(crumb) && location.state?.name) {
             name = location.state.name;
+
+            /* If a category is passed along in state, the product should have its path redirected to that category */
+            if (location.state?.category) {
+                crumbPath = `/dashboard/listings/${location.state?.category}/${crumb}`;
+            }
         } else {
             name = crumb;
         }

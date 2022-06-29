@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import { getListingById } from "../actions/listings";
+import { getPurchasesById } from "../actions/purchases";
 import { formatPrice } from "../utils/helpers";
 
 export default function Pickup() {
     const { id } = useParams();
     let location = useLocation();
-    const [listing, setListing] = useState(location.state.listing);
+    const [listing, setListing] = useState(location.state?.listing || null);
 
     React.useEffect(() => {
         if (!listing) {
-            const data = getListingById(id);
+            // const data = getListingById(id);
+            // setListing(data);
+            const data = getPurchasesById(id);
             setListing(data);
         }
     }, [listing]);
@@ -42,7 +45,7 @@ export default function Pickup() {
                 </div>
             </div>
             {/* Pickup Information */}
-            <div className="mt-9 mb-[46px] pl-12">
+            <div className="mt-9 mb-[46px] pl-5">
                 <span className="block text-green text-xs mb-1.5">Pick up</span>
                 <div className="flex mb-6">
                     <div className="inline-block circle-letter text-sm-16 py-3.5 px-[18px]">
