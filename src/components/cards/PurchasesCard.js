@@ -1,4 +1,5 @@
 import React from "react";
+import { LISTING_STATUS } from "../../data/variables";
 import { formatPrice } from "../../utils/helpers";
 
 export default function PurchasesCard({
@@ -12,7 +13,7 @@ export default function PurchasesCard({
 }) {
     return (
         <div
-            className="flex max-w-[808px] h-[214px] shadow-[0px_1px_0px_#00000024] rounded-[10px] overflow-hidden"
+            className="flex max-w-[808px] h-[214px] shadow-[0px_1px_0px_#00000024] rounded-[10px] overflow-hidden cursor-pointer"
             onClick={onClick}
         >
             <div className="w-[350px] flex-shrink-0">
@@ -28,15 +29,16 @@ export default function PurchasesCard({
                     <div className="flex mb-7">
                         <span
                             className={`ml-auto font-semibold text-base  uppercase px-2 rounded mr-4 ${
-                                tag === "pending"
+                                tag === LISTING_STATUS.PENDING
                                     ? "text-purple-600 bg-[#9349DE33]"
-                                    : tag === "sold" &&
+                                    : tag === LISTING_STATUS.SOLD &&
                                       "text-green bg-[#6CC04B33]"
                             }`}
                         >
-                            {tag === "pending"
+                            {tag === LISTING_STATUS.PENDING
                                 ? "pending state"
-                                : tag === "sold" && "sale confirmed"}
+                                : tag === LISTING_STATUS.SOLD &&
+                                  "sale confirmed"}
                         </span>
                     </div>
                 )}

@@ -32,6 +32,7 @@ import {
     MyPurchases,
     SoldItems,
 } from "./views/account";
+import ViewMyListing from "./views/account/ViewMyListing";
 
 function App() {
     return (
@@ -98,6 +99,7 @@ function App() {
                         <Route path="my-listings" element={<MyListings />}>
                             <Route index element={<ActiveItems />} />
                             <Route path="sold" element={<SoldItems />} />
+                            <Route path=":id" element={<ViewMyListing />} />
                         </Route>
                     </Route>
                 </Route>

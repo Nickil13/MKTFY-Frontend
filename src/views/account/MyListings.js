@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
 export default function MyListings() {
+    const hasNewSoldItems = true;
     return (
         <div>
             <h1 className="text-gray-500 font-bold mb-3">My Listings</h1>
@@ -20,8 +21,13 @@ export default function MyListings() {
                     </NavLink>
                 </li>
                 <li className="flex items-center font-semibold text-base">
-                    {/* New Sold Dot Icon */}
-                    <div className="w-[8px] h-[8px] bg-gold-200 rounded-full mb-[5px]"></div>
+                    {/* New Sold Items Dot Icon */}
+                    <div
+                        className={`w-[8px] h-[8px] bg-gold-200 rounded-full mb-[5px] ${
+                            !hasNewSoldItems && "invisible"
+                        }`}
+                    ></div>
+
                     <NavLink
                         to="sold"
                         className={({ isActive }) =>
