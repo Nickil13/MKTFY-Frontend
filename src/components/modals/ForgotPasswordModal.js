@@ -3,14 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { LoginInput } from "../inputs";
 import Button from "../Button";
 import ModalWrapper from "./ModalWrapper";
+import { useUserContext } from "../../context/UserContext";
 
 export default function ForgotPasswordModal() {
     const [email, setEmail] = useState("");
     let navigate = useNavigate();
+    const { changePassword } = useUserContext();
 
     const handleForgotPassword = (e) => {
         e.preventDefault();
-        navigate("/verify-reset");
+        changePassword();
+        // navigate("/verify-reset");
     };
     return (
         <ModalWrapper goBack portalModal>

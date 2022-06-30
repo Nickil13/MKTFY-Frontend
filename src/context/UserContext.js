@@ -102,6 +102,22 @@ export const UserContextProvider = ({ children }) => {
         );
     };
 
+    const changePassword = (email) => {
+        webAuth.changePassword(
+            {
+                connection: process.env.REACT_APP_REALM,
+                email: "nickitest@gmail.com",
+            },
+            function (err, resp) {
+                if (err) {
+                    console.log(err.message);
+                } else {
+                    console.log(resp);
+                }
+            }
+        );
+    };
+
     return (
         <UserContext.Provider
             value={{
@@ -112,6 +128,7 @@ export const UserContextProvider = ({ children }) => {
                 isLoading,
                 isAuthenticated,
                 error,
+                changePassword,
             }}
         >
             {children}
