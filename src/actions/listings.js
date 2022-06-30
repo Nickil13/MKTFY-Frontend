@@ -77,9 +77,18 @@ const getMySoldListings = () => {
     return myListings;
 };
 
+const getMyListingById = (id) => {
+    let newListing = {};
+    if (dummyMyListings) {
+        newListing = dummyMyListings.find((listing) => listing.Id == id);
+    }
+    return newListing;
+};
+
 export {
     getListings,
     getListingById,
+    getMyListingById,
     getDeals,
     getMoreDeals,
     getMyActiveListings,

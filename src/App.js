@@ -99,8 +99,11 @@ function App() {
                         <Route path="my-listings" element={<MyListings />}>
                             <Route index element={<ActiveItems />} />
                             <Route path="sold" element={<SoldItems />} />
-                            <Route path=":id" element={<ViewMyListing />} />
                         </Route>
+                        <Route
+                            path="my-listings/:id"
+                            element={<ViewMyListing />}
+                        />
                     </Route>
                 </Route>
 
