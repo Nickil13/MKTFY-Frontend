@@ -20,7 +20,7 @@ export default function SingleListing() {
     return (
         <div>
             {listing ? (
-                <div className="flex bg-white pt-7 pb-12 px-16 mt-5">
+                <div className="flex flex-col bg-white pt-7 pb-12 px-16 mt-5 2xl:flex-row">
                     <ImageSlider
                         images={listing.Images}
                         name={listing.ProdName}
@@ -28,7 +28,7 @@ export default function SingleListing() {
 
                     {/* Listing Content */}
                     <div className="flex-grow">
-                        <h1 className="text-gray-600 font-semibold mb-3 capitalize">
+                        <h1 className="text-gray-600 font-semibold mb-3 capitalize mt-10 2xl:mt-0">
                             {listing.ProdName}
                         </h1>
                         <span className="block text-purple-500 text-lg-36 font-bold mb-4">

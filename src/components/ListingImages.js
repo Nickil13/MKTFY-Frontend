@@ -7,7 +7,7 @@ import { useModalContext } from "../context/ModalContext";
 export default function ListingImages({ images, handleRemoveImage }) {
     const { setShowModal } = useModalContext();
     return (
-        <div className="bg-white p-8">
+        <div className="flex flex-col items-center bg-white p-8">
             {/* Main Image */}
             {images.length === 0 ? (
                 <div className="flex items-center justify-center w-[480px] h-[320px] border-purple-500 border border-dashed rounded bg-beige-200">
@@ -34,7 +34,7 @@ export default function ListingImages({ images, handleRemoveImage }) {
                 </div>
             )}
             {/* Other Images */}
-            <div className="flex justify-between mt-4">
+            <div className="flex gap-5 mt-4">
                 <ImageSquare
                     active={images.length > 0}
                     image={images.length > 0 && images[0]}
