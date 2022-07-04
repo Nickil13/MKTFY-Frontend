@@ -22,7 +22,13 @@ export default function ViewMyListing() {
     const [price, setPrice] = useState("");
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
-    const { setShowModal } = useModalContext();
+    const {
+        setShowModal,
+        setShowAlert,
+        setAlertType,
+        alertConfirmed,
+        resetAlert,
+    } = useModalContext();
     const [image, setImage] = useState(null);
     const [imageName, setImageName] = useState("");
     let location = useLocation();
@@ -46,6 +52,17 @@ export default function ViewMyListing() {
             }
         }
     }, []);
+
+    React.useEffect(() => {
+        // User opted to confirm alert
+        if (alertConfirmed) {
+            console.log("confirmed alert: cancelling the listing");
+            resetAlert();
+            // Loading success page
+            navigate("/dashboard/account/my-listings");
+        }
+    }, [alertConfirmed]);
+
     const handleSaveListing = (e) => {
         e.preventDefault();
         console.log("Saving listing...");
@@ -58,9 +75,8 @@ export default function ViewMyListing() {
     };
 
     const handleCancelListing = () => {
-        console.log("Cancelling the listing.");
-        // Are you sure?
-        navigate("/dashboard/account/my-listings");
+        setAlertType("cancel-listing");
+        setShowAlert(true);
     };
 
     const handleUploadImage = (uploadedImage, imageName) => {
@@ -169,36 +185,6 @@ export default function ViewMyListing() {
                                 styleClass="listing-input-style"
                             />
                             <PriceInput value={price} setValue={setPrice} />
-                            {/* <div className="input-control">
-                                <label
-                                    className="capitalize text-gray-700 mb-3"
-                                    htmlFor="price"
-                                >
-                                    Price
-                                </label>
-                                <div className="relative">
-                                    <span className="absolute top-1/2 -translate-y-1/2 pl-5 text-xs">
-                                        $
-                                    </span>
-                                    <input
-                                        className="listing-input pl-7 w-full"
-                                        type="text"
-                                        name="price"
-                                        id="price"
-                                        placeholder="Type the price"
-                                        onChange={(e) =>
-                                            setPrice(e.target.value)
-                                        }
-                                    />
-                                </div>
-                            </div> */}
-                            {/* <ListingInput
-                                name="price"
-                                value={price}
-                                setValue={setPrice}
-                                placeholder="Type the price"
-                                lastchild
-                            /> */}
                         </div>
                         <ListingInput
                             name="address"

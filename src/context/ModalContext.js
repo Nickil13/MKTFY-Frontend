@@ -3,14 +3,45 @@ import React, { useContext, useState } from "react";
 const ModalContext = React.createContext();
 
 export const useModalContext = () => {
-    return React.useContext(ModalContext);
+    return useContext(ModalContext);
 };
 
 export const ModalContextProvider = ({ children }) => {
     const [showModal, setShowModal] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertType, setAlertType] = useState("");
+    const [alertConfirmed, setAlertConfirmed] = useState(false);
+
+    const resetAlert = () => {
+        setAlertConfirmed(false);
+        setAlertType("");
+    };
+
+    const cancelAlert = () => {
+        resetAlert();
+        setShowAlert(false);
+    };
+
+    const confirmAlert = () => {
+        setAlertConfirmed(true);
+        setShowAlert(false);
+    };
 
     return (
-        <ModalContext.Provider value={{ showModal, setShowModal }}>
+        <ModalContext.Provider
+            value={{
+                showModal,
+                setShowModal,
+                showAlert,
+                setShowAlert,
+                setAlertType,
+                alertType,
+                alertConfirmed,
+                cancelAlert,
+                confirmAlert,
+                resetAlert,
+            }}
+        >
             {children}
         </ModalContext.Provider>
     );

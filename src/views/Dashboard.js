@@ -5,9 +5,11 @@ import { Navbar, Footer } from "../components/layout";
 import { generateCrumbs } from "../utils/helpers";
 import { useModalContext } from "../context/ModalContext";
 import { UploadImageModal } from "../components/modals";
+import Alert from "../components/Alert";
 
 export default function Dashboard() {
-    const { showModal } = useModalContext();
+    const { showModal, showAlert, alertType, confirmAlert, cancelAlert } =
+        useModalContext();
     let location = useLocation();
     let [searchParams] = useSearchParams();
     let crumbs = generateCrumbs(location, searchParams);
@@ -27,6 +29,15 @@ export default function Dashboard() {
                 <div className="absolute flex items-center justify-center inset-0 bg-black bg-opacity-50 h-screen z-[70]">
                     <UploadImageModal
                     // handleUploadImage={handleUploadImage}
+                    />
+                </div>
+            )}
+            {showAlert && (
+                <div className="absolute flex items-center justify-center inset-0 bg-black bg-opacity-50 h-screen z-[70]">
+                    <Alert
+                        alertType={alertType}
+                        onCancel={cancelAlert}
+                        onConfirm={confirmAlert}
                     />
                 </div>
             )}
