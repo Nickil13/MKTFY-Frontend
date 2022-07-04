@@ -5,6 +5,7 @@ import DealsSection from "./DealsSection";
 import Dropdown from "./Dropdown";
 import ImageSlider from "./ImageSlider";
 import ImageSquare from "./ImageSquare";
+import ListingImages from "./ListingImages";
 import Notifications from "./Notifications";
 import Pagination from "./Pagination";
 import ProductSection from "./ProductSection";
@@ -23,6 +24,7 @@ export {
     Dropdown,
     ImageSlider,
     ImageSquare,
+    ListingImages,
     Notifications,
     Pagination,
     ListingCard,

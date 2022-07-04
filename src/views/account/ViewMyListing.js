@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { ReactComponent as CameraIcon } from "../../assets/images/add_a_photo-24px.svg";
-import { Button, Select, ImageSquare } from "../../components";
+import { Button, Select } from "../../components";
 import {
     CATEGORY_TYPES,
     CITY_OPTIONS,
@@ -8,11 +7,10 @@ import {
     LISTING_STATUS,
 } from "../../data/variables";
 import { useModalContext } from "../../context/ModalContext";
-import { ReactComponent as CloseIcon } from "../../assets/images/orange_close-24.svg";
 import { ListingInput, PriceInput } from "../../components/inputs";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getMyListingById } from "../../actions/listings";
-import { formatPrice } from "../../utils/helpers";
+import { ListingImages } from "../../components";
 
 export default function ViewMyListing() {
     const [name, setName] = useState("");
@@ -22,13 +20,8 @@ export default function ViewMyListing() {
     const [price, setPrice] = useState("");
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
-    const {
-        setShowModal,
-        setShowAlert,
-        setAlertType,
-        alertConfirmed,
-        resetAlert,
-    } = useModalContext();
+    const { setShowAlert, setAlertType, alertConfirmed, resetAlert } =
+        useModalContext();
     const [image, setImage] = useState(null);
     const [imageName, setImageName] = useState("");
     let location = useLocation();
@@ -59,7 +52,9 @@ export default function ViewMyListing() {
             console.log("confirmed alert: cancelling the listing");
             resetAlert();
             // Loading success page
-            navigate("/dashboard/account/my-listings");
+            navigate("/loading", {
+                state: { redirect: "/dashboard/account/my-listings" },
+            });
         }
     }, [alertConfirmed]);
 
@@ -95,46 +90,10 @@ export default function ViewMyListing() {
             </h1>
             <div className="flex rounded-[10px] shadow-modal overflow-hidden">
                 {/* Images */}
-                <div className="bg-white p-8">
-                    {/* Main Image */}
-                    {!image ? (
-                        <div className="flex items-center justify-center w-[480px] h-[320px] border-purple-500 border border-dashed rounded bg-beige-200">
-                            <button onClick={() => setShowModal(true)}>
-                                <CameraIcon className="mx-auto mb-2 w-[42px] h-[38px]" />
-                                <p className="text-xs text-purple-500">
-                                    Choose or drag up to 5 photos
-                                </p>
-                            </button>
-                        </div>
-                    ) : (
-                        <div className="relative flex items-center justify-center w-[480px] h-[320px]  border-[#7070704D] border rounded overflow-hidden">
-                            <img
-                                className="h-full w-full object-cover"
-                                src={image}
-                                alt={imageName}
-                            />
-                            <button
-                                className="absolute top-7 right-7 cursor-pointer"
-                                onClick={() => handleRemoveImage(0)}
-                            >
-                                <CloseIcon />
-                            </button>
-                        </div>
-                    )}
-                    {/* Other Images */}
-                    <div className="flex justify-between mt-4">
-                        <ImageSquare
-                            active={image}
-                            image={image}
-                            alt={imageName}
-                            handleRemoveImage={handleRemoveImage}
-                            index={1}
-                        />
-                        <ImageSquare />
-                        <ImageSquare />
-                        <ImageSquare />
-                    </div>
-                </div>
+                <ListingImages
+                    images={[image]}
+                    handleRemoveImage={handleRemoveImage}
+                />
 
                 {/* Product Info */}
                 <div className="w-[904px] bg-beige-200 p-8">

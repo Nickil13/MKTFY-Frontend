@@ -22,7 +22,7 @@ export default function ResetPasswordModal() {
         e.preventDefault();
         console.log("Resetting password.");
         //Loading Screen -> Login
-        navigate("/loading", { state: { prevPath: location.pathname } });
+        navigate("/loading", { state: { redirect: "/login" } });
     };
 
     const checkPasswordsMatching = () => {

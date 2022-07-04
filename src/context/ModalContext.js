@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useEffect } from "react";
 
 const ModalContext = React.createContext();
 
@@ -26,6 +27,14 @@ export const ModalContextProvider = ({ children }) => {
         setAlertConfirmed(true);
         setShowAlert(false);
     };
+
+    useEffect(() => {
+        if (showAlert || showModal) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "visible";
+        }
+    }, [showAlert, showModal]);
 
     return (
         <ModalContext.Provider

@@ -6,6 +6,7 @@ export default function ImageSquare({
     imageName,
     active,
     handleRemoveImage,
+    handleAddImage,
     index,
 }) {
     if (active)
@@ -25,8 +26,11 @@ export default function ImageSquare({
             </div>
         );
     return (
-        <div className="border border-purple-500 border-dashed rounded p-9">
+        <button
+            className="border border-purple-500 border-dashed rounded p-9"
+            onClick={handleAddImage}
+        >
             <CameraIcon />
-        </div>
+        </button>
     );
 }

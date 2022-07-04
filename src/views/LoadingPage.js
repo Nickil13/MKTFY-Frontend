@@ -22,14 +22,8 @@ export default function LoadingPage() {
     }, []);
 
     const handleAnimationComplete = () => {
-        let from = location.state?.prevPath || "/";
-        if (from === "/create-password") {
-            navigate("/dashboard");
-        } else if (from === "/reset-password") {
-            navigate("/login");
-        } else {
-            navigate("/");
-        }
+        let redirectedPath = location.state?.redirect || "/";
+        navigate(redirectedPath);
     };
     return (
         <div className="relative bg-login-clouds bg-cover bg-no-repeat h-screen">

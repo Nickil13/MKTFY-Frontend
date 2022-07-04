@@ -33,7 +33,7 @@ export default function CreatePasswordModal() {
             login();
 
             //Loading Screen -> Dashboard
-            navigate("/loading", { state: { prevPath: location.pathname } });
+            navigate("/loading", { state: { redirect: "/dashboard" } });
         }
     }, [signupSuccess]);
 

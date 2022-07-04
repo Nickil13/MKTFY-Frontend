@@ -26,14 +26,14 @@ export default function Dashboard() {
             <Footer />
             {/* Upload Image Modal */}
             {showModal && (
-                <div className="absolute flex items-center justify-center inset-0 bg-black bg-opacity-50 h-screen z-[70]">
+                <div className="fixed flex items-center justify-center inset-0 bg-black bg-opacity-50 h-screen z-[70]">
                     <UploadImageModal
                     // handleUploadImage={handleUploadImage}
                     />
                 </div>
             )}
             {showAlert && (
-                <div className="absolute flex items-center justify-center inset-0 bg-black bg-opacity-50 h-screen z-[70]">
+                <div className="fixed flex items-center justify-center inset-0 bg-black bg-opacity-50 h-screen z-[70]">
                     <Alert
                         alertType={alertType}
                         onCancel={cancelAlert}
