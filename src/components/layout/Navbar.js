@@ -6,27 +6,30 @@ import { ReactComponent as AddCircle } from "../../assets/images/add_circle_outl
 import Searchbar from "../Searchbar";
 import Notifications from "../Notifications";
 import UserMenu from "../UserMenu";
+import { ReactComponent as MenuIcon } from "../../assets/images/menu-24px (1).svg";
 
 export default function Navbar() {
     let navigate = useNavigate();
     return (
-        <nav className="fixed top-0 w-full z-50 flex items-center justify-center h-nav bg-purple-500">
+        <nav className="fixed top-0 w-full z-50 flex items-center justify-center h-nav bg-purple-500 px-2">
             <div className="absolute top-0 right-0 w-full h-[24px] bg-[#000000]/10"></div>
-            <div className="flex flex-col  max-w-[1645px] w-full pt-16">
-                <div className="flex items-center">
-                    {/* logo */}
-                    <Link to="/dashboard">
-                        <img
-                            className="mr-5"
-                            src={MktfyWordmark}
-                            alt="mktfy wordmark"
-                        />
-                    </Link>
+            <div className="flex flex-col max-w-[1645px] w-full pt-16">
+                <div className="flex flex-col items-center 2xl:flex-row">
+                    <div className="flex items-center">
+                        {/* logo */}
+                        <Link to="/dashboard">
+                            <img
+                                className="mr-5"
+                                src={MktfyWordmark}
+                                alt="mktfy wordmark"
+                            />
+                        </Link>
 
-                    {/* search bar */}
-                    <Searchbar />
-
-                    <div className="flex">
+                        {/* search bar */}
+                        <Searchbar />
+                        <MenuIcon className="w-10 h-10 2xl:hidden" />
+                    </div>
+                    <div className="hidden 2xl:flex">
                         <UserMenu />
                         <Notifications />
 
@@ -40,7 +43,7 @@ export default function Navbar() {
                         </button>
                     </div>
                 </div>
-                <div className="ml-36">
+                <div className={`mx-auto 2xl:ml-36`}>
                     <ul className="flex gap-14 mt-6 mb-5">
                         {NAV_CATEGORIES.map((category, index) => {
                             return (
