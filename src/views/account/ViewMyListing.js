@@ -66,7 +66,7 @@ export default function ViewMyListing() {
 
     const handleConfirmSold = () => {
         console.log("Confirming sold.");
-        navigate("/dashboard/account/my-listings");
+        navigate("/dashboard/account/my-listings/sold");
     };
 
     const handleCancelListing = () => {

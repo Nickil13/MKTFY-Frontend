@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import logo from "../assets/images/logo.svg";
+import { Logo } from "../components/icons";
 import lottie from "lottie-web";
 import animationData from "../assets/animations/loading_animation.json";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -28,7 +28,7 @@ export default function LoadingPage() {
     return (
         <div className="relative bg-login-clouds bg-cover bg-no-repeat h-screen">
             <div className="absolute t-0 l-0 pt-20 pl-36">
-                <img src={logo} alt="mktfy logo" />
+                <Logo width="w-56" fill="fill-purple-200" />
             </div>
 
             <div className="flex flex-col items-center justify-center h-screen ">

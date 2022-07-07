@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
 export default function MyListings() {
-    const hasNewSoldItems = true;
+    const [hasNewSoldItems, setHasNewSoldItems] = useState(true);
     return (
         <div>
             <h1 className="text-gray-500 font-bold mb-3">My Listings</h1>
@@ -35,6 +35,7 @@ export default function MyListings() {
                                 ? "border-b-[5px] border-b-purple-100 text-purple-400 px-2"
                                 : "border-b-[5px] border-b-transparent text-gray-footer px-2"
                         }
+                        onClick={() => setHasNewSoldItems(false)}
                     >
                         Sold Items
                     </NavLink>

@@ -74,7 +74,7 @@ export default function Listings() {
                     <Sidebar />
                     {/* Listings */}
                     {listings.length > 0 ? (
-                        <div>
+                        <div className="flex-grow">
                             <div className="bg-white w-full rounded pt-8 pb-12 divide-y divide-gray-100 mb-12">
                                 {listings.length > 0 &&
                                     listings.map((listing) => {
