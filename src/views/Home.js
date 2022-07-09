@@ -1,6 +1,6 @@
 import React from "react";
 import { AppBanner, DealsSection, ProductSection } from "../components";
-import axios from "axios";
+import axios from "../utils/request";
 
 export default function Home() {
     const testApi = async () => {
@@ -12,15 +12,15 @@ export default function Home() {
                 "Content-Type": "application/json",
             },
         };
-        const body = {
-            prodName: "Sandwich",
-            description: "A delicious egg salad sandwich.",
-            category: "furniture",
-            condition: "new",
-            price: 27.32,
-            address: "123 street se",
-            city: "Calgary",
-        };
+        // const body = {
+        //     prodName: "Sandwich",
+        //     description: "A delicious egg salad sandwich.",
+        //     category: "furniture",
+        //     condition: "new",
+        //     price: 27.32,
+        //     address: "123 street se",
+        //     city: "Calgary",
+        // };
         //"49836616-bed6-4184-a00b-fbc0d1f36967" - sandwich 1
         //"7ed41bd3-6e92-43d2-be69-662cfbc25aff" - sandwich 2
         // const body = {
@@ -66,11 +66,7 @@ export default function Home() {
         // }
         //}
         try {
-            const res = await axios.get(
-                `        http://marketforyouyh-env.eba-fqgiudi2.ca-central-1.elasticbeanstalk.com/api/Listing/deals
-                    `,
-                config
-            );
+            const res = await axios.get(`/Listing/myListings/active`);
             console.log(res);
         } catch (error) {
             console.log(error);

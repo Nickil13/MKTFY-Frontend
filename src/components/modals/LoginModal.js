@@ -7,16 +7,16 @@ import ModalWrapper from "./ModalWrapper";
 import { useUserContext } from "../../context/UserContext";
 
 export default function LoginModal() {
-    const [email, setEmail] = useState("");
+    const [email, setEmail] = useState("nickitest@gmail.com");
     const [emailError, setEmailError] = useState("");
-    const [password, setPassword] = useState("");
+    const [password, setPassword] = useState("@Testing1");
     const { setShowModal } = useModalContext();
-    const { login } = useUserContext();
+    const { login, error } = useUserContext();
 
     const handleLogin = (e) => {
         e.preventDefault();
         setShowModal(false);
-        login();
+        login(email, password);
     };
 
     const checkValidEmail = (value) => {
@@ -49,7 +49,8 @@ export default function LoginModal() {
                     onChange={(e) => setPassword(e.target.value)}
                     lastchild
                 />
-                <div className="flex justify-end">
+                <div className="flex justify-between">
+                    <div className="text-red">{error && error}</div>
                     <Link
                         className="text-gold-200 underline text-xs font-semibold mt-7"
                         to="/forgot-password"
