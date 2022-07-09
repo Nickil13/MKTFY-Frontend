@@ -2,7 +2,7 @@ import React, { useState, useMemo } from "react";
 import ModalWrapper from "./ModalWrapper";
 import { PasswordInput } from "../inputs";
 import Button from "../Button";
-import PasswordRequirement from "../PasswordRequirement";
+import PasswordRequirement from "./PasswordRequirement";
 import { useNavigate, useLocation } from "react-router-dom";
 import { checkUppercase, checkContainsNumber } from "../../utils/helpers";
 
@@ -22,7 +22,7 @@ export default function ResetPasswordModal() {
         e.preventDefault();
         console.log("Resetting password.");
         //Loading Screen -> Login
-        navigate("/loading", { state: { prevPath: location.pathname } });
+        navigate("/loading", { state: { redirect: "/login" } });
     };
 
     const checkPasswordsMatching = () => {

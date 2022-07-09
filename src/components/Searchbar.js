@@ -32,7 +32,7 @@ export default function Searchbar() {
     };
 
     return (
-        <div className="flex items-center w-[1012px] bg-white h-[60px] rounded-lg mr-12 divide-x-2 divide-gray-100">
+        <div className="flex items-center w-4/5 bg-white h-[60px] rounded-lg mr-12 divide-x-2 divide-gray-100 2xl:w-[1012px]">
             <button
                 className="px-12 text-gray-600"
                 onClick={() => navigate(`listings/?city=${city}`)}

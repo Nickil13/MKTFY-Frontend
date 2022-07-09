@@ -225,4 +225,58 @@ export const dummyListings = [
             "https://images.unsplash.com/photo-1627989147125-a004d05946d3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
         ],
     },
+    {
+        Id: 17,
+        ProdName: "Gingerbread Cookies",
+        Description:
+            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio reprehenderit rerum praesentium modi doloremque a assumenda tempore?",
+        Category: "cars",
+        Condition: "new",
+        Price: 23.15,
+        Address: "Farmer's Market",
+        City: "Camrose",
+        Images: [
+            "https://images.unsplash.com/photo-1610562275255-03b7fa0d4655?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=766&q=80",
+        ],
+    },
+    {
+        Id: 18,
+        ProdName: "Cabin in the woods",
+        Description:
+            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio reprehenderit rerum praesentium modi doloremque a assumenda tempore?",
+        Category: "real estate",
+        Condition: "old",
+        Price: 1500.0,
+        Address: "Farmer's Market",
+        City: "Brooks",
+        Images: [
+            "https://images.unsplash.com/photo-1575403071235-5dcd06cbf169?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
+        ],
+    },
+    {
+        Id: 71,
+        ProdName: "Chameleon",
+        Description: "A unique and beautiful creature.",
+        Category: "electronics",
+        Condition: "new",
+        Price: 340.0,
+        Address: "43 Appleseed lane",
+        City: "Calgary",
+        Images: [
+            "https://images.unsplash.com/photo-1656428379377-98039ab9695a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+        ],
+    },
+    {
+        Id: 72,
+        ProdName: "Flowers",
+        Description: "A bouquet arranged for someone special.",
+        Category: "cars",
+        Condition: "new",
+        Price: 56.66,
+        Address: "43 Appleseed lane",
+        City: "Brooks",
+        Images: [
+            "https://images.unsplash.com/photo-1656380605767-28a92b240053?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1372&q=80",
+        ],
+    },
 ];

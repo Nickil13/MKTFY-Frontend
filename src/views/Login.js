@@ -28,17 +28,17 @@ export default function Login() {
     return (
         <div className="bg-login-clouds bg-cover bg-no-repeat h-screen">
             <div className="flex flex-col justify-center items-center w-full h-screen pt-24">
-                <Logo width="w-64" />
+                <Logo width="w-64" fill="fill-purple-200" />
 
                 <div className="flex flex-col mt-14">
                     <Button
                         margins="mb-4"
                         color="gold"
-                        onClick={() => navigate("/login")}
+                        onClick={() => navigate("login")}
                     >
                         Login
                     </Button>
-                    <Button onClick={() => navigate("/register")}>
+                    <Button onClick={() => navigate("register")}>
                         Create Account
                     </Button>
                 </div>

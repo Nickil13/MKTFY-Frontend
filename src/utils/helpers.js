@@ -1,52 +1,53 @@
-import { CATEGORY_TYPES } from "../data/variables";
+import { NAV_CATEGORIES } from "../data/variables";
 
-const BLACKLIST = ["listings", ""];
+const BLACKLIST = ["listings", "sold"];
 
 export const generateCrumbs = (location, searchParams) => {
     let newCrumbs = [];
     let crumbs = location.pathname.split("/").slice(1);
-    let category = "";
+    let name = "";
 
     for (let i = 0; i < crumbs.length; i++) {
         let crumb = crumbs[i];
+
+        let crumbPath = `/${crumbs
+            .slice(0, crumbs.indexOf(crumb) + 1)
+            .join("/")}`;
+
         if (crumb.includes("%20") || crumb.includes("-")) {
             crumb = crumb.replace("%20", " ");
             crumb = crumb.replace("-", " ");
         }
-        if (crumb === "dashboard") {
-            newCrumbs.push({ name: "home", path: "/dashboard" });
-        } else if (CATEGORY_TYPES.includes(crumb)) {
-            category = crumb;
-            newCrumbs.push({
-                name: `Popular ${crumb} in ${
-                    location.state?.city || "Calgary"
-                }`,
-                path: `/dashboard/listings/?category=${crumb}`,
-            });
-        } else if (
-            crumb === "listings" &&
-            location.search.includes("category")
-        ) {
-            category = searchParams.get("category");
 
-            newCrumbs.push({
-                name: `Popular ${category} in ${
-                    searchParams.get("city") || "Calgary"
-                }`,
-                path: `/dashboard/listings/${location.search}`,
-            });
+        // Rename all dashboard crumbs to Home
+        if (crumb === "dashboard") {
+            name = "home";
+
+            /* If the crumb is a category, set its name based on current city*/
+        } else if (NAV_CATEGORIES.includes(crumb)) {
+            name = `${crumb} in ${
+                location.state?.city || searchParams.get("city") || "Calgary"
+            }`;
+
+            /* If the crumb is a number and a product name is stored in state */
         } else if (!isNaN(crumb) && location.state?.name) {
-            newCrumbs.push({
-                name: location.state.name,
-                path: `/dashboard/listings/${category}/${location.state.name}`,
-            });
-        } else {
-            if (!BLACKLIST.includes(crumb)) {
-                newCrumbs.push({ name: crumb, path: `/dashboard/${crumb}` });
+            name = location.state.name;
+
+            /* If a category is passed along in state, the product should have its path redirected to that category */
+            if (location.state?.category) {
+                crumbPath = `/dashboard/listings/${location.state?.category}/${crumb}`;
             }
+        } else {
+            name = crumb;
+        }
+
+        if (!BLACKLIST.includes(crumb)) {
+            newCrumbs.push({
+                name,
+                path: crumbPath,
+            });
         }
     }
-
     return newCrumbs;
 };
 

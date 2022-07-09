@@ -1,9 +1,18 @@
 import React, { useState } from "react";
-import { Button, ListingImages, Select } from "../components";
-import { CATEGORY_TYPES, CITY_OPTIONS, CONDITIONS } from "../data/variables";
-import { ListingInput } from "../components/inputs";
+import { Button, Select } from "../../components";
+import {
+    CATEGORY_TYPES,
+    CITY_OPTIONS,
+    CONDITIONS,
+    LISTING_STATUS,
+} from "../../data/variables";
+import { useModalContext } from "../../context/ModalContext";
+import { ListingInput, PriceInput } from "../../components/inputs";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { getMyListingById } from "../../actions/listings";
+import { ListingImages } from "../../components";
 
-export default function CreateListing() {
+export default function ViewMyListing() {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
@@ -11,12 +20,58 @@ export default function CreateListing() {
     const [price, setPrice] = useState("");
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
+    const { setShowAlert, setAlertType, alertConfirmed, resetAlert } =
+        useModalContext();
     const [image, setImage] = useState(null);
     const [imageName, setImageName] = useState("");
+    let location = useLocation();
+    let navigate = useNavigate();
+    const { id } = useParams();
+    const isAvailable =
+        location.state?.status?.toUpperCase() === LISTING_STATUS.AVAILABLE;
 
-    const handleCreateListing = (e) => {
+    React.useEffect(() => {
+        if (!name) {
+            const data = getMyListingById(id);
+            if (data) {
+                setName(data.ProdName);
+                setDescription(data.Description);
+                setCategory(data.Category);
+                setCondition(data.Condition);
+                setAddress(data.Address);
+                setCity(data.City);
+                setPrice(data.Price.toFixed(2));
+                setImage(data.Images[0]);
+            }
+        }
+    }, []);
+
+    React.useEffect(() => {
+        // User opted to confirm alert
+        if (alertConfirmed) {
+            console.log("confirmed alert: cancelling the listing");
+            resetAlert();
+            // Loading success page
+            navigate("/loading", {
+                state: { redirect: "/dashboard/account/my-listings" },
+            });
+        }
+    }, [alertConfirmed]);
+
+    const handleSaveListing = (e) => {
         e.preventDefault();
-        console.log("Creating listing...");
+        console.log("Saving listing...");
+        navigate("/dashboard/account/my-listings");
+    };
+
+    const handleConfirmSold = () => {
+        console.log("Confirming sold.");
+        navigate("/dashboard/account/my-listings/sold");
+    };
+
+    const handleCancelListing = () => {
+        setAlertType("cancel-listing");
+        setShowAlert(true);
     };
 
     const handleUploadImage = (uploadedImage, imageName) => {
@@ -30,20 +85,18 @@ export default function CreateListing() {
     };
     return (
         <div className="mt-7 max-w-[1448px]">
-            <h1 className="text-gray-500 font-bold text-lg mb-8">
-                Create Listing
-            </h1>
-            <div className="flex rounded-[10px] shadow-modal overflow-hidden">
+            <h1 className="text-gray-500 font-bold text-lg mb-8">My Listing</h1>
+            <div className="flex flex-col rounded-[10px] shadow-modal overflow-hidden 2xl:flex-row">
                 {/* Images */}
                 <ListingImages
-                    images={[]}
+                    images={[image]}
                     handleRemoveImage={handleRemoveImage}
                 />
 
                 {/* Product Info */}
                 <div className="w-[904px] bg-beige-200 p-8">
                     <form
-                        onSubmit={handleCreateListing}
+                        onSubmit={handleSaveListing}
                         className="max-w-[520px]"
                     >
                         <ListingInput
@@ -88,13 +141,7 @@ export default function CreateListing() {
                                 phcolor="text-[#2A2E43]/50"
                                 styleClass="listing-input-style"
                             />
-                            <ListingInput
-                                name="price"
-                                value={price}
-                                setValue={setPrice}
-                                placeholder="Type the price"
-                                lastchild
-                            />
+                            <PriceInput value={price} setValue={setPrice} />
                         </div>
                         <ListingInput
                             name="address"
@@ -109,23 +156,35 @@ export default function CreateListing() {
                             phcolor="text-[#2A2E43]/50"
                             styleClass="listing-input-style"
                         />
+                        {isAvailable && (
+                            <Button
+                                type="submit"
+                                width="w-full"
+                                padding="py-4"
+                                margins="mb-4 mt-7"
+                                fontSize="text-xs"
+                                color="gold"
+                            >
+                                Save changes
+                            </Button>
+                        )}
                         <Button
-                            type="submit"
                             width="w-full"
-                            padding="py-4"
-                            margins="mb-5 mt-10"
                             fontSize="text-xs"
-                            disabled
+                            padding="py-4"
+                            margins={`${!isAvailable && "mt-7"} mb-4`}
+                            onClick={handleConfirmSold}
                         >
-                            Post Your Listing
+                            Confirm sold
                         </Button>
                         <Button
                             color="none"
                             width="w-full"
                             fontSize="text-xs"
                             padding="py-4"
+                            onClick={handleCancelListing}
                         >
-                            Cancel
+                            Cancel Listing
                         </Button>
                     </form>
                 </div>

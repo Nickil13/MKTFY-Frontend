@@ -3,18 +3,18 @@ import BreadCrumbs from "./BreadCrumbs";
 import Button from "./Button";
 import DealsSection from "./DealsSection";
 import Dropdown from "./Dropdown";
-import FilterItem from "./FilterItem";
 import ImageSlider from "./ImageSlider";
+import ImageSquare from "./ImageSquare";
+import ListingImages from "./ListingImages";
 import Notifications from "./Notifications";
-import PasswordRequirement from "./PasswordRequirement";
+import Pagination from "./Pagination";
 import ProductSection from "./ProductSection";
 import ScrollBox from "./ScrollBox";
 import Select from "./Select";
-import Sidebar from "./Sidebar";
 import UserMenu from "./UserMenu";
 
-import { DealsCard, ProductCard, ListingCard } from "./cards";
-
+import { DealsCard, ProductCard, PurchasesCard, ListingCard } from "./cards";
+import { Sidebar } from "./sidebar";
 export {
     AppBanner,
     BreadCrumbs,
@@ -22,15 +22,17 @@ export {
     DealsCard,
     DealsSection,
     Dropdown,
-    FilterItem,
     ImageSlider,
+    ImageSquare,
+    ListingImages,
     Notifications,
+    Pagination,
     ListingCard,
-    PasswordRequirement,
     ProductCard,
     ProductSection,
+    PurchasesCard,
     ScrollBox,
-    Select,
     Sidebar,
+    Select,
     UserMenu,
 };

@@ -4,6 +4,7 @@ import { formatPrice } from "../../utils/helpers";
 
 export default function DealsCard({ Id, Images, ProdName, Price }) {
     let navigate = useNavigate();
+
     return (
         <div className="flex flex-col min-w-card max-w-card h-card mr-[20px] bg-white rounded-xl overflow-hidden shadow-card">
             <div className="overflow-hidden h-card-img-sm">
@@ -18,7 +19,7 @@ export default function DealsCard({ Id, Images, ProdName, Price }) {
                 <h3
                     className=" flex-grow text-sm-17 capitalize hover:underline"
                     onClick={() =>
-                        navigate(`/dashboard/deals/${Id}`, {
+                        navigate(`/dashboard/listings/deals/${Id}`, {
                             state: { name: ProdName },
                         })
                     }

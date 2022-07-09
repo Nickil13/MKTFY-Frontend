@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { DealsCard, ScrollBox } from "../components";
-import { Link } from "react-router-dom";
 import { getDeals, getMoreDeals } from "../actions/listings";
 
-export default function DealsSection({ title, category, margins }) {
+export default function DealsSection({ title, category }) {
     const [listings, setListings] = useState([]);
 
     React.useEffect(() => {

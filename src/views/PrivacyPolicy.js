@@ -8,7 +8,7 @@ export default function PrivacyPolicy() {
     return (
         <div>
             <div className="bg-about-header bg-no-repeat bg-cover px-36 pt-20 pb-60">
-                <Logo width="w-56" />
+                <Logo width="w-56" fill="fill-purple-200" />
             </div>
             <div className="relative flex items-center content-center w-full px-36 ">
                 <button

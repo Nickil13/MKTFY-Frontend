@@ -1,6 +1,7 @@
 import React from "react";
 import FilterItem from "./FilterItem";
-import { CATEGORY_TYPES, CITY_OPTIONS, CONDITIONS } from "../data/variables";
+import { CATEGORY_TYPES, CITY_OPTIONS, CONDITIONS } from "../../data/variables";
+import CategoryFilterItem from "./CategoryFilterItem";
 
 export default function Sidebar() {
     return (
@@ -18,13 +19,12 @@ export default function Sidebar() {
                         {CATEGORY_TYPES?.length > 0 &&
                             CATEGORY_TYPES.map((item, index) => {
                                 return (
-                                    <FilterItem
+                                    <CategoryFilterItem
                                         key={index}
                                         value={item}
-                                        filterCategory="category"
                                     >
                                         {item}
-                                    </FilterItem>
+                                    </CategoryFilterItem>
                                 );
                             })}
                     </ul>

@@ -13,19 +13,19 @@ export default function ImageSlider({ images, name }) {
     };
 
     return (
-        <div className="flex mx-8 mr-36">
+        <div className="flex flex-col-reverse 2xl:mx-8 2xl:mr-36 2xl:flex-row">
             {/* Image Slider */}
-            <div className="flex flex-col items-center  mr-9">
+            <div className="flex items-center mr-9 2xl:flex-col">
                 <SliderArrow
-                    className="rotate-90 mb-2.5"
+                    className="cursor-pointer mr-2.5 2xl:mb-2.5 2xl:mr-0 2xl:rotate-90"
                     onClick={increaseIndex}
                 />
-                <div className="flex flex-col flex-grow gap-[10px]">
+                <div className="flex gap-[10px] 2xl:flex-col">
                     {images.length > 0 &&
                         images.map((image, index) => {
                             return (
                                 <div
-                                    className={`h-[124px] w-[118px]  overflow-hidden  rounded-[10px] ${
+                                    className={`h-[124px] w-[118px] overflow-hidden cursor-pointer rounded-[10px] ${
                                         imageIndex === index &&
                                         "border border-purple-200 shadow-card"
                                     }`}
@@ -42,13 +42,13 @@ export default function ImageSlider({ images, name }) {
                         })}
                 </div>
                 <SliderArrow
-                    className="-rotate-90 mt-7"
+                    className="rotate-180 cursor-pointer ml-2.5 2xl:mt-7 2xl:ml-0 2xl:-rotate-90"
                     onClick={decreaseIndex}
                 />
             </div>
             {/* Main Image */}
             <div>
-                <div className="w-[645px] h-[424px] overflow-hidden rounded-[10px] shadow-card border border-gray-footer-border mb-4">
+                <div className="h-[424px] overflow-hidden rounded-[10px] shadow-card border border-gray-footer-border mb-4 2xl:w-[645px]">
                     <img
                         className="w-full h-full object-cover"
                         src={images[imageIndex]}

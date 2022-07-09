@@ -16,11 +16,19 @@ const USER_MENU_LINKS = [
     { name: "My Listings", path: "account/my-listings" },
 ];
 
+// Listing status enum
+const LISTING_STATUS = {
+    PENDING: "PENDING",
+    SOLD: "SOLD",
+    AVAILABLE: "AVAILABLE",
+};
+
 export {
     CATEGORY_TYPES,
     CITY_OPTIONS,
     CONDITIONS,
     FOOTER_LINKS,
+    LISTING_STATUS,
     NAV_CATEGORIES,
     USER_MENU_LINKS,
 };

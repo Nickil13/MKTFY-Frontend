@@ -8,7 +8,7 @@ export default function BreadCrumbs({ crumbs }) {
     }
 
     return (
-        <ul className="flex">
+        <ul className="flex mb-10">
             {crumbs.map(({ name, path }, index) => {
                 const isLastCrumb = index + 1 === crumbs.length;
                 return (
@@ -21,7 +21,7 @@ export default function BreadCrumbs({ crumbs }) {
                         {!isLastCrumb ? (
                             <>
                                 <Link to={path}>{name}</Link>
-                                <CrumbArrow className="mx-[5px]" />
+                                <CrumbArrow className="mx-[5px] fill-purple-100" />
                             </>
                         ) : (
                             <span>{name}</span>

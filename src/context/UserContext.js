@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import auth0js from "auth0-js";
+import axios from "axios";
 
 const UserContext = React.createContext();
 
@@ -13,7 +14,6 @@ export const UserContextProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(
         sessionStorage.getItem("access_token")
     );
-
     const [isLoading, setIsLoading] = useState(false);
     const [signupSuccess, setSignupSuccess] = useState(false);
     const [error, setError] = useState("");
@@ -24,6 +24,7 @@ export const UserContextProvider = ({ children }) => {
         clientID: process.env.REACT_APP_CLIENT_ID,
         // audience: `https://${process.env.REACT_APP_DOMAIN}/api/v2/`,
         // scope: "read:current_user",
+        audience: "http://marketforyou.com",
     });
 
     /* Get token from session storage. If token, set authenticated. */
@@ -51,6 +52,8 @@ export const UserContextProvider = ({ children }) => {
         let access_token = new URLSearchParams(
             document.location.hash.substring(1)
         ).get("access_token");
+
+        console.log("access token: ", access_token);
 
         if (access_token) {
             webAuth.parseHash(
@@ -113,6 +116,13 @@ export const UserContextProvider = ({ children }) => {
         // }
     }, []);
 
+    React.useEffect(() => {
+        if (isAuthenticated) {
+            let access_token = sessionStorage.getItem("access_token");
+            //checkApi(access_token);
+        }
+    }, []);
+
     const login = (email, password) => {
         webAuth.login(
             {
@@ -159,7 +169,6 @@ export const UserContextProvider = ({ children }) => {
                 connection: process.env.REACT_APP_REALM,
                 email,
                 password,
-
                 user_metadata: {
                     firstName,
                     lastName,

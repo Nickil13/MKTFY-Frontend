@@ -12,6 +12,7 @@ import {
 import RequireAuth from "./utils/RequireAuth";
 
 import {
+    Checkout,
     CreateListing,
     Dashboard,
     ErrorPage,
@@ -19,10 +20,19 @@ import {
     Listings,
     LoadingPage,
     Login,
+    Pickup,
     PrivacyPolicy,
     SingleListing,
     TermsOfService,
 } from "./views";
+
+import {
+    ActiveItems,
+    MyListings,
+    MyPurchases,
+    SoldItems,
+} from "./views/account";
+import ViewMyListing from "./views/account/ViewMyListing";
 
 function App() {
     return (
@@ -61,15 +71,40 @@ function App() {
 
                     {/* Listings & Deals */}
                     <Route path="listings" element={<Listings />} />
+                    <Route path="listings/:category" element={<Listings />} />
                     <Route
                         path="listings/:category/:id"
                         element={<SingleListing />}
                     />
-                    <Route path="deals" element={<Listings deals />} />
-                    <Route path="deals/:id" element={<SingleListing />} />
+                    <Route
+                        path="listings/:category/:id/checkout"
+                        element={<Checkout />}
+                    />
+                    <Route
+                        path="listings/:category/:id/checkout/pickup-information"
+                        element={<Pickup />}
+                    />
 
                     {/* Create Listing */}
                     <Route path="create-listing" element={<CreateListing />} />
+
+                    {/* Account */}
+                    <Route path="account">
+                        <Route index element={<div>Account Info</div>} />
+                        <Route path="my-purchases" element={<MyPurchases />} />
+                        <Route
+                            path="my-purchases/:id/pickup-information"
+                            element={<Pickup />}
+                        />
+                        <Route path="my-listings" element={<MyListings />}>
+                            <Route index element={<ActiveItems />} />
+                            <Route path="sold" element={<SoldItems />} />
+                        </Route>
+                        <Route
+                            path="my-listings/:id"
+                            element={<ViewMyListing />}
+                        />
+                    </Route>
                 </Route>
 
                 {/* ToS and PP Pages */}
