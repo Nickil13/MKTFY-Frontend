@@ -34,7 +34,6 @@ export const UserContextProvider = ({ children }) => {
         ).get("access_token");
 
         console.log("access token: ", access_token);
-        // checkApi(access_token);
 
         if (access_token) {
             sessionStorage.setItem("access_token", access_token);
@@ -42,13 +41,19 @@ export const UserContextProvider = ({ children }) => {
         }
     }, []);
 
+    React.useEffect(() => {
+        if (isAuthenticated) {
+            let access_token = sessionStorage.getItem("access_token");
+            //checkApi(access_token);
+        }
+    }, []);
+
     // function checkApi(access_token) {
     async function checkApi(access_token) {
-        console.log("access token: ", access_token);
-
         // try {
         //     const res = await axios.get(
-        //         `http://marketforyouyh-env.eba-fqgiudi2.ca-central-1.elasticbeanstalk.com/api/Listing/all`,
+        //         `        http://marketforyouyh-env.eba-fqgiudi2.ca-central-1.elasticbeanstalk.com/api/Listing/deals
+        //         `,
         //         {
         //             headers: {
         //                 Authorization: `Bearer ${access_token}`,
@@ -59,20 +64,20 @@ export const UserContextProvider = ({ children }) => {
         // } catch (error) {
         //     console.log(error);
         // }
-        let header = new Headers({
-            Authorization: `Bearer ${access_token}`,
-            "Content-Type": "application/json",
-        });
-        fetch(
-            `http://marketforyouyh-env.eba-fqgiudi2.ca-central-1.elasticbeanstalk.com/api/Listing/all`,
-            {
-                headers: header,
-                mode: "no-cors",
-            }
-        )
-            .then((res) => res.json())
-            .then((data) => console.log(data))
-            .catch((error) => console.log(error));
+        // let header = new Headers({
+        //     Authorization: `Bearer ${access_token}`,
+        //     "Content-Type": "application/json",
+        // });
+        // fetch(
+        //     `http://marketforyouyh-env.eba-fqgiudi2.ca-central-1.elasticbeanstalk.com/api/Listing/all`,
+        //     {
+        //         headers: header,
+        //         // mode: "no-cors",
+        //     }
+        // )
+        //     .then((res) => res.json())
+        //     .then((data) => console.log(data))
+        //     .catch((error) => console.log(error));
     }
 
     // React.useEffect(() => {
