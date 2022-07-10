@@ -7,23 +7,27 @@ import { useUserContext } from "../context/UserContext";
 
 export default function Login() {
     const { showModal, setShowModal } = useModalContext();
-    const { isAuthenticated } = useUserContext();
+    const { isAuthenticated, error } = useUserContext();
     let navigate = useNavigate();
     let location = useLocation();
 
     React.useEffect(() => {
         if (isAuthenticated) {
             navigate("/dashboard");
+            if (showModal) {
+                setShowModal(false);
+            }
         }
     }, [isAuthenticated]);
 
     React.useEffect(() => {
-        // When returning to this route, check if the route includes a modal
-        // If so and the modal is not showing, show it.
+        /* When returning to this route or if there is an error,
+         check if the route includes a modal.
+        If so and the modal is not showing, show it.*/
         if (location.pathname.length > 1 && !showModal) {
             setShowModal(true);
         }
-    }, [location]);
+    }, [location, error]);
 
     return (
         <div className="bg-login-clouds bg-cover bg-no-repeat h-screen">

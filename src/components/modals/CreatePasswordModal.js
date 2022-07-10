@@ -21,16 +21,13 @@ export default function CreatePasswordModal() {
     const passwordStrength = criteriaMet ? "strong" : "weak";
     let navigate = useNavigate();
     let location = useLocation();
-    const { login, signup, signupSuccess, error } = useUserContext();
+    const { signup, signupSuccess, error } = useUserContext();
     const { setShowModal } = useModalContext();
 
     React.useEffect(() => {
         if (signupSuccess) {
             // Close modal
-            setShowModal(false);
-
-            //Login
-            login();
+            // setShowModal(false);
 
             //Loading Screen -> Dashboard
             navigate("/loading", { state: { redirect: "/dashboard" } });
@@ -39,7 +36,7 @@ export default function CreatePasswordModal() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const userInfo = { ...location.state.userInfo, password: "@Testing1" };
+        const userInfo = { ...location.state.userInfo, password };
         signup(userInfo);
     };
 

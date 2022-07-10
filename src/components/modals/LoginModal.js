@@ -1,21 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useModalContext } from "../../context/ModalContext";
 import Button from "../Button";
 import { PasswordInput, LoginInput } from "../inputs";
 import ModalWrapper from "./ModalWrapper";
 import { useUserContext } from "../../context/UserContext";
 
 export default function LoginModal() {
-    const [email, setEmail] = useState("nickitest@gmail.com");
+    const [email, setEmail] = useState("nickitest62@gmail.com");
     const [emailError, setEmailError] = useState("");
-    const [password, setPassword] = useState("@Testing1");
-    const { setShowModal } = useModalContext();
+    const [password, setPassword] = useState("Apples31");
     const { login, error } = useUserContext();
 
     const handleLogin = (e) => {
         e.preventDefault();
-        setShowModal(false);
         login(email, password);
     };
 

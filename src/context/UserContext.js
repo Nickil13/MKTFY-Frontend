@@ -31,38 +31,50 @@ export const UserContextProvider = ({ children }) => {
         ).get("access_token");
 
         if (access_token) {
-            webAuth.client.userInfo(access_token, function (err, user) {
-                if (err) return console.log(err);
-                getUserDetails(user.sub, access_token);
-                return user;
-            });
-
             /* Set is Authenticated and store the access token in session storage */
             sessionStorage.setItem("access_token", access_token);
             setIsAuthenticated(true);
             console.log("access token saved");
+
+            /* Decode token to get user information */
+            webAuth.client.userInfo(access_token, function (err, user) {
+                if (err) return console.log(err);
+                let newUserDetails = JSON.parse(
+                    sessionStorage.getItem("user_details")
+                );
+
+                if (newUserDetails) {
+                    createUser(user.sub, newUserDetails);
+                } else {
+                    getUserDetails(user.sub);
+                }
+
+                return;
+            });
         }
     }, []);
 
-    const getUserDetails = async (id, access_token) => {
-        // let config = {
-        //     headers: {
-        //         Authorization: `Bearer ${access_token}`,
-        //         "Content-Type": "application/json",
-        //     },
-        // };
+    const getUserDetails = async (id) => {
         try {
-            // const { data } = await axios.get(
-            //     `        http://marketforyouyh-env.eba-fqgiudi2.ca-central-1.elasticbeanstalk.com/api/User/${id}
-            //         `,
-            //     config
-            // );
-            const { data } = await axios.get(`/User/${id}`);
-            setUser(data);
+            const res = await axios.get(`/User/${id}`);
+            setUser(res);
         } catch (error) {
             console.log(error);
         }
     };
+
+    const createUser = async (id, userDetails) => {
+        const body = { ...userDetails, id };
+        console.log("body: ", body);
+        try {
+            const res = await axios.post("/User", body);
+            setUser(res);
+            sessionStorage.removeItem("user_details");
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     const login = (email, password) => {
         error && setError("");
         webAuth.login(
@@ -71,7 +83,7 @@ export const UserContextProvider = ({ children }) => {
                 realm: process.env.REACT_APP_REALM,
                 email,
                 password,
-                redirectUri: "http://localhost:3000",
+                redirectUri: "http://localhost:3000/login",
                 onRedirecting: function (done) {
                     // setIsLoading(false);
                     done();
@@ -116,10 +128,27 @@ export const UserContextProvider = ({ children }) => {
                     city,
                 },
             },
-            function (error) {
+            async function (error, res) {
                 if (error) {
                     setError(error.description);
+                    console.log(error);
                 } else {
+                    console.log(res);
+                    const body = {
+                        // id: res.Id,
+                        firstName,
+                        lastName,
+                        email,
+                        phone: phoneNumber,
+                        address,
+                        city,
+                    };
+                    /* Save the user signup details for when the user logs in for the first time. Then add them to API database (since we can't do it here without a token). */
+                    sessionStorage.setItem(
+                        "user_details",
+                        JSON.stringify(body)
+                    );
+                    login(email, password);
                     setSignupSuccess(true);
                 }
             }

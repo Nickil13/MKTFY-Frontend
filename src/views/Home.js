@@ -4,14 +4,6 @@ import axios from "../utils/request";
 
 export default function Home() {
     const testApi = async () => {
-        // if (isAuthenticated) {
-        let access_token = sessionStorage.getItem("access_token");
-        let config = {
-            headers: {
-                Authorization: `Bearer ${access_token}`,
-                "Content-Type": "application/json",
-            },
-        };
         // const body = {
         //     prodName: "Sandwich",
         //     description: "A delicious egg salad sandwich.",
@@ -66,7 +58,7 @@ export default function Home() {
         // }
         //}
         try {
-            const res = await axios.get(`/Listing/myListings/active`);
+            const res = await axios.get(`/Listing/all`);
             console.log(res);
         } catch (error) {
             console.log(error);
