@@ -3,28 +3,8 @@ import { useEffect } from "react";
 import { Button, Select } from "../../components";
 import { useUserContext } from "../../context/UserContext";
 import { CITY_OPTIONS } from "../../data/variables";
-import { getMaxInputLength } from "../../utils/helpers";
+import { AccountInput } from "../../components/inputs";
 
-const AccountInput = ({ name, value, setValue, disabled }) => {
-    const maxLength = React.useMemo(() => getMaxInputLength(name), [name]);
-    return (
-        <div className="input-control mb-[15px] last:mb-0">
-            <label className="capitalize mb-3 text-gray-400" htmlFor={name}>
-                {name}
-            </label>
-            <input
-                className="base-input px-6 py-5 text-gray-500 font-semibold text-base disabled:bg-white"
-                type="text"
-                id={name}
-                name={name}
-                maxLength={maxLength}
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
-                disabled={disabled}
-            />
-        </div>
-    );
-};
 export default function AccountInformation() {
     const { user, getUserDetails } = useUserContext();
     const [firstName, setFirstName] = useState(user?.firstName || "");
@@ -49,8 +29,8 @@ export default function AccountInformation() {
 
     return (
         <div className="bg-white rounded-[10px] shadow-modal max-w-[1498px]">
-            <form className="grid grid-cols-2 gap-40 px-[138px] pt-14 pb-24">
-                <div>
+            <form className="px-20 lg:px-[138px] pt-14 pb-24 2xl:grid grid-cols-2 gap-40">
+                <div className="max-w-input mx-auto 2xl:max-w-none 2xl:mx-0">
                     <h2 className="text-base font-semibold mb-7">
                         Personal information
                     </h2>
@@ -71,7 +51,7 @@ export default function AccountInformation() {
                         setValue={setPhoneNumber}
                     />
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col max-w-input mx-auto pt-14 2xl:pt-0 2xl:max-w-none 2xl:mx-0">
                     <h2 className="text-base font-semibold mb-7">
                         Address Information
                     </h2>
@@ -89,7 +69,11 @@ export default function AccountInformation() {
                         options={CITY_OPTIONS}
                         preselected
                     />
-                    <Button color="gold" margins="mt-auto" width="max-w-input">
+                    <Button
+                        color="gold"
+                        margins="mt-14 2xl:mt-auto"
+                        width="max-w-input"
+                    >
                         Save
                     </Button>
                 </div>
