@@ -7,7 +7,6 @@ import Button from "../Button";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
 import { checkUppercase, checkContainsNumber } from "../../utils/helpers";
-import { useModalContext } from "../../context/ModalContext";
 
 export default function CreatePasswordModal() {
     const [password, setPassword] = useState("");
@@ -21,13 +20,11 @@ export default function CreatePasswordModal() {
     const passwordStrength = criteriaMet ? "strong" : "weak";
     let navigate = useNavigate();
     let location = useLocation();
-    const { signup, signupSuccess, error } = useUserContext();
-    const { setShowModal } = useModalContext();
+    const { signup, signupSuccess } = useUserContext();
 
     React.useEffect(() => {
         if (signupSuccess) {
             // Close modal
-            // setShowModal(false);
 
             //Loading Screen -> Dashboard
             navigate("/loading", { state: { redirect: "/dashboard" } });
