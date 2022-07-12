@@ -9,7 +9,6 @@ export const useUserContext = () => {
 };
 
 export const UserContextProvider = ({ children }) => {
-    // const [token, setToken] = useState(sessionStorage.getItem("access_token"));
     const [user, setUser] = useState();
     const [isAuthenticated, setIsAuthenticated] = useState(
         sessionStorage.getItem("access_token")
@@ -21,7 +20,6 @@ export const UserContextProvider = ({ children }) => {
     const webAuth = new auth0js.WebAuth({
         domain: process.env.REACT_APP_DOMAIN,
         clientID: process.env.REACT_APP_CLIENT_ID,
-        // audience: `https://${process.env.REACT_APP_DOMAIN}/api/v2/`,
         audience: process.env.REACT_APP_AUDIENCE,
     });
 
@@ -65,7 +63,6 @@ export const UserContextProvider = ({ children }) => {
 
     const createUser = async (id, userDetails) => {
         const body = { ...userDetails, id };
-        console.log("body: ", body);
         try {
             const res = await axios.post("/User", body);
             setUser(res);
@@ -85,14 +82,12 @@ export const UserContextProvider = ({ children }) => {
                 password,
                 redirectUri: "http://localhost:3000/login",
                 onRedirecting: function (done) {
-                    // setIsLoading(false);
                     done();
                 },
             },
             (error) => {
                 console.log(error);
                 setError(error.description);
-                // setIsLoading(false);
             }
         );
     };
@@ -135,7 +130,6 @@ export const UserContextProvider = ({ children }) => {
                 } else {
                     console.log(res);
                     const body = {
-                        // id: res.Id,
                         firstName,
                         lastName,
                         email,
@@ -155,22 +149,6 @@ export const UserContextProvider = ({ children }) => {
         );
     };
 
-    const changePassword = (email) => {
-        webAuth.changePassword(
-            {
-                connection: process.env.REACT_APP_REALM,
-                email: "nickitest@gmail.com",
-            },
-            function (err, resp) {
-                if (err) {
-                    console.log(err.message);
-                } else {
-                    console.log(resp);
-                }
-            }
-        );
-    };
-
     return (
         <UserContext.Provider
             value={{
@@ -182,7 +160,6 @@ export const UserContextProvider = ({ children }) => {
                 isLoading,
                 isAuthenticated,
                 error,
-                changePassword,
             }}
         >
             {children}

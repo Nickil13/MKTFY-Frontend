@@ -96,7 +96,5 @@ export const getMaxInputLength = (inputType) => {
             maxValue = inputMaxValues[i].max;
         }
     }
-
-    console.log("Max value is: ", maxValue, inputType);
     return maxValue;
 };

@@ -10,7 +10,6 @@ export default function RequireAuth({ children }) {
         return <div>Loading...</div>;
     }
     if (!isAuthenticated) {
-        console.log("failed to log in");
         return <Navigate to="/" state={{ from: location }} replace />;
     }
     return children;
