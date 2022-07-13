@@ -12,7 +12,7 @@ import {
 
 import RequireAuth from "./utils/RequireAuth";
 
-import { Dashboard, ErrorPage, Home, LoadingPage, Login } from "./views";
+import { Dashboard, ErrorPage, FAQ, Home, LoadingPage, Login } from "./views";
 import { PrivacyPolicy, TermsOfService } from "./views/legal-documents";
 import {
     Checkout,
@@ -124,6 +124,9 @@ function App() {
                                 element={<ViewMyListing />}
                             />
                         </Route>
+
+                        {/* FAQ */}
+                        <Route path="FAQ" element={<FAQ />} />
                     </Route>
 
                     {/* ToS and PP Pages */}

@@ -60,7 +60,7 @@ export default function UserMenu() {
                         <h3 className="text-xs font-bold p-3.5">Help</h3>
                         <ul>
                             <li className="p-3.5 hover:bg-beige-200 cursor-pointer">
-                                <Link to="faq">FAQ</Link>
+                                <Link to="FAQ">FAQ</Link>
                             </li>
                             <li className="p-3.5 hover:bg-beige-200 cursor-pointer">
                                 Contact Us

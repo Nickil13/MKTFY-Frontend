@@ -6,7 +6,7 @@ const FOOTER_LINKS = [
     { name: "Account Information", path: "account/info" },
     { name: "Terms & Services", path: "/terms-of-service" },
     { name: "Privacy Policy", path: "/privacy-policy" },
-    { name: "FAQ", path: "faq" },
+    { name: "FAQ", path: "FAQ" },
 ];
 
 const USER_MENU_LINKS = [
