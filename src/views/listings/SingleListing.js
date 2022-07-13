@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getListingById } from "../actions/listings";
-import { Button, ImageSlider } from "../components";
-import TagIcon from "../assets/images/local_offer-24px.svg";
-import { formatPrice } from "../utils/helpers";
+import { getListingById } from "../../actions/listings";
+import { Button, ImageSlider } from "../../components";
+import TagIcon from "../../assets/images/local_offer-24px.svg";
+import { formatPrice } from "../../utils/helpers";
 
 export default function SingleListing() {
     const { id } = useParams();

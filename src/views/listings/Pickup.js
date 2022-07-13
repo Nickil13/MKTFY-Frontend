@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import { getListingById } from "../actions/listings";
-import { getPurchasesById } from "../actions/purchases";
-import { formatPrice } from "../utils/helpers";
+import { getListingById } from "../../actions/listings";
+import { getPurchasesById } from "../../actions/purchases";
+import { formatPrice } from "../../utils/helpers";
 
 export default function Pickup() {
     const { id } = useParams();

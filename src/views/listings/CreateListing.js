@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Button, ListingImages, Select } from "../components";
-import { CATEGORY_TYPES, CITY_OPTIONS, CONDITIONS } from "../data/variables";
-import { ListingInput } from "../components/inputs";
+import { Button, ListingImages, Select } from "../../components";
+import { CATEGORY_TYPES, CITY_OPTIONS, CONDITIONS } from "../../data/variables";
+import { ListingInput } from "../../components/inputs";
 
 export default function CreateListing() {
     const [name, setName] = useState("");

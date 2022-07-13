@@ -4,6 +4,7 @@ import ChangePassword from "./ChangePassword";
 import MyListings from "./MyListings";
 import MyPurchases from "./MyPurchases";
 import SoldItems from "./SoldItems";
+import ViewMyListing from "./ViewMyListing";
 
 export {
     AccountInformation,
@@ -12,4 +13,5 @@ export {
     MyListings,
     MyPurchases,
     SoldItems,
+    ViewMyListing,
 };

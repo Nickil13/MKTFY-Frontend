@@ -12,21 +12,15 @@ import {
 
 import RequireAuth from "./utils/RequireAuth";
 
+import { Dashboard, ErrorPage, Home, LoadingPage, Login } from "./views";
+import { PrivacyPolicy, TermsOfService } from "./views/legal-documents";
 import {
     Checkout,
     CreateListing,
-    Dashboard,
-    ErrorPage,
-    Home,
     Listings,
-    LoadingPage,
-    Login,
     Pickup,
-    PrivacyPolicy,
     SingleListing,
-    TermsOfService,
-} from "./views";
-
+} from "./views/listings";
 import {
     AccountInformation,
     ActiveItems,
@@ -34,8 +28,8 @@ import {
     MyListings,
     MyPurchases,
     SoldItems,
+    ViewMyListing,
 } from "./views/account";
-import ViewMyListing from "./views/account/ViewMyListing";
 import ScrollToTop from "./utils/ScrollToTop";
 
 function App() {

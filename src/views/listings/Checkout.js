@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getListingById } from "../actions/listings";
-import { Button } from "../components";
-import { formatPrice } from "../utils/helpers";
+import { getListingById } from "../../actions/listings";
+import { Button } from "../../components";
+import { formatPrice } from "../../utils/helpers";
 
 export default function Checkout() {
     const { id } = useParams();

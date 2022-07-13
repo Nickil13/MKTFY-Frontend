@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useSearchParams, useParams } from "react-router-dom";
-import { getDeals, getListings } from "../actions/listings";
-import { ListingCard, Pagination, Sidebar } from "../components";
+import { getDeals, getListings } from "../../actions/listings";
+import { ListingCard, Pagination, Sidebar } from "../../components";
 
 export default function Listings() {
     const [listings, setListings] = useState([]);

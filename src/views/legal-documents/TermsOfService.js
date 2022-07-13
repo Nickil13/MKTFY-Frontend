@@ -1,9 +1,9 @@
 import React from "react";
-import PP from "../data/PP";
-import { BackArrow, Logo } from "../components/icons";
+import tos from "./tos";
+import { BackArrow, Logo } from "../../components/icons";
 import { useNavigate } from "react-router-dom";
 
-export default function PrivacyPolicy() {
+export default function TermsOfService() {
     let navigate = useNavigate();
     return (
         <div>
@@ -20,9 +20,9 @@ export default function PrivacyPolicy() {
 
                 <div className="my-15 max-w-[1084px] mx-auto ">
                     <h1 className="mb-15 font-bold text-center text-gray-600">
-                        MKTFY Privacy Policy
+                        MKTFY Terms &amp; Services
                     </h1>
-                    {PP?.map((para, index) => {
+                    {tos?.map((para, index) => {
                         return (
                             <p
                                 className="text-base font-semibold text-gray-300 mb-8"
