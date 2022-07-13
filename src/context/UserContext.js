@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import auth0js from "auth0-js";
 import axios from "../utils/request";
+import jwt_decode from "jwt-decode";
 
 const UserContext = React.createContext();
 
@@ -9,7 +10,7 @@ export const useUserContext = () => {
 };
 
 export const UserContextProvider = ({ children }) => {
-    const [user, setUser] = useState();
+    const [user, setUser] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(
         sessionStorage.getItem("access_token")
     );
@@ -44,7 +45,11 @@ export const UserContextProvider = ({ children }) => {
                 if (newUserDetails) {
                     createUser(user.sub, newUserDetails);
                 } else {
-                    getUserDetails(user.sub);
+                    // getUserDetails(user.sub);
+                    // getUserDetails().then((user) => {
+                    //     setUser(user);
+                    // });
+                    getUserDetails();
                 }
 
                 return;
@@ -52,10 +57,14 @@ export const UserContextProvider = ({ children }) => {
         }
     }, []);
 
-    const getUserDetails = async (id) => {
+    const getUserDetails = async () => {
+        const token = sessionStorage.getItem("access_token");
+        const decoded = jwt_decode(token);
+
         try {
-            const res = await axios.get(`/User/${id}`);
+            const res = await axios.get(`/User/${decoded.sub}`);
             setUser(res);
+            // return res;
         } catch (error) {
             console.log(error);
         }
@@ -160,6 +169,7 @@ export const UserContextProvider = ({ children }) => {
                 isLoading,
                 isAuthenticated,
                 error,
+                getUserDetails,
             }}
         >
             {children}

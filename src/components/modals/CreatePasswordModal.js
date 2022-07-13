@@ -65,15 +65,17 @@ export default function CreatePasswordModal() {
                             onChange={(e) => setPassword(e.target.value)}
                             onBlur={checkPasswordsMatching}
                         />
-                        <span
-                            className={`absolute top-1 left-20 ${
-                                passwordStrength === "weak"
-                                    ? "text-gold-200"
-                                    : "text-green"
-                            } font-semibold text-2xs capitalize`}
-                        >
-                            {passwordStrength}
-                        </span>
+                        {password && (
+                            <span
+                                className={`absolute top-1 left-20 ${
+                                    passwordStrength === "weak"
+                                        ? "text-gold-200"
+                                        : "text-green"
+                                } font-semibold text-2xs capitalize`}
+                            >
+                                {passwordStrength}
+                            </span>
+                        )}
                     </div>
                     <PasswordInput
                         name="confirm password"

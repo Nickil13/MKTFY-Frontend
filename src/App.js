@@ -28,7 +28,9 @@ import {
 } from "./views";
 
 import {
+    AccountInformation,
     ActiveItems,
+    ChangePassword,
     MyListings,
     MyPurchases,
     SoldItems,
@@ -102,7 +104,15 @@ function App() {
 
                         {/* Account */}
                         <Route path="account">
-                            <Route index element={<div>Account Info</div>} />
+                            <Route index element={<AccountInformation />} />
+                            <Route
+                                path="info"
+                                element={<AccountInformation />}
+                            />
+                            <Route
+                                path="change-password"
+                                element={<ChangePassword />}
+                            />
                             <Route
                                 path="my-purchases"
                                 element={<MyPurchases />}

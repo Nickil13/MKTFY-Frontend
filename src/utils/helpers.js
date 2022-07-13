@@ -22,7 +22,8 @@ export const generateCrumbs = (location, searchParams) => {
         // Rename all dashboard crumbs to Home
         if (crumb === "dashboard") {
             name = "home";
-
+        } else if (crumb === "info") {
+            name = "account information";
             /* If the crumb is a category, set its name based on current city*/
         } else if (NAV_CATEGORIES.includes(crumb)) {
             name = `${crumb} in ${
