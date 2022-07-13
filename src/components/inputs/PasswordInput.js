@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 import { ReactComponent as IconHide } from "../../assets/images/icon_eye_hide.svg";
+import { FaEye } from "react-icons/fa";
 
 export default function PasswordInput({
     value,
@@ -11,8 +12,9 @@ export default function PasswordInput({
     invalid,
 }) {
     const inputRef = useRef(null);
-
+    const [passwordShowing, setPasswordShowing] = useState(false);
     const toggleShowPassword = () => {
+        setPasswordShowing(!passwordShowing);
         if (inputRef) {
             if (inputRef.current.type === "password") {
                 inputRef.current.type = "text";
@@ -33,7 +35,7 @@ export default function PasswordInput({
             </label>
             <div className="relative">
                 <input
-                    className="w-full text-gray-600 font-[Verdana] placeholder:font-['Open_Sans']"
+                    className="w-full text-gray-600d font-[Verdana] placeholder:font-['Open_Sans']"
                     type="password"
                     id={name}
                     name={name}
@@ -43,10 +45,17 @@ export default function PasswordInput({
                     onChange={onChange}
                     onBlur={onBlur}
                 />
-                <IconHide
-                    className="absolute mt-1 top-1/2 -translate-y-1/2 right-5 w-6 cursor-pointer fill-gray-300"
-                    onClick={toggleShowPassword}
-                />
+                {passwordShowing ? (
+                    <FaEye
+                        className="absolute top-1/2 -translate-y-1/2 right-5 text-[22px] cursor-pointer text-gray-300"
+                        onClick={toggleShowPassword}
+                    />
+                ) : (
+                    <IconHide
+                        className="absolute top-1/2 -translate-y-1/2 right-5 w-6 cursor-pointer fill-gray-300"
+                        onClick={toggleShowPassword}
+                    />
+                )}
             </div>
 
             {errorMessage && (

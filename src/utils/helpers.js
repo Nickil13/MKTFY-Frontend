@@ -1,6 +1,6 @@
 import { NAV_CATEGORIES } from "../data/variables";
 
-const BLACKLIST = ["listings", "sold", "info"];
+const BLACKLIST = ["listings", "sold"];
 
 export const generateCrumbs = (location, searchParams) => {
     let newCrumbs = [];
@@ -22,7 +22,7 @@ export const generateCrumbs = (location, searchParams) => {
         // Rename all dashboard crumbs to Home
         if (crumb === "dashboard") {
             name = "home";
-        } else if (crumb === "account") {
+        } else if (crumb === "info") {
             name = "account information";
             /* If the crumb is a category, set its name based on current city*/
         } else if (NAV_CATEGORIES.includes(crumb)) {

@@ -30,6 +30,7 @@ import {
 import {
     AccountInformation,
     ActiveItems,
+    ChangePassword,
     MyListings,
     MyPurchases,
     SoldItems,
@@ -107,6 +108,10 @@ function App() {
                             <Route
                                 path="info"
                                 element={<AccountInformation />}
+                            />
+                            <Route
+                                path="change-password"
+                                element={<ChangePassword />}
                             />
                             <Route
                                 path="my-purchases"
