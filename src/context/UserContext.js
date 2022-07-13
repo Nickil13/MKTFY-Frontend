@@ -24,6 +24,7 @@ export const UserContextProvider = ({ children }) => {
         audience: process.env.REACT_APP_AUDIENCE,
     });
 
+    /* Check if token is expired, if so, set Authenticated to false. */
     React.useEffect(() => {
         let access_token = new URLSearchParams(
             document.location.hash.substring(1)
@@ -45,10 +46,6 @@ export const UserContextProvider = ({ children }) => {
                 if (newUserDetails) {
                     createUser(user.sub, newUserDetails);
                 } else {
-                    // getUserDetails(user.sub);
-                    // getUserDetails().then((user) => {
-                    //     setUser(user);
-                    // });
                     getUserDetails();
                 }
 
@@ -64,7 +61,6 @@ export const UserContextProvider = ({ children }) => {
         try {
             const res = await axios.get(`/User/${decoded.sub}`);
             setUser(res);
-            // return res;
         } catch (error) {
             console.log(error);
         }

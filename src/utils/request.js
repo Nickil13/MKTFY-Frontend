@@ -37,7 +37,7 @@ service.interceptors.response.use(
         if (
             originalConfig.url !== "/login" &&
             originalConfig.url !== "/" &&
-            originalConfig.url.includes("marketforyou.us.auth0.com") &&
+            !originalConfig.url.includes("marketforyou.us.auth0.com") &&
             error.response
         ) {
             // Access token expired
