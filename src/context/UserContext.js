@@ -16,6 +16,7 @@ export const UserContextProvider = ({ children }) => {
     );
     const [isLoading, setIsLoading] = useState(false);
     const [signupSuccess, setSignupSuccess] = useState(false);
+    const [editUserSuccess, setEditUserSuccess] = useState(false);
     const [error, setError] = useState("");
 
     const webAuth = new auth0js.WebAuth({
@@ -54,12 +55,20 @@ export const UserContextProvider = ({ children }) => {
         }
     }, []);
 
-    const getUserDetails = async () => {
+    /* User API Functionality */
+    const getIdFromToken = () => {
         const token = sessionStorage.getItem("access_token");
-        const decoded = jwt_decode(token);
+        if (token) {
+            const decoded = jwt_decode(token);
+            return decoded.sub;
+        }
+        return;
+    };
+    const getUserDetails = async () => {
+        const userId = getIdFromToken();
 
         try {
-            const res = await axios.get(`/User/${decoded.sub}`);
+            const res = await axios.get(`/User/${userId}`);
             setUser(res);
         } catch (error) {
             console.log(error);
@@ -77,6 +86,23 @@ export const UserContextProvider = ({ children }) => {
         }
     };
 
+    const editUser = async (userDetails) => {
+        const userId = getIdFromToken();
+        const body = { ...userDetails, id: userId };
+        setEditUserSuccess(false);
+        setError("");
+
+        try {
+            const res = await axios.put("/User", body);
+            setUser(res);
+            setEditUserSuccess(true);
+        } catch (error) {
+            setError("Error editing user");
+            console.log(error);
+        }
+    };
+
+    /* Auth0 Functionality */
     const login = (email, password) => {
         error && setError("");
         webAuth.login(
@@ -162,10 +188,14 @@ export const UserContextProvider = ({ children }) => {
                 logout,
                 signup,
                 signupSuccess,
+                setEditUserSuccess,
+                editUserSuccess,
                 isLoading,
                 isAuthenticated,
                 error,
+                setError,
                 getUserDetails,
+                editUser,
             }}
         >
             {children}

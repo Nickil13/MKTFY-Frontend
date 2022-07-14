@@ -99,3 +99,10 @@ export const getMaxInputLength = (inputType) => {
     }
     return maxValue;
 };
+
+/* Check if the phone number matches a formatted number and return the number without formatting. */
+export const unformatPhoneNumber = (number) => {
+    const fs = number.replace(/\D/g, "").match(/(\d{1})(\d{3})(\d{3})(\d{4})/);
+
+    return fs[0];
+};

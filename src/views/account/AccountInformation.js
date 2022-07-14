@@ -4,9 +4,23 @@ import { Button, Select } from "../../components";
 import { useUserContext } from "../../context/UserContext";
 import { CITY_OPTIONS } from "../../data/variables";
 import { AccountInput } from "../../components/inputs";
+import {
+    CustomToastContainer,
+    toast,
+} from "../../components/custom-toast/CustomToastContainer";
+
+import { unformatPhoneNumber } from "../../utils/helpers";
 
 export default function AccountInformation() {
-    const { user, getUserDetails } = useUserContext();
+    const {
+        user,
+        getUserDetails,
+        editUser,
+        editUserSuccess,
+        setEditUserSuccess,
+        setError,
+        error,
+    } = useUserContext();
     const [firstName, setFirstName] = useState(user?.firstName || "");
     const [lastName, setLastName] = useState(user?.lastName || "");
     const [email, setEmail] = useState(user?.email || "");
@@ -22,12 +36,25 @@ export default function AccountInformation() {
             setFirstName(user.firstName);
             setLastName(user.lastName);
             setEmail(user.email);
-            // setPhoneNumber(user.phone);
             setPhoneNumber(formatPhoneNumber(user.phone));
             setAddress(user.address);
             setCity(user.city);
         }
     }, [user]);
+
+    useEffect(() => {
+        if (editUserSuccess) {
+            toast.success("User info saved!");
+            setEditUserSuccess(false);
+        }
+    }, [editUserSuccess]);
+
+    useEffect(() => {
+        if (error) {
+            toast.error("Error: did not save user info.");
+            setError("");
+        }
+    }, [error]);
 
     function formatPhoneNumber(value) {
         if (value) {
@@ -47,9 +74,28 @@ export default function AccountInformation() {
         return "";
     }
 
+    const handleEditUser = (e) => {
+        e.preventDefault();
+        if (!phoneError) {
+            console.log("Editing user...");
+
+            const body = {
+                firstName,
+                lastName,
+                address,
+                phone: unformatPhoneNumber(phoneNumber),
+                city,
+            };
+            editUser(body);
+        }
+    };
     return (
         <div className="bg-white rounded-[10px] shadow-modal max-w-[1498px]">
-            <form className="px-20 lg:px-[138px] pt-14 pb-24 2xl:grid grid-cols-2 gap-40">
+            <CustomToastContainer />
+            <form
+                className="px-20 lg:px-[138px] pt-14 pb-24 2xl:grid grid-cols-2 gap-40"
+                onSubmit={handleEditUser}
+            >
                 <div className="max-w-input mx-auto 2xl:max-w-none 2xl:mx-0">
                     <h2 className="text-base font-semibold mb-7">
                         Personal information
@@ -115,6 +161,7 @@ export default function AccountInformation() {
                         preselected
                     />
                     <Button
+                        type="submit"
                         color="gold"
                         margins="mt-14 2xl:mt-auto"
                         width="max-w-input"

@@ -43,10 +43,12 @@ service.interceptors.response.use(
             // Access token expired
             if (error.response.status === 401) {
                 // Grab refresh token and use it to get a new accessToken & a new refresh token OR redirect to login
+                console.log("401 error");
                 window.location.href = "/login";
             }
         }
         console.log(error);
+        throw Error(error);
     }
 );
 

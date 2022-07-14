@@ -1,0 +1,8 @@
+/* Styling for react-toastify toast: 
+- increase width
+- move toast to appear below the navbar
+*/
+.Toastify__toast-container--top-right {
+    top: 200px;
+    width: 500px;
+}

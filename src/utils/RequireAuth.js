@@ -7,14 +7,12 @@ export default function RequireAuth({ children }) {
     const { isLoading, isAuthenticated, logout } = useUserContext();
     let location = useLocation();
 
-    /*  */
     React.useEffect(() => {
         console.log("Checking token lifetime");
         const token = sessionStorage.getItem("access_token");
         if (token) {
             try {
                 const decoded = jwtDecode(token);
-                console.log(decoded);
                 if (decoded.exp * 1000 < Date.now()) {
                     console.log("token expired");
                     logout();
