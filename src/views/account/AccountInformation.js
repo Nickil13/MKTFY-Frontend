@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Select } from "../../components";
 import { useUserContext } from "../../context/UserContext";
 import { CITY_OPTIONS } from "../../data/variables";
@@ -9,7 +8,7 @@ import {
     toast,
 } from "../../components/custom-toast/CustomToastContainer";
 
-import { unformatPhoneNumber } from "../../utils/helpers";
+import { formatPhoneNumber, unformatPhoneNumber } from "../../utils/helpers";
 
 export default function AccountInformation() {
     const {
@@ -56,24 +55,6 @@ export default function AccountInformation() {
         }
     }, [error]);
 
-    function formatPhoneNumber(value) {
-        if (value) {
-            // formatted string
-            const fs = value
-                .replace(/\D/g, "")
-                .match(/(\d{1})(\d{3})(\d{3})(\d{4})/);
-
-            /* If the string formats properly, return it */
-            if (fs) {
-                phoneError && setPhoneError("");
-                return `+${fs[1]} (${fs[2]}) ${fs[3]} - ${fs[4]}`;
-            }
-            setPhoneError("Invalid phone number");
-            return value;
-        }
-        return "";
-    }
-
     const handleEditUser = (e) => {
         e.preventDefault();
         if (!phoneError) {
@@ -87,6 +68,20 @@ export default function AccountInformation() {
                 city,
             };
             editUser(body);
+        }
+    };
+
+    const checkPhoneNumber = (val) => {
+        if (val) {
+            const formattedNumber = formatPhoneNumber(val);
+            if (formattedNumber) {
+                setPhoneNumber(formattedNumber);
+                phoneError && setPhoneError("");
+            } else {
+                setPhoneError("Invalid phone number");
+            }
+        } else {
+            setPhoneError("Invalid phone number");
         }
     };
     return (
@@ -136,9 +131,7 @@ export default function AccountInformation() {
                             maxLength={19}
                             value={phoneNumber}
                             onChange={(e) => setPhoneNumber(e.target.value)}
-                            onBlur={() =>
-                                setPhoneNumber(formatPhoneNumber(phoneNumber))
-                            }
+                            onBlur={(e) => checkPhoneNumber(e.target.value)}
                         />
                     </div>
                 </div>

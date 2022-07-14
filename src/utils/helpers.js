@@ -106,3 +106,14 @@ export const unformatPhoneNumber = (number) => {
 
     return fs[0];
 };
+
+export function formatPhoneNumber(value) {
+    // formatted string
+    const fs = value.replace(/\D/g, "").match(/(\d{1})(\d{3})(\d{3})(\d{4})/);
+
+    /* If the string formats properly, return it */
+    if (fs) {
+        return `+${fs[1]} (${fs[2]}) ${fs[3]} - ${fs[4]}`;
+    }
+    return "";
+}
