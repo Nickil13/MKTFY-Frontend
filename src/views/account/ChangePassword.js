@@ -84,7 +84,7 @@ export default function ChangePassword() {
                 <Button
                     type="submit"
                     margins="mt-15"
-                    width="max-w-input w-full"
+                    maxWidth="max-w-input"
                     disabled={!criteriaMet || !passwordsMatching}
                 >
                     Set Password

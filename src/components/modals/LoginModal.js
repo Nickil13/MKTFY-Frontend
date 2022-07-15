@@ -29,7 +29,7 @@ export default function LoginModal() {
                 Welcome Back!
             </h1>
             <form
-                className="w-full flex flex-col content-center"
+                className="w-full flex flex-col max-w-input mx-auto"
                 onSubmit={handleLogin}
             >
                 <LoginInput

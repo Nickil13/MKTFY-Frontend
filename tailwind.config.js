@@ -89,6 +89,7 @@ module.exports = {
                 modal: "808px",
                 "modal-lg": "1360px",
                 card: "236px",
+                btn: "345px",
             },
             borderRadius: {
                 modal: "10px",

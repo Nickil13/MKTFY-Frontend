@@ -35,7 +35,7 @@ export default function SingleListing() {
                             {formatPrice(listing.Price)}
                         </span>
                         <Button
-                            width="max-w-input w-full"
+                            maxWidth="max-w-input"
                             margins="mb-3.5"
                             onClick={() =>
                                 navigate(`checkout`, {

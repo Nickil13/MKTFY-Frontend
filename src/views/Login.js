@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate, useLocation, Outlet } from "react-router-dom";
 import { useModalContext } from "../context/ModalContext";
-import { Button } from "../components";
 import { Logo } from "../components/icons";
 import { useUserContext } from "../context/UserContext";
 
@@ -31,30 +30,34 @@ export default function Login() {
 
     return (
         <div className="bg-login-clouds bg-cover bg-no-repeat h-screen">
-            <div className="flex flex-col justify-center items-center w-full h-screen pt-24">
+            <div className="flex flex-col justify-center items-center h-screen pt-24 w-4/5 mx-auto">
                 <Logo width="w-64" fill="fill-purple-200" />
 
-                <div className="flex flex-col mt-14">
-                    <Button
-                        margins="mb-4"
-                        color="gold"
+                <div className="flex flex-col items-center mt-14 w-full">
+                    <button
+                        className="btn-gold mb-4 md:w-btn"
                         onClick={() => navigate("login")}
                     >
                         Login
-                    </Button>
-                    <Button onClick={() => navigate("register")}>
+                    </button>
+                    <button
+                        className="btn-purple md:w-btn"
+                        onClick={() => navigate("register")}
+                    >
                         Create Account
-                    </Button>
+                    </button>
+                </div>
+                <div className="text-center mt-10 md:mt-0 md:text-start md:absolute left-20 bottom-10 text-sm-17">
+                    <p className="text-white">
+                        Find out more about us!
+                        <br className="md:hidden" />
+                        <a href="#" className="text-gold-200 font-bold ml-1">
+                            Visit our website
+                        </a>
+                    </p>
                 </div>
             </div>
-            <div className="absolute left-20 bottom-10 text-sm-17">
-                <p className="text-white">
-                    Find out more about us!
-                    <a href="" className="text-gold-200 font-bold ml-1">
-                        Visit our website
-                    </a>
-                </p>
-            </div>
+
             {/* Login Modal */}
             {showModal && (
                 <div className="absolute flex items-center justify-center inset-0 bg-black bg-opacity-50">

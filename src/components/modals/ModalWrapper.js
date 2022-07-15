@@ -30,7 +30,7 @@ export default function ModalWrapper({
 
     return (
         <div
-            className={`relative flex flex-col bg-white w-4/5 my-auto  rounded-modal shadow-modal ${maxWidth} ${padding}`}
+            className={`relative flex flex-col bg-white w-4/5 my-auto  rounded-modal shadow-modal 2xl:w-full ${maxWidth} ${padding}`}
         >
             {children}
             <span
@@ -53,5 +53,5 @@ export default function ModalWrapper({
 
 ModalWrapper.defaultProps = {
     maxWidth: "max-w-modal",
-    padding: "py-15 px-[138px]",
+    padding: "p-8 pt-15 2xl:py-15 2xl:px-[138px]",
 };

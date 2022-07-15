@@ -5,6 +5,7 @@ export default function Button({
     type,
     color,
     width,
+    maxWidth,
     onClick,
     disabled,
     centered,
@@ -14,7 +15,7 @@ export default function Button({
 }) {
     return (
         <button
-            className={`btn ${width} ${padding} ${fontSize} ${
+            className={`btn w-full ${maxWidth} ${width} ${padding} ${fontSize} ${
                 color === "purple"
                     ? "bg-purple-500 hover:bg-purple-400"
                     : color === "gold"
@@ -33,7 +34,8 @@ export default function Button({
 Button.defaultProps = {
     type: "button",
     color: "purple",
-    width: "w-btn",
+    width: "2xl:w-btn",
+    maxWidth: "max-w-btn",
     padding: "py-[19px]",
     fontSize: "text-base",
 };

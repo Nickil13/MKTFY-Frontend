@@ -157,7 +157,7 @@ export default function AccountInformation() {
                         type="submit"
                         color="gold"
                         margins="mt-14 2xl:mt-auto"
-                        width="max-w-input"
+                        maxWidth="max-w-input"
                     >
                         Save
                     </Button>

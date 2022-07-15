@@ -111,7 +111,6 @@ export default function CreateListing() {
                         />
                         <Button
                             type="submit"
-                            width="w-full"
                             padding="py-4"
                             margins="mb-5 mt-10"
                             fontSize="text-xs"
@@ -119,12 +118,7 @@ export default function CreateListing() {
                         >
                             Post Your Listing
                         </Button>
-                        <Button
-                            color="none"
-                            width="w-full"
-                            fontSize="text-xs"
-                            padding="py-4"
-                        >
+                        <Button color="none" fontSize="text-xs" padding="py-4">
                             Cancel
                         </Button>
                     </form>

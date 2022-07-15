@@ -41,7 +41,6 @@ export default function Checkout() {
                 </div>
             </div>
             <Button
-                width="w-full"
                 margins="mt-[138px] mb-[26px]"
                 onClick={() =>
                     navigate("pickup-information", {

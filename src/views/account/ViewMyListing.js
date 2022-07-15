@@ -159,7 +159,6 @@ export default function ViewMyListing() {
                         {isAvailable && (
                             <Button
                                 type="submit"
-                                width="w-full"
                                 padding="py-4"
                                 margins="mb-4 mt-7"
                                 fontSize="text-xs"
@@ -169,7 +168,6 @@ export default function ViewMyListing() {
                             </Button>
                         )}
                         <Button
-                            width="w-full"
                             fontSize="text-xs"
                             padding="py-4"
                             margins={`${!isAvailable && "mt-7"} mb-4`}
@@ -179,7 +177,6 @@ export default function ViewMyListing() {
                         </Button>
                         <Button
                             color="none"
-                            width="w-full"
                             fontSize="text-xs"
                             padding="py-4"
                             onClick={handleCancelListing}
