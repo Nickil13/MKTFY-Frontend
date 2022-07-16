@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { getMyPurchases } from "../../actions/purchases";
 import { PurchasesCard } from "../../components/cards";
 import { useNavigate } from "react-router-dom";
+import { getMyPurchases } from "../../actions/user";
 
 export default function MyPurchases() {
     const [purchases, setPurchases] = useState([]);
@@ -9,8 +9,9 @@ export default function MyPurchases() {
 
     React.useEffect(() => {
         if (purchases.length < 1) {
-            const data = getMyPurchases();
-            setPurchases(data);
+            getMyPurchases().then((purchases) => {
+                setPurchases(purchases);
+            });
         }
     }, []);
 
@@ -23,7 +24,7 @@ export default function MyPurchases() {
         <div>
             <h1 className="text-gray-500 font-bold mb-4">My Purchases</h1>
             <span className="inline-block text-gray-500 text-sm-16 mb-7">
-                2 items
+                {`${purchases.length} item${purchases.length > 1 ? "s" : ""}`}
             </span>
             {/* Purchases Cards */}
             <div className="flex flex-col gap-2">
@@ -35,9 +36,9 @@ export default function MyPurchases() {
                                 {...purchase}
                                 onClick={() =>
                                     onCardClick(
-                                        purchase.ProdName,
-                                        purchase.Id,
-                                        purchase.Category
+                                        purchase.prodName,
+                                        purchase.id,
+                                        purchase.category
                                     )
                                 }
                             />

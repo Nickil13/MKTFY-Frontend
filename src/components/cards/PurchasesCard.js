@@ -1,13 +1,13 @@
 import React from "react";
 import { LISTING_STATUS } from "../../data/variables";
-import { formatPrice } from "../../utils/helpers";
+import { formatPrice, formatDate } from "../../utils/helpers";
 
 export default function PurchasesCard({
-    Images,
-    DatePurchased,
-    ProdName,
-    Price,
-    Condition,
+    images,
+    created,
+    prodName,
+    price,
+    condition,
     onClick,
     tag,
 }) {
@@ -21,12 +21,14 @@ export default function PurchasesCard({
             <div className="w-[350px] flex-shrink-0">
                 <img
                     className="w-full h-full object-cover"
-                    src={Images[0]}
-                    alt={ProdName}
+                    src={images?.length > 0 ? images[0] : ""}
+                    alt={prodName}
                 />
             </div>
             <div className={`bg-white w-full ${tag ? "pt-6" : "pt-10"} pl-5`}>
-                <span className="font-light text-xs mb-1">{DatePurchased}</span>
+                <span className="font-light text-xs mb-1">
+                    {formatDate(created)}
+                </span>
                 {tag && (
                     <div className="flex mb-7">
                         <span
@@ -44,13 +46,13 @@ export default function PurchasesCard({
                         </span>
                     </div>
                 )}
-                <h2 className="text-base mb-5">{ProdName}</h2>
+                <h2 className="text-base mb-5">{prodName}</h2>
                 <span className="block text-base font-bold text-purple-500 mb-4">
-                    {formatPrice(Price)}
+                    {formatPrice(price)}
                 </span>
                 <div className="flex items-center">
                     <div className="border border-[#5B2BAE] bg-[#5B2BAE] w-[7px] h-[7px] rounded-full mr-2"></div>
-                    <span className="capitalize">{`Condition - ${Condition}`}</span>
+                    <span className="capitalize">{`Condition - ${condition}`}</span>
                 </div>
             </div>
         </div>
