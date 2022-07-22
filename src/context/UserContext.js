@@ -1,7 +1,13 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import auth0js from "auth0-js";
 import axios from "../utils/request";
 import jwt_decode from "jwt-decode";
+import {
+    clearLocalStorage,
+    getLocalStorage,
+    setLocalStorage,
+    STORAGE_KEYS,
+} from "../utils/storageUtils";
 
 const UserContext = React.createContext();
 
@@ -10,7 +16,9 @@ export const useUserContext = () => {
 };
 
 export const UserContextProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(
+        getLocalStorage(STORAGE_KEYS.USER_KEY, null)
+    );
     const [isAuthenticated, setIsAuthenticated] = useState(
         sessionStorage.getItem("access_token")
     );
@@ -54,6 +62,13 @@ export const UserContextProvider = ({ children }) => {
             });
         }
     }, []);
+
+    /* Store changes made to user in local storage */
+    useEffect(() => {
+        if (user) {
+            setLocalStorage(STORAGE_KEYS.USER_KEY, { ...user });
+        }
+    }, [user]);
 
     /* User API Functionality */
     const getIdFromToken = () => {
@@ -126,6 +141,7 @@ export const UserContextProvider = ({ children }) => {
     const logout = () => {
         setIsAuthenticated(false);
         sessionStorage.removeItem("access_token");
+        clearLocalStorage();
         webAuth.logout({ returnTo: "http://localhost:3000" });
     };
 

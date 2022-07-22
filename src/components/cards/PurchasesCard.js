@@ -10,6 +10,7 @@ export default function PurchasesCard({
     condition,
     onClick,
     tag,
+    purchaseTag,
 }) {
     return (
         <div
@@ -25,10 +26,16 @@ export default function PurchasesCard({
                     alt={prodName}
                 />
             </div>
-            <div className={`bg-white w-full ${tag ? "pt-6" : "pt-10"} pl-5`}>
-                <span className="font-light text-xs mb-1">
-                    {formatDate(created)}
-                </span>
+            <div
+                className={`relative bg-white w-full ${
+                    tag ? "pt-6" : "pt-10"
+                } pl-5`}
+            >
+                {!tag && (
+                    <span className="font-light text-xs mb-1">
+                        {formatDate(created)}
+                    </span>
+                )}
                 {tag && (
                     <div className="flex mb-7">
                         <span
@@ -45,6 +52,20 @@ export default function PurchasesCard({
                                   "sale confirmed"}
                         </span>
                     </div>
+                )}
+                {purchaseTag && (
+                    <span
+                        className={`absolute top-5 right-4 font-semibold text-base uppercase px-2 rounded ${
+                            purchaseTag === "Pending"
+                                ? "text-purple-600 bg-[#9349DE33]"
+                                : purchaseTag === "Sold" &&
+                                  "text-green bg-[#6CC04B33]"
+                        }`}
+                    >
+                        {purchaseTag === "Pending"
+                            ? "pending state"
+                            : purchaseTag === "Sold" && "sale confirmed"}
+                    </span>
                 )}
                 <h2 className="text-base mb-5">{prodName}</h2>
                 <span className="block text-base font-bold text-purple-500 mb-4">

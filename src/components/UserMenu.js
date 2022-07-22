@@ -8,7 +8,7 @@ import Dropdown from "./Dropdown";
 
 export default function UserMenu() {
     const [userMenuShowing, setUserMenuShowing] = useState(true);
-    const { logout } = useUserContext();
+    const { logout, user } = useUserContext();
     let location = useLocation();
 
     React.useEffect(() => {
@@ -30,8 +30,10 @@ export default function UserMenu() {
             >
                 <div>
                     <div className="flex items-center mt-3 mb-6">
-                        <div className="ml-2 circle-letter">G</div>
-                        <h2 className="font-bold">George Carlson</h2>
+                        <div className="ml-2 circle-letter">
+                            {user?.firstName && user.firstName[0]}
+                        </div>
+                        <h2 className="font-bold">{`${user?.firstName} ${user?.lastName}`}</h2>
                     </div>
 
                     <div className="mb-24">
@@ -80,7 +82,7 @@ export default function UserMenu() {
                     Welcome back,
                     <span className="flex items-center font-semibold text-base text-gold-200">
                         <DropdownArrow className="fill-gold-200" />
-                        George Calson
+                        {`${user?.firstName} ${user?.lastName}`}
                     </span>
                 </p>
             </button>

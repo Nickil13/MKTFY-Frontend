@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { ReactComponent as RightArrow } from "../assets/images/arrow_right-24px.svg";
-import { dummyFAQs } from "../data/dummyFAQs";
 import { getFAQs } from "../actions/faq";
 
 export default function FAQ() {
     const [activeQIndex, setActiveQIndex] = useState(0);
-    const [FAQs, setFAQs] = useState([...dummyFAQs]);
+    const [FAQs, setFAQs] = useState([]);
 
     useEffect(() => {
         if (FAQs.length < 1) {
             getFAQs().then((faqs) => {
-                console.log(faqs);
                 setFAQs(faqs);
             });
         }
@@ -46,14 +44,7 @@ export default function FAQ() {
                         {FAQs.length > 0 && FAQs[activeQIndex].title}
                     </h2>
                     <div className="text-gray-700 leading-7 text-[15px]">
-                        {FAQs.length > 0 &&
-                            FAQs[activeQIndex].description.map((p, index) => {
-                                return (
-                                    <p className="mb-5" key={index}>
-                                        {p}
-                                    </p>
-                                );
-                            })}
+                        {FAQs.length > 0 && FAQs[activeQIndex].description}
                     </div>
                 </div>
             </div>

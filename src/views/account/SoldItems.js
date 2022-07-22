@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { getMySoldListings } from "../../actions/listings";
 import PurchasesCard from "../../components/cards/PurchasesCard";
+import { getMySoldListings } from "../../actions/user";
+import { LISTING_STATUS } from "../../data/variables";
 
 export default function SoldItems() {
     const [listings, setListings] = useState([]);
 
     React.useEffect(() => {
         if (listings.length === 0) {
-            const data = getMySoldListings();
-            setListings(data);
+            getMySoldListings().then((res) => {
+                setListings(res);
+            });
         }
     }, []);
 
@@ -21,12 +23,12 @@ export default function SoldItems() {
                             <PurchasesCard
                                 key={index}
                                 {...listing}
-                                tag={listing.Status.toUpperCase()}
+                                tag={LISTING_STATUS.SOLD}
                             />
                         );
                     })
                 ) : (
-                    <div>No pending listings</div>
+                    <p>No sold listings</p>
                 )}
             </div>
         </div>

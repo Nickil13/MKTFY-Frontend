@@ -1,32 +1,21 @@
 import React, { useState } from "react";
 import PurchasesCard from "../../components/cards/PurchasesCard";
-import { getMyActiveListings } from "../../actions/listings";
 import { LISTING_STATUS } from "../../data/variables";
 import { useNavigate } from "react-router-dom";
+import { getMyPendingListings, getMyActiveListings } from "../../actions/user";
 
 export default function ActiveItems() {
-    const [listings, setListings] = useState([]);
+    const [pendingListings, setPendingListings] = useState([]);
+    const [availableListings, setAvailableListings] = useState([]);
     let navigate = useNavigate();
-    const pendingListings = [
-        ...listings?.filter(
-            (listing) => listing.Status.toUpperCase() === LISTING_STATUS.PENDING
-        ),
-    ];
-    const availableListings = [
-        ...listings?.filter(
-            (listing) =>
-                listing.Status.toUpperCase() === LISTING_STATUS.AVAILABLE
-        ),
-    ];
 
     React.useEffect(() => {
-        if (listings.length === 0) {
-            const data = getMyActiveListings();
-            setListings(data);
-        }
+        getMyPendingListings().then((res) => setPendingListings(res));
+        getMyActiveListings().then((res) => setAvailableListings(res));
     }, []);
 
     const handleListingClick = (status, id, name) => {
+        /* Require name for breadcrumbs and status for save permissions */
         navigate(`${id}`, { state: { name, status } });
     };
     return (
@@ -39,19 +28,19 @@ export default function ActiveItems() {
                             <PurchasesCard
                                 key={index}
                                 {...listing}
-                                tag={listing.Status.toUpperCase()}
+                                tag={LISTING_STATUS.PENDING}
                                 onClick={() =>
                                     handleListingClick(
-                                        listing.Status,
-                                        listing.Id,
-                                        listing.ProdName
+                                        LISTING_STATUS.PENDING,
+                                        listing.id,
+                                        listing.prodName
                                     )
                                 }
                             />
                         );
                     })
                 ) : (
-                    <div>No pending listings</div>
+                    <p>No pending listings</p>
                 )}
             </div>
             <div>
@@ -67,16 +56,16 @@ export default function ActiveItems() {
                                     {...listing}
                                     onClick={() =>
                                         handleListingClick(
-                                            listing.Status,
-                                            listing.Id,
-                                            listing.ProdName
+                                            LISTING_STATUS.AVAILABLE,
+                                            listing.id,
+                                            listing.prodName
                                         )
                                     }
                                 />
                             );
                         })
                     ) : (
-                        <div>No available listings</div>
+                        <p>No available listings</p>
                     )}
                 </div>
             </div>

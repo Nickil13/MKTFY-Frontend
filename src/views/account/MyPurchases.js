@@ -8,7 +8,7 @@ export default function MyPurchases() {
     let navigate = useNavigate();
 
     React.useEffect(() => {
-        if (purchases.length < 1) {
+        if (purchases.length === 0) {
             getMyPurchases().then((purchases) => {
                 setPurchases(purchases);
             });
@@ -34,6 +34,7 @@ export default function MyPurchases() {
                             <PurchasesCard
                                 key={index}
                                 {...purchase}
+                                purchaseTag={purchase.status}
                                 onClick={() =>
                                     onCardClick(
                                         purchase.prodName,
@@ -45,7 +46,7 @@ export default function MyPurchases() {
                         );
                     })
                 ) : (
-                    <div>You have not made any purchases.</div>
+                    <p>You have not made any purchases.</p>
                 )}
             </div>
         </div>

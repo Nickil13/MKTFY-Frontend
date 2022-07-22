@@ -35,7 +35,7 @@ export default function PasswordInput({
             </label>
             <div className="relative">
                 <input
-                    className="w-full text-gray-600d font-[Verdana] placeholder:font-['Open_Sans']"
+                    className="w-full text-gray-600 font-[Verdana] placeholder:font-['Open_Sans']"
                     type="password"
                     id={name}
                     name={name}
