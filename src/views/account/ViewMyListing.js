@@ -86,7 +86,7 @@ export default function ViewMyListing() {
     return (
         <div className="mt-7 max-w-[1448px]">
             <h1 className="text-gray-500 font-bold text-lg mb-8">My Listing</h1>
-            <div className="flex flex-col rounded-[10px] shadow-modal overflow-hidden 2xl:flex-row">
+            <div className="flex flex-col rounded-10 shadow-modal overflow-hidden 2xl:flex-row">
                 {/* Images */}
                 <ListingImages
                     images={[image]}

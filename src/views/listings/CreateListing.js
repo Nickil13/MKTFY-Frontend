@@ -33,7 +33,7 @@ export default function CreateListing() {
             <h1 className="text-gray-500 font-bold text-lg mb-8">
                 Create Listing
             </h1>
-            <div className="flex rounded-[10px] shadow-modal overflow-hidden">
+            <div className="flex rounded-10 shadow-modal overflow-hidden">
                 {/* Images */}
                 <ListingImages
                     images={[]}

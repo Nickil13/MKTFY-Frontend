@@ -24,7 +24,7 @@ export default function Alert({ alertType, onConfirm, onCancel }) {
     };
     return (
         <div className="fixed flex items-center justify-center inset-0 bg-black bg-opacity-50 h-screen z-[70]">
-            <div className="bg-white rounded-[10px] py-7 px-12 max-w-[394px]">
+            <div className="bg-white rounded-10 py-7 px-12 max-w-[394px]">
                 <h2 className="text-base font-bold text-[#313131] mb-1">
                     Heads Up!
                 </h2>

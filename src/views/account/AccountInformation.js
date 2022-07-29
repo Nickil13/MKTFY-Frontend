@@ -59,7 +59,7 @@ export default function AccountInformation() {
         }
     };
     return (
-        <div className="bg-white rounded-[10px] shadow-modal max-w-[1498px]">
+        <div className="bg-white rounded-10 shadow-modal max-w-[1498px]">
             <form
                 className="px-20 lg:px-[138px] pt-14 pb-24 2xl:grid grid-cols-2 gap-40"
                 onSubmit={handleEditUser}

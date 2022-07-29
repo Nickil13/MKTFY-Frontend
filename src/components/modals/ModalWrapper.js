@@ -30,7 +30,7 @@ export default function ModalWrapper({
 
     return (
         <div
-            className={`relative flex flex-col bg-white w-4/5 my-auto  rounded-modal shadow-modal 2xl:w-full ${maxWidth} ${padding}`}
+            className={`relative flex flex-col bg-white w-4/5 my-auto rounded-10 shadow-modal 2xl:w-full ${maxWidth} ${padding}`}
         >
             {children}
             <span

@@ -92,7 +92,7 @@ module.exports = {
                 btn: "345px",
             },
             borderRadius: {
-                modal: "10px",
+                10: "10px",
             },
             boxShadow: {
                 btn: "0px 5px 20px #00000024",

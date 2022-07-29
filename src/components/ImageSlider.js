@@ -25,7 +25,7 @@ export default function ImageSlider({ images, name }) {
                         images.map((image, index) => {
                             return (
                                 <div
-                                    className={`h-[124px] w-[118px] overflow-hidden cursor-pointer rounded-[10px] ${
+                                    className={`h-[124px] w-[118px] overflow-hidden cursor-pointer rounded-10 ${
                                         imageIndex === index &&
                                         "border border-purple-200 shadow-card"
                                     }`}
@@ -48,7 +48,7 @@ export default function ImageSlider({ images, name }) {
             </div>
             {/* Main Image */}
             <div>
-                <div className="h-[424px] overflow-hidden rounded-[10px] shadow-card border border-gray-footer-border mb-4 2xl:w-[645px]">
+                <div className="h-[424px] overflow-hidden rounded-10 shadow-card border border-gray-footer-border mb-4 2xl:w-[645px]">
                     <img
                         className="w-full h-full object-cover"
                         src={images[imageIndex]}

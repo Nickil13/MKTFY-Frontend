@@ -25,7 +25,7 @@ export default function ChangePassword() {
     };
 
     return (
-        <div className="bg-white p-8 pr-24 rounded-[10px] shadow-modal max-w-[657px]">
+        <div className="bg-white p-8 pr-24 rounded-10 shadow-modal max-w-[657px]">
             <h1 className="text-purple-100 font-bold mb-7">Change Password</h1>
             <p className="modal-text mb-15 max-w-input">
                 Please enter your email in the field below. We will send you an

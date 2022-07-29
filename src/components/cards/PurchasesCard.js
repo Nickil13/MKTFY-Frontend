@@ -14,7 +14,7 @@ export default function PurchasesCard({
 }) {
     return (
         <div
-            className={`flex max-w-[808px] h-[214px] shadow-[0px_1px_0px_#00000024] rounded-[10px] overflow-hidden ${
+            className={`flex max-w-[808px] h-[214px] shadow-[0px_1px_0px_#00000024] rounded-10 overflow-hidden ${
                 onClick && "cursor-pointer"
             }`}
             onClick={onClick}

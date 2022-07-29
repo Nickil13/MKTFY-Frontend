@@ -19,7 +19,7 @@ export default function FAQ() {
             <h1 className="text-gray-500 font-bold mb-8">
                 Frequently Asked Questions
             </h1>
-            <div className="flex max-w-[1448px] h-[856px] shadow modal bg-white rounded-[10px] overflow:hidden">
+            <div className="flex max-w-[1448px] h-[856px] shadow modal bg-white rounded-10 overflow:hidden">
                 {/* List of Questions */}
                 <ul className="flex-shrink-0 max-w-[544px] w-full">
                     {FAQs.length > 0 &&
