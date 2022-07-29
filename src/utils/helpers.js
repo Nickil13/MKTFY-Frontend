@@ -1,4 +1,5 @@
 import { NAV_CATEGORIES } from "../data/variables";
+import { toast } from "../components/custom-toast/CustomToastContainer";
 
 const BLACKLIST = ["listings", "sold"];
 
@@ -141,4 +142,9 @@ export const formatDate = (date) => {
     let formattedDay = day.slice(0, 2);
 
     return `${formattedMonth} ${formattedDay} ${year}`;
+};
+
+// Error handling
+export const parseError = (error) => {
+    toast.error(error);
 };

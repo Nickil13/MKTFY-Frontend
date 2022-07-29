@@ -13,7 +13,7 @@ export default function CreatePasswordModal() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [agreedToToS, setAgreedToToS] = useState(false);
     const [passwordsMatching, setPasswordsMatching] = useState(true);
-    const correctLength = password.length > 5;
+    const correctLength = password.length > 7;
     const hasUppercase = useMemo(() => checkUppercase(password), [password]);
     const hasNumber = checkContainsNumber(password);
     const criteriaMet = correctLength && hasUppercase && hasNumber;
@@ -89,7 +89,7 @@ export default function CreatePasswordModal() {
 
                     <div className="mt-2">
                         <PasswordRequirement requirement={correctLength}>
-                            At least 6 characters
+                            At least 8 characters
                         </PasswordRequirement>
                         <PasswordRequirement requirement={hasUppercase}>
                             1 Uppercase

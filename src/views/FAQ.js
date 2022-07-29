@@ -22,7 +22,7 @@ export default function FAQ() {
             <div className="flex max-w-[1448px] h-[856px] shadow modal bg-white rounded-10 overflow:hidden">
                 {/* List of Questions */}
                 <ul className="flex-shrink-0 max-w-[544px] w-full">
-                    {FAQs.length > 0 &&
+                    {FAQs?.length > 0 &&
                         FAQs.map((faq, index) => {
                             return (
                                 <li
@@ -41,10 +41,10 @@ export default function FAQ() {
                 {/* Question description */}
                 <div className="bg-beige-200 p-10 rounded-tr-[10px] rounded-br-[10px] w-full">
                     <h2 className="text-purple-500 text-lg-36 font-bold mb-5">
-                        {FAQs.length > 0 && FAQs[activeQIndex].title}
+                        {FAQs?.length > 0 && FAQs[activeQIndex].title}
                     </h2>
                     <div className="text-gray-700 leading-7 text-[15px]">
-                        {FAQs.length > 0 && FAQs[activeQIndex].description}
+                        {FAQs?.length > 0 && FAQs[activeQIndex].description}
                     </div>
                 </div>
             </div>

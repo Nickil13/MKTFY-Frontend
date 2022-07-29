@@ -27,29 +27,6 @@ service.interceptors.request.use(
     }
 );
 
-// response interceptor
-service.interceptors.response.use(
-    (response) => {
-        return response.data;
-    },
-    async (error) => {
-        const originalConfig = error.config;
-        if (
-            originalConfig.url !== "/login" &&
-            originalConfig.url !== "/" &&
-            !originalConfig.url.includes("marketforyou.us.auth0.com") &&
-            error.response
-        ) {
-            // Access token expired
-            if (error.response.status === 401) {
-                // Grab refresh token and use it to get a new accessToken & a new refresh token OR redirect to login
-                console.log("401 error");
-                window.location.href = "/login";
-            }
-        }
-        console.log(error);
-        throw Error(error);
-    }
-);
+// response interceptor is found in the WithAxios wrapper component
 
 export default service;

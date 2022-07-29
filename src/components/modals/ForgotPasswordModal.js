@@ -1,16 +1,28 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { LoginInput } from "../inputs";
 import Button from "../Button";
 import ModalWrapper from "./ModalWrapper";
+import { useUserContext } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 export default function ForgotPasswordModal() {
+    const { changePassword } = useUserContext();
     const [email, setEmail] = useState("");
+    const [emailError, setEmailError] = useState("");
     let navigate = useNavigate();
+
+    const checkValidEmail = (value) => {
+        if (!value || value.match(/^[^\s@]+@[^\s@].[^\s@]+$/) == null) {
+            setEmailError("Your email is incorrect");
+        } else {
+            setEmailError("");
+        }
+    };
 
     const handleForgotPassword = (e) => {
         e.preventDefault();
-        navigate("/verify-reset");
+        changePassword(email);
+        navigate("/login");
     };
     return (
         <ModalWrapper goBack portalModal>
@@ -32,11 +44,14 @@ export default function ForgotPasswordModal() {
                         type="email"
                         value={email}
                         setValue={setEmail}
+                        onBlur={(e) => checkValidEmail(e.target.value)}
+                        invalid={emailError}
+                        errorMessage
                         lastchild
                     />
                     <Button
                         type="submit"
-                        disabled={!email}
+                        disabled={!email || emailError}
                         margins="mt-15"
                         centered
                     >
