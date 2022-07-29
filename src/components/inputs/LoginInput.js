@@ -10,6 +10,7 @@ export default function LoginInput({
     lastchild,
     backgroundColor,
     errorMessage,
+    errorMessageText,
     invalid,
     onBlur,
 }) {
@@ -44,7 +45,9 @@ export default function LoginInput({
                         invalid ? "text-red" : "text-transparent"
                     }`}
                 >
-                    Your {name} is incorrect
+                    {errorMessageText
+                        ? errorMessageText
+                        : `Your ${name} is incorrect`}
                 </span>
             )}
         </div>

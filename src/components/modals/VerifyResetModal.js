@@ -44,7 +44,7 @@ export default function VerifyResetModal() {
                         onClick={handleResendCode}
                         className="text-gold-200 underline text-xs font-semibold cursor-pointer"
                     >
-                        I didn't receive the code. Please sent it again
+                        I didn't receive the code. Please send it again
                     </span>
                 </div>
                 <Button

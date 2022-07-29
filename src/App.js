@@ -31,11 +31,12 @@ import {
     ViewMyListing,
 } from "./views/account";
 import ScrollToTop from "./utils/ScrollToTop";
-
+import { CustomToastContainer } from "./components/custom-toast/CustomToastContainer";
 function App() {
     return (
         <Router>
             <ScrollToTop>
+                <CustomToastContainer />
                 <Routes>
                     {/* Login Portal */}
                     <Route path="/" element={<Login />}>
