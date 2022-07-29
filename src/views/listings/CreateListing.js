@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Button, ListingImages, Select } from "../../components";
 import { CATEGORY_TYPES, CITY_OPTIONS, CONDITIONS } from "../../data/variables";
 import { ListingInput } from "../../components/inputs";
+import { UploadImageModal } from "../../components/modals";
+import { useModalContext } from "../../context/ModalContext";
 
 export default function CreateListing() {
     const [name, setName] = useState("");
@@ -13,6 +15,7 @@ export default function CreateListing() {
     const [city, setCity] = useState("");
     const [image, setImage] = useState(null);
     const [imageName, setImageName] = useState("");
+    const { showModal } = useModalContext();
 
     const handleCreateListing = (e) => {
         e.preventDefault();
@@ -124,6 +127,12 @@ export default function CreateListing() {
                     </form>
                 </div>
             </div>
+            {/* Upload Image Modal */}
+            {showModal && (
+                <div className="fixed flex items-center justify-center inset-0 bg-black bg-opacity-50 h-screen z-[70]">
+                    <UploadImageModal handleUploadImage={handleUploadImage} />
+                </div>
+            )}
         </div>
     );
 }

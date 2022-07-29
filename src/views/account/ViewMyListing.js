@@ -11,6 +11,8 @@ import { ListingInput, PriceInput } from "../../components/inputs";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getMyListingById } from "../../actions/listings";
 import { ListingImages } from "../../components";
+import Alert from "../../components/Alert";
+import { UploadImageModal } from "../../components/modals";
 
 export default function ViewMyListing() {
     const [name, setName] = useState("");
@@ -20,7 +22,7 @@ export default function ViewMyListing() {
     const [price, setPrice] = useState("");
     const [address, setAddress] = useState("");
     const [city, setCity] = useState("");
-    const { setShowAlert, setAlertType, alertConfirmed, resetAlert } =
+    const { setShowAlert, showAlert, resetAlert, cancelAlert, showModal } =
         useModalContext();
     const [image, setImage] = useState(null);
     const [imageName, setImageName] = useState("");
@@ -46,18 +48,14 @@ export default function ViewMyListing() {
         }
     }, []);
 
-    React.useEffect(() => {
-        // User opted to confirm alert
-        if (alertConfirmed) {
-            console.log("confirmed alert: cancelling the listing");
-            resetAlert();
-            // Loading success page
-            navigate("/loading", {
-                state: { redirect: "/dashboard/account/my-listings" },
-            });
-        }
-    }, [alertConfirmed]);
-
+    const handleCancelListing = () => {
+        console.log("confirmed alert: cancelling the listing");
+        resetAlert();
+        // Loading success page
+        navigate("/loading", {
+            state: { redirect: "/dashboard/account/my-listings" },
+        });
+    };
     const handleSaveListing = (e) => {
         e.preventDefault();
         console.log("Saving listing...");
@@ -67,11 +65,6 @@ export default function ViewMyListing() {
     const handleConfirmSold = () => {
         console.log("Confirming sold.");
         navigate("/dashboard/account/my-listings/sold");
-    };
-
-    const handleCancelListing = () => {
-        setAlertType("cancel-listing");
-        setShowAlert(true);
     };
 
     const handleUploadImage = (uploadedImage, imageName) => {
@@ -179,13 +172,27 @@ export default function ViewMyListing() {
                             color="none"
                             fontSize="text-xs"
                             padding="py-4"
-                            onClick={handleCancelListing}
+                            onClick={() => setShowAlert(true)}
                         >
                             Cancel Listing
                         </Button>
                     </form>
                 </div>
             </div>
+            {showAlert && (
+                <Alert
+                    message="You are about to cancel your listing. Are you sure?"
+                    confirmBtnText="Yes"
+                    onConfirm={handleCancelListing}
+                    onCancel={cancelAlert}
+                />
+            )}
+            {/* Upload Image Modal */}
+            {showModal && (
+                <div className="fixed flex items-center justify-center inset-0 bg-black bg-opacity-50 h-screen z-[70]">
+                    <UploadImageModal handleUploadImage={handleUploadImage} />
+                </div>
+            )}
         </div>
     );
 }

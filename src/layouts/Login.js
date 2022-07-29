@@ -6,7 +6,7 @@ import { useUserContext } from "../context/UserContext";
 
 export default function Login() {
     const { showModal, setShowModal } = useModalContext();
-    const { isAuthenticated, error } = useUserContext();
+    const { isAuthenticated, error, setError } = useUserContext();
     let navigate = useNavigate();
     let location = useLocation();
 
@@ -27,6 +27,11 @@ export default function Login() {
             setShowModal(true);
         }
     }, [location, error]);
+
+    React.useEffect(() => {
+        // If there are any outstanding errors, clear them when the location changes.
+        error && setError("");
+    }, [location]);
 
     return (
         <div className="bg-login-clouds bg-cover bg-no-repeat h-screen">

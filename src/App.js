@@ -11,8 +11,8 @@ import {
 } from "./components/modals";
 
 import RequireAuth from "./utils/RequireAuth";
-
-import { Dashboard, ErrorPage, FAQ, Home, LoadingPage, Login } from "./views";
+import { Dashboard, Login } from "./layouts";
+import { ErrorPage, FAQ, Home, LoadingPage } from "./views";
 import { PrivacyPolicy, TermsOfService } from "./views/legal-documents";
 import {
     Checkout,
@@ -32,6 +32,7 @@ import {
 } from "./views/account";
 import ScrollToTop from "./utils/ScrollToTop";
 import { CustomToastContainer } from "./components/custom-toast/CustomToastContainer";
+
 function App() {
     return (
         <Router>

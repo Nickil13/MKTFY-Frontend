@@ -12,7 +12,7 @@ export default function WithAxios({ children }) {
                 return response.data;
             },
             (error) => {
-                // parseError(error.message);
+                // parseError(error.message );
                 const originalConfig = error.config;
                 if (
                     originalConfig.url !== "/login" &&

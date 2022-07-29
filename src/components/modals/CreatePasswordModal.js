@@ -7,6 +7,8 @@ import Button from "../Button";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
 import { checkUppercase, checkContainsNumber } from "../../utils/helpers";
+import Alert from "../Alert";
+import { useModalContext } from "../../context/ModalContext";
 
 export default function CreatePasswordModal() {
     const [password, setPassword] = useState("");
@@ -20,7 +22,8 @@ export default function CreatePasswordModal() {
     const passwordStrength = criteriaMet ? "strong" : "weak";
     let navigate = useNavigate();
     let location = useLocation();
-    const { signup, signupSuccess } = useUserContext();
+    const { signup, signupSuccess, error } = useUserContext();
+    const { setShowModal } = useModalContext();
 
     React.useEffect(() => {
         if (signupSuccess) {
@@ -148,6 +151,18 @@ export default function CreatePasswordModal() {
                         Create Account
                     </Button>
                 </form>
+                {error && (
+                    <Alert
+                        title="Something went wrong!"
+                        message={error}
+                        confirmBtnText="Try again"
+                        onConfirm={() => navigate("/register")}
+                        onCancel={() => {
+                            navigate("/");
+                            setShowModal(false);
+                        }}
+                    />
+                )}
             </div>
         </ModalWrapper>
     );
