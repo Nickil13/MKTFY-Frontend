@@ -55,7 +55,7 @@ export const UserContextProvider = ({ children }) => {
                 if (newUserDetails) {
                     createUser(user.sub, newUserDetails);
                 } else {
-                    getUserDetails();
+                    getCurrentUserDetails();
                 }
 
                 return;
@@ -79,12 +79,21 @@ export const UserContextProvider = ({ children }) => {
         }
         return;
     };
-    const getUserDetails = async () => {
+    const getCurrentUserDetails = async () => {
         const userId = getIdFromToken();
 
         try {
             const res = await axios.get(`/User/${userId}`);
             setUser(res);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const getUserDetails = async (id) => {
+        try {
+            const res = await axios.get(`/User/${id}`);
+            return res;
         } catch (error) {
             console.log(error);
         }
@@ -222,9 +231,10 @@ export const UserContextProvider = ({ children }) => {
                 isAuthenticated,
                 error,
                 setError,
-                getUserDetails,
+                getCurrentUserDetails,
                 editUser,
                 changePassword,
+                getUserDetails,
             }}
         >
             {children}

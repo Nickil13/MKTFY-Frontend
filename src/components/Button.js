@@ -34,8 +34,9 @@ export default function Button({
 Button.defaultProps = {
     type: "button",
     color: "purple",
-    width: "2xl:w-btn",
-    maxWidth: "max-w-btn",
+    // width: "2xl:w-btn",
+    width: "",
+    // maxWidth: "max-w-btn",
     padding: "py-[19px]",
     fontSize: "text-base",
 };

@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { formatPrice } from "../../utils/helpers";
 
-export default function DealsCard({ Id, Images, ProdName, Price }) {
+export default function DealsCard({ id, images, prodName, price }) {
     let navigate = useNavigate();
 
     return (
@@ -10,8 +10,8 @@ export default function DealsCard({ Id, Images, ProdName, Price }) {
             <div className="overflow-hidden h-card-img-sm">
                 <img
                     className="object-cover w-full h-full"
-                    src={Images[0]}
-                    alt={ProdName}
+                    src={images[0]}
+                    alt={prodName}
                     draggable="false"
                 />
             </div>
@@ -19,15 +19,15 @@ export default function DealsCard({ Id, Images, ProdName, Price }) {
                 <h3
                     className=" flex-grow text-sm-17 capitalize hover:underline"
                     onClick={() =>
-                        navigate(`/dashboard/listings/deals/${Id}`, {
-                            state: { name: ProdName },
+                        navigate(`/dashboard/listings/deals/${id}`, {
+                            state: { name: prodName },
                         })
                     }
                 >
-                    {ProdName}
+                    {prodName}
                 </h3>
                 <span className="text-purple-500 text-base font-bold my-auto">
-                    {formatPrice(Price)}
+                    {formatPrice(price)}
                 </span>
             </div>
         </div>

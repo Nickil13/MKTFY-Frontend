@@ -7,7 +7,7 @@ import { AccountInput } from "../../components/inputs";
 import { formatPhoneNumber, unformatPhoneNumber } from "../../utils/helpers";
 
 export default function AccountInformation() {
-    const { user, getUserDetails, editUser } = useUserContext();
+    const { user, getCurrentUserDetails, editUser } = useUserContext();
     const [firstName, setFirstName] = useState(user?.firstName || "");
     const [lastName, setLastName] = useState(user?.lastName || "");
     const [email, setEmail] = useState(user?.email || "");
@@ -18,7 +18,7 @@ export default function AccountInformation() {
 
     useEffect(() => {
         if (!user) {
-            getUserDetails();
+            getCurrentUserDetails();
         } else if (!email) {
             setFirstName(user.firstName);
             setLastName(user.lastName);

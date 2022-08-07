@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ProductCard({ Images, ProdName, lastchild }) {
+export default function ProductCard({ images, prodName, lastchild }) {
     return (
         <div
             className={`min-w-card  max-w-card h-card-img ${
@@ -9,8 +9,8 @@ export default function ProductCard({ Images, ProdName, lastchild }) {
         >
             <img
                 className="object-cover w-full h-full"
-                src={Images[0]}
-                alt={ProdName}
+                src={images[0]}
+                alt={prodName}
                 draggable="false"
             />
         </div>

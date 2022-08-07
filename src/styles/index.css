@@ -24,11 +24,17 @@
 }
 
 @layer components {
+    .new-btn {
+        @apply text-white font-bold rounded-full shadow-btn disabled:bg-gray-100 disabled:shadow-none disabled:pointer-events-none text-base py-[19px] w-full;
+    }
     .btn {
         @apply text-white font-bold rounded-full shadow-btn disabled:bg-gray-100 disabled:shadow-none disabled:pointer-events-none max-w-btn text-base py-[19px] w-full;
     }
     .btn-purple {
         @apply btn bg-purple-500 hover:bg-purple-400;
+    }
+    .btn-purple-new {
+        @apply new-btn bg-purple-500 hover:bg-purple-400;
     }
     .btn-gold {
         @apply btn bg-gold-200 hover:bg-gold-100;

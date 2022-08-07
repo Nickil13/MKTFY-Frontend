@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getListingById } from "../../actions/listings";
-import { Button, ImageSlider } from "../../components";
+import { getDummyListingById } from "../../actions/listings";
+import { ImageSlider } from "../../components";
 import TagIcon from "../../assets/images/local_offer-24px.svg";
 import { formatPrice } from "../../utils/helpers";
 
@@ -12,47 +12,47 @@ export default function SingleListing() {
 
     React.useEffect(() => {
         if (!listing) {
-            const data = getListingById(id);
+            const data = getDummyListingById(id);
             setListing(data);
         }
-    }, [listing]);
+    }, [listing, id]);
 
     return (
         <div>
             {listing ? (
                 <div className="flex flex-col bg-white pt-7 pb-12 px-16 mt-5 2xl:flex-row">
                     <ImageSlider
-                        images={listing.Images}
-                        name={listing.ProdName}
+                        images={listing.images}
+                        name={listing.prodName}
                     />
 
                     {/* Listing Content */}
                     <div className="flex-grow">
                         <h1 className="text-gray-600 font-semibold mb-3 capitalize mt-10 2xl:mt-0">
-                            {listing.ProdName}
+                            {listing.prodName}
                         </h1>
                         <span className="block text-purple-500 text-lg-36 font-bold mb-4">
-                            {formatPrice(listing.Price)}
+                            {formatPrice(listing.price)}
                         </span>
-                        <Button
-                            maxWidth="max-w-input"
-                            margins="mb-3.5"
+                        <button
+                            className="btn-purple-new mb-3.5 max-w-input"
                             onClick={() =>
-                                navigate(`checkout`, {
-                                    state: { name: listing.ProdName },
+                                navigate("checkout", {
+                                    state: { name: listing.prodName },
                                 })
                             }
                         >
                             I want this!
-                        </Button>
+                        </button>
+
                         <span className="block condition-tag max-w-[48px]">
-                            {listing.Condition}
+                            {listing.condition}
                         </span>
                         <div className="mb-6">
                             <h2 className="text-purple-500 font-bold mb-1">
-                                Details
+                                details
                             </h2>
-                            <p>{listing.Description}</p>
+                            <p>{listing.description}</p>
                         </div>
                         {/* Listing owner information */}
                         <div className="flex">

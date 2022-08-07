@@ -1,7 +1,7 @@
 import React from "react";
 import { useUserContext } from "../context/UserContext";
 import axios from "./request";
-// import { parseError } from "./helpers";
+import { parseError } from "./helpers";
 
 export default function WithAxios({ children }) {
     const { logout } = useUserContext();
@@ -25,6 +25,10 @@ export default function WithAxios({ children }) {
                         // Grab refresh token and use it to get a new accessToken & a new refresh token OR redirect to login
                         console.log("401 error");
                         logout();
+                    }
+                    if (error.response.status === 400) {
+                        // Currently parsing based off url not off error message.
+                        parseError(error);
                     }
                 }
             }

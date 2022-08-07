@@ -21,7 +21,7 @@ export default function DealsSection({ title, category }) {
             {listings.length > 0 ? (
                 <ScrollBox>
                     {listings.map((listing) => {
-                        return <DealsCard key={listing.Id} {...listing} />;
+                        return <DealsCard key={listing.id} {...listing} />;
                     })}
                 </ScrollBox>
             ) : (

@@ -146,5 +146,13 @@ export const formatDate = (date) => {
 
 // Error handling
 export const parseError = (error) => {
-    toast.error(error);
+    const originalConfig = error.config;
+
+    switch (originalConfig.url) {
+        case "/Listing/requestpurchase":
+            toast.error("There was a problem requesting purchase");
+            break;
+        default:
+            console.log("Bad request");
+    }
 };

@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getListingById } from "../../actions/listings";
-import { Button } from "../../components";
+import {
+    getDummyListingById,
+    getListingById,
+    requestPurchase,
+} from "../../actions/listings";
 import { formatPrice } from "../../utils/helpers";
 
 export default function Checkout() {
@@ -11,10 +14,25 @@ export default function Checkout() {
 
     React.useEffect(() => {
         if (!listing) {
-            const data = getListingById(id);
+            // getListingById(id).then((res) => {
+            //     if (res) {
+            //         setListing(res);
+            //     }
+            // });
+            const data = getDummyListingById(id);
             setListing(data);
         }
     }, [listing]);
+
+    const handleCheckoutClick = () => {
+        requestPurchase(id).then((res) => {
+            if (res) {
+                navigate("pickup-information", {
+                    state: { listing: res, name: listing.prodName },
+                });
+            }
+        });
+    };
 
     if (!listing) return <p>No listing found</p>;
 
@@ -26,30 +44,26 @@ export default function Checkout() {
                 <div className="min-w-[226px]">
                     <img
                         className="w-full h-full object-cover"
-                        src={listing.Images[0]}
-                        alt={listing.ProdName}
+                        src={listing.images && listing.images[0]}
+                        alt={listing.prodName}
                     />
                 </div>
                 <div className="px-4 pt-3 pb-5">
-                    <h2 className="text-xs mb-1">{listing.ProdName}</h2>
+                    <h2 className="text-xs mb-1">{listing.prodName}</h2>
                     <span className="block text-purple-500 text-sm-16 font-bold">
-                        {formatPrice(listing.Price)}
+                        {formatPrice(listing.price)}
                     </span>
                     <span className="inline-block condition-tag my-2">
-                        {listing.Condition}
+                        {listing.condition}
                     </span>
                 </div>
             </div>
-            <Button
-                margins="mt-[138px] mb-[26px]"
-                onClick={() =>
-                    navigate("pickup-information", {
-                        state: { listing, name: listing.ProdName },
-                    })
-                }
+            <button
+                className="btn-purple-new mt-[138px] mb-[26px]"
+                onClick={handleCheckoutClick}
             >
                 Confirm
-            </Button>
+            </button>
         </div>
     );
 }

@@ -24,7 +24,7 @@ export default function ProductSection({
                 {listings?.map((listing, index) => {
                     return (
                         <ProductCard
-                            key={listing.Id}
+                            key={listing.id}
                             {...listing}
                             lastchild={index === 2}
                         />
