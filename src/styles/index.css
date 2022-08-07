@@ -7,7 +7,7 @@
     }
 
     h1 {
-        @apply text-lg;
+        @apply text-lg-36 lg:text-lg;
     }
 
     label {

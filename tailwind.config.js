@@ -44,6 +44,7 @@ module.exports = {
             "sm-16": "1rem",
             "sm-17": "1.0625rem",
             base: "1.25rem",
+            "base-lg": "1.75rem",
             "lg-36": "2.25rem",
             lg: "2.5rem",
             inherit: "inherit",
