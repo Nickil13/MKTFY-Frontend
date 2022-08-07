@@ -10,6 +10,7 @@ module.exports = {
             lg: "800px",
             xlg: "1200px",
             "2xl": "1440px",
+            "3xl": "1700px",
         },
         colors: {
             green: "#6CC04B",

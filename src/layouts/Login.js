@@ -25,6 +25,8 @@ export default function Login() {
         If so and the modal is not showing, show it.*/
         if (location.pathname.length > 1 && !showModal) {
             setShowModal(true);
+        } else if (location.pathname.length === 1 && showModal) {
+            setShowModal(false);
         }
     }, [location, error]);
 

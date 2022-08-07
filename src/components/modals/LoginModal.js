@@ -55,15 +55,13 @@ export default function LoginModal() {
                         I forgot my password
                     </Link>
                 </div>
-                <Button
+                <button
                     type="submit"
-                    color="gold"
-                    margins="mt-15"
-                    centered
+                    className="btn-gold-new mt-15 max-w-btn mx-auto"
                     disabled={!email || emailError || !password}
                 >
                     Login
-                </Button>
+                </button>
             </form>
         </ModalWrapper>
     );
