@@ -3,12 +3,7 @@ import { ProductCard } from ".";
 import { Link } from "react-router-dom";
 import { getListings } from "../actions/listings";
 
-export default function ProductSection({
-    title,
-    category,
-    cardLimit,
-    margins,
-}) {
+export default function ProductSection({ title, category, cardLimit }) {
     const [listings, setListings] = useState([]);
 
     React.useEffect(() => {
@@ -18,17 +13,11 @@ export default function ProductSection({
     }, [category, cardLimit]);
 
     return (
-        <section className={`home-section ${margins}`}>
+        <section className="relative px-5 py-10 bg-white rounded xlg:h-section 2xl:h-auto 2xl:first:mb-0 w-full first:mb-5 2xl:first:mr-5">
             <h2 className="text-base font-semibold">{title}</h2>
-            <div className="flex flex-wrap bg-white pb-5 pt-12 px-[10px]">
-                {listings?.map((listing, index) => {
-                    return (
-                        <ProductCard
-                            key={listing.id}
-                            {...listing}
-                            lastchild={index === 2}
-                        />
-                    );
+            <div className="flex flex-wrap gap-5 bg-white pb-16 pt-12 px-[10px]">
+                {listings?.map((listing) => {
+                    return <ProductCard key={listing.id} {...listing} />;
                 })}
             </div>
             <Link

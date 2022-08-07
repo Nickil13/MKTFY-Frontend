@@ -1,3 +1,5 @@
+const plugin = require("tailwindcss/plugin");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: ["./src/**/*.js"],
@@ -103,8 +105,13 @@ module.exports = {
             },
             backgroundPosition: {
                 "cloud-position": "50% 20%",
+                "banner-position": "10% 20%",
             },
         },
     },
-    plugins: [],
+    plugins: [
+        plugin(function ({ addVariant }) {
+            addVariant("not-last", ["&:not(:last-child)"]);
+        }),
+    ],
 };

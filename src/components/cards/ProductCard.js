@@ -1,11 +1,9 @@
 import React from "react";
 
-export default function ProductCard({ images, prodName, lastchild }) {
+export default function ProductCard({ images, prodName }) {
     return (
         <div
-            className={`min-w-card  max-w-card h-card-img ${
-                !lastchild && "mr-[20px]"
-            } rounded-xl overflow-hidden shadow-card`}
+            className={`min-w-card w-full md:max-w-card h-card-img  rounded-xl overflow-hidden shadow-card`}
         >
             <img
                 className="object-cover w-full h-full"
