@@ -81,12 +81,12 @@ export default function Listings() {
                                         return (
                                             <ListingCard
                                                 {...listing}
-                                                key={listing.Id}
+                                                key={listing.id}
                                                 onClick={() =>
                                                     handleCardClick(
-                                                        listing.Id,
-                                                        listing.Category,
-                                                        listing.ProdName
+                                                        listing.id,
+                                                        listing.category,
+                                                        listing.prodName
                                                     )
                                                 }
                                             />

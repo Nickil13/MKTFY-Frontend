@@ -2,12 +2,12 @@ import React from "react";
 import { formatPrice } from "../../utils/helpers";
 
 export default function ListingCard({
-    ProdName,
-    Category,
-    Images,
-    Price,
-    Condition,
-    Description,
+    prodName,
+    category,
+    images,
+    price,
+    condition,
+    description,
     onClick,
 }) {
     return (
@@ -19,21 +19,21 @@ export default function ListingCard({
                 <img
                     className="
                                 object-cover w-full h-full"
-                    src={Images[0]}
-                    alt={ProdName}
+                    src={images[0]}
+                    alt={prodName}
                 />
             </div>
             <div className="ml-12">
                 <div className="text-base mb-5">
-                    <h2>{ProdName}</h2>
-                    <p className="capitalize">{Category}</p>
+                    <h2>{prodName}</h2>
+                    <p className="capitalize">{category}</p>
                 </div>
 
                 <p className="text-purple-500 text-base font-bold">
-                    {formatPrice(Price)}
+                    {formatPrice(price)}
                 </p>
-                <span className="inline-block condition-tag">{Condition}</span>
-                <p className="text-[18px]">{Description}</p>
+                <span className="inline-block condition-tag">{condition}</span>
+                <p className="text-[18px]">{description}</p>
             </div>
         </div>
     );
