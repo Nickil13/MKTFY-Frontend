@@ -69,6 +69,7 @@ module.exports = {
             height: {
                 footer: "615px",
                 nav: "191px",
+                "mobile-nav": "221px",
                 section: "480px",
                 card: "351px",
                 "card-img": "264px",
@@ -81,6 +82,7 @@ module.exports = {
                 15: "60px",
                 footer: "615px",
                 nav: "191px",
+                "mobile-nav": "221px",
             },
             minHeight: {
                 "listing-card": "312px",

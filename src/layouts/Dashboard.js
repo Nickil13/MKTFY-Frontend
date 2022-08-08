@@ -12,7 +12,7 @@ export default function Dashboard() {
     return (
         <div className="relative min-h-screen pb-footer">
             <Navbar />
-            <main className="relative bg-gray-cloud-gray min-h-screen pt-nav">
+            <main className="relative bg-gray-cloud-gray min-h-screen pt-mobile-nav 2xl:pt-nav">
                 <div className="min-h-screen bg-gray-clouds bg-cover bg-fixed bg-center bg-no-repeat pt-8 pb-32 px-10 2xl:px-[142px]">
                     <BreadCrumbs crumbs={crumbs} />
                     <Outlet />
