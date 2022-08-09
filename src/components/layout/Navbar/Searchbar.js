@@ -23,7 +23,7 @@ export default function Searchbar({ className }) {
 
     return (
         <div
-            className={`flex items-center bg-white h-[60px] rounded-lg xlg:mr-12 divide-x-2 divide-gray-100 3xl:w-[1012px] ${className}`}
+            className={`flex items-center bg-white h-[60px] rounded-lg divide-x-2 divide-gray-100 ${className}`}
         >
             <button
                 className="px-12 text-gray-600"
@@ -58,8 +58,8 @@ export default function Searchbar({ className }) {
             </form>
             <CityDropdown
                 className="hidden lg:block relative"
-                value={city}
-                setValue={setCity}
+                city={city}
+                setCity={setCity}
             />
         </div>
     );

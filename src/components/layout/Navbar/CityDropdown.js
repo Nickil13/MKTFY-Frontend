@@ -4,7 +4,12 @@ import { ReactComponent as DropdownArrow } from "../../../assets/images/dropdown
 import { ReactComponent as SearchIcon } from "../../../assets/images/search-24px.svg";
 import { CITY_OPTIONS } from "../../../data/variables";
 
-export default function CityDropdown({ className, city, setCity, textColor }) {
+export default function CityDropdown({
+    className,
+    city,
+    setCity,
+    buttonClassName,
+}) {
     const [showing, setShowing] = useState(false);
 
     const handleDropdownClick = (cityName) => {
@@ -51,9 +56,7 @@ export default function CityDropdown({ className, city, setCity, textColor }) {
                 </div>
             </Dropdown>
             <button
-                className={`flex items-center px-8 ${
-                    textColor ? textColor : "text-gray-600"
-                }  text-base w-[172px]`}
+                className={`flex items-center px-8 text-gray-600 text-base w-[172px] ${buttonClassName}`}
                 onClick={() => setShowing(true)}
             >
                 <DropdownArrow className="fill-gray-500" />

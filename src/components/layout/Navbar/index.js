@@ -26,31 +26,29 @@ export default function Navbar() {
 
     const checkSize = () => {
         const width = window.innerWidth;
-        if (width > MOBILE_WIDTH_BREAKPOINT) {
+        if (width >= MOBILE_WIDTH_BREAKPOINT) {
             setMobileWindowSize(false);
         } else {
             setMobileWindowSize(true);
         }
     };
     return (
-        <nav className="fixed top-0 w-full z-50 flex pt-5 lg:pt-0 justify-center lg:items-center h-mobile-nav 2xl:h-nav bg-purple-500 px-2">
+        <nav className="fixed top-0 w-full z-50 flex justify-center lg:items-center h-nav bg-purple-500 px-2">
             {/* Nav Container */}
-            <div className="relative flex flex-col max-w-[1645px] w-full pt-0 xlg:pt-8 2xl:pt-16 px-5 3xl:px-0">
-                <div className="flex flex-col items-center 2xl:flex-row justify-center">
-                    <div className="grid grid-rows-2 grid-flow-col xlg:flex items-center">
-                        {/* logo */}
-                        <Link to="/dashboard">
-                            <img
-                                className="row-start-1 col-start-1 mr-5"
-                                src={MktfyWordmark}
-                                alt="mktfy wordmark"
-                            />
-                        </Link>
+            <div className="relative flex flex-col max-w-[1645px] w-full pt-5 lg:pt-16 pb-5 px-5 3xl:px-0">
+                {/* Navbar top row */}
+                <div className="grid grid-flow-cols grid-rows-2 items-center lg:justify-center w-full xlg:w-[90%] mx-auto 2xl:w-full">
+                    {/* Logo, Searchbar, Mobile Menu Icon */}
+                    <Link
+                        to="/dashboard"
+                        className="row-start-1 col-start-1 mr-5"
+                    >
+                        <img src={MktfyWordmark} alt="mktfy wordmark" />
+                    </Link>
+                    <Searchbar className="flex-1 row-start-2 lg:row-start-1 col-span-3 lg:col-start-2 lg:col-end-2 max-w-[800px] 2xl:mr-14 3xl:w-[1012px] 3xl:max-w-[1012px]" />
+                    <MenuIcon className="ml-5 row-start-1 col-start-3 justify-self-end w-10 h-10 cursor-pointer 2xl:hidden" />
 
-                        {/* search bar */}
-                        <Searchbar className="row-start-2 col-span-2 xlg:w-4/5 flex-shrink" />
-                        <MenuIcon className="row-start-1 col-start-2 justify-self-end w-10 h-10 cursor-pointer 2xl:hidden" />
-                    </div>
+                    {/* User Menu, Notifications, Create Listing Button */}
                     <div className="hidden 2xl:flex">
                         <UserMenu />
                         <Notifications />
@@ -64,27 +62,26 @@ export default function Navbar() {
                             Create Listing
                         </button>
                     </div>
+                    {/* Categories Buttons */}
+                    {!mobileWindowSize && (
+                        <ul className="flex justify-center 2xl:justify-start gap-14 mt-5 row-start-2 mx-auto xlg:mx-0 2xl:col-start-2 col-span-3 2xl:col-span-2">
+                            {NAV_CATEGORIES.map((category, index) => {
+                                return (
+                                    <li
+                                        key={index}
+                                        className="text-white text-sm-17 font-semibold capitalize"
+                                    >
+                                        <Link to={`listings/${category}`}>
+                                            {category === "cars"
+                                                ? "cars & vehicles"
+                                                : category}
+                                        </Link>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    )}
                 </div>
-
-                {/* Categories Buttons */}
-                {!mobileWindowSize && (
-                    <ul className="flex flex-wrap gap-14 mt-6 mb-5 mx-auto 2xl:ml-36">
-                        {NAV_CATEGORIES.map((category, index) => {
-                            return (
-                                <li
-                                    key={index}
-                                    className="text-white text-sm-17 font-semibold capitalize"
-                                >
-                                    <Link to={`listings/${category}`}>
-                                        {category === "cars"
-                                            ? "cars & vehicles"
-                                            : category}
-                                    </Link>
-                                </li>
-                            );
-                        })}
-                    </ul>
-                )}
             </div>
             {mobileWindowSize && <MobileCategoriesMenu />}
         </nav>
