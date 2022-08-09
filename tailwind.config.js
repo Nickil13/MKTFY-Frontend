@@ -87,6 +87,9 @@ module.exports = {
             minHeight: {
                 "listing-card": "312px",
             },
+            maxHeight: {
+                menu: "calc(100vh - 225px)",
+            },
             minWidth: {
                 card: "236px",
             },
