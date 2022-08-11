@@ -8,7 +8,7 @@ export default function ActiveItems() {
     const [pendingListings, setPendingListings] = useState([]);
     const [availableListings, setAvailableListings] = useState([]);
     let navigate = useNavigate();
-
+    console.log(availableListings);
     React.useEffect(() => {
         getMyPendingListings().then((res) => setPendingListings(res));
         getMyActiveListings().then((res) => setAvailableListings(res));

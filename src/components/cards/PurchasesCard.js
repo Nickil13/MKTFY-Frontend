@@ -3,7 +3,8 @@ import { LISTING_STATUS } from "../../data/variables";
 import { formatPrice, formatDate } from "../../utils/helpers";
 
 export default function PurchasesCard({
-    images,
+    // images,
+    uploads,
     created,
     prodName,
     price,
@@ -22,7 +23,8 @@ export default function PurchasesCard({
             <div className="w-[350px] flex-shrink-0">
                 <img
                     className="w-full h-full object-cover"
-                    src={images?.length > 0 ? images[0] : ""}
+                    // src={images?.length > 0 ? images[0] : ""}
+                    src={uploads?.length > 0 ? uploads[0] : ""}
                     alt={prodName}
                 />
             </div>

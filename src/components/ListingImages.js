@@ -6,6 +6,7 @@ import { useModalContext } from "../context/ModalContext";
 
 export default function ListingImages({ images, handleRemoveImage }) {
     const { setShowModal } = useModalContext();
+
     return (
         <div className="flex flex-col items-center bg-white p-8">
             {/* Main Image */}
@@ -35,17 +36,39 @@ export default function ListingImages({ images, handleRemoveImage }) {
             )}
             {/* Other Images */}
             <div className="flex gap-5 mt-4">
-                <ImageSquare
+                {/* <ImageSquare
                     active={images.length > 0}
                     image={images.length > 0 && images[0]}
                     alt={"image"}
                     handleRemoveImage={handleRemoveImage}
                     handleAddImage={() => setShowModal(true)}
                     index={1}
+                /> */}
+                <ImageSquare
+                    active={images[1]}
+                    image={images[1]}
+                    handleRemoveImage={handleRemoveImage}
+                    handleAddImage={() => setShowModal(true)}
+                    index={1}
                 />
-                <ImageSquare handleAddImage={() => setShowModal(true)} />
-                <ImageSquare handleAddImage={() => setShowModal(true)} />
-                <ImageSquare handleAddImage={() => setShowModal(true)} />
+                <ImageSquare
+                    active={images[2]}
+                    image={images[2]}
+                    handleRemoveImage={handleRemoveImage}
+                    handleAddImage={() => setShowModal(true)}
+                />
+                <ImageSquare
+                    active={images[3]}
+                    image={images[3]}
+                    handleRemoveImage={handleRemoveImage}
+                    handleAddImage={() => setShowModal(true)}
+                />
+                <ImageSquare
+                    active={images[4]}
+                    image={images[4]}
+                    handleRemoveImage={handleRemoveImage}
+                    handleAddImage={() => setShowModal(true)}
+                />
             </div>
         </div>
     );

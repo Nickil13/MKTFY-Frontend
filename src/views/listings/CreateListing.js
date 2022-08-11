@@ -4,6 +4,8 @@ import { CATEGORY_TYPES, CITY_OPTIONS, CONDITIONS } from "../../data/variables";
 import { ListingInput } from "../../components/inputs";
 import { UploadImageModal } from "../../components/modals";
 import { useModalContext } from "../../context/ModalContext";
+import axios from "axios";
+import serviceAxios from "../../utils/request";
 
 export default function CreateListing() {
     const [name, setName] = useState("");
@@ -16,16 +18,70 @@ export default function CreateListing() {
     const [image, setImage] = useState(null);
     const [imageName, setImageName] = useState("");
     const { showModal } = useModalContext();
+    const [file, setFile] = useState(null);
+    const [imageId, setImageId] = useState("");
+    const [previewImages, setPreviewImages] = useState([]);
+    const [listingImages, setListingImages] = useState([]);
 
     const handleCreateListing = (e) => {
         e.preventDefault();
         console.log("Creating listing...");
+        uploadImage();
     };
 
-    const handleUploadImage = (uploadedImage, imageName) => {
-        console.log("Uploading image");
-        setImage(uploadedImage);
-        setImageName(imageName);
+    const uploadImage = async () => {
+        const token = sessionStorage.getItem("access_token");
+        const multipartHeader = {
+            headers: {
+                "Content-Type": "multipart/form-data",
+                Authorization: `Bearer ${token}`,
+            },
+        };
+
+        const body = new FormData();
+        body.append("File", file);
+        console.log(body);
+        await axios
+            .post(
+                "http://marketforyouyh-env.eba-fqgiudi2.ca-central-1.elasticbeanstalk.com/api/Upload",
+                body,
+                multipartHeader
+            )
+            .then((res) => {
+                const imageId = res.data[0].id;
+                console.log(imageId);
+                setImageId(imageId);
+                //Create the listing!
+                //createListing(imageId);
+            })
+            .catch((error) => {
+                console.error("There was an error!", error);
+            });
+    };
+
+    const createListing = async (id) => {
+        const body = {
+            prodName: "TeaTesting!",
+            description: "A soothing cup of tea.",
+            category: "electronics",
+            condition: "used",
+            price: 4.25,
+            address: "123 Relaxation Lane",
+            city: "Calgary",
+            uploadIds: [id],
+        };
+        console.log(body);
+        try {
+            const res = await serviceAxios.post("/Listing", body);
+            return res;
+        } catch (error) {
+            console.error("There was an error!", error);
+        }
+    };
+
+    const addFiles = (newListingImages, newPreviewImages) => {
+        setListingImages([...listingImages, ...newListingImages]);
+        setPreviewImages([...previewImages, ...newPreviewImages]);
     };
 
     const handleRemoveImage = (index) => {
@@ -39,7 +95,7 @@ export default function CreateListing() {
             <div className="flex rounded-10 shadow-modal overflow-hidden">
                 {/* Images */}
                 <ListingImages
-                    images={[]}
+                    images={previewImages}
                     handleRemoveImage={handleRemoveImage}
                 />
 
@@ -117,7 +173,7 @@ export default function CreateListing() {
                             padding="py-4"
                             margins="mb-5 mt-10"
                             fontSize="text-xs"
-                            disabled
+                            // disabled={!name || !description || !category || !condition || !price || !address || !city || !image}
                         >
                             Post Your Listing
                         </Button>
@@ -130,7 +186,7 @@ export default function CreateListing() {
             {/* Upload Image Modal */}
             {showModal && (
                 <div className="fixed flex items-center justify-center inset-0 bg-black bg-opacity-50 h-screen z-[70]">
-                    <UploadImageModal handleUploadImage={handleUploadImage} />
+                    <UploadImageModal addFiles={addFiles} />
                 </div>
             )}
         </div>

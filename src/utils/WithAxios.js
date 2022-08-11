@@ -12,6 +12,7 @@ export default function WithAxios({ children }) {
                 return response.data;
             },
             (error) => {
+                console.error(error);
                 // parseError(error.message );
                 const originalConfig = error.config;
                 if (
