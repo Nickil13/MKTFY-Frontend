@@ -6,7 +6,6 @@ import { useModalContext } from "../context/ModalContext";
 
 export default function ListingImages({ images, handleRemoveImage }) {
     const { setShowModal } = useModalContext();
-
     return (
         <div className="flex flex-col items-center bg-white p-8">
             {/* Main Image */}
@@ -20,7 +19,7 @@ export default function ListingImages({ images, handleRemoveImage }) {
                     </button>
                 </div>
             ) : (
-                <div className="relative flex items-center justify-center w-[480px] h-[320px]  border-[#7070704D] border rounded overflow-hidden">
+                <div className="relative flex items-center justify-center w-[480px] h-[320px] border-[#7070704D] border rounded overflow-hidden">
                     <img
                         className="h-full w-full object-cover"
                         src={images[0]}
@@ -36,42 +35,18 @@ export default function ListingImages({ images, handleRemoveImage }) {
             )}
             {/* Other Images */}
             <div className="flex gap-5 mt-4">
-                {/* <ImageSquare
-                    active={images.length > 0}
-                    image={images.length > 0 && images[0]}
-                    alt={"image"}
-                    handleRemoveImage={handleRemoveImage}
-                    handleAddImage={() => setShowModal(true)}
-                    index={1}
-                /> */}
-                <ImageSquare
-                    active={images[1]}
-                    image={images[1]}
-                    handleRemoveImage={handleRemoveImage}
-                    handleAddImage={() => setShowModal(true)}
-                    index={1}
-                />
-                <ImageSquare
-                    active={images[2]}
-                    image={images[2]}
-                    handleRemoveImage={handleRemoveImage}
-                    handleAddImage={() => setShowModal(true)}
-                    index={2}
-                />
-                <ImageSquare
-                    active={images[3]}
-                    image={images[3]}
-                    handleRemoveImage={handleRemoveImage}
-                    handleAddImage={() => setShowModal(true)}
-                    index={3}
-                />
-                <ImageSquare
-                    active={images[4]}
-                    image={images[4]}
-                    handleRemoveImage={handleRemoveImage}
-                    handleAddImage={() => setShowModal(true)}
-                    index={4}
-                />
+                {[...Array(4)].map((item, index) => {
+                    return (
+                        <ImageSquare
+                            active={images[index + 1]}
+                            image={images[index + 1]}
+                            handleRemoveImage={handleRemoveImage}
+                            handleAddImage={() => setShowModal(true)}
+                            index={index + 1}
+                            key={index}
+                        />
+                    );
+                })}
             </div>
         </div>
     );
