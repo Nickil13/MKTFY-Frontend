@@ -4,8 +4,6 @@ import Button from "../Button";
 import { useModalContext } from "../../context/ModalContext";
 
 export default function UploadImageModal({ addFiles }) {
-    const [imageName, setImageName] = useState("No File Chosen");
-    const [uploadedImage, setUploadedImage] = useState(null);
     const imageDrop = React.useRef(null);
     const { setShowModal } = useModalContext();
     const [previewImages, setPreviewImages] = useState([]);
@@ -15,50 +13,61 @@ export default function UploadImageModal({ addFiles }) {
         if (imageDrop.current !== null) {
             imageDrop.current.addEventListener("dragover", handleDragImage);
             imageDrop.current.addEventListener("drop", handleDropImage);
+
+            // return () => {
+            //     imageDrop.current.removeEventListener(
+            //         "dragover",
+            //         handleDragImage
+            //     );
+            //     imageDrop.current.removeEventListener("drop", handleDropImage);
+            // };
         }
-    }, []);
+    }, [previewImages]);
 
     const handleDragImage = (e) => {
-        e.stopPropagation();
         e.preventDefault();
+        e.stopPropagation();
+
         e.dataTransfer.dropEffect = "copy";
     };
 
     const handleDropImage = (e) => {
-        e.stopPropagation();
         e.preventDefault();
-
-        const fileList = e.dataTransfer.files;
-        if (fileList[0]) {
-            setImageName(fileList[0].name);
-            readImage(fileList[0]);
+        e.stopPropagation();
+        console.log("dropping");
+        if (e.dataTransfer.files.length > 0) {
+            handleSelectImages(e.dataTransfer.files);
+        }
+    };
+    const handleSelectImages = (files) => {
+        const totalLength = listingImages.length + files.length;
+        if (files.length > 5 || totalLength > 5) {
+            console.log("Maximum 5 images");
+        } else {
+            let newListingImages = [];
+            let newPreviewImages = [];
+            for (let i = 0; i < files.length; i++) {
+                console.log(files.length);
+                try {
+                    const file = files[i];
+                    const preview = URL.createObjectURL(file);
+                    if (file.size > 2000000) {
+                        console.log("Image size must be smaller than 2mb");
+                    } else {
+                        newListingImages.push(file);
+                        newPreviewImages.push(preview);
+                    }
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+            setListingImages([...listingImages, ...newListingImages]);
+            setPreviewImages([...previewImages, ...newPreviewImages]);
         }
     };
     const handleSelectImage = (e) => {
         if (e.target.files.length > 0) {
-            if (listingImages.length >= 5) {
-                console.log("Maximum 5 images");
-            } else {
-                let newListingImages = [];
-                let newPreviewImages = [];
-                for (let i = 0; i < e.target.files.length; i++) {
-                    console.log(e.target.files.length);
-                    try {
-                        const file = e.target.files[i];
-                        const preview = URL.createObjectURL(file);
-                        if (file.size > 2000000) {
-                            console.log("Image size must be smaller than 2mb");
-                        } else {
-                            newListingImages.push(file);
-                            newPreviewImages.push(preview);
-                        }
-                    } catch (error) {
-                        console.error(error);
-                    }
-                }
-                setListingImages([...listingImages, ...newListingImages]);
-                setPreviewImages([...previewImages, ...newPreviewImages]);
-            }
+            handleSelectImages(e.target.files);
         }
     };
 
@@ -67,18 +76,6 @@ export default function UploadImageModal({ addFiles }) {
         setShowModal(false);
         // Send all preview images and listing image files to the Create Listing Page
         addFiles(listingImages, previewImages);
-    };
-
-    const readImage = (file) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-            let result = reader.result;
-            setUploadedImage(result);
-            if (imageDrop.current) {
-                imageDrop.current.style.backgroundImage = `url(${result})`;
-            }
-        };
     };
 
     return (
@@ -114,11 +111,8 @@ export default function UploadImageModal({ addFiles }) {
                 <div
                     className={`grid grid-rows-1 grid-flow-col ${
                         previewImages.length > 3 && "grid-rows-2 auto-cols-fr"
-                    } border-gray-100 rounded text-lg font-bold h-[386px] ${
-                        uploadedImage
-                            ? "bg-cover border m-0.5 text-transparent"
-                            : "border-4 border-dashed text-[#888889]/80"
-                    }`}
+                    } border-gray-100 rounded text-lg font-bold h-[386px]
+                        border-4 border-dashed text-[#888889]/80`}
                     ref={imageDrop}
                 >
                     {previewImages.length > 0

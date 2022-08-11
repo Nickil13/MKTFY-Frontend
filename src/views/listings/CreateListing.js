@@ -4,78 +4,65 @@ import { CATEGORY_TYPES, CITY_OPTIONS, CONDITIONS } from "../../data/variables";
 import { ListingInput } from "../../components/inputs";
 import { UploadImageModal } from "../../components/modals";
 import { useModalContext } from "../../context/ModalContext";
-import axios from "axios";
-import serviceAxios from "../../utils/request";
+import axios from "../../utils/request";
 
 export default function CreateListing() {
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [category, setCategory] = useState("");
-    const [condition, setCondition] = useState("");
-    const [price, setPrice] = useState("");
-    const [address, setAddress] = useState("");
-    const [city, setCity] = useState("");
-    const [image, setImage] = useState(null);
-    const [imageName, setImageName] = useState("");
+    const [prodName, setProdName] = useState("Test listing");
+    const [description, setDescription] = useState("This is a test.");
+    const [category, setCategory] = useState("electronics");
+    const [condition, setCondition] = useState("new");
+    const [price, setPrice] = useState("100.00");
+    const [address, setAddress] = useState("123 Street");
+    const [city, setCity] = useState("Calgary");
     const { showModal } = useModalContext();
-    const [file, setFile] = useState(null);
-    const [imageId, setImageId] = useState("");
     const [previewImages, setPreviewImages] = useState([]);
     const [listingImages, setListingImages] = useState([]);
+
+    const token = sessionStorage.getItem("access_token");
+    const multipartHeader = {
+        headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+        },
+    };
 
     const handleCreateListing = (e) => {
         e.preventDefault();
         console.log("Creating listing...");
-        uploadImage();
-    };
-
-    const uploadImage = async () => {
-        const token = sessionStorage.getItem("access_token");
-        const multipartHeader = {
-            headers: {
-                "Content-Type": "multipart/form-data",
-                Authorization: `Bearer ${token}`,
-            },
-        };
-
-        const body = new FormData();
-        body.append("File", file);
-        console.log(body);
-        await axios
-            .post(
-                "http://marketforyouyh-env.eba-fqgiudi2.ca-central-1.elasticbeanstalk.com/api/Upload",
-                body,
-                multipartHeader
-            )
-            .then((res) => {
-                const imageId = res.data[0].id;
-                console.log(imageId);
-                setImageId(imageId);
-                //Create the listing!
-                //createListing(imageId);
-            })
-            .catch((error) => {
-                console.error("There was an error!", error);
-            });
-    };
-
-    const createListing = async (id) => {
-        const body = {
-            prodName: "TeaTesting!",
-            description: "A soothing cup of tea.",
-            category: "electronics",
-            condition: "used",
-            price: 4.25,
-            address: "123 Relaxation Lane",
-            city: "Calgary",
-            uploadIds: [id],
-        };
-        console.log(body);
         try {
-            const res = await serviceAxios.post("/Listing", body);
-            return res;
+            if (listingImages.length > 0) {
+                let apicalls = [];
+                listingImages.forEach((image) => {
+                    let body = new FormData();
+                    body.append("File", image);
+                    apicalls.push(axios.post("/Upload", body, multipartHeader));
+                });
+
+                Promise.all(apicalls)
+                    .then((values) => {
+                        const imageIds = values.map((value) => value[0].id);
+                        const body = {
+                            prodName,
+                            description,
+                            category,
+                            condition,
+                            price: Number(price),
+                            address,
+                            city,
+                            uploadIds: [...imageIds],
+                        };
+
+                        axios
+                            .post("/Listing", body)
+                            .then((res) => console.log(res))
+                            .catch((error) => console.error(error));
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            }
         } catch (error) {
-            console.error("There was an error!", error);
+            console.error(error);
         }
     };
 
@@ -85,8 +72,16 @@ export default function CreateListing() {
     };
 
     const handleRemoveImage = (index) => {
-        console.log(`Removing image at index: ${index}`);
+        const newPreviews = previewImages.filter(
+            (preview) => previewImages.indexOf(preview) !== index
+        );
+        const newListingImages = listingImages.filter(
+            (image) => listingImages.indexOf(image) !== index
+        );
+        setPreviewImages(newPreviews);
+        setListingImages(newListingImages);
     };
+
     return (
         <div className="mt-7 max-w-[1448px]">
             <h1 className="text-gray-500 font-bold text-lg mb-8">
@@ -107,8 +102,8 @@ export default function CreateListing() {
                     >
                         <ListingInput
                             name="product name"
-                            value={name}
-                            setValue={setName}
+                            value={prodName}
+                            setValue={setProdName}
                         />
 
                         <div className="input-control mb-[18px]">
@@ -173,7 +168,16 @@ export default function CreateListing() {
                             padding="py-4"
                             margins="mb-5 mt-10"
                             fontSize="text-xs"
-                            // disabled={!name || !description || !category || !condition || !price || !address || !city || !image}
+                            disabled={
+                                !prodName ||
+                                !description ||
+                                !category ||
+                                !condition ||
+                                !price ||
+                                !address ||
+                                !city ||
+                                listingImages.length === 0
+                            }
                         >
                             Post Your Listing
                         </Button>

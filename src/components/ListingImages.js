@@ -56,18 +56,21 @@ export default function ListingImages({ images, handleRemoveImage }) {
                     image={images[2]}
                     handleRemoveImage={handleRemoveImage}
                     handleAddImage={() => setShowModal(true)}
+                    index={2}
                 />
                 <ImageSquare
                     active={images[3]}
                     image={images[3]}
                     handleRemoveImage={handleRemoveImage}
                     handleAddImage={() => setShowModal(true)}
+                    index={3}
                 />
                 <ImageSquare
                     active={images[4]}
                     image={images[4]}
                     handleRemoveImage={handleRemoveImage}
                     handleAddImage={() => setShowModal(true)}
+                    index={4}
                 />
             </div>
         </div>
