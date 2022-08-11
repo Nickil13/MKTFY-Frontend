@@ -38,11 +38,9 @@ export default function ListingImages({ images, handleRemoveImage }) {
                 {[...Array(4)].map((item, index) => {
                     return (
                         <ImageSquare
-                            active={images[index + 1]}
                             image={images[index + 1]}
-                            handleRemoveImage={handleRemoveImage}
+                            onClick={() => handleRemoveImage(index + 1)}
                             handleAddImage={() => setShowModal(true)}
-                            index={index + 1}
                             key={index}
                         />
                     );
