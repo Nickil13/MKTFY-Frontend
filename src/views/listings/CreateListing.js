@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, ListingImages, Select } from "../../components";
 import { CATEGORY_TYPES, CITY_OPTIONS, CONDITIONS } from "../../data/variables";
-import { ListingInput } from "../../components/inputs";
+import { ListingInput, PriceInput } from "../../components/inputs";
 import { UploadImageModal } from "../../components/modals";
 import { useModalContext } from "../../context/ModalContext";
 import axios from "../../utils/request";
@@ -149,13 +149,7 @@ export default function CreateListing() {
                                 phcolor="text-[#2A2E43]/50"
                                 styleClass="listing-input-style"
                             />
-                            <ListingInput
-                                name="price"
-                                value={price}
-                                setValue={setPrice}
-                                placeholder="Type the price"
-                                lastchild
-                            />
+                            <PriceInput value={price} setValue={setPrice} />
                         </div>
                         <ListingInput
                             name="address"

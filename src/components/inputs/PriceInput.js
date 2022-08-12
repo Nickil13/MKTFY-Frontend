@@ -7,7 +7,11 @@ export default function PriceInput({ name, value, setValue }) {
                 {name}
             </label>
             <div className="relative">
-                <span className="absolute top-1/2 -translate-y-1/2 pl-5 text-xs">
+                <span
+                    className={`absolute top-1/2 -translate-y-1/2 pl-5 text-xs ${
+                        !value && "hidden"
+                    }`}
+                >
                     $
                 </span>
                 <input

@@ -150,20 +150,22 @@ export default function UploadImageModal({ addFiles, listingImages }) {
                         border-4 border-dashed text-[#888889]/80`}
                     ref={imageDrop}
                 >
-                    {previews.length > 0
-                        ? previews.map((preview, index) => {
-                              return (
-                                  <img
-                                      src={preview}
-                                      className="h-full w-full object-cover"
-                                      alt="preview"
-                                      key={index}
-                                  />
-                              );
-                          })
-                        : `Drop files here`}
+                    {previews.length > 0 ? (
+                        previews.map((preview, index) => {
+                            return (
+                                <img
+                                    src={preview}
+                                    className="h-full w-full object-cover"
+                                    alt="preview"
+                                    key={index}
+                                />
+                            );
+                        })
+                    ) : (
+                        <p className="my-auto mx-auto">Drop files here</p>
+                    )}
                 </div>
-                <div className="py-1">
+                <div className="py-1 h-[20px]">
                     <p
                         className={`text-red ${
                             formatError ? "block" : "hidden"
