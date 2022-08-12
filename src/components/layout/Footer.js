@@ -9,10 +9,10 @@ export default function Footer() {
             {/* Background overlay with gradient */}
             <div className="absolute inset-0 bg-gradient-to-b  from-[#000000] h-full"></div>
             <div className="absolute flex flex-col inset-0 bg-[#000000]/70 h-full ">
-                <div className="px-32 pt-28 flex-grow">
-                    <div className="flex gap-1">
+                <div className="px-10 lg:px-32 pt-28 flex-grow">
+                    <div className="flex flex-col lg:flex-row gap-1">
                         {/* Logo & motto*/}
-                        <div className="w-footer-column mr-40">
+                        <div className="lg:w-footer-column lg:mr-40">
                             <img
                                 className="w-36 mb-11"
                                 src={MktfyWordmark}
@@ -26,36 +26,45 @@ export default function Footer() {
                             </p>
                         </div>
                         {/*Sitemap */}
-                        <div className="w-footer-column mt-16">
-                            <h2 className="text-base font-semibold text-white mb-11">
-                                Jump To
-                            </h2>
-                            <ul className="text-white text-sm-17">
-                                {FOOTER_LINKS.map(({ name, path }, index) => {
-                                    return (
-                                        <li className="mb-7" key={index}>
-                                            <Link to={path}>{name}</Link>
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                        </div>
+                        <div className="flex">
+                            <div className="w-footer-column mt-16">
+                                <h2 className="text-base font-semibold text-white mb-11">
+                                    Jump To
+                                </h2>
+                                <ul className="text-white text-sm-17">
+                                    {FOOTER_LINKS.map(
+                                        ({ name, path }, index) => {
+                                            return (
+                                                <li
+                                                    className="mb-7"
+                                                    key={index}
+                                                >
+                                                    <Link to={path}>
+                                                        {name}
+                                                    </Link>
+                                                </li>
+                                            );
+                                        }
+                                    )}
+                                </ul>
+                            </div>
 
-                        {/* Contact info/location*/}
-                        <div className="w-footer-column mt-16">
-                            <h2 className="text-base font-semibold text-white mb-11">
-                                MKTFY
-                            </h2>
-                            <ul className="text-white text-sm-17">
-                                <li className="mb-7 text-gold-200">
-                                    <Link to="/contact-us">Contact Us</Link>
-                                </li>
-                                <li className="mb-7">+1 888 345 6789</li>
-                                <li className="mb-7">
-                                    Suite 9, 123 1st Street SW, Calgary, Alberta
-                                    T2T 7F7
-                                </li>
-                            </ul>
+                            {/* Contact info/location*/}
+                            <div className="w-footer-column mt-16">
+                                <h2 className="text-base font-semibold text-white mb-11">
+                                    MKTFY
+                                </h2>
+                                <ul className="text-white text-sm-17">
+                                    <li className="mb-7 text-gold-200">
+                                        <Link to="/contact-us">Contact Us</Link>
+                                    </li>
+                                    <li className="mb-7">+1 888 345 6789</li>
+                                    <li className="mb-7">
+                                        Suite 9, 123 1st Street SW, Calgary,
+                                        Alberta T2T 7F7
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -3,9 +3,11 @@ import FilterItem from "./FilterItem";
 import { CATEGORY_TYPES, CITY_OPTIONS, CONDITIONS } from "../../data/variables";
 import CategoryFilterItem from "./CategoryFilterItem";
 
-export default function Sidebar() {
+export default function Sidebar({ className }) {
     return (
-        <div className="bg-white w-[387px] mr-5 rounded flex-shrink-0 mb-auto divide-y divide-gray-100 text-gray-500">
+        <div
+            className={`bg-white w-[387px] mr-5 rounded flex-shrink-0 mb-auto divide-y divide-gray-100 text-gray-500 ${className}`}
+        >
             {/* Category */}
             <div className="divide-y divide-gray-100 py-[22px]">
                 <div>

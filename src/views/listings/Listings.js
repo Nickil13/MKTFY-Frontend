@@ -45,7 +45,7 @@ export default function Listings() {
     return (
         <div>
             <div className="mt-11">
-                <div className="flex items-center justify-between mb-15">
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-15">
                     {category ? (
                         <h1 className="text-lg text-gray-600 font-bold">
                             Popular
@@ -62,7 +62,7 @@ export default function Listings() {
                             {searchParams?.get("city") || "Calgary"}
                         </h1>
                     )}
-                    <div>
+                    <div className="mt-2 lg:mt-0">
                         <span className="text-base">
                             Showing 10 of 100 results
                         </span>
@@ -71,7 +71,7 @@ export default function Listings() {
 
                 <div className="flex">
                     {/* Sidebar - Category, Location, Condition, Price */}
-                    <Sidebar />
+                    <Sidebar className="hidden xlg:block" />
                     {/* Listings */}
                     {listings.length > 0 ? (
                         <div className="flex-grow">

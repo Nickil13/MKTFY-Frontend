@@ -12,18 +12,17 @@ export default function ListingCard({
 }) {
     return (
         <div
-            className="flex py-6 px-14 min-h-listing-card cursor-pointer"
+            className="flex flex-col lg:flex-row py-6 px-8 lg:px-14 min-h-listing-card cursor-pointer"
             onClick={onClick}
         >
-            <div className="max-w-card min-w-card h-card-img shadow-card rounded-lg overflow-hidden">
+            <div className="w-full flex-shrink-0 h-card-img shadow-card rounded-lg overflow-hidden lg:max-w-card">
                 <img
-                    className="
-                                object-cover w-full h-full"
+                    className="object-cover w-full h-full"
                     src={images.length > 0 && images[0]}
                     alt={prodName}
                 />
             </div>
-            <div className="ml-12">
+            <div className="mt-12 lg:mt-0 lg:ml-12">
                 <div className="text-base mb-5">
                     <h2>{prodName}</h2>
                     <p className="capitalize">{category}</p>
