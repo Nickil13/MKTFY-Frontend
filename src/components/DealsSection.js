@@ -16,7 +16,7 @@ export default function DealsSection({ title, category }) {
     }, []);
 
     return (
-        <section className="home-section">
+        <section className="relative px-5 p-7 bg-white rounded h-section">
             <h2 className="text-base font-semibold">{title}</h2>
             {listings.length > 0 ? (
                 <ScrollBox>

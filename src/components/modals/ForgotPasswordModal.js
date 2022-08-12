@@ -26,11 +26,11 @@ export default function ForgotPasswordModal() {
     };
     return (
         <ModalWrapper goBack portalModal>
-            <h1 className="text-purple-200 text-center font-bold mb-3">
+            <h1 className="text-purple-200 text-center font-bold mb-3 mt-5 lg:mt-0">
                 Forgot Your Password?
             </h1>
-            <div className="max-w-input mx-auto">
-                <p className="modal-text mb-15 max-w-input">
+            <div className="max-w-input mx-auto w-full">
+                <p className="text-sm-17 lg:text-base font-semibold text-gray-300 mb-15 max-w-input">
                     It's okay, these things happen. Please enter your email in
                     the field below. We will send you an email to reset your
                     password.
@@ -49,14 +49,13 @@ export default function ForgotPasswordModal() {
                         errorMessage
                         lastchild
                     />
-                    <Button
+                    <button
                         type="submit"
+                        className="btn-purple-new mt-15 mx-auto max-w-btn"
                         disabled={!email || emailError}
-                        margins="mt-15"
-                        centered
                     >
                         Submit
-                    </Button>
+                    </button>
                 </form>
             </div>
         </ModalWrapper>

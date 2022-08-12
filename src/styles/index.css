@@ -7,7 +7,7 @@
     }
 
     h1 {
-        @apply text-lg;
+        @apply text-lg-36 lg:text-lg;
     }
 
     label {
@@ -39,6 +39,9 @@
     .btn-gold {
         @apply btn bg-gold-200 hover:bg-gold-100;
     }
+    .btn-gold-new {
+        @apply new-btn bg-gold-200 hover:bg-gold-100;
+    }
     .btn-transparent {
         @apply btn bg-transparent text-[#969696] border border-[#969696] shadow-none;
     }
@@ -49,9 +52,7 @@
     .modal-text {
         @apply text-base font-semibold text-gray-300;
     }
-    .home-section {
-        @apply relative px-5 p-7 bg-white rounded h-section;
-    }
+
     .condition-tag {
         @apply text-purple-500 font-semibold text-xs text-center rounded bg-purple-50 px-[6px] py-[1px] my-4 uppercase;
     }

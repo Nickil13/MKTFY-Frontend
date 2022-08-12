@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ReactComponent as DropdownArrow } from "../assets/images/dropdown.svg";
-import { ReactComponent as SignoutIcon } from "../assets/images/exit_to_app-24px.svg";
-import { useUserContext } from "../context/UserContext";
-import { USER_MENU_LINKS } from "../data/variables";
-import Dropdown from "./Dropdown";
+import { ReactComponent as DropdownArrow } from "../../../assets/images/dropdown.svg";
+import { ReactComponent as SignoutIcon } from "../../../assets/images/exit_to_app-24px.svg";
+import { useUserContext } from "../../../context/UserContext";
+import { USER_MENU_LINKS } from "../../../data/variables";
+import Dropdown from "../../Dropdown";
 
 export default function UserMenu() {
     const [userMenuShowing, setUserMenuShowing] = useState(true);

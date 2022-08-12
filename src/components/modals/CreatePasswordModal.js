@@ -54,12 +54,12 @@ export default function CreatePasswordModal() {
                 <h1 className="text-purple-200 text-center font-bold mb-3">
                     Create Password
                 </h1>
-                <p className="modal-text mb-6">
+                <p className="text-sm-17 lg:text-base font-semibold text-gray-300 mb-6 text-center">
                     The password must have at least 6 characters and must
                     contain 1 uppercase and 1 number.
                 </p>
                 <form
-                    className="w-full flex flex-col content-center"
+                    className="w-full flex flex-col max-w-input mx-auto"
                     onSubmit={handleSubmit}
                 >
                     <div className="relative">
@@ -97,12 +97,12 @@ export default function CreatePasswordModal() {
                         <PasswordRequirement requirement={hasUppercase}>
                             1 Uppercase
                         </PasswordRequirement>
-                        <PasswordRequirement requirement={hasNumber}>
+                        <PasswordRequirement requirement={hasNumber} lastchild>
                             1 Number
                         </PasswordRequirement>
                     </div>
 
-                    <div className="flex mt-15">
+                    <div className="flex mt-6 xlg:mt-15">
                         <div className="mr-2">
                             <label
                                 className={`block w-6 h-6  border-2 rounded-sm font-semibold border-purple-100 ${
@@ -139,17 +139,15 @@ export default function CreatePasswordModal() {
                             </Link>
                         </p>
                     </div>
-
-                    <Button
+                    <button
                         type="submit"
-                        margins="mt-10"
-                        centered
+                        className="btn-purple-new mt-8 mx-auto"
                         disabled={
                             !criteriaMet || !agreedToToS || !passwordsMatching
                         }
                     >
                         Create Account
-                    </Button>
+                    </button>
                 </form>
                 {error && (
                     <Alert

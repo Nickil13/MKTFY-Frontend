@@ -12,6 +12,7 @@ export default function Select({
     preselected,
     styleClass,
     margins,
+    className,
 }) {
     const [showOptions, setShowOptions] = useState(false);
     const select = useRef(null);
@@ -36,7 +37,7 @@ export default function Select({
     };
     return (
         <div
-            className={`relative ${styleClass} ${
+            className={`relative ${styleClass} ${className} ${
                 width === "1/2" ? "w-1/2" : "w-full"
             } ${margins}`}
             ref={select}

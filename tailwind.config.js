@@ -1,3 +1,5 @@
+const plugin = require("tailwindcss/plugin");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: ["./src/**/*.js"],
@@ -8,6 +10,7 @@ module.exports = {
             lg: "800px",
             xlg: "1200px",
             "2xl": "1440px",
+            "3xl": "1700px",
         },
         colors: {
             green: "#6CC04B",
@@ -44,6 +47,7 @@ module.exports = {
             "sm-16": "1rem",
             "sm-17": "1.0625rem",
             base: "1.25rem",
+            "base-lg": "1.75rem",
             "lg-36": "2.25rem",
             lg: "2.5rem",
             inherit: "inherit",
@@ -65,6 +69,7 @@ module.exports = {
             height: {
                 footer: "615px",
                 nav: "191px",
+                "mobile-nav": "290px",
                 section: "480px",
                 card: "351px",
                 "card-img": "264px",
@@ -77,6 +82,7 @@ module.exports = {
                 15: "60px",
                 footer: "615px",
                 nav: "191px",
+                "mobile-nav": "290px",
             },
             minHeight: {
                 "listing-card": "312px",
@@ -105,8 +111,13 @@ module.exports = {
             },
             backgroundPosition: {
                 "cloud-position": "50% 20%",
+                "banner-position": "10% 20%",
             },
         },
     },
-    plugins: [],
+    plugins: [
+        plugin(function ({ addVariant }) {
+            addVariant("not-last", ["&:not(:last-child)"]);
+        }),
+    ],
 };

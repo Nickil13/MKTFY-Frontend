@@ -19,7 +19,7 @@ export default function ListingCard({
                 <img
                     className="
                                 object-cover w-full h-full"
-                    src={images[0]}
+                    src={images.length > 0 && images[0]}
                     alt={prodName}
                 />
             </div>

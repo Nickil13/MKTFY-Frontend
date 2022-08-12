@@ -19,9 +19,9 @@ export default function FAQ() {
             <h1 className="text-gray-500 font-bold mb-8">
                 Frequently Asked Questions
             </h1>
-            <div className="flex max-w-[1448px] h-[856px] shadow modal bg-white rounded-10 overflow:hidden">
+            <div className="flex flex-col max-w-[1448px] h-[856px] shadow modal bg-white rounded-10 overflow:hidden xlg:flex-row">
                 {/* List of Questions */}
-                <ul className="flex-shrink-0 max-w-[544px] w-full">
+                <ul className="flex-shrink-0 xlg:max-w-[544px] w-full">
                     {FAQs?.length > 0 &&
                         FAQs.map((faq, index) => {
                             return (
@@ -33,14 +33,14 @@ export default function FAQ() {
                                     onClick={() => setActiveQIndex(index)}
                                 >
                                     {faq.title}
-                                    <RightArrow />
+                                    <RightArrow className="flex-shrink-0" />
                                 </li>
                             );
                         })}
                 </ul>
                 {/* Question description */}
-                <div className="bg-beige-200 p-10 rounded-tr-[10px] rounded-br-[10px] w-full">
-                    <h2 className="text-purple-500 text-lg-36 font-bold mb-5">
+                <div className="bg-beige-200 p-10 rounded-tr-[10px] rounded-br-[10px] w-full h-full">
+                    <h2 className="text-purple-500 text-base-lg xlg:text-lg-36 font-bold mb-5">
                         {FAQs?.length > 0 && FAQs[activeQIndex].title}
                     </h2>
                     <div className="text-gray-700 leading-7 text-[15px]">
