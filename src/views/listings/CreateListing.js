@@ -5,6 +5,7 @@ import { ListingInput } from "../../components/inputs";
 import { UploadImageModal } from "../../components/modals";
 import { useModalContext } from "../../context/ModalContext";
 import axios from "../../utils/request";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateListing() {
     const [prodName, setProdName] = useState("Test listing");
@@ -17,7 +18,7 @@ export default function CreateListing() {
     const { showModal } = useModalContext();
     const [previewImages, setPreviewImages] = useState([]);
     const [listingImages, setListingImages] = useState([]);
-
+    let navigate = useNavigate();
     const token = sessionStorage.getItem("access_token");
     const multipartHeader = {
         headers: {
@@ -28,7 +29,6 @@ export default function CreateListing() {
 
     const handleCreateListing = (e) => {
         e.preventDefault();
-        console.log("Creating listing...");
         try {
             if (listingImages.length > 0) {
                 let apicalls = [];
@@ -54,7 +54,14 @@ export default function CreateListing() {
 
                         axios
                             .post("/Listing", body)
-                            .then((res) => console.log(res))
+                            .then((res) => {
+                                if (res) {
+                                    //Successfully redirect via load screen to HOME
+                                    navigate("/loading", {
+                                        state: { redirect: "/dashboard" },
+                                    });
+                                }
+                            })
                             .catch((error) => console.error(error));
                     })
                     .catch((error) => {
@@ -190,7 +197,10 @@ export default function CreateListing() {
             {/* Upload Image Modal */}
             {showModal && (
                 <div className="fixed flex items-center justify-center inset-0 bg-black bg-opacity-50 h-screen z-[70]">
-                    <UploadImageModal addFiles={addFiles} />
+                    <UploadImageModal
+                        addFiles={addFiles}
+                        listingImages={listingImages}
+                    />
                 </div>
             )}
         </div>

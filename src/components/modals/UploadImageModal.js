@@ -3,26 +3,31 @@ import ModalWrapper from "./ModalWrapper";
 import Button from "../Button";
 import { useModalContext } from "../../context/ModalContext";
 
-export default function UploadImageModal({ addFiles }) {
+const MAX_FILE_SIZE = 1500000;
+const MAX_IMAGES = 5;
+const IMAGE_FORMATS = ["jpg", "png", "jpeg", "gif"];
+
+export default function UploadImageModal({ addFiles, listingImages }) {
     const imageDrop = React.useRef(null);
     const { setShowModal } = useModalContext();
-    const [previewImages, setPreviewImages] = useState([]);
-    const [listingImages, setListingImages] = useState([]);
+    const [previews, setPreviews] = useState([]);
+    const [images, setImages] = useState([]);
+    const [fileNames, setFileNames] = useState([]);
+    const [formatError, setFormatError] = useState("");
 
     useEffect(() => {
-        if (imageDrop.current !== null) {
-            imageDrop.current.addEventListener("dragover", handleDragImage);
-            imageDrop.current.addEventListener("drop", handleDropImage);
+        if (imageDrop && imageDrop.current) {
+            // Save the reference so that we don't get a null error when the component unmounts.
+            let drop = imageDrop.current;
+            drop.addEventListener("dragover", handleDragImage);
+            drop.addEventListener("drop", handleDropImage);
 
-            // return () => {
-            //     imageDrop.current.removeEventListener(
-            //         "dragover",
-            //         handleDragImage
-            //     );
-            //     imageDrop.current.removeEventListener("drop", handleDropImage);
-            // };
+            return () => {
+                drop.removeEventListener("dragover", handleDragImage);
+                drop.removeEventListener("drop", handleDropImage);
+            };
         }
-    }, [previewImages]);
+    }, [images]);
 
     const handleDragImage = (e) => {
         e.preventDefault();
@@ -34,35 +39,62 @@ export default function UploadImageModal({ addFiles }) {
     const handleDropImage = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        console.log("dropping");
         if (e.dataTransfer.files.length > 0) {
-            handleSelectImages(e.dataTransfer.files);
+            // Check to make sure files match required format jpg/jpeg/png/gif
+            let correctFormat = true;
+
+            for (let i = 0; i < e.dataTransfer.files.length; i++) {
+                const file = e.dataTransfer.files[i];
+                const fileType = file.name.split(".")[1];
+
+                if (!IMAGE_FORMATS.includes(fileType)) {
+                    console.log(`File type ${fileType} not supported.`);
+                    correctFormat = false;
+                }
+            }
+            if (correctFormat) {
+                handleSelectImages(e.dataTransfer.files);
+            } else {
+                setFormatError(
+                    "One or more of the files has an incorrect format. Accepted types: jpg, jpeg, png, gif"
+                );
+            }
         }
     };
     const handleSelectImages = (files) => {
-        const totalLength = listingImages.length + files.length;
-        if (files.length > 5 || totalLength > 5) {
-            console.log("Maximum 5 images");
+        /* Check how many images have already been selected, how many images are being added as files and how many images have already been passed to the parent component Create Listing */
+        const totalLength = images.length + files.length + listingImages.length;
+        formatError && setFormatError("");
+        if (files.length > MAX_IMAGES || totalLength > MAX_IMAGES) {
+            setFormatError(
+                `Maximum 5 images per listing${
+                    listingImages.length > 0
+                        ? `: Already added (${listingImages.length})`
+                        : ""
+                }`
+            );
         } else {
-            let newListingImages = [];
-            let newPreviewImages = [];
+            let newImages = [];
+            let newPreviews = [];
+            let newNames = [];
             for (let i = 0; i < files.length; i++) {
-                console.log(files.length);
                 try {
                     const file = files[i];
                     const preview = URL.createObjectURL(file);
-                    if (file.size > 2000000) {
-                        console.log("Image size must be smaller than 2mb");
+                    if (file.size > MAX_FILE_SIZE) {
+                        setFormatError("Image size must be smaller than 1.5mb");
                     } else {
-                        newListingImages.push(file);
-                        newPreviewImages.push(preview);
+                        newImages.push(file);
+                        newPreviews.push(preview);
+                        newNames.push(file.name);
                     }
                 } catch (error) {
                     console.error(error);
                 }
             }
-            setListingImages([...listingImages, ...newListingImages]);
-            setPreviewImages([...previewImages, ...newPreviewImages]);
+            setImages([...images, ...newImages]);
+            setPreviews([...previews, ...newPreviews]);
+            setFileNames([...fileNames, ...newNames]);
         }
     };
     const handleSelectImage = (e) => {
@@ -75,7 +107,7 @@ export default function UploadImageModal({ addFiles }) {
         e.preventDefault();
         setShowModal(false);
         // Send all preview images and listing image files to the Create Listing Page
-        addFiles(listingImages, previewImages);
+        addFiles(images, previews);
     };
 
     return (
@@ -95,7 +127,10 @@ export default function UploadImageModal({ addFiles }) {
                         Choose Files
                     </label>
                     <span className="text-gray-footer font-light text-base">
-                        {`${listingImages.length} Images Chosen`}
+                        {/* {`${images.length} Images Chosen`} */}
+                        {`${
+                            images.length > 1 ? `(${images.length})` : ""
+                        } ${fileNames.join(", ")}`}
                     </span>
                     <input
                         className="hidden"
@@ -110,13 +145,13 @@ export default function UploadImageModal({ addFiles }) {
 
                 <div
                     className={`grid grid-rows-1 grid-flow-col ${
-                        previewImages.length > 3 && "grid-rows-2 auto-cols-fr"
+                        previews.length > 3 && "grid-rows-2 auto-cols-fr"
                     } border-gray-100 rounded text-lg font-bold h-[386px]
                         border-4 border-dashed text-[#888889]/80`}
                     ref={imageDrop}
                 >
-                    {previewImages.length > 0
-                        ? previewImages.map((preview, index) => {
+                    {previews.length > 0
+                        ? previews.map((preview, index) => {
                               return (
                                   <img
                                       src={preview}
@@ -128,10 +163,19 @@ export default function UploadImageModal({ addFiles }) {
                           })
                         : `Drop files here`}
                 </div>
+                <div className="py-1">
+                    <p
+                        className={`text-red ${
+                            formatError ? "block" : "hidden"
+                        }`}
+                    >
+                        {formatError}
+                    </p>
+                </div>
                 <Button
                     type="submit"
-                    margins="mt-7"
-                    disabled={listingImages.length === 0}
+                    margins="mt-5"
+                    disabled={images.length === 0}
                     centered
                 >
                     Upload
