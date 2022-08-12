@@ -42,6 +42,9 @@
     .btn-gold-new {
         @apply new-btn bg-gold-200 hover:bg-gold-100;
     }
+    .btn-transparent-new {
+        @apply new-btn bg-transparent text-[#969696] border border-[#969696] shadow-none;
+    }
     .btn-transparent {
         @apply btn bg-transparent text-[#969696] border border-[#969696] shadow-none;
     }

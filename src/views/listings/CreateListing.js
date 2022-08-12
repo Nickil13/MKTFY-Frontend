@@ -94,7 +94,7 @@ export default function CreateListing() {
             <h1 className="text-gray-500 font-bold text-lg mb-8">
                 Create Listing
             </h1>
-            <div className="flex rounded-10 shadow-modal overflow-hidden">
+            <div className="flex flex-col rounded-10 shadow-modal overflow-hidden 2xl:flex-row">
                 {/* Images */}
                 <ListingImages
                     images={previewImages}
@@ -102,10 +102,10 @@ export default function CreateListing() {
                 />
 
                 {/* Product Info */}
-                <div className="w-[904px] bg-beige-200 p-8">
+                <div className="bg-beige-200 p-8 2xl:w-[904px]">
                     <form
                         onSubmit={handleCreateListing}
-                        className="max-w-[520px]"
+                        className="max-w-[520px] mx-auto"
                     >
                         <ListingInput
                             name="product name"
@@ -140,7 +140,7 @@ export default function CreateListing() {
                             styleClass="listing-input-style"
                             margins="mb-[18px]"
                         />
-                        <div className="grid grid-cols-2 gap-3 mt-4 mb-[18px]">
+                        <div className="grid md:grid-cols-2 gap-3 mt-4 mb-[18px]">
                             <Select
                                 name="condition"
                                 options={CONDITIONS}
@@ -164,11 +164,9 @@ export default function CreateListing() {
                             phcolor="text-[#2A2E43]/50"
                             styleClass="listing-input-style"
                         />
-                        <Button
+                        <button
                             type="submit"
-                            padding="py-4"
-                            margins="mb-5 mt-10"
-                            fontSize="text-xs"
+                            className="btn-purple-new py-4 text-xs mb-5 mt-10"
                             disabled={
                                 !prodName ||
                                 !description ||
@@ -181,13 +179,18 @@ export default function CreateListing() {
                             }
                         >
                             Post Your Listing
-                        </Button>
-                        <Button color="none" fontSize="text-xs" padding="py-4">
+                        </button>
+                        <button
+                            type="button"
+                            className="btn-transparent-new py-4 text-xs"
+                            onClick={() => navigate("/dashboard")}
+                        >
                             Cancel
-                        </Button>
+                        </button>
                     </form>
                 </div>
             </div>
+
             {/* Upload Image Modal */}
             {showModal && (
                 <div className="fixed flex items-center justify-center inset-0 bg-black bg-opacity-50 h-screen z-[70]">

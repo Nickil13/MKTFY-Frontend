@@ -35,7 +35,7 @@ export default function Navbar() {
     return (
         <nav className="fixed top-0 w-full z-50 flex justify-center lg:items-center h-nav bg-purple-500 px-2">
             {/* Nav Container */}
-            <div className="relative flex flex-col max-w-[1645px] w-full pt-5 lg:pt-16 pb-5 px-5 3xl:px-0">
+            <div className="relative flex flex-col max-w-desktop w-full pt-5 lg:pt-16 pb-5 px-5 3xl:px-0">
                 {/* Navbar top row */}
                 <div className="grid grid-flow-cols grid-rows-2 items-center lg:justify-center w-full xlg:w-[90%] mx-auto 2xl:w-full">
                     {/* Logo, Searchbar, Mobile Menu Icon */}

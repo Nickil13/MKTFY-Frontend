@@ -99,6 +99,7 @@ module.exports = {
                 "modal-lg": "1360px",
                 card: "236px",
                 btn: "345px",
+                desktop: "1645px",
             },
             borderRadius: {
                 10: "10px",

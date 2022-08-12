@@ -10,7 +10,7 @@ export default function ListingImages({ images, handleRemoveImage }) {
         <div className="flex flex-col items-center bg-white p-8">
             {/* Main Image */}
             {images.length === 0 ? (
-                <div className="flex items-center justify-center w-[480px] h-[320px] border-purple-500 border border-dashed rounded bg-beige-200">
+                <div className="flex items-center justify-center w-full md:w-[480px] h-[250px] md:h-[320px] border-purple-500 border border-dashed rounded bg-beige-200">
                     <button onClick={() => setShowModal(true)}>
                         <CameraIcon className="mx-auto mb-2 w-[42px] h-[38px]" />
                         <p className="text-xs text-purple-500">
@@ -19,7 +19,7 @@ export default function ListingImages({ images, handleRemoveImage }) {
                     </button>
                 </div>
             ) : (
-                <div className="relative flex items-center justify-center w-[480px] h-[320px] border-[#7070704D] border rounded overflow-hidden">
+                <div className="relative flex items-center justify-center w-full md:w-[480px] h-[250px] md:h-[320px] border-[#7070704D] border rounded overflow-hidden">
                     <img
                         className="h-full w-full object-cover"
                         src={images[0]}
@@ -34,7 +34,7 @@ export default function ListingImages({ images, handleRemoveImage }) {
                 </div>
             )}
             {/* Other Images */}
-            <div className="flex gap-5 mt-4">
+            <div className="flex flex-wrap justify-center items-center md:flex-nowrap gap-5 mt-4">
                 {[...Array(4)].map((item, index) => {
                     return (
                         <ImageSquare

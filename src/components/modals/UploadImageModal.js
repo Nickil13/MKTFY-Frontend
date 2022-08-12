@@ -111,7 +111,7 @@ export default function UploadImageModal({ addFiles, listingImages }) {
     };
 
     return (
-        <ModalWrapper maxWidth="max-w-[946px]" padding="px-28 py-15">
+        <ModalWrapper maxWidth="max-w-[946px]" padding="px-10 lg:px-28 py-15">
             <h1 className="text-purple-100 text-center font-bold mb-8">
                 Upload Photo(s)
             </h1>
@@ -120,18 +120,19 @@ export default function UploadImageModal({ addFiles, listingImages }) {
                 onSubmit={onSubmit}
             >
                 <div className="flex items-center mb-5">
-                    <label
-                        htmlFor="img"
-                        className="w-[256px] rounded border border-[#6B6B6C53] text-gray-footer text-base font-semibold text-center bg-[#8888892E] mr-5 cursor-pointer  py-1.5"
-                    >
-                        Choose Files
-                    </label>
-                    <span className="text-gray-footer font-light text-base">
-                        {/* {`${images.length} Images Chosen`} */}
-                        {`${
-                            images.length > 1 ? `(${images.length})` : ""
-                        } ${fileNames.join(", ")}`}
-                    </span>
+                    <div className="flex flex-col md:flex-row items-center">
+                        <label
+                            htmlFor="img"
+                            className="w-[200px] md:w-[256px] rounded border border-[#6B6B6C53] text-gray-footer text-base font-semibold text-center bg-[#8888892E] mr-5 mb-2 md:mb-0 cursor-pointer py-1.5"
+                        >
+                            Choose Files
+                        </label>
+                        <span className="text-gray-footer font-light text-base w-4/5 mx-auto md:w-full md:mx-0">
+                            {`${
+                                images.length > 1 ? `(${images.length})` : ""
+                            } ${fileNames.join(", ")}`}
+                        </span>
+                    </div>
                     <input
                         className="hidden"
                         type="file"
@@ -145,7 +146,8 @@ export default function UploadImageModal({ addFiles, listingImages }) {
 
                 <div
                     className={`grid grid-rows-1 grid-flow-col ${
-                        previews.length > 3 && "grid-rows-2 auto-cols-fr"
+                        previews.length > 3 &&
+                        "grid-rows-3 md:grid-rows-2 auto-cols-fr"
                     } border-gray-100 rounded text-lg font-bold h-[386px]
                         border-4 border-dashed text-[#888889]/80`}
                     ref={imageDrop}
