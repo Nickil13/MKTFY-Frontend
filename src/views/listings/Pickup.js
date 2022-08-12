@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
+import { getDummyListingById } from "../../actions/listings";
 import { getPurchasesById } from "../../actions/purchases";
 import { useUserContext } from "../../context/UserContext";
 import { formatPhoneNumber, formatPrice } from "../../utils/helpers";
@@ -7,29 +8,32 @@ import { formatPhoneNumber, formatPrice } from "../../utils/helpers";
 export default function Pickup() {
     const { id } = useParams();
     let location = useLocation();
-    const [listing, setListing] = useState(location.state?.listing || null);
+    // const [listing, setListing] = useState(location.state?.listing || null);
+    const [listing, setListing] = useState(null);
     const [userDetails, setUserDetails] = useState(null);
     const { getUserDetails } = useUserContext();
 
     React.useEffect(() => {
         if (!listing) {
-            const data = getPurchasesById(id);
+            // const data = getPurchasesById(id);
+            // setListing(data);
+            const data = getDummyListingById(id);
             setListing(data);
         }
     }, [listing]);
 
     React.useEffect(() => {
         // Get the pickup info from the userID on the listing
-        getUserDetails(listing.userId).then((res) => {
-            if (res) {
-                setUserDetails({
-                    address: res.address,
-                    name: `${res.firstName} ${res.lastName}`,
-                    phone: res.phone,
-                    city: res.city,
-                });
-            }
-        });
+        // getUserDetails(listing.userId).then((res) => {
+        //     if (res) {
+        //         setUserDetails({
+        //             address: res.address,
+        //             name: `${res.firstName} ${res.lastName}`,
+        //             phone: res.phone,
+        //             city: res.city,
+        //         });
+        //     }
+        // });
     }, []);
 
     if (!listing) return <p>No listing found</p>;
@@ -40,8 +44,8 @@ export default function Pickup() {
                 Pickup Information
             </h1>
             {/* Product Info */}
-            <div className="flex shadow-[0px_1px_0px_#00000024] h-[125px]">
-                <div className="min-w-[226px]">
+            <div className="flex flex-col shadow-[0px_1px_0px_#00000024] md:flex-row md:h-[125px]">
+                <div className="w-full max-w-[226px] flex-shrink-0">
                     <img
                         className="w-full h-full object-cover"
                         src={listing.images && listing.images[0]}

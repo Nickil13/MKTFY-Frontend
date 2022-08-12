@@ -25,13 +25,14 @@ export default function Checkout() {
     }, [listing]);
 
     const handleCheckoutClick = () => {
-        requestPurchase(id).then((res) => {
-            if (res) {
-                navigate("pickup-information", {
-                    state: { listing: res, name: listing.prodName },
-                });
-            }
-        });
+        // requestPurchase(id).then((res) => {
+        //     if (res) {
+        //         navigate("pickup-information", {
+        //             state: { listing: res, name: listing.prodName },
+        //         });
+        //     }
+        // });
+        navigate("pickup-information");
     };
 
     if (!listing) return <p>No listing found</p>;
@@ -40,8 +41,8 @@ export default function Checkout() {
         <div className="bg-white border border-beige-200 max-w-[532px] px-7 py-15 mt-[18px]">
             <h1 className="text-purple-100 font-bold mb-7">Checkout</h1>
             {/* Product Info */}
-            <div className="flex shadow-[0px_1px_0px_#00000024] h-[125px]">
-                <div className="min-w-[226px]">
+            <div className="flex flex-col shadow-[0px_1px_0px_#00000024] md:flex-row md:h-[125px]">
+                <div className="w-full max-w-[226px] flex-shrink-0">
                     <img
                         className="w-full h-full object-cover"
                         src={listing.images && listing.images[0]}
