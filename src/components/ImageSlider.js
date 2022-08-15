@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ReactComponent as SliderArrow } from "../assets/images/icon_right_arrowhead.svg";
 
-export default function ImageSlider({ images, name }) {
+export default function ImageSlider({ images, name, className }) {
     const [imageIndex, setImageIndex] = useState(0);
 
     const increaseIndex = () => {
@@ -13,14 +13,16 @@ export default function ImageSlider({ images, name }) {
     };
 
     return (
-        <div className="flex flex-col-reverse 2xl:mx-8 2xl:mr-36 2xl:flex-row">
+        <div
+            className={`flex flex-col-reverse 2xl:mx-8 lg:flex-row ${className} w-full`}
+        >
             {/* Image Slider */}
-            <div className="flex items-center mr-9 2xl:flex-col">
+            <div className="flex items-center lg:mr-9 lg:flex-col">
                 <SliderArrow
-                    className="cursor-pointer mr-2.5 2xl:mb-2.5 2xl:mr-0 2xl:rotate-90"
+                    className="hidden md:block cursor-pointer mr-2.5 lg:mb-2.5 lg:mr-0 lg:rotate-90"
                     onClick={increaseIndex}
                 />
-                <div className="flex gap-[10px] 2xl:flex-col">
+                <div className="hidden md:flex gap-[10px] lg:flex-col">
                     {images.length > 0 &&
                         images.map((image, index) => {
                             return (
@@ -33,7 +35,7 @@ export default function ImageSlider({ images, name }) {
                                     onClick={() => setImageIndex(index)}
                                 >
                                     <img
-                                        className="w-full h-full object-cover "
+                                        className="w-full h-full object-cover"
                                         src={image}
                                         alt={name}
                                     />
@@ -42,22 +44,32 @@ export default function ImageSlider({ images, name }) {
                         })}
                 </div>
                 <SliderArrow
-                    className="rotate-180 cursor-pointer ml-2.5 2xl:mt-7 2xl:ml-0 2xl:-rotate-90"
+                    className="hidden md:block rotate-180 cursor-pointer ml-auto lg:mt-7 lg:ml-0 lg:-rotate-90"
                     onClick={decreaseIndex}
                 />
             </div>
             {/* Main Image */}
-            <div>
-                <div className="h-[424px] overflow-hidden rounded-10 shadow-card border border-gray-footer-border mb-4 2xl:w-[645px]">
+            <div className="mb-4 lg:mb-0 w-full max-w-[645px]">
+                <div className="h-[424px] overflow-hidden rounded-10 shadow-card border border-gray-footer-border mb-4">
                     <img
                         className="w-full h-full object-cover"
                         src={images[imageIndex]}
                         alt={name}
                     />
                 </div>
-                <span className="block text-center text-gray-500">{`${
-                    imageIndex + 1
-                } of ${images.length}`}</span>
+                <div className="flex justify-center">
+                    <SliderArrow
+                        className="md:hidden cursor-pointer mr-2.5 w-4"
+                        onClick={increaseIndex}
+                    />
+                    <span className="text-center text-gray-500">{`${
+                        imageIndex + 1
+                    } of ${images.length}`}</span>
+                    <SliderArrow
+                        className="md:hidden rotate-180 cursor-pointer ml-2.5 w-4"
+                        onClick={decreaseIndex}
+                    />
+                </div>
             </div>
         </div>
     );

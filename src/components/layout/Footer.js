@@ -9,10 +9,10 @@ export default function Footer() {
             {/* Background overlay with gradient */}
             <div className="absolute inset-0 bg-gradient-to-b  from-[#000000] h-full"></div>
             <div className="absolute flex flex-col inset-0 bg-[#000000]/70 h-full ">
-                <div className="px-10 lg:px-32 pt-28 flex-grow">
+                <div className="px-10 xlg:px-32 pt-28 flex-grow">
                     <div className="flex flex-col lg:flex-row gap-1">
                         {/* Logo & motto*/}
-                        <div className="lg:w-footer-column lg:mr-40">
+                        <div className="xlg:w-footer-column xlg:mr-40">
                             <img
                                 className="w-36 mb-11"
                                 src={MktfyWordmark}

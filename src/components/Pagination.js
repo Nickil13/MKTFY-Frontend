@@ -41,10 +41,10 @@ export default function Pagination({ page, pages }) {
                     className={`${Number(page) - 1 === 0 ? "invisible" : ""}`}
                     onClick={handlePreviousClick}
                 >
-                    <BackArrow className="fill-[#89909B] mr-4 lg:mr-7" />
+                    <BackArrow className="fill-[#89909B] mr-4 md:mr-7" />
                 </button>
 
-                <ul className="flex gap-2 lg:gap-5">
+                <ul className="flex gap-2 md:gap-5">
                     {pageNumbers.map((pageNum) => {
                         return (
                             <PaginationSquare
@@ -67,7 +67,7 @@ export default function Pagination({ page, pages }) {
                     className={`${Number(page) === pages ? "invisible" : ""}`}
                     onClick={handleNextClick}
                 >
-                    <ForwardArrow className="fill-[#89909B] ml-4 lg:ml-7" />
+                    <ForwardArrow className="fill-[#89909B] ml-4 md:ml-7" />
                 </button>
             </div>
         )
@@ -78,7 +78,7 @@ const PaginationSquare = ({ value, page, onClick }) => {
     return (
         <li
             className={`flex items-center justify-center text-sm-16
-            lg:text-[1.5rem] font-bold w-[30px] h-[30px] lg:w-[48px] lg:h-[48px] border border-[#B9C0CC] rounded cursor-pointer ${
+            md:text-[1.5rem] font-bold w-[30px] h-[30px] md:w-[48px] md:h-[48px] border border-[#B9C0CC] rounded cursor-pointer ${
                 value == page
                     ? "text-white bg-[#5B2BAE] hover:bg-[#5B2BAE]/95 "
                     : "text-gray-footer bg-white hover:bg-white/75"
