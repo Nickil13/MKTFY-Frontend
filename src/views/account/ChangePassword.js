@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button } from "../../components";
 import { LoginInput } from "../../components/inputs";
 import { useUserContext } from "../../context/UserContext";
 
@@ -45,15 +44,13 @@ export default function ChangePassword() {
                     errorMessage
                     errorMessageText={emailError}
                 />
-                <Button
+                <button
                     type="submit"
+                    className="btn-purple-new mt-10"
                     disabled={!email || emailError}
-                    margins="mt-10"
-                    width="2xl:w-input"
-                    maxWidth="max-w-input"
                 >
                     Submit
-                </Button>
+                </button>
             </form>
         </div>
     );

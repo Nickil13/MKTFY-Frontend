@@ -109,10 +109,14 @@ module.exports = {
                 modal: "0px 7px 12px #00000024",
                 dropdown: "0px 3px 6px #00000029",
                 card: "0px 4px 15px #00000024",
+                "card-faint": "0px 1px 0px #00000024",
             },
             backgroundPosition: {
                 "cloud-position": "50% 20%",
                 "banner-position": "10% 20%",
+            },
+            gridTemplateColumns: {
+                nav: "auto 1fr auto",
             },
         },
     },

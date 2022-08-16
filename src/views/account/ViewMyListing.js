@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import { Button, Select } from "../../components";
-import {
-    CATEGORY_TYPES,
-    CITY_OPTIONS,
-    CONDITIONS,
-    LISTING_STATUS,
-} from "../../data/variables";
+import { CATEGORY_TYPES, CITY_OPTIONS, CONDITIONS } from "../../data/variables";
 import { useModalContext } from "../../context/ModalContext";
 import { ListingInput, PriceInput } from "../../components/inputs";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { getMyListingById } from "../../actions/listings";
+import { useNavigate, useParams } from "react-router-dom";
+import { getListingById } from "../../actions/listings";
 import { ListingImages } from "../../components";
 import Alert from "../../components/Alert";
 import { UploadImageModal } from "../../components/modals";
 
+const dummyImages = [
+    "https://images.unsplash.com/photo-1509326066092-14b2e882fe86?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
+    "https://images.unsplash.com/photo-1452711932549-e7ea7f129399?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1157&q=80",
+    "https://images.unsplash.com/reserve/unsplash_524010c76b52a_1.JPG?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+];
 export default function ViewMyListing() {
-    const [name, setName] = useState("");
+    const [prodName, setProdName] = useState("");
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
     const [condition, setCondition] = useState("");
@@ -24,27 +24,41 @@ export default function ViewMyListing() {
     const [city, setCity] = useState("");
     const { setShowAlert, showAlert, resetAlert, cancelAlert, showModal } =
         useModalContext();
-    const [image, setImage] = useState(null);
-    const [imageName, setImageName] = useState("");
-    let location = useLocation();
+    const [previewImages, setPreviewImages] = useState([]);
+    const [listingImages, setListingImages] = useState([]);
+    const [isEditable, setIsEditable] = useState(false);
     let navigate = useNavigate();
     const { id } = useParams();
-    const isAvailable =
-        location.state?.status?.toUpperCase() === LISTING_STATUS.AVAILABLE;
-
+    // const token = sessionStorage.getItem("access_token");
+    // const multipartHeader = {
+    //     headers: {
+    //         "Content-Type": "multipart/form-data",
+    //         Authorization: `Bearer ${token}`,
+    //     },
+    // };
     React.useEffect(() => {
-        if (!name) {
-            const data = getMyListingById(id);
-            if (data) {
-                setName(data.ProdName);
-                setDescription(data.Description);
-                setCategory(data.Category);
-                setCondition(data.Condition);
-                setAddress(data.Address);
-                setCity(data.City);
-                setPrice(data.Price.toFixed(2));
-                setImage(data.Images[0]);
-            }
+        if (!prodName) {
+            getListingById(id).then((res) => {
+                console.log(res);
+                if (res) {
+                    setProdName(res.prodName);
+                    setDescription(res.description);
+                    setCategory(res.category);
+                    setCondition(res.condition);
+                    setPrice(res.price.toFixed(2));
+                    setAddress(res.address);
+                    setCity(res.city);
+                    if (res.status === "Active") {
+                        setIsEditable(true);
+                    }
+                    // remove this when images available
+                    if (res.uploadUrls) {
+                        setPreviewImages([...res.uploadUrls]);
+                    } else {
+                        setPreviewImages(dummyImages);
+                    }
+                }
+            });
         }
     }, []);
 
@@ -67,14 +81,19 @@ export default function ViewMyListing() {
         navigate("/dashboard/account/my-listings/sold");
     };
 
-    const handleUploadImage = (uploadedImage, imageName) => {
-        console.log("Uploading image");
-        setImage(uploadedImage);
-        setImageName(imageName);
+    const addFiles = (newListingImages, newPreviewImages) => {
+        setListingImages([...listingImages, ...newListingImages]);
+        setPreviewImages([...previewImages, ...newPreviewImages]);
     };
-
     const handleRemoveImage = (index) => {
-        console.log(`Removing image at index: ${index}`);
+        const newPreviews = previewImages.filter(
+            (preview) => previewImages.indexOf(preview) !== index
+        );
+        const newListingImages = listingImages.filter(
+            (image) => listingImages.indexOf(image) !== index
+        );
+        setPreviewImages(newPreviews);
+        setListingImages(newListingImages);
     };
     return (
         <div className="mt-7 max-w-[1448px]">
@@ -82,20 +101,20 @@ export default function ViewMyListing() {
             <div className="flex flex-col rounded-10 shadow-modal overflow-hidden 2xl:flex-row">
                 {/* Images */}
                 <ListingImages
-                    images={[image]}
+                    images={previewImages}
                     handleRemoveImage={handleRemoveImage}
                 />
 
                 {/* Product Info */}
-                <div className="w-[904px] bg-beige-200 p-8">
+                <div className="bg-beige-200 p-8 2xl:w-[904px]">
                     <form
                         onSubmit={handleSaveListing}
-                        className="max-w-[520px]"
+                        className="max-w-[520px] mx-auto"
                     >
                         <ListingInput
                             name="product name"
-                            value={name}
-                            setValue={setName}
+                            value={prodName}
+                            setValue={setProdName}
                         />
 
                         <div className="input-control mb-[18px]">
@@ -125,7 +144,7 @@ export default function ViewMyListing() {
                             styleClass="listing-input-style"
                             margins="mb-[18px]"
                         />
-                        <div className="grid grid-cols-2 gap-3 mt-4 mb-[18px]">
+                        <div className="grid md:grid-cols-2 gap-3 mt-4 mb-[18px]">
                             <Select
                                 name="condition"
                                 options={CONDITIONS}
@@ -149,33 +168,30 @@ export default function ViewMyListing() {
                             phcolor="text-[#2A2E43]/50"
                             styleClass="listing-input-style"
                         />
-                        {isAvailable && (
-                            <Button
+                        {isEditable && (
+                            <button
                                 type="submit"
-                                padding="py-4"
-                                margins="mb-4 mt-7"
-                                fontSize="text-xs"
-                                color="gold"
+                                className="btn-gold-new py-4 mb-4 mt-7 text-xs"
                             >
                                 Save changes
-                            </Button>
+                            </button>
                         )}
-                        <Button
-                            fontSize="text-xs"
-                            padding="py-4"
-                            margins={`${!isAvailable && "mt-7"} mb-4`}
+                        <button
+                            type="button"
+                            className={`btn-purple-new py-4 ${
+                                !isEditable && "mt-7"
+                            } mb-4 text-xs`}
                             onClick={handleConfirmSold}
                         >
                             Confirm sold
-                        </Button>
-                        <Button
-                            color="none"
-                            fontSize="text-xs"
-                            padding="py-4"
+                        </button>
+                        <button
+                            type="button"
+                            className="btn-transparent-new text-xs py-4"
                             onClick={() => setShowAlert(true)}
                         >
                             Cancel Listing
-                        </Button>
+                        </button>
                     </form>
                 </div>
             </div>
@@ -190,7 +206,10 @@ export default function ViewMyListing() {
             {/* Upload Image Modal */}
             {showModal && (
                 <div className="fixed flex items-center justify-center inset-0 bg-black bg-opacity-50 h-screen z-[70]">
-                    <UploadImageModal handleUploadImage={handleUploadImage} />
+                    <UploadImageModal
+                        addFiles={addFiles}
+                        listingImages={listingImages}
+                    />
                 </div>
             )}
         </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Select } from "../../components";
+import { Select } from "../../components";
 import { useUserContext } from "../../context/UserContext";
 import { CITY_OPTIONS } from "../../data/variables";
 import { AccountInput } from "../../components/inputs";
@@ -61,7 +61,7 @@ export default function AccountInformation() {
     return (
         <div className="bg-white rounded-10 shadow-modal max-w-[1498px]">
             <form
-                className="px-20 lg:px-[138px] pt-14 pb-24 2xl:grid grid-cols-2 gap-40"
+                className="px-10 md:px-20 lg:px-[138px] pt-14 pb-24 2xl:grid grid-cols-2 gap-40"
                 onSubmit={handleEditUser}
             >
                 <div className="max-w-input mx-auto 2xl:max-w-none 2xl:mx-0">
@@ -119,21 +119,19 @@ export default function AccountInformation() {
                     />
 
                     <Select
-                        width="1/2"
                         name="city"
                         value={city}
                         setValue={setCity}
                         options={CITY_OPTIONS}
                         preselected
+                        className="2xl:w-1/2"
                     />
-                    <Button
+                    <button
                         type="submit"
-                        color="gold"
-                        margins="mt-14 2xl:mt-auto"
-                        maxWidth="max-w-input"
+                        className="btn-gold-new mt-14 2xl:mt-auto"
                     >
                         Save
-                    </Button>
+                    </button>
                 </div>
             </form>
         </div>

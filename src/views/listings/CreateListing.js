@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, ListingImages, Select } from "../../components";
+import { ListingImages, Select } from "../../components";
 import { CATEGORY_TYPES, CITY_OPTIONS, CONDITIONS } from "../../data/variables";
 import { ListingInput, PriceInput } from "../../components/inputs";
 import { UploadImageModal } from "../../components/modals";

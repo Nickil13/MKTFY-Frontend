@@ -37,7 +37,7 @@ export default function Navbar() {
             {/* Nav Container */}
             <div className="relative flex flex-col max-w-desktop w-full pt-5 lg:pt-16 pb-5 px-5 3xl:px-0">
                 {/* Navbar top row */}
-                <div className="grid grid-flow-cols grid-rows-2 items-center lg:justify-center w-full xlg:w-[90%] mx-auto 2xl:w-full">
+                <div className="grid grid-cols-nav grid-rows-2 items-center lg:justify-center w-[90%] mx-auto 2xl:w-full">
                     {/* Logo, Searchbar, Mobile Menu Icon */}
                     <Link
                         to="/dashboard"
@@ -45,11 +45,11 @@ export default function Navbar() {
                     >
                         <img src={MktfyWordmark} alt="mktfy wordmark" />
                     </Link>
-                    <Searchbar className="flex-1 row-start-2 lg:row-start-1 col-span-3 lg:col-start-2 lg:col-end-2 max-w-[800px] 2xl:mr-14 3xl:w-[1012px] 3xl:max-w-[1012px]" />
+                    <Searchbar className="flex-1 row-start-2 lg:row-start-1 col-span-3 lg:col-start-2 lg:col-end-2 max-w-[800px] xlg:max-w-[1012px]" />
                     <MenuIcon className="ml-5 row-start-1 col-start-3 justify-self-end w-10 h-10 cursor-pointer 2xl:hidden" />
 
                     {/* User Menu, Notifications, Create Listing Button */}
-                    <div className="hidden 2xl:flex">
+                    <div className="hidden 2xl:flex ml-14">
                         <UserMenu />
                         <Notifications />
 

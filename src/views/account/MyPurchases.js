@@ -27,21 +27,15 @@ export default function MyPurchases() {
                 {`${purchases.length} item${purchases.length > 1 ? "s" : ""}`}
             </span>
             {/* Purchases Cards */}
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-5 lg:gap-2">
                 {purchases.length > 0 ? (
                     purchases.map((purchase, index) => {
                         return (
                             <PurchasesCard
                                 key={index}
                                 {...purchase}
-                                purchaseTag={purchase.status}
-                                onClick={() =>
-                                    onCardClick(
-                                        purchase.prodName,
-                                        purchase.id,
-                                        purchase.category
-                                    )
-                                }
+                                purchaseTag
+                                onClick={onCardClick}
                             />
                         );
                     })

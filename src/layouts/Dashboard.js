@@ -13,8 +13,8 @@ export default function Dashboard() {
         <div className="relative min-h-screen pb-footer">
             <Navbar />
             <main className="relative bg-gray-cloud-gray min-h-screen pt-mobile-nav lg:pt-nav">
-                <div className="min-h-screen bg-gray-clouds bg-cover bg-fixed bg-center bg-no-repeat pt-8 pb-32 px-10 2xl:px-[142px]">
-                    <div className="max-w-desktop mx-auto">
+                <div className="min-h-screen bg-gray-clouds bg-cover bg-fixed bg-center bg-no-repeat pt-8 pb-32">
+                    <div className="max-w-desktop mx-auto w-[90%]">
                         <BreadCrumbs crumbs={crumbs} />
                         <Outlet />
                     </div>
