@@ -1,27 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { DealsCard, ScrollBox } from "../components";
-import { getDeals, getMoreDeals } from "../actions/listings";
+import { useListingContext } from "../context/ListingContext";
+import { useNavigate } from "react-router-dom";
 
 export default function DealsSection({ title, category }) {
-    const [listings, setListings] = useState([]);
+    const { deals, getDeals, setCurrentListing } = useListingContext();
+    let navigate = useNavigate();
+    const currentDeals =
+        deals.length > 0
+            ? category === "deals"
+                ? deals.slice(0, 8)
+                : deals.slice(9, -1)
+            : [];
 
-    React.useEffect(() => {
-        if (category === "deals") {
-            let data = getDeals();
-            setListings(data);
-        } else if (category === "more deals") {
-            let data = getMoreDeals();
-            setListings(data);
+    useEffect(() => {
+        if (deals.length === 0) {
+            getDeals();
         }
     }, []);
+
+    const handleCardClick = (deal) => {
+        setCurrentListing(deal);
+        navigate(`/dashboard/listings/deals/${deal.id}`);
+    };
 
     return (
         <section className="relative px-5 p-7 bg-white rounded h-section">
             <h2 className="text-base font-semibold">{title}</h2>
-            {listings.length > 0 ? (
+            {currentDeals.length > 0 ? (
                 <ScrollBox>
-                    {listings.map((listing) => {
-                        return <DealsCard key={listing.id} {...listing} />;
+                    {currentDeals.map((deal) => {
+                        return (
+                            <DealsCard
+                                key={deal.id}
+                                {...deal}
+                                handleCardClick={() => handleCardClick(deal)}
+                            />
+                        );
                     })}
                 </ScrollBox>
             ) : (

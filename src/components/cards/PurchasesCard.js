@@ -6,17 +6,12 @@ const dummyImage =
     "https://images.unsplash.com/photo-1533371452382-d45a9da51ad9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1173&q=80";
 
 export default function PurchasesCard({
-    // images,
-    uploads,
-    id,
-    category,
+    uploadUrls,
     created,
     prodName,
     price,
     condition,
     onClick,
-    tag,
-    purchaseTag,
     status,
 }) {
     return (
@@ -24,56 +19,41 @@ export default function PurchasesCard({
             className={`flex flex-col lg:flex-row max-w-[808px] lg:h-[214px] shadow-card-faint rounded-10 overflow-hidden ${
                 onClick && "cursor-pointer"
             }`}
-            onClick={() => onClick(prodName, id, category)}
+            onClick={onClick}
         >
             <div className="h-[300px] lg:h-auto w-full lg:max-w-[350px] flex-shrink-0">
                 <img
                     className="w-full h-full object-cover"
-                    // src={images?.length > 0 ? images[0] : ""}
-                    src={uploads?.length > 0 ? uploads[0] : dummyImage}
+                    src={uploadUrls?.length > 0 ? uploadUrls[0] : dummyImage}
                     alt={prodName}
                 />
             </div>
             <div
                 className={`relative bg-white w-full ${
-                    tag ? "pt-6" : "pt-10"
+                    status ? "pt-6" : "pt-10"
                 } pl-5`}
             >
-                {!tag && (
+                {!status && (
                     <span className="font-light text-xs mb-1">
                         {formatDate(created)}
                     </span>
                 )}
-                {tag && (
+                {status && (
                     <div className="flex mb-7">
                         <span
-                            className={`ml-auto font-semibold text-base  uppercase px-2 rounded mr-4 ${
-                                tag === LISTING_STATUS.PENDING
+                            className={`ml-auto font-semibold text-base uppercase px-2 rounded mr-4 ${
+                                status === LISTING_STATUS.PENDING
                                     ? "text-purple-600 bg-[#9349DE33]"
-                                    : tag === LISTING_STATUS.SOLD &&
+                                    : status === LISTING_STATUS.SOLD &&
                                       "text-green bg-[#6CC04B33]"
                             }`}
                         >
-                            {tag === LISTING_STATUS.PENDING
+                            {status === LISTING_STATUS.PENDING
                                 ? "pending state"
-                                : tag === LISTING_STATUS.SOLD &&
+                                : status === LISTING_STATUS.SOLD &&
                                   "sale confirmed"}
                         </span>
                     </div>
-                )}
-                {purchaseTag && (
-                    <span
-                        className={`absolute top-5 right-4 font-semibold text-base uppercase px-2 rounded ${
-                            status === "Pending"
-                                ? "text-purple-600 bg-[#9349DE33]"
-                                : status === "Sold" &&
-                                  "text-green bg-[#6CC04B33]"
-                        }`}
-                    >
-                        {status === "Pending"
-                            ? "pending state"
-                            : status === "Sold" && "sale confirmed"}
-                    </span>
                 )}
                 <h2 className="text-base mb-5">{prodName}</h2>
                 <span className="block text-base font-bold text-purple-500 mb-4">

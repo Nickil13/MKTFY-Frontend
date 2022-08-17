@@ -34,8 +34,13 @@ export default function MyPurchases() {
                             <PurchasesCard
                                 key={index}
                                 {...purchase}
-                                purchaseTag
-                                onClick={onCardClick}
+                                onClick={() =>
+                                    onCardClick(
+                                        purchase.prodName,
+                                        purchase.id,
+                                        purchase.category
+                                    )
+                                }
                             />
                         );
                     })

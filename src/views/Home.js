@@ -1,7 +1,15 @@
 import React from "react";
 import { AppBanner, DealsSection, ProductSection } from "../components";
+import { useListingContext } from "../context/ListingContext";
 
 export default function Home() {
+    const { listingSelection, getListingSelection } = useListingContext();
+
+    React.useEffect(() => {
+        if (!listingSelection) {
+            getListingSelection();
+        }
+    }, []);
     return (
         <div>
             <DealsSection title="Deals for you" category="deals" />
@@ -9,13 +17,8 @@ export default function Home() {
                 <ProductSection
                     title="Shop Cars &amp; Vehicles"
                     category="cars"
-                    cardLimit="3"
                 />
-                <ProductSection
-                    title="Shop Furniture"
-                    category="furniture"
-                    cardLimit="3"
-                />
+                <ProductSection title="Shop Furniture" category="furniture" />
             </div>
             <DealsSection title="More deals for you" category="more deals" />
 
@@ -23,12 +26,10 @@ export default function Home() {
                 <ProductSection
                     title="Shop Electronics"
                     category="electronics"
-                    cardLimit="3"
                 />
                 <ProductSection
                     title="Shop Real Estate"
                     category="real estate"
-                    cardLimit="3"
                 />
             </div>
             <AppBanner />

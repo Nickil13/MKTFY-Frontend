@@ -31,6 +31,7 @@ import {
 } from "./views/account";
 import ScrollToTop from "./utils/ScrollToTop";
 import { CustomToastContainer } from "./components/custom-toast/CustomToastContainer";
+import { ListingContextProvider } from "./context/ListingContext";
 
 function App() {
     return (
@@ -66,7 +67,9 @@ function App() {
                         path="dashboard"
                         element={
                             <RequireAuth>
-                                <Dashboard />
+                                <ListingContextProvider>
+                                    <Dashboard />
+                                </ListingContextProvider>
                             </RequireAuth>
                         }
                     >

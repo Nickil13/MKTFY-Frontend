@@ -18,9 +18,9 @@ const USER_MENU_LINKS = [
 
 // Listing status enum
 const LISTING_STATUS = {
-    PENDING: "PENDING",
-    SOLD: "SOLD",
-    AVAILABLE: "AVAILABLE",
+    PENDING: "Pending",
+    SOLD: "Sold",
+    ACTIVE: "Active",
 };
 
 export {

@@ -14,9 +14,9 @@ export default function ActiveItems() {
         getMyActiveListings().then((res) => setAvailableListings(res));
     }, []);
 
-    const handleListingClick = (status, id, name) => {
+    const handleListingClick = (id, name) => {
         /* Require name for breadcrumbs and status for save permissions */
-        navigate(`${id}`, { state: { name, status } });
+        navigate(`${id}`, { state: { name } });
     };
     return (
         <div>
@@ -28,10 +28,8 @@ export default function ActiveItems() {
                             <PurchasesCard
                                 key={index}
                                 {...listing}
-                                tag={LISTING_STATUS.PENDING}
                                 onClick={() =>
                                     handleListingClick(
-                                        LISTING_STATUS.PENDING,
                                         listing.id,
                                         listing.prodName
                                     )
@@ -56,7 +54,6 @@ export default function ActiveItems() {
                                     {...listing}
                                     onClick={() =>
                                         handleListingClick(
-                                            LISTING_STATUS.AVAILABLE,
                                             listing.id,
                                             listing.prodName
                                         )
