@@ -2,13 +2,12 @@ import React, { useState, useContext, useEffect } from "react";
 import { CATEGORY_TYPES } from "../data/variables";
 
 import axios from "../utils/request";
-// import jwt_decode from "jwt-decode";
-// import {
-//     clearLocalStorage,
-//     getLocalStorage,
-//     setLocalStorage,
-//     STORAGE_KEYS,
-// } from "../utils/storageUtils";
+import {
+    clearLocalStorage,
+    getLocalStorage,
+    setLocalStorage,
+    STORAGE_KEYS,
+} from "../utils/storageUtils";
 // import { toast } from "../components/custom-toast/CustomToastContainer";
 
 const ListingContext = React.createContext();
@@ -18,13 +17,21 @@ export const useListingContext = () => {
 };
 
 export const ListingContextProvider = ({ children }) => {
-    // const [user, setUser] = useState(
-    //     getLocalStorage(STORAGE_KEYS.USER_KEY, null)
-    // );
     const [listings, setListings] = useState([]);
-    const [currentListing, setCurrentListing] = useState(null);
+    const [currentListing, setCurrentListing] = useState(
+        getLocalStorage(STORAGE_KEYS.CURRENT_LISTING_KEY, null)
+    );
     const [listingSelection, setListingSelection] = useState(null);
-    const [deals, setDeals] = useState([]);
+    // const [deals, setDeals] = useState([]);
+
+    /* Store changes made to listing in local storage */
+    useEffect(() => {
+        if (currentListing) {
+            setLocalStorage(STORAGE_KEYS.CURRENT_LISTING_KEY, {
+                ...currentListing,
+            });
+        }
+    }, [currentListing]);
 
     /* Get a selection of listings (3 from each category)*/
     const getListingSelection = async () => {
@@ -49,63 +56,57 @@ export const ListingContextProvider = ({ children }) => {
     const getDeals = async () => {
         try {
             const res = await axios.get("/Listing/deals");
-            setDeals(res);
+            setListings(res);
         } catch (error) {
             console.error(error);
         }
     };
+    const getListingById = async (id) => {
+        try {
+            const res = await axios.get(`/Listing/${id}`);
+            setCurrentListing(res);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    const getAllListingsByCategory = async (category) => {
+        try {
+            const res = await axios.get(`/Listing/all/category/${category}`);
+            setListings(res);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    const getAllListingsByCity = async (city) => {
+        try {
+            const res = await axios.get(`/Listing/all/${city}`);
+            setListings(res);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    const getFilteredListings = async (filter) => {
+        // /?searchString&city&category&condition&minPrice&maxPrice
+        console.log(filter);
+        const params = new URLSearchParams();
 
-    /* Store changes made to user in local storage */
-    // useEffect(() => {
-    //     if (user) {
-    //         setLocalStorage(STORAGE_KEYS.USER_KEY, { ...user });
-    //     }
-    // }, [user]);
+        if (filter.city) {
+            params.append("city", filter.city);
+        }
+        if (filter.category) {
+            params.append("category", filter.category);
+        }
+        if (filter.condition) {
+            params.append("condition", filter.condition);
+        }
 
-    // const getCurrentUserDetails = async () => {
-    //     const userId = getIdFromToken();
-
-    //     try {
-    //         const res = await axios.get(`/User/${userId}`);
-    //         setUser(res);
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // };
-
-    // const getUserDetails = async (id) => {
-    //     try {
-    //         const res = await axios.get(`/User/${id}`);
-    //         return res;
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // };
-
-    // const createUser = async (id, userDetails) => {
-    //     const body = { ...userDetails, id };
-    //     try {
-    //         const res = await axios.post("/User", body);
-    //         setUser(res);
-    //         sessionStorage.removeItem("user_details");
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // };
-
-    // const editUser = async (userDetails) => {
-    //     const userId = getIdFromToken();
-    //     const body = { ...userDetails, id: userId };
-
-    //     try {
-    //         const res = await axios.put("/User", body);
-    //         setUser(res);
-
-    //         toast.success("User info saved!");
-    //     } catch (error) {
-    //         toast.error("Error: did not save user info.");
-    //     }
-    // };
+        try {
+            const res = await axios.get(`/Listing/filter?${params}`);
+            setListings(res);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
         <ListingContext.Provider
@@ -114,9 +115,12 @@ export const ListingContextProvider = ({ children }) => {
                 currentListing,
                 getListingSelection,
                 listingSelection,
-                deals,
                 getDeals,
                 setCurrentListing,
+                getListingById,
+                getAllListingsByCategory,
+                getAllListingsByCity,
+                getFilteredListings,
             }}
         >
             {children}

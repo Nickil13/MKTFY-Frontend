@@ -7,6 +7,7 @@ export default function Home() {
 
     React.useEffect(() => {
         if (!listingSelection) {
+            /* Get a selection of listings: 3 from each category*/
             getListingSelection();
         }
     }, []);

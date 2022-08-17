@@ -4,7 +4,11 @@ import { useListingContext } from "../context/ListingContext";
 import { useNavigate } from "react-router-dom";
 
 export default function DealsSection({ title, category }) {
-    const { deals, getDeals, setCurrentListing } = useListingContext();
+    const {
+        listings: deals,
+        getDeals,
+        setCurrentListing,
+    } = useListingContext();
     let navigate = useNavigate();
     const currentDeals =
         deals.length > 0

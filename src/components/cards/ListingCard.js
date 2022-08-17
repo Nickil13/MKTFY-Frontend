@@ -4,7 +4,7 @@ import { formatPrice } from "../../utils/helpers";
 export default function ListingCard({
     prodName,
     category,
-    images,
+    uploadUrls,
     price,
     condition,
     description,
@@ -18,7 +18,7 @@ export default function ListingCard({
             <div className="w-full flex-shrink-0 h-card-img shadow-card rounded-lg overflow-hidden lg:max-w-card">
                 <img
                     className="object-cover w-full h-full"
-                    src={images.length > 0 && images[0]}
+                    src={uploadUrls.length > 0 && uploadUrls[0]}
                     alt={prodName}
                 />
             </div>

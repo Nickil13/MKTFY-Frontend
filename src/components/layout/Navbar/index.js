@@ -41,7 +41,7 @@ export default function Navbar() {
                     {/* Logo, Searchbar, Mobile Menu Icon */}
                     <Link
                         to="/dashboard"
-                        className="row-start-1 col-start-1 mr-5"
+                        className="row-start-1 col-start-1 mr-5 w-[118px]"
                     >
                         <img src={MktfyWordmark} alt="mktfy wordmark" />
                     </Link>

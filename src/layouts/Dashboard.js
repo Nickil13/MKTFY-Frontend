@@ -2,12 +2,15 @@ import React from "react";
 import { Outlet, useLocation, useSearchParams } from "react-router-dom";
 import { BreadCrumbs } from "../components";
 import { Navbar, Footer } from "../components/layout";
+import { useListingContext } from "../context/ListingContext";
 import { generateCrumbs } from "../utils/helpers";
 
 export default function Dashboard() {
+    const { currentListing } = useListingContext();
     let location = useLocation();
     let [searchParams] = useSearchParams();
-    let crumbs = generateCrumbs(location, searchParams);
+    let name = currentListing?.prodName || "";
+    let crumbs = generateCrumbs(location, searchParams, name);
 
     return (
         <div className="relative min-h-screen pb-footer">

@@ -5,24 +5,19 @@ import {
     getListingById,
     requestPurchase,
 } from "../../actions/listings";
+import { useListingContext } from "../../context/ListingContext";
 import { formatPrice } from "../../utils/helpers";
 
 export default function Checkout() {
     const { id } = useParams();
-    const [listing, setListing] = useState(null);
+    const { currentListing: listing, getListingById } = useListingContext();
     let navigate = useNavigate();
 
     React.useEffect(() => {
-        if (!listing) {
-            // getListingById(id).then((res) => {
-            //     if (res) {
-            //         setListing(res);
-            //     }
-            // });
-            const data = getDummyListingById(id);
-            setListing(data);
+        if (!listing || listing.id !== id) {
+            getListingById(id);
         }
-    }, [listing]);
+    }, [listing, id]);
 
     const handleCheckoutClick = () => {
         // requestPurchase(id).then((res) => {
@@ -45,7 +40,7 @@ export default function Checkout() {
                 <div className="w-full max-w-[226px] flex-shrink-0">
                     <img
                         className="w-full h-full object-cover"
-                        src={listing.images && listing.images[0]}
+                        src={listing.uploadUrls && listing.uploadUrls[0]}
                         alt={listing.prodName}
                     />
                 </div>

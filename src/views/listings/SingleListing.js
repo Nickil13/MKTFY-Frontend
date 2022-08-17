@@ -1,29 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getDummyListingById } from "../../actions/listings";
 import { ImageSlider } from "../../components";
 import TagIcon from "../../assets/images/local_offer-24px.svg";
 import { formatPrice } from "../../utils/helpers";
+import { useListingContext } from "../../context/ListingContext";
 
 export default function SingleListing() {
     const { id } = useParams();
-    const [listing, setListing] = useState(null);
+    const { currentListing: listing, getListingById } = useListingContext();
     let navigate = useNavigate();
 
     React.useEffect(() => {
-        if (!listing) {
-            const data = getDummyListingById(id);
-            setListing(data);
+        if (!listing || listing.id !== id) {
+            getListingById(id);
         }
     }, [listing, id]);
 
+    const handleListingClick = () => {
+        navigate("checkout");
+    };
     return (
         <div>
             {listing ? (
                 <div className="flex bg-white pt-7 pb-12 px-8 lg:px-16 mt-5">
                     <div className="flex flex-col 2xl:flex-row w-full mx-auto xlg:max-w-[1000px] 2xl:max-w-none">
                         <ImageSlider
-                            images={listing.images}
+                            images={listing.uploadUrls}
                             name={listing.prodName}
                             className="flex-grow"
                         />
@@ -38,11 +40,7 @@ export default function SingleListing() {
                             </span>
                             <button
                                 className="btn-purple-new mb-3.5 max-w-input"
-                                onClick={() =>
-                                    navigate("checkout", {
-                                        state: { name: listing.prodName },
-                                    })
-                                }
+                                onClick={handleListingClick}
                             >
                                 I want this!
                             </button>
@@ -59,10 +57,13 @@ export default function SingleListing() {
                             {/* Listing owner information */}
                             <div className="flex">
                                 <div className="inline-block circle-letter text-sm-16 py-[13px] px-[18px]">
-                                    M
+                                    {listing.userFullName &&
+                                        listing.userFullName[0]}
                                 </div>
                                 <div>
-                                    <h2 className="font-bold">Matt Smith</h2>
+                                    <h2 className="font-bold">
+                                        {listing.userFullName}
+                                    </h2>
                                     <span className="flex">
                                         <img
                                             className="mr-1"

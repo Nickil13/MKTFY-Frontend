@@ -2,56 +2,51 @@ import React, { useState } from "react";
 import { useNavigate, useSearchParams, useParams } from "react-router-dom";
 import { getDeals, getListings } from "../../actions/listings";
 import { ListingCard, Pagination, Sidebar } from "../../components";
+import { useListingContext } from "../../context/ListingContext";
+import { NAV_CATEGORIES } from "../../data/variables";
 
 export default function Listings() {
-    const [listings, setListings] = useState([]);
     const { category } = useParams();
+    const { listings, getFilteredListings, setCurrentListing, getDeals } =
+        useListingContext();
+    const checkedCategory = !NAV_CATEGORIES.includes(category) ? "" : category;
     let navigate = useNavigate();
     let [searchParams] = useSearchParams();
     let page = searchParams.get("page") || 1;
+    let city = searchParams.get("city") || "Calgary";
     // let pageParam = searchParams.get("page") || 1;
     // let page = 1;
 
     React.useEffect(() => {
-        let params = { city: "", category, condition: "" };
-        if (searchParams) {
-            let city = searchParams.get("city");
-
-            let condition = searchParams.get("condition");
-
-            if (city) {
-                params.city = city;
-            }
-            if (condition) {
-                params.condition = condition;
-            }
-        }
         if (category === "deals") {
-            // Specifically get deals w/params.
-            const data = getDeals();
-            setListings(data);
-        } else {
-            const data = getListings(params);
-            setListings(data);
+            getDeals();
+        } else if (searchParams) {
+            const filter = {
+                city,
+                category: checkedCategory,
+                condition: searchParams.get("condition") || "",
+            };
+            getFilteredListings(filter);
         }
-    }, [searchParams, category]);
+    }, [checkedCategory, searchParams]);
 
-    const handleCardClick = (id, category, name) => {
-        let city = searchParams.get("city") || "Calgary";
+    const handleCardClick = (listing) => {
+        setCurrentListing(listing);
         // Navigate to the specific listing and pass on information about the city and the listing name
-        let listingsUrl = `/dashboard/listings/${category}/${id}`;
-        navigate(listingsUrl, { state: { name, city } });
+        navigate(`/dashboard/listings/${listing.category}/${listing.id}`, {
+            state: { city },
+        });
     };
     return (
         <div>
             <div className="mt-11">
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-15">
-                    {category ? (
+                    {checkedCategory ? (
                         <h1 className="text-lg text-gray-600 font-bold">
                             Popular
                             <span className="capitalize">
-                                {category !== "deals"
-                                    ? ` ${category} `
+                                {checkedCategory !== "deals"
+                                    ? ` ${checkedCategory} `
                                     : " Deals "}
                             </span>
                             in {searchParams?.get("city") || "Calgary"}
@@ -83,11 +78,7 @@ export default function Listings() {
                                                 {...listing}
                                                 key={listing.id}
                                                 onClick={() =>
-                                                    handleCardClick(
-                                                        listing.id,
-                                                        listing.category,
-                                                        listing.prodName
-                                                    )
+                                                    handleCardClick(listing)
                                                 }
                                             />
                                         );

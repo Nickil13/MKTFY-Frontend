@@ -1,5 +1,6 @@
 const STORAGE_KEYS = {
     USER_KEY: "mktfy-user",
+    CURRENT_LISTING_KEY: "mktfy-current-listing",
 };
 
 const setLocalStorage = (key, value) => {
