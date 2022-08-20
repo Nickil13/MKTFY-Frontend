@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import CityDropdown from "./CityDropdown";
 import { NAV_CATEGORIES } from "../../../data/variables";
 import { Link } from "react-router-dom";
 import CategoryIconButton from "./CategoryIconButton";
 
-export default function MobileCategoriesMenu() {
-    const [city, setCity] = useState("Calgary");
+export default function MobileCategoriesMenu({ city, setCity }) {
     return (
         <div className="absolute -bottom-28 left-0 right-0 flex flex-col bg-white shadow-modal">
             <div className="flex flex-col mx-auto w-4/5 py-4">

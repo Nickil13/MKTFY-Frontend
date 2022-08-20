@@ -8,14 +8,20 @@ import Searchbar from "./Searchbar";
 import Notifications from "../../Notifications";
 import UserMenu from "./UserMenu";
 import MobileCategoriesMenu from "./MobileCategoriesMenu";
+import { CITY_OPTIONS } from "../../../data/variables";
+import { useUserContext } from "../../../context/UserContext";
 
 const MOBILE_WIDTH_BREAKPOINT = "800";
 
 export default function Navbar() {
+    const { user } = useUserContext();
+    let navigate = useNavigate();
+    const [selectedCity, setSelectedCity] = useState(
+        user?.city || CITY_OPTIONS[0]
+    );
     const [mobileWindowSize, setMobileWindowSize] = useState(
         window.innerWidth < MOBILE_WIDTH_BREAKPOINT
     );
-    let navigate = useNavigate();
 
     useEffect(() => {
         window.addEventListener("resize", checkSize);
@@ -45,7 +51,11 @@ export default function Navbar() {
                     >
                         <img src={MktfyWordmark} alt="mktfy wordmark" />
                     </Link>
-                    <Searchbar className="flex-1 row-start-2 lg:row-start-1 col-span-3 lg:col-start-2 lg:col-end-2 max-w-[800px] xlg:max-w-[1012px]" />
+                    <Searchbar
+                        className="flex-1 row-start-2 lg:row-start-1 col-span-3 lg:col-start-2 lg:col-end-2 max-w-[800px] xlg:max-w-[1012px]"
+                        city={selectedCity}
+                        setCity={setSelectedCity}
+                    />
                     <MenuIcon className="ml-5 row-start-1 col-start-3 justify-self-end w-10 h-10 cursor-pointer 2xl:hidden" />
 
                     {/* User Menu, Notifications, Create Listing Button */}
@@ -83,7 +93,12 @@ export default function Navbar() {
                     )}
                 </div>
             </div>
-            {mobileWindowSize && <MobileCategoriesMenu />}
+            {mobileWindowSize && (
+                <MobileCategoriesMenu
+                    city={selectedCity}
+                    setCity={setSelectedCity}
+                />
+            )}
         </nav>
     );
 }

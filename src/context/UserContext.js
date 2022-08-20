@@ -3,9 +3,9 @@ import auth0js from "auth0-js";
 import axios from "../utils/request";
 import jwt_decode from "jwt-decode";
 import {
-    clearLocalStorage,
-    getLocalStorage,
-    setLocalStorage,
+    clearSessionStorage,
+    getSessionStorage,
+    setSessionStorage,
     STORAGE_KEYS,
 } from "../utils/storageUtils";
 import { toast } from "../components/custom-toast/CustomToastContainer";
@@ -18,10 +18,10 @@ export const useUserContext = () => {
 
 export const UserContextProvider = ({ children }) => {
     const [user, setUser] = useState(
-        getLocalStorage(STORAGE_KEYS.USER_KEY, null)
+        getSessionStorage(STORAGE_KEYS.USER_KEY, null)
     );
     const [isAuthenticated, setIsAuthenticated] = useState(
-        sessionStorage.getItem("access_token")
+        getSessionStorage(STORAGE_KEYS.AUTH_TOKEN, false)
     );
     const [isLoading, setIsLoading] = useState(false);
     const [signupSuccess, setSignupSuccess] = useState(false);
@@ -41,9 +41,8 @@ export const UserContextProvider = ({ children }) => {
 
         if (access_token) {
             /* Set is Authenticated and store the access token in session storage */
-            sessionStorage.setItem("access_token", access_token);
+            setSessionStorage(STORAGE_KEYS.AUTH_TOKEN, access_token);
             setIsAuthenticated(true);
-            console.log("access token saved");
 
             /* Decode token to get user information */
             webAuth.client.userInfo(access_token, function (err, user) {
@@ -63,16 +62,16 @@ export const UserContextProvider = ({ children }) => {
         }
     }, []);
 
-    /* Store changes made to user in local storage */
+    /* Store changes made to user in session storage */
     useEffect(() => {
         if (user) {
-            setLocalStorage(STORAGE_KEYS.USER_KEY, { ...user });
+            setSessionStorage(STORAGE_KEYS.USER_KEY, { ...user });
         }
     }, [user]);
 
     /* User API Functionality */
     const getIdFromToken = () => {
-        const token = sessionStorage.getItem("access_token");
+        const token = getSessionStorage(STORAGE_KEYS.AUTH_TOKEN, null);
         if (token) {
             const decoded = jwt_decode(token);
             return decoded.sub;
@@ -139,7 +138,7 @@ export const UserContextProvider = ({ children }) => {
                 },
             },
             (error) => {
-                console.log(error);
+                console.error(error);
                 setError(error.description);
             }
         );
@@ -147,8 +146,7 @@ export const UserContextProvider = ({ children }) => {
 
     const logout = () => {
         setIsAuthenticated(false);
-        sessionStorage.removeItem("access_token");
-        clearLocalStorage();
+        clearSessionStorage();
         webAuth.logout({ returnTo: "http://localhost:3000" });
     };
 

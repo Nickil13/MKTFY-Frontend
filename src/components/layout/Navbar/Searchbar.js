@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import { ReactComponent as SearchIcon } from "../../../assets/images/search-24px.svg";
 import { useNavigate } from "react-router-dom";
-import { CITY_OPTIONS } from "../../../data/variables";
-import { useUserContext } from "../../../context/UserContext";
 import CityDropdown from "./CityDropdown";
 
-export default function Searchbar({ className }) {
-    const { user } = useUserContext();
+export default function Searchbar({ className, city, setCity }) {
     const [searchValue, setSearchValue] = useState("");
-    const [city, setCity] = useState(user?.city || CITY_OPTIONS[0]);
 
     let navigate = useNavigate();
 

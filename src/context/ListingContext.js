@@ -3,11 +3,11 @@ import { CATEGORY_TYPES } from "../data/variables";
 
 import axios from "../utils/request";
 import {
-    clearLocalStorage,
-    getLocalStorage,
-    setLocalStorage,
+    getSessionStorage,
+    setSessionStorage,
     STORAGE_KEYS,
 } from "../utils/storageUtils";
+
 // import { toast } from "../components/custom-toast/CustomToastContainer";
 
 const ListingContext = React.createContext();
@@ -19,15 +19,16 @@ export const useListingContext = () => {
 export const ListingContextProvider = ({ children }) => {
     const [listings, setListings] = useState([]);
     const [currentListing, setCurrentListing] = useState(
-        getLocalStorage(STORAGE_KEYS.CURRENT_LISTING_KEY, null)
+        getSessionStorage(STORAGE_KEYS.CURRENT_LISTING_KEY, null)
     );
     const [listingSelection, setListingSelection] = useState(null);
     const [deals, setDeals] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     /* Store changes made to listing in local storage */
     useEffect(() => {
         if (currentListing) {
-            setLocalStorage(STORAGE_KEYS.CURRENT_LISTING_KEY, {
+            setSessionStorage(STORAGE_KEYS.CURRENT_LISTING_KEY, {
                 ...currentListing,
             });
         }
@@ -35,6 +36,7 @@ export const ListingContextProvider = ({ children }) => {
 
     /* Get a selection of listings (3 from each category)*/
     const getListingSelection = async () => {
+        setLoading(true);
         try {
             let apicalls = [];
             CATEGORY_TYPES.forEach((category) => {
@@ -49,42 +51,35 @@ export const ListingContextProvider = ({ children }) => {
             });
         } catch (error) {
             console.error(error);
+        } finally {
+            setLoading(false);
         }
     };
 
     /* Get all deals */
     const getDeals = async () => {
+        setLoading(true);
         try {
             const res = await axios.get("/Listing/deals");
             setDeals(res);
         } catch (error) {
             console.error(error);
+        } finally {
+            setLoading(false);
         }
     };
     const getListingById = async (id) => {
+        setLoading(true);
         try {
             const res = await axios.get(`/Listing/${id}`);
             setCurrentListing(res);
         } catch (error) {
             console.log(error);
+        } finally {
+            setLoading(false);
         }
     };
-    const getAllListingsByCategory = async (category) => {
-        try {
-            const res = await axios.get(`/Listing/all/category/${category}`);
-            setListings(res);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-    const getAllListingsByCity = async (city) => {
-        try {
-            const res = await axios.get(`/Listing/all/${city}`);
-            setListings(res);
-        } catch (error) {
-            console.log(error);
-        }
-    };
+
     const getFilteredListings = async (filter) => {
         // /?searchString&city&category&condition&minPrice&maxPrice
         console.log(filter);
@@ -106,12 +101,14 @@ export const ListingContextProvider = ({ children }) => {
             params.append("minPrice", filter.fromPrice);
             params.append("maxPrice", filter.toPrice);
         }
-
+        setLoading(true);
         try {
             const res = await axios.get(`/Listing/filter?${params}`);
             setListings(res);
         } catch (error) {
             console.log(error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -126,9 +123,8 @@ export const ListingContextProvider = ({ children }) => {
                 deals,
                 setCurrentListing,
                 getListingById,
-                getAllListingsByCategory,
-                getAllListingsByCity,
                 getFilteredListings,
+                loading,
             }}
         >
             {children}

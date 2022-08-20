@@ -6,6 +6,7 @@ import { UploadImageModal } from "../../components/modals";
 import { useModalContext } from "../../context/ModalContext";
 import axios from "../../utils/request";
 import { useNavigate } from "react-router-dom";
+import { getSessionStorage, STORAGE_KEYS } from "../../utils/storageUtils";
 
 export default function CreateListing() {
     const [prodName, setProdName] = useState("Test listing");
@@ -19,7 +20,7 @@ export default function CreateListing() {
     const [previewImages, setPreviewImages] = useState([]);
     const [listingImages, setListingImages] = useState([]);
     let navigate = useNavigate();
-    const token = sessionStorage.getItem("access_token");
+    const token = getSessionStorage(STORAGE_KEYS.AUTH_TOKEN, null);
     const multipartHeader = {
         headers: {
             "Content-Type": "multipart/form-data",

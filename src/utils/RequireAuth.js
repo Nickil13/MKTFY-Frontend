@@ -2,13 +2,14 @@ import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { useUserContext } from "../context/UserContext";
 import jwtDecode from "jwt-decode";
+import { getSessionStorage, STORAGE_KEYS } from "./storageUtils";
 
 export default function RequireAuth({ children }) {
     const { isLoading, isAuthenticated, logout } = useUserContext();
     let location = useLocation();
 
     React.useEffect(() => {
-        const token = sessionStorage.getItem("access_token");
+        const token = getSessionStorage(STORAGE_KEYS.AUTH_TOKEN, null);
         if (token) {
             try {
                 const decoded = jwtDecode(token);
