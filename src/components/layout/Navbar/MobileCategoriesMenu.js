@@ -13,7 +13,8 @@ export default function MobileCategoriesMenu({ city, setCity }) {
                     <CityDropdown
                         city={city}
                         setCity={setCity}
-                        buttonClassName="text-purple-600 text-sm-16 px-0 justify-end"
+                        buttonClassName="text-purple-600 text-sm-16 px-0 justify-start w-[90px]"
+                        pos="top-16 right-[110px]"
                     />
                 </div>
                 <ul className="flex gap-14 justify-center overflow-x-auto hide-scrollbar select-none">

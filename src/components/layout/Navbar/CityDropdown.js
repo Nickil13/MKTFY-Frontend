@@ -9,24 +9,35 @@ export default function CityDropdown({
     city,
     setCity,
     buttonClassName,
+    pos,
 }) {
     const [showing, setShowing] = useState(false);
+    const [searchValue, setSearchValue] = useState("");
+    const [cityList, setCityList] = useState([...CITY_OPTIONS]);
 
     const handleDropdownClick = (cityName) => {
         setCity(cityName);
         setShowing(false);
+        setSearchValue("");
     };
+
+    React.useEffect(() => {
+        const filteredList = CITY_OPTIONS.filter((city) =>
+            city.toLowerCase().includes(searchValue.toLowerCase())
+        );
+        setCityList([...filteredList]);
+    }, [searchValue]);
 
     return (
         <div className={className}>
             <Dropdown
-                width="w-[315px]"
+                width="w-[315px] max-w-[60vw]"
                 showing={showing}
                 setShowing={setShowing}
                 arrowRight
-                pos="top-16 right-[70px]"
+                pos={pos}
             >
-                <div className="my-3.5">
+                <div className="my-3.5 overflow-y-auto max-h-city-search hide-scrollbar overscroll-y-contain">
                     <div className="flex border border-[#D1D1D1] px-5 py-3.5 rounded mx-3.5 mb-2">
                         <SearchIcon className="mr-1" />
                         <input
@@ -34,11 +45,13 @@ export default function CityDropdown({
                             id="city-search"
                             name="city-search"
                             placeholder="Search City"
-                            className="outline-none"
+                            className="outline-none  w-full"
+                            value={searchValue}
+                            onChange={(e) => setSearchValue(e.target.value)}
                         />
                     </div>
                     <ul>
-                        {CITY_OPTIONS.map((name, index) => {
+                        {cityList.map((name, index) => {
                             return (
                                 <li
                                     key={index}

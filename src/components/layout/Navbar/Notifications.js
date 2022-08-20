@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import AlertBell from "../assets/images/Group 1553.svg";
-import Dropdown from "./Dropdown";
+import AlertBell from "../../../assets/images/Group 1553.svg";
+import Dropdown from "../../Dropdown";
 
 function NotificationItem({ children, date, bg }) {
     return (
@@ -33,30 +33,32 @@ export default function Notifications() {
                 setShowing={setNotificationsShowing}
                 arrowRight
             >
-                <div>
-                    <h2 className="text-xs font-bold pt-5 pb-7 px-4">
-                        News for you
-                    </h2>
+                <div className="overflow-y-auto max-h-notifications hide-scrollbar overscroll-y-contain">
                     <div>
-                        <NotificationItem
-                            bg="bg-beige-200"
-                            date="September 07, 2020"
-                        >
-                            Hey Mark, welcome to MKTFY
-                        </NotificationItem>
+                        <h2 className="text-xs font-bold pt-5 pb-7 px-4">
+                            News for you
+                        </h2>
+                        <div>
+                            <NotificationItem
+                                bg="bg-beige-200"
+                                date="September 07, 2020"
+                            >
+                                Hey Mark, welcome to MKTFY
+                            </NotificationItem>
+                        </div>
                     </div>
-                </div>
-                <div className="mb-12">
-                    <h2 className="text-xs font-bold pt-9 pb-6 px-4">
-                        Previously Seen
-                    </h2>
-                    <div>
-                        <NotificationItem date="September 05, 2020">
-                            Let's create your first offer!
-                        </NotificationItem>
-                        <NotificationItem date="September 03 2020">
-                            Our Terms of Service has been updated!
-                        </NotificationItem>
+                    <div className="mb-12">
+                        <h2 className="text-xs font-bold pt-9 pb-6 px-4">
+                            Previously Seen
+                        </h2>
+                        <div>
+                            <NotificationItem date="September 05, 2020">
+                                Let's create your first offer!
+                            </NotificationItem>
+                            <NotificationItem date="September 03 2020">
+                                Our Terms of Service has been updated!
+                            </NotificationItem>
+                        </div>
                     </div>
                 </div>
             </Dropdown>

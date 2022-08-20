@@ -6,7 +6,7 @@ import Dropdown from "./Dropdown";
 import ImageSlider from "./ImageSlider";
 import ImageSquare from "./ImageSquare";
 import ListingImages from "./ListingImages";
-import Notifications from "./Notifications";
+
 import Pagination from "./Pagination";
 import ProductSection from "./ProductSection";
 import ScrollBox from "./ScrollBox";
@@ -24,7 +24,6 @@ export {
     ImageSlider,
     ImageSquare,
     ListingImages,
-    Notifications,
     Pagination,
     ListingCard,
     ProductCard,

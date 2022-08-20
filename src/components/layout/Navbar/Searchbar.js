@@ -56,6 +56,7 @@ export default function Searchbar({ className, city, setCity }) {
                 className="hidden lg:block relative"
                 city={city}
                 setCity={setCity}
+                pos="top-16 right-[90px]"
             />
         </div>
     );

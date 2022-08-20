@@ -88,7 +88,9 @@ module.exports = {
                 "listing-card": "312px",
             },
             maxHeight: {
-                menu: "calc(100vh - 225px)",
+                menu: "calc(100vh - 230px)",
+                notifications: "calc(100vh - 130px)",
+                "city-search": "calc(100vh - 140px)",
             },
             minWidth: {
                 card: "236px",
@@ -108,6 +110,8 @@ module.exports = {
                 btn: "0px 5px 20px #00000024",
                 modal: "0px 7px 12px #00000024",
                 dropdown: "0px 3px 6px #00000029",
+                "dropdown-arrow":
+                    "0px 3px 6px #00000029,0px -1px 6px #00000029",
                 card: "0px 4px 15px #00000024",
                 "card-faint": "0px 1px 0px #00000024",
             },
