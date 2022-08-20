@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate, useSearchParams, useParams } from "react-router-dom";
-import { getDeals, getListings } from "../../actions/listings";
 import { ListingCard, Pagination, Sidebar } from "../../components";
 import { useListingContext } from "../../context/ListingContext";
 import { NAV_CATEGORIES } from "../../data/variables";

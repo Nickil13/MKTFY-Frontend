@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import ModalWrapper from "./ModalWrapper";
 import Select from "../Select";
 import { useNavigate } from "react-router-dom";
-import Button from "../Button";
 import { CITY_OPTIONS } from "../../data/variables";
 import { LoginInput } from "../inputs";
 

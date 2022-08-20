@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { LoginInput } from "../inputs";
-import Button from "../Button";
 import ModalWrapper from "./ModalWrapper";
 import { useUserContext } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";

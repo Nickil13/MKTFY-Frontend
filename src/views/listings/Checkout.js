@@ -1,10 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import {
-    getDummyListingById,
-    getListingById,
-    requestPurchase,
-} from "../../actions/listings";
+import { requestPurchase } from "../../actions/listings";
 import { useListingContext } from "../../context/ListingContext";
 import { formatPrice } from "../../utils/helpers";
 
@@ -22,9 +18,8 @@ export default function Checkout() {
     const handleCheckoutClick = () => {
         // requestPurchase(id).then((res) => {
         //     if (res) {
-        //         navigate("pickup-information", {
-        //             state: { listing: res, name: listing.prodName },
-        //         });
+        //         navigate("pickup-information"
+        //         );
         //     }
         // });
         navigate("pickup-information");

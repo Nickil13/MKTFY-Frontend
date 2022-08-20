@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from "react";
 import ModalWrapper from "./ModalWrapper";
 import { PasswordInput } from "../inputs";
-import Button from "../Button";
 import PasswordRequirement from "./PasswordRequirement";
 import { useNavigate, useLocation } from "react-router-dom";
 import { checkUppercase, checkContainsNumber } from "../../utils/helpers";
@@ -85,7 +84,7 @@ export default function ResetPasswordModal() {
                             1 Number
                         </PasswordRequirement>
                     </div>
-                    <Button
+                    {/* <Button
                         type="submit"
                         margins="mt-28"
                         centered
@@ -97,7 +96,7 @@ export default function ResetPasswordModal() {
                         }
                     >
                         Set Password
-                    </Button>
+                    </Button> */}
                 </form>
             </div>
         </ModalWrapper>

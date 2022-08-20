@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "../Button";
 import ModalWrapper from "./ModalWrapper";
 import { LoginInput } from "../inputs";
 
@@ -47,14 +46,14 @@ export default function VerifyResetModal() {
                         I didn't receive the code. Please send it again
                     </span>
                 </div>
-                <Button
+                {/* <Button
                     type="submit"
                     margins="mt-10"
                     centered
                     disabled={verificationCode.length < 6}
                 >
                     Submit
-                </Button>
+                </Button> */}
             </form>
         </ModalWrapper>
     );

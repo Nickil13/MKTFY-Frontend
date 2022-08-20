@@ -37,13 +37,3 @@ export default function ListingCard({
         </div>
     );
 }
-
-ListingCard.defaultProps = {
-    title: "Pancakes",
-    subtitle: "Breakfast delights",
-    img: "https://images.unsplash.com/photo-1597699401474-e8714c1b7879?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
-    price: "$ 12,299.99",
-    condition: "new",
-    description:
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit fuga qui minima asperiores maiores ex ducimus corporis exercitationem expedita dolore. Ipsum aut, voluptate assumenda ipsa rem sapiente officia iste aliquam!",
-};

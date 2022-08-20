@@ -3,7 +3,6 @@ import React, { useState, useMemo } from "react";
 import ModalWrapper from "./ModalWrapper";
 import { PasswordInput } from "../inputs";
 import PasswordRequirement from "./PasswordRequirement";
-import Button from "../Button";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
 import { checkUppercase, checkContainsNumber } from "../../utils/helpers";
