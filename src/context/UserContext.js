@@ -10,6 +10,8 @@ import {
 } from "../utils/storageUtils";
 import { toast } from "../components/custom-toast/CustomToastContainer";
 
+// const REDIRECT_URI = "http://localhost:3000";
+const REDIRECT_URI = "https://d2mz5o15b3dsx3.cloudfront.net";
 const UserContext = React.createContext();
 
 export const useUserContext = () => {
@@ -133,7 +135,8 @@ export const UserContextProvider = ({ children }) => {
                 realm: process.env.REACT_APP_REALM,
                 email,
                 password,
-                redirectUri: "http://localhost:3000/login",
+                redirectUri: `${REDIRECT_URI}/login`,
+                // redirectUri: "http://localhost:3000/login",
                 onRedirecting: function (done) {
                     done();
                 },
@@ -149,7 +152,8 @@ export const UserContextProvider = ({ children }) => {
         setIsAuthenticated(false);
         sessionStorage.removeItem("access_token");
         clearLocalStorage();
-        webAuth.logout({ returnTo: "http://localhost:3000" });
+        // webAuth.logout({ returnTo: "http://localhost:3000" });
+        webAuth.logout({ returnTo: REDIRECT_URI });
     };
 
     const signup = (userInfo) => {
