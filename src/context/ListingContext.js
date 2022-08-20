@@ -22,7 +22,7 @@ export const ListingContextProvider = ({ children }) => {
         getLocalStorage(STORAGE_KEYS.CURRENT_LISTING_KEY, null)
     );
     const [listingSelection, setListingSelection] = useState(null);
-    // const [deals, setDeals] = useState([]);
+    const [deals, setDeals] = useState([]);
 
     /* Store changes made to listing in local storage */
     useEffect(() => {
@@ -56,7 +56,7 @@ export const ListingContextProvider = ({ children }) => {
     const getDeals = async () => {
         try {
             const res = await axios.get("/Listing/deals");
-            setListings(res);
+            setDeals(res);
         } catch (error) {
             console.error(error);
         }
@@ -90,6 +90,9 @@ export const ListingContextProvider = ({ children }) => {
         console.log(filter);
         const params = new URLSearchParams();
 
+        if (filter.searchString) {
+            params.append("searchString", filter.searchString);
+        }
         if (filter.city) {
             params.append("city", filter.city);
         }
@@ -98,6 +101,10 @@ export const ListingContextProvider = ({ children }) => {
         }
         if (filter.condition) {
             params.append("condition", filter.condition);
+        }
+        if (filter.fromPrice && filter.toPrice) {
+            params.append("minPrice", filter.fromPrice);
+            params.append("maxPrice", filter.toPrice);
         }
 
         try {
@@ -116,6 +123,7 @@ export const ListingContextProvider = ({ children }) => {
                 getListingSelection,
                 listingSelection,
                 getDeals,
+                deals,
                 setCurrentListing,
                 getListingById,
                 getAllListingsByCategory,

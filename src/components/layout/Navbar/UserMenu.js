@@ -63,10 +63,10 @@ export default function UserMenu() {
                         <div className="mb-12">
                             <h3 className="text-xs font-bold p-3.5">Help</h3>
                             <ul>
-                                <li className="p-3.5 hover:bg-beige-200 cursor-pointer">
+                                <li className="p-3.5 hover:bg-beige-200">
                                     <Link to="FAQ">FAQ</Link>
                                 </li>
-                                <li className="p-3.5 hover:bg-beige-200 cursor-pointer">
+                                <li className="p-3.5 hover:bg-beige-200">
                                     Contact Us
                                 </li>
                             </ul>

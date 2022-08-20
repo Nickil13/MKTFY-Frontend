@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import { ReactComponent as SearchIcon } from "../../../assets/images/search-24px.svg";
 import { useNavigate } from "react-router-dom";
 import { CITY_OPTIONS } from "../../../data/variables";
+import { useUserContext } from "../../../context/UserContext";
 import CityDropdown from "./CityDropdown";
 
 export default function Searchbar({ className }) {
+    const { user } = useUserContext();
     const [searchValue, setSearchValue] = useState("");
-    const [city, setCity] = useState(CITY_OPTIONS[0]);
+    const [city, setCity] = useState(user?.city || CITY_OPTIONS[0]);
+
     let navigate = useNavigate();
 
     const handleSearch = (e) => {
@@ -14,10 +17,7 @@ export default function Searchbar({ className }) {
 
         if (searchValue) {
             console.log("Searching: ", searchValue, city);
-
-            // Clear search value
-            setSearchValue("");
-            navigate(`listings/?search=${searchValue}&city=${city}`);
+            navigate(`listings/?searchValue=${searchValue}&city=${city}`);
         }
     };
 
@@ -38,7 +38,7 @@ export default function Searchbar({ className }) {
             >
                 {!searchValue && (
                     <label
-                        className="absolute top-0 text-xs text-[#000000]/50 flex-shrink-0"
+                        className="absolute top-1/2 -translate-y-1/2 text-xs text-[#000000]/50 flex-shrink-0"
                         htmlFor="search"
                     >
                         Search on <strong>MKTFY</strong>

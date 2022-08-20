@@ -3,12 +3,16 @@ import { AppBanner, DealsSection, ProductSection } from "../components";
 import { useListingContext } from "../context/ListingContext";
 
 export default function Home() {
-    const { listingSelection, getListingSelection } = useListingContext();
+    const { listingSelection, getListingSelection, deals, getDeals } =
+        useListingContext();
 
     React.useEffect(() => {
         if (!listingSelection) {
             /* Get a selection of listings: 3 from each category*/
             getListingSelection();
+        }
+        if (deals.length === 0) {
+            getDeals();
         }
     }, []);
     return (

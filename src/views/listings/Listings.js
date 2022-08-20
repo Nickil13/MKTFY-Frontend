@@ -6,13 +6,19 @@ import { NAV_CATEGORIES } from "../../data/variables";
 
 export default function Listings() {
     const { category } = useParams();
-    const { listings, getFilteredListings, setCurrentListing, getDeals } =
-        useListingContext();
+    const {
+        listings: categoryListings,
+        deals,
+        getFilteredListings,
+        setCurrentListing,
+        getDeals,
+    } = useListingContext();
     const checkedCategory = !NAV_CATEGORIES.includes(category) ? "" : category;
+    const listings = checkedCategory === "deals" ? deals : categoryListings;
     let navigate = useNavigate();
     let [searchParams] = useSearchParams();
     let page = searchParams.get("page") || 1;
-    let city = searchParams.get("city") || "Calgary";
+    let city = searchParams.get("city") || "";
     // let pageParam = searchParams.get("page") || 1;
     // let page = 1;
 
@@ -24,6 +30,9 @@ export default function Listings() {
                 city,
                 category: checkedCategory,
                 condition: searchParams.get("condition") || "",
+                fromPrice: searchParams.get("fromPrice") || "",
+                toPrice: searchParams.get("toPrice") || "",
+                searchString: searchParams.get("searchValue") || "",
             };
             getFilteredListings(filter);
         }
@@ -44,21 +53,22 @@ export default function Listings() {
                         <h1 className="text-lg text-gray-600 font-bold">
                             Popular
                             <span className="capitalize">
-                                {checkedCategory !== "deals"
-                                    ? ` ${checkedCategory} `
-                                    : " Deals "}
+                                {` ${
+                                    checkedCategory === "cars"
+                                        ? "cars & vehicles"
+                                        : checkedCategory
+                                }`}
                             </span>
-                            in {searchParams?.get("city") || "Calgary"}
+                            {city ? ` in ${city}` : ""}
                         </h1>
                     ) : (
                         <h1 className="text-lg text-gray-600 font-bold">
-                            All Listings in{" "}
-                            {searchParams?.get("city") || "Calgary"}
+                            All Listings in {city}
                         </h1>
                     )}
                     <div className="mt-2 lg:mt-0">
                         <span className="text-base">
-                            Showing 10 of 100 results
+                            {`Showing ${listings.length} of 100 results`}
                         </span>
                     </div>
                 </div>

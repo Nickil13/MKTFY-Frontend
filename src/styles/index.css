@@ -21,6 +21,13 @@
     .hide-scrollbar::-webkit-scrollbar {
         display: none;
     }
+
+    /* Change Autocomplete styles in Chrome*/
+    :-webkit-autofill,
+    :-webkit-autofill:hover,
+    :-webkit-autofill:focus {
+        transition: background-color 5000s ease-in-out 0s;
+    }
 }
 
 @layer components {

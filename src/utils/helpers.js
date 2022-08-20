@@ -1,15 +1,17 @@
 import { NAV_CATEGORIES } from "../data/variables";
 import { toast } from "../components/custom-toast/CustomToastContainer";
 
-const BLACKLIST = ["listings", "sold"];
+const BLACKLIST = ["listings", "sold", ""];
 
 export const generateCrumbs = (location, searchParams, listingName) => {
     let newCrumbs = [];
     let crumbs = location.pathname.split("/").slice(1);
+    const city = location.state?.city || searchParams.get("city");
     let name = "";
 
     for (let i = 0; i < crumbs.length; i++) {
         let crumb = crumbs[i];
+        const hasNextCrumb = i + 1 <= crumbs.length - 1 && crumbs[i + 1] !== "";
 
         let crumbPath = `/${crumbs
             .slice(0, crumbs.indexOf(crumb) + 1)
@@ -27,8 +29,8 @@ export const generateCrumbs = (location, searchParams, listingName) => {
             name = "account information";
             /* If the crumb is a category, set its name based on current city*/
         } else if (NAV_CATEGORIES.includes(crumb)) {
-            name = `${crumb} in ${
-                location.state?.city || searchParams.get("city") || "Calgary"
+            name = `${crumb === "cars" ? "cars & vehicles" : crumb} ${
+                city ? `in ${city}` : ""
             }`;
 
             /* If the crumb is a number and a product name is stored in state */
@@ -46,6 +48,11 @@ export const generateCrumbs = (location, searchParams, listingName) => {
         if (!BLACKLIST.includes(crumb)) {
             newCrumbs.push({
                 name,
+                path: crumbPath,
+            });
+        } else if (crumb === "listings" && !hasNextCrumb) {
+            newCrumbs.push({
+                name: `All Listings in ${city}`,
                 path: crumbPath,
             });
         }

@@ -1,14 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { DealsCard, ScrollBox } from "../components";
 import { useListingContext } from "../context/ListingContext";
 import { useNavigate } from "react-router-dom";
 
 export default function DealsSection({ title, category }) {
-    const {
-        listings: deals,
-        getDeals,
-        setCurrentListing,
-    } = useListingContext();
+    const { deals, setCurrentListing } = useListingContext();
     let navigate = useNavigate();
     const currentDeals =
         deals.length > 0
@@ -16,12 +12,6 @@ export default function DealsSection({ title, category }) {
                 ? deals.slice(0, 8)
                 : deals.slice(9, -1)
             : [];
-
-    useEffect(() => {
-        if (deals.length === 0) {
-            getDeals();
-        }
-    }, []);
 
     const handleCardClick = (deal) => {
         setCurrentListing(deal);

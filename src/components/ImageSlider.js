@@ -17,7 +17,7 @@ export default function ImageSlider({ images, name, className }) {
             className={`flex flex-col-reverse 2xl:mx-8 lg:flex-row ${className} w-full`}
         >
             {/* Image Slider */}
-            <div className="flex items-center lg:mr-9 lg:flex-col">
+            <div className="flex items-center lg:mr-9 lg:flex-col select-none">
                 <SliderArrow
                     className="hidden md:block cursor-pointer mr-2.5 lg:mb-2.5 lg:mr-0 lg:rotate-90"
                     onClick={increaseIndex}
