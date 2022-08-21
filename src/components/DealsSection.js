@@ -11,7 +11,7 @@ export default function DealsSection({ title, category }) {
     } = useListingContext();
     let navigate = useNavigate();
     const currentDeals =
-        deals.length > 0
+        deals?.length > 0
             ? category === "deals"
                 ? deals.slice(0, 8)
                 : deals.slice(9, -1)

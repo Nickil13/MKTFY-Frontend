@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE_URL =
-    "https://marketforyouyh-env.eba-fqgiudi2.ca-central-1.elasticbeanstalk.com/api";
+    "http://marketforyouyh-env.eba-fqgiudi2.ca-central-1.elasticbeanstalk.com/api";
 
 // Create the axios instance
 const service = axios.create({
