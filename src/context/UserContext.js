@@ -129,6 +129,7 @@ export const UserContextProvider = ({ children }) => {
     /* Auth0 Functionality */
     const login = (email, password) => {
         error && setError("");
+        localStorage.setItem("redirect", `${REDIRECT_URI}/login`);
         webAuth.login(
             {
                 responseType: "token",
