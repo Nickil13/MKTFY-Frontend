@@ -11,7 +11,7 @@ import {
 import { toast } from "../components/custom-toast/CustomToastContainer";
 
 // const REDIRECT_URI = "http://localhost:3000";
-const REDIRECT_URI = "http://mktfy-lp.s3-website.ca-central-1.amazonaws.com/";
+const REDIRECT_URI = "http://mktfy-lp.s3-website.ca-central-1.amazonaws.com";
 const UserContext = React.createContext();
 
 export const useUserContext = () => {
