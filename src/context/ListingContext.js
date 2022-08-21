@@ -42,10 +42,9 @@ export const ListingContextProvider = ({ children }) => {
             });
             Promise.all(apicalls).then((listings) => {
                 const map = new Map();
-                listings?.length > 0 &&
-                    listings.forEach((list, index) => {
-                        map.set(CATEGORY_TYPES[index], list.slice(0, 3));
-                    });
+                listings.forEach((list, index) => {
+                    map.set(CATEGORY_TYPES[index], list.slice(0, 3));
+                });
                 setListingSelection(map);
             });
         } catch (error) {

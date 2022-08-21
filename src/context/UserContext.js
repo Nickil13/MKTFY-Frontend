@@ -11,7 +11,7 @@ import {
 import { toast } from "../components/custom-toast/CustomToastContainer";
 
 // const REDIRECT_URI = "http://localhost:3000";
-const REDIRECT_URI = "https://d2mz5o15b3dsx3.cloudfront.net";
+const REDIRECT_URI = "http://mktfy-lp.s3-website.ca-central-1.amazonaws.com/";
 const UserContext = React.createContext();
 
 export const useUserContext = () => {
@@ -135,7 +135,7 @@ export const UserContextProvider = ({ children }) => {
                 realm: process.env.REACT_APP_REALM,
                 email,
                 password,
-                redirectUri: "https://d2mz5o15b3dsx3.cloudfront.net/login",
+                redirectUri: `${REDIRECT_URI}/login`,
                 onRedirecting: function (done) {
                     done();
                 },
@@ -151,7 +151,7 @@ export const UserContextProvider = ({ children }) => {
         setIsAuthenticated(false);
         sessionStorage.removeItem("access_token");
         clearLocalStorage();
-        webAuth.logout({ returnTo: "https://d2mz5o15b3dsx3.cloudfront.net" });
+        webAuth.logout({ returnTo: REDIRECT_URI });
     };
 
     const signup = (userInfo) => {
