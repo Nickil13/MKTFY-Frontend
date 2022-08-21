@@ -129,14 +129,13 @@ export const UserContextProvider = ({ children }) => {
     /* Auth0 Functionality */
     const login = (email, password) => {
         error && setError("");
-        localStorage.setItem("redirect", `${REDIRECT_URI}/login`);
         webAuth.login(
             {
                 responseType: "token",
                 realm: process.env.REACT_APP_REALM,
                 email,
                 password,
-                redirectUri: "https://d2mz5o15b3dsx3.cloudfront.net/login/",
+                redirectUri: "https://d2mz5o15b3dsx3.cloudfront.net/login",
                 onRedirecting: function (done) {
                     done();
                 },
@@ -152,8 +151,7 @@ export const UserContextProvider = ({ children }) => {
         setIsAuthenticated(false);
         sessionStorage.removeItem("access_token");
         clearLocalStorage();
-        // webAuth.logout({ returnTo: "http://localhost:3000" });
-        webAuth.logout({ returnTo: REDIRECT_URI });
+        webAuth.logout({ returnTo: "https://d2mz5o15b3dsx3.cloudfront.net" });
     };
 
     const signup = (userInfo) => {
