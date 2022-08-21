@@ -1,6 +1,5 @@
 {
     "name": "mktfy-project",
-    "proxy": "https://d2mz5o15b3dsx3.cloudfront.net",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
