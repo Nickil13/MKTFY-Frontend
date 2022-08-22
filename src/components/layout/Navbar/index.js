@@ -8,6 +8,7 @@ import Searchbar from "./Searchbar";
 import Notifications from "../../Notifications";
 import UserMenu from "./UserMenu";
 import MobileCategoriesMenu from "./MobileCategoriesMenu";
+import MobileUserMenu from "./MobileUserMenu";
 
 const MOBILE_WIDTH_BREAKPOINT = "800";
 
@@ -15,6 +16,7 @@ export default function Navbar() {
     const [mobileWindowSize, setMobileWindowSize] = useState(
         window.innerWidth < MOBILE_WIDTH_BREAKPOINT
     );
+    const [menuShowing, setMenuShowing] = useState(false);
     let navigate = useNavigate();
 
     useEffect(() => {
@@ -28,6 +30,7 @@ export default function Navbar() {
         const width = window.innerWidth;
         if (width >= MOBILE_WIDTH_BREAKPOINT) {
             setMobileWindowSize(false);
+            // if (menuShowing) setMenuShowing(false);
         } else {
             setMobileWindowSize(true);
         }
@@ -35,9 +38,9 @@ export default function Navbar() {
     return (
         <nav className="fixed top-0 w-full z-50 flex justify-center lg:items-center h-nav bg-purple-500 px-2">
             {/* Nav Container */}
-            <div className="relative flex flex-col max-w-desktop w-full pt-5 lg:pt-16 pb-5 px-5 3xl:px-0">
+            <div className="container relative flex flex-col pt-5 lg:pt-16 pb-5">
                 {/* Navbar top row */}
-                <div className="grid grid-cols-nav grid-rows-2 items-center lg:justify-center w-[90%] mx-auto 2xl:w-full">
+                <div className="grid grid-cols-nav grid-rows-2 items-center lg:justify-center ">
                     {/* Logo, Searchbar, Mobile Menu Icon */}
                     <Link
                         to="/dashboard"
@@ -46,7 +49,10 @@ export default function Navbar() {
                         <img src={MktfyWordmark} alt="mktfy wordmark" />
                     </Link>
                     <Searchbar className="flex-1 row-start-2 lg:row-start-1 col-span-3 lg:col-start-2 lg:col-end-2 max-w-[800px] xlg:max-w-[1012px]" />
-                    <MenuIcon className="ml-5 row-start-1 col-start-3 justify-self-end w-10 h-10 cursor-pointer 2xl:hidden" />
+                    <MenuIcon
+                        className="ml-5 row-start-1 col-start-3 justify-self-end w-10 h-10 cursor-pointer 2xl:hidden"
+                        onClick={() => setMenuShowing(true)}
+                    />
 
                     {/* User Menu, Notifications, Create Listing Button */}
                     <div className="hidden 2xl:flex ml-14">
@@ -84,6 +90,12 @@ export default function Navbar() {
                 </div>
             </div>
             {mobileWindowSize && <MobileCategoriesMenu />}
+            {/* {mobileWindowSize && ( */}
+            <MobileUserMenu
+                closeMenu={() => setMenuShowing(false)}
+                showing={menuShowing}
+            />
+            {/* )} */}
         </nav>
     );
 }

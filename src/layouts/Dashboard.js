@@ -13,11 +13,11 @@ export default function Dashboard() {
     let crumbs = generateCrumbs(location, searchParams, name);
 
     return (
-        <div className="relative min-h-screen pb-footer">
+        <div className="relative min-h-screen pb-footer-mobile md:pb-footer-mid lg:pb-footer-desktop">
             <Navbar />
             <main className="relative bg-gray-cloud-gray min-h-screen pt-mobile-nav lg:pt-nav">
                 <div className="min-h-screen bg-gray-clouds bg-cover bg-fixed bg-center bg-no-repeat pt-8 pb-32">
-                    <div className="max-w-desktop mx-auto w-[90%]">
+                    <div className="container">
                         <BreadCrumbs crumbs={crumbs} />
                         <Outlet />
                     </div>

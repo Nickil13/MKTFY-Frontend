@@ -8,7 +8,7 @@ export default function MobileCategoriesMenu() {
     const [city, setCity] = useState("Calgary");
     return (
         <div className="absolute -bottom-28 left-0 right-0 flex flex-col bg-white shadow-modal">
-            <div className="flex flex-col mx-auto w-4/5 py-4">
+            <div className="flex flex-col container py-4">
                 <div className="flex justify-between mb-4">
                     <h3>Browse Categories</h3>
                     <CityDropdown
