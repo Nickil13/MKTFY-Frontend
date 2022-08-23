@@ -3,6 +3,7 @@ import CityDropdown from "./CityDropdown";
 import { NAV_CATEGORIES } from "../../../data/variables";
 import { Link } from "react-router-dom";
 import CategoryIconButton from "./CategoryIconButton";
+import ScrollBox from "../../ScrollBox";
 
 export default function MobileCategoriesMenu() {
     const [city, setCity] = useState("Calgary");
@@ -17,7 +18,7 @@ export default function MobileCategoriesMenu() {
                         buttonClassName="text-purple-600 text-sm-16 px-0 justify-end"
                     />
                 </div>
-                <ul className="flex gap-14 justify-center overflow-x-auto hide-scrollbar select-none">
+                <ScrollBox className="gap-14 list-none py-0">
                     {NAV_CATEGORIES.map((category, index) => {
                         return (
                             <li
@@ -33,7 +34,7 @@ export default function MobileCategoriesMenu() {
                             </li>
                         );
                     })}
-                </ul>
+                </ScrollBox>
             </div>
         </div>
     );

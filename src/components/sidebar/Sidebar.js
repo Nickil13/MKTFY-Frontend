@@ -10,11 +10,8 @@ export default function Sidebar({ className }) {
         >
             {/* Category */}
             <div className="divide-y divide-gray-100 py-[22px]">
-                <div>
-                    <h2 className="text-base font-semibold ml-5 mb-4 ">
-                        Category
-                    </h2>
-                </div>
+                <h2 className="text-base font-semibold ml-5 mb-4 ">Category</h2>
+
                 <div className="py-[22px]">
                     <h3 className="ml-5 mb-2 font-semibold">All Categories:</h3>
                     <ul>
@@ -33,52 +30,46 @@ export default function Sidebar({ className }) {
                 </div>
             </div>
             {/* Location */}
-            <div className=" py-[31px]">
-                <div>
-                    <h2 className="text-base font-semibold ml-5 mb-4 ">
-                        Location: Alberta
-                    </h2>
-                </div>
-                <div>
-                    <ul>
-                        {CITY_OPTIONS?.length > 0 &&
-                            CITY_OPTIONS.map((item, index) => {
-                                return (
-                                    <FilterItem
-                                        key={index}
-                                        value={item}
-                                        filterCategory="city"
-                                    >
-                                        {item}
-                                    </FilterItem>
-                                );
-                            })}
-                    </ul>
-                </div>
+            <div className="py-[31px]">
+                <h2 className="text-base font-semibold ml-5 mb-4 ">
+                    Location: Alberta
+                </h2>
+
+                <ul>
+                    {CITY_OPTIONS?.length > 0 &&
+                        CITY_OPTIONS.map((item, index) => {
+                            return (
+                                <FilterItem
+                                    key={index}
+                                    value={item}
+                                    filterCategory="city"
+                                >
+                                    {item}
+                                </FilterItem>
+                            );
+                        })}
+                </ul>
             </div>
             {/* Condition */}
-            <div className=" py-[31px]">
-                <div>
-                    <h2 className="text-base font-semibold ml-5 mb-4 ">
-                        Condition
-                    </h2>
-                </div>
-                <div>
-                    <ul>
-                        {CONDITIONS?.length > 0 &&
-                            CONDITIONS.map((item, index) => {
-                                return (
-                                    <FilterItem
-                                        value={item}
-                                        filterCategory="condition"
-                                        key={index}
-                                    >
-                                        {item}
-                                    </FilterItem>
-                                );
-                            })}
-                    </ul>
-                </div>
+            <div className="py-[31px]">
+                <h2 className="text-base font-semibold ml-5 mb-4 ">
+                    Condition
+                </h2>
+
+                <ul>
+                    {CONDITIONS?.length > 0 &&
+                        CONDITIONS.map((item, index) => {
+                            return (
+                                <FilterItem
+                                    value={item}
+                                    filterCategory="condition"
+                                    key={index}
+                                >
+                                    {item}
+                                </FilterItem>
+                            );
+                        })}
+                </ul>
             </div>
 
             {/* Price */}
