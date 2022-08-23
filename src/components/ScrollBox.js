@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-export default function ScrollBox({ children }) {
+export default function ScrollBox({ children, className }) {
     const scrollBox = React.useRef();
     const [mouseDown, setMouseDown] = useState(false);
     const [pos, setPos] = useState({ top: 0, left: 0, x: 0, y: 0 });
@@ -65,7 +65,7 @@ export default function ScrollBox({ children }) {
 
     return (
         <div
-            className="flex bg-white overflow-x-auto py-5 hide-scrollbar cursor-grab select-none"
+            className={`flex bg-white overflow-x-auto py-5 hide-scrollbar cursor-grab select-none ${className}`}
             ref={scrollBox}
         >
             {children}

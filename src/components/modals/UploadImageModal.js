@@ -164,7 +164,9 @@ export default function UploadImageModal({ addFiles, listingImages }) {
                             );
                         })
                     ) : (
-                        <p className="my-auto mx-auto">Drop files here</p>
+                        <p className="my-auto mx-auto text-center">
+                            Drop files here
+                        </p>
                     )}
                 </div>
                 <div className="py-1 h-[20px]">

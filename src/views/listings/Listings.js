@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate, useSearchParams, useParams } from "react-router-dom";
 import { ListingCard, Pagination, Sidebar } from "../../components";
+import Filterbar from "../../components/sidebar/Filterbar";
 import { useListingContext } from "../../context/ListingContext";
 import { NAV_CATEGORIES } from "../../data/variables";
 
@@ -73,9 +74,11 @@ export default function Listings() {
                     </div>
                 </div>
 
-                <div className="flex">
-                    {/* Sidebar - Category, Location, Condition, Price */}
+                <div className="flex flex-col xlg:flex-row">
+                    {/* Sidebar - Category, Location, Condition, Price
+                    Filterbar is the smaller-screen version of the Sidebar */}
                     <Sidebar className="hidden xlg:block" />
+                    <Filterbar className="xlg:hidden mb-10 " />
                     {/* Listings */}
                     {listings.length > 0 ? (
                         <div className="flex-grow">

@@ -67,7 +67,9 @@ module.exports = {
                 "footer-column": "270px",
             },
             height: {
-                footer: "615px",
+                "footer-desktop": "615px",
+                "footer-mid": "950px",
+                "footer-mobile": "1250px",
                 nav: "191px",
                 "mobile-nav": "290px",
                 section: "480px",
@@ -80,7 +82,9 @@ module.exports = {
             },
             padding: {
                 15: "60px",
-                footer: "615px",
+                "footer-desktop": "615px",
+                "footer-mid": "950px",
+                "footer-mobile": "1250px",
                 nav: "191px",
                 "mobile-nav": "290px",
             },
@@ -102,6 +106,7 @@ module.exports = {
                 card: "236px",
                 btn: "345px",
                 desktop: "1645px",
+                "footer-column": "270px",
             },
             borderRadius: {
                 10: "10px",

@@ -44,6 +44,7 @@ export default function Sidebar({ className }) {
                 <h2 className="text-base font-semibold ml-5 mb-4">
                     Location: Alberta
                 </h2>
+
                 <ul>
                     {CITY_OPTIONS?.length > 0 &&
                         CITY_OPTIONS.map((item, index) => {
@@ -60,8 +61,10 @@ export default function Sidebar({ className }) {
                 </ul>
             </div>
             {/* Condition */}
-            <div className=" py-[31px]">
+
+            <div className="py-[31px]">
                 <h2 className="text-base font-semibold ml-5 mb-4">Condition</h2>
+
                 <ul>
                     {CONDITIONS?.length > 0 &&
                         CONDITIONS.map((item, index) => {

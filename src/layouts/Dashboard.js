@@ -13,7 +13,7 @@ export default function Dashboard() {
     let crumbs = generateCrumbs(location, searchParams, name);
 
     return (
-        <div className="relative min-h-screen pb-footer">
+        <div className="relative min-h-screen pb-footer-mobile md:pb-footer-mid lg:pb-footer-desktop">
             {loading && (
                 <div className="fixed inset-0 z-[99999] bg-[#000000]/10 flex items-center justify-center">
                     <div className="w-[100px] h-[100px] rounded-full bg-purple-600 text-[4rem] text-white text-center">
@@ -24,7 +24,7 @@ export default function Dashboard() {
             <Navbar />
             <main className="relative bg-gray-cloud-gray min-h-screen pt-mobile-nav lg:pt-nav">
                 <div className="min-h-screen bg-gray-clouds bg-cover bg-fixed bg-center bg-no-repeat pt-8 pb-32">
-                    <div className="max-w-desktop mx-auto w-[90%]">
+                    <div className="container">
                         <BreadCrumbs crumbs={crumbs} />
                         <Outlet />
                     </div>

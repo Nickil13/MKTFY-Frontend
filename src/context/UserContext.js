@@ -10,6 +10,10 @@ import {
 } from "../utils/storageUtils";
 import { toast } from "../components/custom-toast/CustomToastContainer";
 
+const REDIRECT_URI =
+    process.env.REACT_APP_ENV === "production"
+        ? "http://mktfy-lp.s3-website.ca-central-1.amazonaws.com"
+        : "http://localhost:3000";
 const UserContext = React.createContext();
 
 export const useUserContext = () => {
@@ -132,7 +136,7 @@ export const UserContextProvider = ({ children }) => {
                 realm: process.env.REACT_APP_REALM,
                 email,
                 password,
-                redirectUri: "http://localhost:3000/login",
+                redirectUri: `${REDIRECT_URI}/login`,
                 onRedirecting: function (done) {
                     done();
                 },
@@ -147,7 +151,7 @@ export const UserContextProvider = ({ children }) => {
     const logout = () => {
         setIsAuthenticated(false);
         clearSessionStorage();
-        webAuth.logout({ returnTo: "http://localhost:3000" });
+        webAuth.logout({ returnTo: REDIRECT_URI });
     };
 
     const signup = (userInfo) => {

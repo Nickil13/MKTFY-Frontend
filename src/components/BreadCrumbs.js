@@ -8,7 +8,7 @@ export default function BreadCrumbs({ crumbs }) {
     }
 
     return (
-        <ul className="flex mb-10">
+        <ul className="flex flex-wrap mb-10">
             {crumbs.map(({ name, path }, index) => {
                 const isLastCrumb = index + 1 === crumbs.length;
                 return (

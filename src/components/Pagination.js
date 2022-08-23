@@ -31,6 +31,10 @@ export default function Pagination({ page, pages }) {
         if (newPage <= pages) {
             searchParams.set("page", newPage);
             setSearchParams(searchParams);
+
+            if (!showAll && newPage > MAX_PAGINATION_SQ) {
+                setShowAll(true);
+            }
         }
     };
 

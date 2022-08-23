@@ -13,6 +13,7 @@ export default function Select({
     styleClass,
     margins,
     className,
+    filterCategory,
 }) {
     const [showOptions, setShowOptions] = useState(false);
     const select = useRef(null);
@@ -28,7 +29,11 @@ export default function Select({
         }
     };
     const handleOptionClick = (option) => {
-        setValue(option);
+        if (filterCategory) {
+            setValue(option, filterCategory);
+        } else {
+            setValue(option);
+        }
         setShowOptions(false);
     };
 
