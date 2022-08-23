@@ -1,24 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import { PurchasesCard } from "../../components/cards";
 import { useNavigate } from "react-router-dom";
-import { getMyPurchases } from "../../actions/user";
+import { useListingContext } from "../../context/ListingContext";
 
 export default function MyPurchases() {
-    const [purchases, setPurchases] = useState([]);
+    const {
+        myPurchases: purchases,
+        getMyPurchases,
+        setCurrentListing,
+    } = useListingContext();
     let navigate = useNavigate();
 
     React.useEffect(() => {
         if (purchases.length === 0) {
-            getMyPurchases().then((purchases) => {
-                setPurchases(purchases);
-            });
+            getMyPurchases();
         }
     }, []);
 
-    const onCardClick = (purchaseName, id, category) => {
-        navigate(`${id}/pickup-information`, {
-            state: { name: purchaseName, category },
-        });
+    const onCardClick = (purchase) => {
+        setCurrentListing(purchase);
+        navigate(`${purchase.id}/pickup-information`);
     };
     return (
         <div>
@@ -34,13 +35,7 @@ export default function MyPurchases() {
                             <PurchasesCard
                                 key={index}
                                 {...purchase}
-                                onClick={() =>
-                                    onCardClick(
-                                        purchase.prodName,
-                                        purchase.id,
-                                        purchase.category
-                                    )
-                                }
+                                onClick={() => onCardClick(purchase)}
                             />
                         );
                     })

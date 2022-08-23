@@ -9,8 +9,7 @@ export default function Dashboard() {
     const { currentListing, loading } = useListingContext();
     let location = useLocation();
     let [searchParams] = useSearchParams();
-    let name = currentListing?.prodName || "";
-    let crumbs = generateCrumbs(location, searchParams, name);
+    let crumbs = generateCrumbs(location, searchParams, currentListing);
 
     return (
         <div className="relative min-h-screen pb-footer-mobile md:pb-footer-mid lg:pb-footer-desktop">

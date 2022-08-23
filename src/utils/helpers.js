@@ -3,7 +3,7 @@ import { toast } from "../components/custom-toast/CustomToastContainer";
 
 const BLACKLIST = ["listings", "sold", ""];
 
-export const generateCrumbs = (location, searchParams, listingName) => {
+export const generateCrumbs = (location, searchParams, currentListing) => {
     let newCrumbs = [];
     let crumbs = location.pathname.split("/").slice(1);
     const city = location.state?.city || searchParams.get("city");
@@ -34,12 +34,12 @@ export const generateCrumbs = (location, searchParams, listingName) => {
             }`;
 
             /* If the crumb is a number and a product name is stored in state */
-        } else if (/\d/.test(crumb) && listingName) {
-            name = listingName;
+        } else if (/\d/.test(crumb) && currentListing?.prodName) {
+            name = currentListing.prodName;
 
             /* If a category is passed along in state, the product should have its path redirected to that category */
-            if (location.state?.category) {
-                crumbPath = `/dashboard/listings/${location.state?.category}/${crumb}`;
+            if (currentListing?.category) {
+                crumbPath = `/dashboard/listings/${currentListing.category}/${crumb}`;
             }
         } else {
             name = crumb;

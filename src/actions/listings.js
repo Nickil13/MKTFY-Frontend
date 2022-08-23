@@ -10,13 +10,4 @@ const requestPurchase = async (id) => {
     }
 };
 
-const getListingById = async (id) => {
-    try {
-        const res = await axios.get(`/Listing/${id}`);
-        return res;
-    } catch (error) {
-        console.log(error);
-    }
-};
-
-export { getListingById, requestPurchase };
+export { requestPurchase };

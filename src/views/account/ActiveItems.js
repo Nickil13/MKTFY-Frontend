@@ -1,22 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import PurchasesCard from "../../components/cards/PurchasesCard";
-import { LISTING_STATUS } from "../../data/variables";
 import { useNavigate } from "react-router-dom";
-import { getMyPendingListings, getMyActiveListings } from "../../actions/user";
+import { useListingContext } from "../../context/ListingContext";
 
 export default function ActiveItems() {
-    const [pendingListings, setPendingListings] = useState([]);
-    const [availableListings, setAvailableListings] = useState([]);
+    const {
+        myPendingListings: pendingListings,
+        myActiveListings: availableListings,
+        setCurrentListing,
+        getMyPendingListings,
+        getMyActiveListings,
+    } = useListingContext();
     let navigate = useNavigate();
-    console.log(availableListings);
+
     React.useEffect(() => {
-        getMyPendingListings().then((res) => setPendingListings(res));
-        getMyActiveListings().then((res) => setAvailableListings(res));
+        if (pendingListings.length === 0) {
+            getMyPendingListings();
+        }
+        if (availableListings.length === 0) {
+            getMyActiveListings();
+        }
     }, []);
 
-    const handleListingClick = (id, name) => {
-        /* Require name for breadcrumbs and status for save permissions */
-        navigate(`${id}`, { state: { name } });
+    const handleListingClick = (listing) => {
+        setCurrentListing(listing);
+        navigate(`${listing.id}`);
     };
     return (
         <div>
@@ -28,12 +36,7 @@ export default function ActiveItems() {
                             <PurchasesCard
                                 key={index}
                                 {...listing}
-                                onClick={() =>
-                                    handleListingClick(
-                                        listing.id,
-                                        listing.prodName
-                                    )
-                                }
+                                onClick={() => handleListingClick(listing)}
                             />
                         );
                     })
@@ -52,12 +55,7 @@ export default function ActiveItems() {
                                 <PurchasesCard
                                     key={index}
                                     {...listing}
-                                    onClick={() =>
-                                        handleListingClick(
-                                            listing.id,
-                                            listing.prodName
-                                        )
-                                    }
+                                    onClick={() => handleListingClick(listing)}
                                 />
                             );
                         })

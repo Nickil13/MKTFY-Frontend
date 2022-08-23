@@ -25,6 +25,20 @@ export const ListingContextProvider = ({ children }) => {
     const [deals, setDeals] = useState([]);
     const [loading, setLoading] = useState(false);
 
+    // User listings
+    const [myActiveListings, setMyActiveListings] = useState(
+        getSessionStorage(STORAGE_KEYS.MY_ACTIVE_LISTINGS_KEY, null) || []
+    );
+    const [myPendingListings, setMyPendingListings] = useState(
+        getSessionStorage(STORAGE_KEYS.MY_PENDING_LISTINGS_KEY, null) || []
+    );
+    const [mySoldListings, setMySoldListings] = useState(
+        getSessionStorage(STORAGE_KEYS.MY_SOLD_LISTINGS_KEY, null) || []
+    );
+    const [myPurchases, setMyPurchases] = useState(
+        getSessionStorage(STORAGE_KEYS.MY_PURCHASES_KEY, null) || []
+    );
+
     /* Store changes made to listing in local storage */
     useEffect(() => {
         if (currentListing) {
@@ -112,6 +126,44 @@ export const ListingContextProvider = ({ children }) => {
         }
     };
 
+    /* User listings */
+    const getMyActiveListings = async () => {
+        try {
+            const res = await axios.get("/Listing/mylistings/active");
+            setMyActiveListings(res);
+            setSessionStorage(STORAGE_KEYS.MY_ACTIVE_LISTINGS_KEY, [...res]);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    const getMyPendingListings = async () => {
+        try {
+            const res = await axios.get("/Listing/mylistings/pendings");
+            setMyPendingListings(res);
+            setSessionStorage(STORAGE_KEYS.MY_PENDING_LISTINGS_KEY, [...res]);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    const getMyPurchases = async () => {
+        try {
+            const res = await axios.get("/Listing/mypurchases");
+            setMyPurchases(res);
+            setSessionStorage(STORAGE_KEYS.MY_PURCHASES_KEY, [...res]);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    const getMySoldListings = async () => {
+        try {
+            const res = await axios.get("/Listing/mylistings/sold");
+            setMySoldListings(res);
+            setSessionStorage(STORAGE_KEYS.MY_SOLD_LISTINGS_KEY, [...res]);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <ListingContext.Provider
             value={{
@@ -125,6 +177,14 @@ export const ListingContextProvider = ({ children }) => {
                 getListingById,
                 getFilteredListings,
                 loading,
+                myActiveListings,
+                getMyActiveListings,
+                myPendingListings,
+                getMyPendingListings,
+                myPurchases,
+                getMyPurchases,
+                mySoldListings,
+                getMySoldListings,
             }}
         >
             {children}

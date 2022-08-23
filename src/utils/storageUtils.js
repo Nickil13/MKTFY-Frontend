@@ -1,6 +1,10 @@
 const STORAGE_KEYS = {
     USER_KEY: "mktfy-user",
     CURRENT_LISTING_KEY: "mktfy-current-listing",
+    MY_SOLD_LISTINGS_KEY: "mktfy-my-sold-listings",
+    MY_ACTIVE_LISTINGS_KEY: "mktfy-my-active-listings",
+    MY_PENDING_LISTINGS_KEY: "mktfy-my-pending-listings",
+    MY_PURCHASES_KEY: "mktfy-my-purchases",
     AUTH_TOKEN: "mktfy-token",
 };
 
@@ -26,6 +30,10 @@ const clearSessionStorage = () => {
 
     // other stored values
     sessionStorage.removeItem(STORAGE_KEYS.CURRENT_LISTING_KEY);
+    sessionStorage.removeItem(STORAGE_KEYS.MY_ACTIVE_LISTINGS_KEY);
+    sessionStorage.removeItem(STORAGE_KEYS.MY_PENDING_LISTINGS_KEY);
+    sessionStorage.removeItem(STORAGE_KEYS.MY_PURCHASES_KEY);
+    sessionStorage.removeItem(STORAGE_KEYS.MY_SOLD_LISTINGS_KEY);
 };
 
 export {

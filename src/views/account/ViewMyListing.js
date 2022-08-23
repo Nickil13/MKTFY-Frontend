@@ -8,6 +8,7 @@ import { getListingById } from "../../actions/listings";
 import { ListingImages } from "../../components";
 import Alert from "../../components/Alert";
 import { UploadImageModal } from "../../components/modals";
+import { useListingContext } from "../../context/ListingContext";
 
 const dummyImages = [
     "https://images.unsplash.com/photo-1509326066092-14b2e882fe86?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
@@ -15,20 +16,28 @@ const dummyImages = [
     "https://images.unsplash.com/reserve/unsplash_524010c76b52a_1.JPG?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
 ];
 export default function ViewMyListing() {
-    const [prodName, setProdName] = useState("");
-    const [description, setDescription] = useState("");
-    const [category, setCategory] = useState("");
-    const [condition, setCondition] = useState("");
-    const [price, setPrice] = useState("");
-    const [address, setAddress] = useState("");
-    const [city, setCity] = useState("");
     const { setShowAlert, showAlert, resetAlert, cancelAlert, showModal } =
         useModalContext();
-    const [previewImages, setPreviewImages] = useState([]);
+    const { currentListing: listing, getListingById } = useListingContext();
+    const [prodName, setProdName] = useState(listing?.prodName || "");
+    const [description, setDescription] = useState(listing?.description || "");
+    const [category, setCategory] = useState(listing?.category || "");
+    const [condition, setCondition] = useState(listing?.condition || "");
+    const [price, setPrice] = useState(
+        listing?.price ? listing.price.toFixed(2) : ""
+    );
+    const [address, setAddress] = useState(listing?.address || "");
+    const [city, setCity] = useState(listing?.city || "");
+
+    const [previewImages, setPreviewImages] = useState(
+        listing?.uploadUrls || []
+    );
     const [listingImages, setListingImages] = useState([]);
-    const [isEditable, setIsEditable] = useState(false);
+    const isEditable = listing?.status === "Active" || false;
+
     let navigate = useNavigate();
     const { id } = useParams();
+
     // const token = sessionStorage.getItem("access_token");
     // const multipartHeader = {
     //     headers: {
@@ -37,30 +46,10 @@ export default function ViewMyListing() {
     //     },
     // };
     React.useEffect(() => {
-        if (!prodName) {
-            getListingById(id).then((res) => {
-                console.log(res);
-                if (res) {
-                    setProdName(res.prodName);
-                    setDescription(res.description);
-                    setCategory(res.category);
-                    setCondition(res.condition);
-                    setPrice(res.price.toFixed(2));
-                    setAddress(res.address);
-                    setCity(res.city);
-                    if (res.status === "Active") {
-                        setIsEditable(true);
-                    }
-                    // remove this when images available
-                    if (res.uploadUrls) {
-                        setPreviewImages([...res.uploadUrls]);
-                    } else {
-                        setPreviewImages(dummyImages);
-                    }
-                }
-            });
+        if (!listing || listing.id !== id) {
+            getListingById(id);
         }
-    }, []);
+    }, [listing, id]);
 
     const handleCancelListing = () => {
         console.log("confirmed alert: cancelling the listing");

@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import PurchasesCard from "../../components/cards/PurchasesCard";
-import { getMySoldListings } from "../../actions/user";
+import { useListingContext } from "../../context/ListingContext";
 
 export default function SoldItems() {
-    const [listings, setListings] = useState([]);
+    const { mySoldListings: listings, getMySoldListings } = useListingContext();
 
     React.useEffect(() => {
         if (listings.length === 0) {
-            getMySoldListings().then((res) => {
-                setListings(res);
-            });
+            getMySoldListings();
         }
     }, []);
 
