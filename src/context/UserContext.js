@@ -12,7 +12,8 @@ import { toast } from "../components/custom-toast/CustomToastContainer";
 
 const REDIRECT_URI =
     process.env.REACT_APP_ENV === "production"
-        ? "http://mktfy-lp.s3-website.ca-central-1.amazonaws.com"
+        ? // ? "http://mktfy-lp.s3-website.ca-central-1.amazonaws.com"
+          "https://d2mz5o15b3dsx3.cloudfront.net"
         : "http://localhost:3000";
 const UserContext = React.createContext();
 
