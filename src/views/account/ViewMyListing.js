@@ -1,20 +1,14 @@
 import React, { useState } from "react";
-import { Button, Select } from "../../components";
+import { Select } from "../../components";
 import { CATEGORY_TYPES, CITY_OPTIONS, CONDITIONS } from "../../data/variables";
 import { useModalContext } from "../../context/ModalContext";
 import { ListingInput, PriceInput } from "../../components/inputs";
 import { useNavigate, useParams } from "react-router-dom";
-import { getListingById } from "../../actions/listings";
 import { ListingImages } from "../../components";
 import Alert from "../../components/Alert";
 import { UploadImageModal } from "../../components/modals";
 import { useListingContext } from "../../context/ListingContext";
 
-const dummyImages = [
-    "https://images.unsplash.com/photo-1509326066092-14b2e882fe86?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80",
-    "https://images.unsplash.com/photo-1452711932549-e7ea7f129399?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1157&q=80",
-    "https://images.unsplash.com/reserve/unsplash_524010c76b52a_1.JPG?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-];
 export default function ViewMyListing() {
     const { setShowAlert, showAlert, resetAlert, cancelAlert, showModal } =
         useModalContext();

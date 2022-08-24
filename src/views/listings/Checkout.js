@@ -1,12 +1,16 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { requestPurchase } from "../../actions/listings";
+// import { requestPurchase } from "../../actions/listings";
 import { useListingContext } from "../../context/ListingContext";
 import { formatPrice } from "../../utils/helpers";
 
 export default function Checkout() {
     const { id } = useParams();
-    const { currentListing: listing, getListingById } = useListingContext();
+    const {
+        currentListing: listing,
+        getListingById,
+        requestPurchase,
+    } = useListingContext();
     let navigate = useNavigate();
 
     React.useEffect(() => {
@@ -16,6 +20,8 @@ export default function Checkout() {
     }, [listing, id]);
 
     const handleCheckoutClick = () => {
+        console.log(listing.id);
+        requestPurchase(listing.id);
         // requestPurchase(id).then((res) => {
         //     if (res) {
         //         navigate("pickup-information"

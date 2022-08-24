@@ -164,6 +164,20 @@ export const ListingContextProvider = ({ children }) => {
         }
     };
 
+    const requestPurchase = async (id) => {
+        const body = { id };
+        console.log(body);
+        try {
+            const res = await axios.put("/Listing/requestpurchase", body);
+            console.log(res);
+            if (res) {
+                // move to mypurchases & adjust status to pending
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <ListingContext.Provider
             value={{
@@ -185,6 +199,7 @@ export const ListingContextProvider = ({ children }) => {
                 getMyPurchases,
                 mySoldListings,
                 getMySoldListings,
+                requestPurchase,
             }}
         >
             {children}

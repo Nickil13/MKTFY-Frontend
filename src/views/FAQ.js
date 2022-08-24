@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ReactComponent as RightArrow } from "../assets/images/arrow_right-24px.svg";
-import { getFAQs } from "../actions/faq";
+import axios from "../utils/request";
 
 export default function FAQ() {
     const [activeQIndex, setActiveQIndex] = useState(0);
@@ -13,6 +13,15 @@ export default function FAQ() {
             });
         }
     }, []);
+
+    const getFAQs = async () => {
+        try {
+            const res = await axios.get("/FAQ");
+            return res;
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
         <div>
