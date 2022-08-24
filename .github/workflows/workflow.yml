@@ -23,6 +23,7 @@ jobs:
                   REACT_APP_CLIENT_ID: ${{secrets.REACT_APP_CLIENT_ID}}
                   REACT_APP_REALM: ${{secrets.REACT_APP_REALM}}
                   REACT_APP_AUDIENCE: ${{secrets.REACT_APP_AUDIENCE}}
+                  REACT_APP_ENV: ${{secrets.REACT_APP_ENV}}
             # - run: npm test
             - uses: jakejarvis/s3-sync-action@master
               with:
