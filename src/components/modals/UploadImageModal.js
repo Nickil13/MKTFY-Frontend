@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import ModalWrapper from "./ModalWrapper";
-import Button from "../Button";
 import { useModalContext } from "../../context/ModalContext";
 
 const MAX_FILE_SIZE = 1500000;
@@ -178,14 +177,13 @@ export default function UploadImageModal({ addFiles, listingImages }) {
                         {formatError}
                     </p>
                 </div>
-                <Button
+                <button
                     type="submit"
-                    margins="mt-5"
+                    className="btn-purple-new mt-5 max-w-btn mx-auto"
                     disabled={images.length === 0}
-                    centered
                 >
                     Upload
-                </Button>
+                </button>
             </form>
         </ModalWrapper>
     );

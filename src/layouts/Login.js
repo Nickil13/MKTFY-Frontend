@@ -58,7 +58,11 @@ export default function Login() {
                     <p className="text-white">
                         Find out more about us!
                         <br className="md:hidden" />
-                        <a href="#" className="text-gold-200 font-bold ml-1">
+                        <a
+                            href="https://mktfy-marketing.vercel.app"
+                            className="text-gold-200 font-bold ml-1"
+                            target="_blank"
+                        >
                             Visit our website
                         </a>
                     </p>

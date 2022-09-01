@@ -13,6 +13,7 @@ import { useUserContext } from "../../../context/UserContext";
 import MobileUserMenu from "./MobileUserMenu";
 
 const MOBILE_WIDTH_BREAKPOINT = "800";
+const MENU_BREAKPOINT = "1440";
 
 export default function Navbar() {
     const { user } = useUserContext();
@@ -23,7 +24,6 @@ export default function Navbar() {
     const [mobileWindowSize, setMobileWindowSize] = useState(
         window.innerWidth < MOBILE_WIDTH_BREAKPOINT
     );
-
     const [menuShowing, setMenuShowing] = useState(false);
 
     useEffect(() => {
@@ -37,9 +37,11 @@ export default function Navbar() {
         const width = window.innerWidth;
         if (width >= MOBILE_WIDTH_BREAKPOINT) {
             setMobileWindowSize(false);
-            // if (menuShowing) setMenuShowing(false);
         } else {
             setMobileWindowSize(true);
+        }
+        if (width >= MENU_BREAKPOINT) {
+            if (menuShowing) setMenuShowing(false);
         }
     };
     return (
@@ -110,12 +112,12 @@ export default function Navbar() {
                 />
             )}
 
-            {/* {mobileWindowSize && ( */}
-            <MobileUserMenu
-                closeMenu={() => setMenuShowing(false)}
-                showing={menuShowing}
-            />
-            {/* )} */}
+            {menuShowing && (
+                <MobileUserMenu
+                    closeMenu={() => setMenuShowing(false)}
+                    showing={menuShowing}
+                />
+            )}
         </nav>
     );
 }

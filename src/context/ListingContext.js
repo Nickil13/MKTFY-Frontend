@@ -8,8 +8,6 @@ import {
     STORAGE_KEYS,
 } from "../utils/storageUtils";
 
-// import { toast } from "../components/custom-toast/CustomToastContainer";
-
 const ListingContext = React.createContext();
 
 export const useListingContext = () => {
@@ -50,53 +48,41 @@ export const ListingContextProvider = ({ children }) => {
 
     /* Get a selection of listings (3 from each category)*/
     const getListingSelection = async () => {
-        setLoading(true);
-        try {
-            let apicalls = [];
-            CATEGORY_TYPES.forEach((category) => {
-                apicalls.push(axios.get(`/Listing/all/category/${category}`));
+        let apicalls = [];
+        CATEGORY_TYPES.forEach((category) => {
+            apicalls.push(axios.get(`/Listing/all/category/${category}`));
+        });
+        Promise.all(apicalls)
+            .then((listings) => {
+                if (listings) {
+                    const map = new Map();
+                    listings.forEach((list, index) => {
+                        map.set(CATEGORY_TYPES[index], list.slice(0, 3));
+                    });
+                    setListingSelection(map);
+                }
+            })
+            .catch((error) => {
+                console.error(error);
             });
-            Promise.all(apicalls).then((listings) => {
-                const map = new Map();
-                listings.forEach((list, index) => {
-                    map.set(CATEGORY_TYPES[index], list.slice(0, 3));
-                });
-                setListingSelection(map);
-            });
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setLoading(false);
-        }
     };
 
     /* Get all deals */
     const getDeals = async () => {
-        setLoading(true);
-        try {
-            const res = await axios.get("/Listing/deals");
+        const res = await axios.get("/Listing/deals");
+        if (res) {
             setDeals(res);
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setLoading(false);
         }
     };
+
     const getListingById = async (id) => {
-        setLoading(true);
-        try {
-            const res = await axios.get(`/Listing/${id}`);
+        const res = await axios.get(`/Listing/${id}`);
+        if (res) {
             setCurrentListing(res);
-        } catch (error) {
-            console.log(error);
-        } finally {
-            setLoading(false);
         }
     };
 
     const getFilteredListings = async (filter) => {
-        // /?searchString&city&category&condition&minPrice&maxPrice
-        console.log(filter);
         const params = new URLSearchParams();
 
         if (filter.searchString) {
@@ -115,66 +101,51 @@ export const ListingContextProvider = ({ children }) => {
             params.append("minPrice", filter.fromPrice);
             params.append("maxPrice", filter.toPrice);
         }
-        setLoading(true);
-        try {
-            const res = await axios.get(`/Listing/filter?${params}`);
+
+        const res = await axios.get(`/Listing/filter?${params}`);
+        if (res) {
             setListings(res);
-        } catch (error) {
-            console.log(error);
-        } finally {
-            setLoading(false);
         }
     };
 
     /* User listings */
     const getMyActiveListings = async () => {
-        try {
-            const res = await axios.get("/Listing/mylistings/active");
+        const res = await axios.get("/Listing/mylistings/active");
+        if (res) {
             setMyActiveListings(res);
             setSessionStorage(STORAGE_KEYS.MY_ACTIVE_LISTINGS_KEY, [...res]);
-        } catch (error) {
-            console.log(error);
         }
     };
     const getMyPendingListings = async () => {
-        try {
-            const res = await axios.get("/Listing/mylistings/pendings");
+        const res = await axios.get("/Listing/mylistings/pendings");
+        if (res) {
             setMyPendingListings(res);
             setSessionStorage(STORAGE_KEYS.MY_PENDING_LISTINGS_KEY, [...res]);
-        } catch (error) {
-            console.log(error);
         }
     };
     const getMyPurchases = async () => {
-        try {
-            const res = await axios.get("/Listing/mypurchases");
+        const res = await axios.get("/Listing/mypurchases");
+        if (res) {
             setMyPurchases(res);
             setSessionStorage(STORAGE_KEYS.MY_PURCHASES_KEY, [...res]);
-        } catch (error) {
-            console.log(error);
         }
     };
     const getMySoldListings = async () => {
-        try {
-            const res = await axios.get("/Listing/mylistings/sold");
+        const res = await axios.get("/Listing/mylistings/sold");
+        if (res) {
             setMySoldListings(res);
             setSessionStorage(STORAGE_KEYS.MY_SOLD_LISTINGS_KEY, [...res]);
-        } catch (error) {
-            console.log(error);
         }
     };
 
     const requestPurchase = async (id) => {
         const body = { id };
         console.log(body);
-        try {
-            const res = await axios.put("/Listing/requestpurchase", body);
-            console.log(res);
-            if (res) {
-                // move to mypurchases & adjust status to pending
-            }
-        } catch (error) {
-            console.log(error);
+
+        const res = await axios.put("/Listing/requestpurchase", body);
+        console.log(res);
+        if (res) {
+            // move to mypurchases & adjust status to pending
         }
     };
 
@@ -200,6 +171,7 @@ export const ListingContextProvider = ({ children }) => {
                 mySoldListings,
                 getMySoldListings,
                 requestPurchase,
+                setLoading,
             }}
         >
             {children}

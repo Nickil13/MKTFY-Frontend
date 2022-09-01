@@ -1,5 +1,4 @@
 import axios from "axios";
-import { getSessionStorage, STORAGE_KEYS } from "./storageUtils";
 
 const BASE_URL =
     "http://marketforyouyh-env.eba-fqgiudi2.ca-central-1.elasticbeanstalk.com/api";
@@ -13,21 +12,6 @@ const service = axios.create({
     },
 });
 
-// request interceptor
-service.interceptors.request.use(
-    (config) => {
-        const token = getSessionStorage(STORAGE_KEYS.AUTH_TOKEN, null);
-        if (token) {
-            config.headers["Authorization"] = "Bearer " + token;
-        }
-        return config;
-    },
-    (error) => {
-        console.log(error);
-        Promise.reject(error);
-    }
-);
-
-// response interceptor is found in the WithAxios wrapper component
+// request & response interceptors are found in the WithAxios wrapper component
 
 export default service;

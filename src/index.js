@@ -5,15 +5,18 @@ import App from "./App";
 import { ModalContextProvider } from "./context/ModalContext";
 import { UserContextProvider } from "./context/UserContext";
 import WithAxios from "./utils/WithAxios";
+import { ListingContextProvider } from "./context/ListingContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
     <UserContextProvider>
-        <WithAxios>
-            <ModalContextProvider>
-                <App />
-            </ModalContextProvider>
-        </WithAxios>
+        <ListingContextProvider>
+            <WithAxios>
+                <ModalContextProvider>
+                    <App />
+                </ModalContextProvider>
+            </WithAxios>
+        </ListingContextProvider>
     </UserContextProvider>
 );

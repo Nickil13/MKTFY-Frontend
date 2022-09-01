@@ -9,7 +9,9 @@ export default function FAQ() {
     useEffect(() => {
         if (FAQs.length < 1) {
             getFAQs().then((faqs) => {
-                setFAQs(faqs);
+                if (faqs) {
+                    setFAQs(faqs);
+                }
             });
         }
     }, []);

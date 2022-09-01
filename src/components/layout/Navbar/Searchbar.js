@@ -17,14 +17,15 @@ export default function Searchbar({ className, city, setCity }) {
         }
     };
 
+    const handleSearchAll = () => {
+        setSearchValue("");
+        navigate(`listings/?city=${city}`);
+    };
     return (
         <div
             className={`flex items-center bg-white h-[60px] rounded-lg divide-x-2 divide-gray-100 ${className}`}
         >
-            <button
-                className="px-12 text-gray-600"
-                onClick={() => navigate(`listings/?city=${city}`)}
-            >
+            <button className="px-12 text-gray-600" onClick={handleSearchAll}>
                 All
             </button>
 

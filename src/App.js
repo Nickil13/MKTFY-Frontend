@@ -1,18 +1,19 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import RequireAuth from "./utils/RequireAuth";
+import { Dashboard, Login } from "./layouts";
+import { ErrorPage, Home, LoadingPage, FAQ } from "./views";
+import ScrollToTop from "./utils/ScrollToTop";
+import { CustomToastContainer } from "./components/custom-toast/CustomToastContainer";
+import { PrivacyPolicy, TermsOfService } from "./views/legal-documents";
+
 import {
     CreatePasswordModal,
     ForgotPasswordModal,
     LoginModal,
     RegisterModal,
-    ResetPasswordModal,
-    VerifyResetModal,
 } from "./components/modals";
 
-import RequireAuth from "./utils/RequireAuth";
-import { Dashboard, Login } from "./layouts";
-import { ErrorPage, FAQ, Home, LoadingPage } from "./views";
-import { PrivacyPolicy, TermsOfService } from "./views/legal-documents";
 import {
     Checkout,
     CreateListing,
@@ -20,6 +21,7 @@ import {
     Pickup,
     SingleListing,
 } from "./views/listings";
+
 import {
     AccountInformation,
     ActiveItems,
@@ -29,9 +31,6 @@ import {
     SoldItems,
     ViewMyListing,
 } from "./views/account";
-import ScrollToTop from "./utils/ScrollToTop";
-import { CustomToastContainer } from "./components/custom-toast/CustomToastContainer";
-import { ListingContextProvider } from "./context/ListingContext";
 
 function App() {
     return (
@@ -48,14 +47,6 @@ function App() {
                             element={<ForgotPasswordModal />}
                         />
                         <Route
-                            path="verify-reset"
-                            element={<VerifyResetModal />}
-                        />
-                        <Route
-                            path="reset-password"
-                            element={<ResetPasswordModal />}
-                        />
-                        <Route
                             path="create-password"
                             element={<CreatePasswordModal />}
                         />
@@ -67,9 +58,7 @@ function App() {
                         path="dashboard"
                         element={
                             <RequireAuth>
-                                <ListingContextProvider>
-                                    <Dashboard />
-                                </ListingContextProvider>
+                                <Dashboard />
                             </RequireAuth>
                         }
                     >

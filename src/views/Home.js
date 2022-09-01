@@ -25,7 +25,12 @@ export default function Home() {
                 />
                 <ProductSection title="Shop Furniture" category="furniture" />
             </div>
-            <DealsSection title="More deals for you" category="more deals" />
+            {deals.length > 8 && (
+                <DealsSection
+                    title="More deals for you"
+                    category="more deals"
+                />
+            )}
 
             <div className="flex flex-wrap mt-7 2xl:grid 2xl:grid-cols-2 2xl:gap-5">
                 <ProductSection
