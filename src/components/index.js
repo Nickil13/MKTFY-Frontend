@@ -3,10 +3,11 @@ import BreadCrumbs from "./BreadCrumbs";
 
 import DealsSection from "./DealsSection";
 import Dropdown from "./Dropdown";
+import Footer from "./Footer";
 import ImageSlider from "./ImageSlider";
 import ImageSquare from "./ImageSquare";
 import ListingImages from "./ListingImages";
-
+import Navbar from "./Navbar";
 import Pagination from "./Pagination";
 import ProductSection from "./ProductSection";
 import ScrollBox from "./ScrollBox";
@@ -21,9 +22,11 @@ export {
     DealsCard,
     DealsSection,
     Dropdown,
+    Footer,
     ImageSlider,
     ImageSquare,
     ListingImages,
+    Navbar,
     Pagination,
     ListingCard,
     ProductCard,

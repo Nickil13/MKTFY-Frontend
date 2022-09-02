@@ -3,6 +3,19 @@ import { ReactComponent as SliderArrow } from "../assets/images/icon_right_arrow
 
 export default function ImageSlider({ images, name, className }) {
     const [imageIndex, setImageIndex] = useState(0);
+    const scrollToRef = React.useRef(null);
+
+    React.useEffect(() => {
+        if (scrollToRef.current) {
+            const currentChild = scrollToRef.current.children[imageIndex];
+            if (currentChild) {
+                currentChild.scrollIntoView({
+                    block: "nearest",
+                    inline: "start",
+                });
+            }
+        }
+    }, [imageIndex]);
 
     const increaseIndex = () => {
         setImageIndex(imageIndex - 1 >= 0 ? imageIndex - 1 : images.length - 1);
@@ -17,17 +30,20 @@ export default function ImageSlider({ images, name, className }) {
             className={`flex flex-col-reverse 2xl:mx-8 lg:flex-row ${className} w-full`}
         >
             {/* Image Slider */}
-            <div className="flex items-center lg:mr-9 lg:flex-col select-none">
+            <div className="flex flex-shrink-0 items-center lg:mr-9 lg:flex-col select-none">
                 <SliderArrow
                     className="hidden md:block cursor-pointer mr-2.5 lg:mb-2.5 lg:mr-0 lg:rotate-90"
                     onClick={increaseIndex}
                 />
-                <div className="hidden md:flex gap-[10px] lg:flex-col">
+                <div
+                    className="hidden md:flex flex-grow  gap-[10px] lg:flex-col overflow-y-auto overscroll-y-contain max-h-[400px] hide-scrollbar"
+                    ref={scrollToRef}
+                >
                     {images.length > 0 &&
                         images.map((image, index) => {
                             return (
                                 <div
-                                    className={`h-[124px] w-[118px] overflow-hidden cursor-pointer rounded-10 ${
+                                    className={`min-h-[124px] max-h-[124px] w-full max-w-[118px] overflow-hidden cursor-pointer rounded-10 ${
                                         imageIndex === index &&
                                         "border border-purple-200 shadow-card"
                                     }`}

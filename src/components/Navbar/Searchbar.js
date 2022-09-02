@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ReactComponent as SearchIcon } from "../../../assets/images/search-24px.svg";
+import { ReactComponent as SearchIcon } from "../../assets/images/search-24px.svg";
 import { useNavigate } from "react-router-dom";
 import CityDropdown from "./CityDropdown";
 

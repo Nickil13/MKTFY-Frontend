@@ -155,11 +155,19 @@ export const formatDate = (date) => {
 export const parseError = (error) => {
     const originalConfig = error.config;
 
-    switch (originalConfig.url) {
-        case "/Listing/requestpurchase":
-            toast.error("There was a problem requesting purchase");
-            break;
-        default:
-            console.log("Bad request");
+    const { method, url } = originalConfig;
+    if (method === "put") {
+        switch (url) {
+            case "/Listing/requestpurchase":
+                toast.error("There was a problem requesting purchase");
+                break;
+            case "/User":
+                toast.error("Error: did not save user info.");
+                break;
+
+            default:
+                console.log("Bad PUT request");
+        }
     }
+    console.log(`Bad ${method} request`);
 };

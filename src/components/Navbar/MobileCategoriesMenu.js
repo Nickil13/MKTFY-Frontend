@@ -1,9 +1,9 @@
 import React from "react";
 import CityDropdown from "./CityDropdown";
-import { NAV_CATEGORIES } from "../../../data/variables";
+import { NAV_CATEGORIES } from "../../data/variables";
 import { Link } from "react-router-dom";
 import CategoryIconButton from "./CategoryIconButton";
-import ScrollBox from "../../ScrollBox";
+import ScrollBox from "../ScrollBox";
 
 export default function MobileCategoriesMenu({ city, setCity }) {
     return (

@@ -5,7 +5,7 @@ import jwtDecode from "jwt-decode";
 import { getSessionStorage, STORAGE_KEYS } from "./storageUtils";
 
 export default function RequireAuth({ children }) {
-    const { isLoading, isAuthenticated, logout } = useUserContext();
+    const { isAuthenticated, logout } = useUserContext();
     let location = useLocation();
 
     React.useEffect(() => {
@@ -23,9 +23,6 @@ export default function RequireAuth({ children }) {
         }
     }, [location]);
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
     if (!isAuthenticated) {
         return <Navigate to="/" state={{ from: location }} replace />;
     }

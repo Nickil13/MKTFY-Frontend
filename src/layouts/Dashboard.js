@@ -1,20 +1,22 @@
 import React from "react";
 import { Outlet, useLocation, useSearchParams } from "react-router-dom";
 import { BreadCrumbs } from "../components";
-import { Navbar, Footer } from "../components/layout";
+import { Navbar, Footer } from "../components";
 import Loader from "../components/Loader";
 import { useListingContext } from "../context/ListingContext";
+import { useUserContext } from "../context/UserContext";
 import { generateCrumbs } from "../utils/helpers";
 
 export default function Dashboard() {
-    const { currentListing, loading } = useListingContext();
+    const { isLoading } = useUserContext();
+    const { currentListing } = useListingContext();
     let location = useLocation();
     let [searchParams] = useSearchParams();
     let crumbs = generateCrumbs(location, searchParams, currentListing);
 
     return (
         <div className="relative min-h-screen pb-footer-mobile md:pb-footer-mid lg:pb-footer-desktop">
-            {loading && <Loader />}
+            {isLoading && <Loader />}
             <Navbar />
 
             <main className="relative bg-gray-cloud-gray min-h-screen pt-mobile-nav lg:pt-nav">

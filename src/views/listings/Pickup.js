@@ -16,18 +16,18 @@ export default function Pickup() {
         }
     }, [listing]);
 
-    // React.useEffect(() => {
-    //     // Get the pickup info from the userID on the listing
-    //     getUserDetails(listing.userId).then((res) => {
-    //         if (res) {
-    //             setUserDetails({
-    //                 address: res.address,
-    //                 phone: res.phone,
-    //                 city: res.city,
-    //             });
-    //         }
-    //     });
-    // }, []);
+    React.useEffect(() => {
+        // Get the pickup info from the userID on the listing
+        getUserDetails(listing.userId).then((res) => {
+            if (res) {
+                setUserDetails({
+                    address: res.address,
+                    phone: res.phone,
+                    city: res.city,
+                });
+            }
+        });
+    }, []);
 
     if (!listing) return <p>No listing found</p>;
 

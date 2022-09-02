@@ -1,9 +1,9 @@
 import React from "react";
-import { ReactComponent as DealsIcon } from "../../../assets/images/icon_deals.svg";
-import { ReactComponent as CarIcon } from "../../../assets/images/icon_car.svg";
-import { ReactComponent as FurnitureIcon } from "../../../assets/images/icon_furniture.svg";
-import { ReactComponent as ElectronicsIcon } from "../../../assets/images/icon_computer.svg";
-import { ReactComponent as RealEstateIcon } from "../../../assets/images/icon_realestate.svg";
+import { ReactComponent as DealsIcon } from "../../assets/images/icon_deals.svg";
+import { ReactComponent as CarIcon } from "../../assets/images/icon_car.svg";
+import { ReactComponent as FurnitureIcon } from "../../assets/images/icon_furniture.svg";
+import { ReactComponent as ElectronicsIcon } from "../../assets/images/icon_computer.svg";
+import { ReactComponent as RealEstateIcon } from "../../assets/images/icon_realestate.svg";
 
 export default function CategoryIconButton({ category }) {
     return (

@@ -3,11 +3,9 @@ import { useUserContext } from "../context/UserContext";
 import axios from "./request";
 import { parseError } from "./helpers";
 import { getSessionStorage, STORAGE_KEYS } from "./storageUtils";
-import { useListingContext } from "../context/ListingContext";
 
 export default function WithAxios({ children }) {
-    const { logout } = useUserContext();
-    const { setLoading } = useListingContext();
+    const { logout, setIsLoading } = useUserContext();
 
     React.useMemo(() => {
         axios.interceptors.request.use(
@@ -16,11 +14,11 @@ export default function WithAxios({ children }) {
                 if (token) {
                     config.headers["Authorization"] = "Bearer " + token;
                 }
-                setLoading(true);
+                setIsLoading(true);
                 return config;
             },
             (error) => {
-                setLoading(false);
+                setIsLoading(false);
                 console.log(error);
                 Promise.reject(error);
             }
@@ -28,13 +26,13 @@ export default function WithAxios({ children }) {
 
         axios.interceptors.response.use(
             (response) => {
-                setLoading(false);
+                setIsLoading(false);
                 return response.data;
             },
             (error) => {
-                setLoading(false);
+                setIsLoading(false);
                 console.error(error);
-                // parseError(error.message );
+
                 const originalConfig = error.config;
                 if (
                     originalConfig.url !== "/login" &&
@@ -48,10 +46,9 @@ export default function WithAxios({ children }) {
                         console.log("401 error");
                         logout();
                     }
-                    if (error.response.status === 400) {
-                        // Currently parsing based off url not off error message.
-                        parseError(error);
-                    }
+
+                    // Currently parsing based off url not off error message.
+                    parseError(error);
                 }
             }
         );

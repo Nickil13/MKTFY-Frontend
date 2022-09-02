@@ -140,12 +140,15 @@ export const ListingContextProvider = ({ children }) => {
 
     const requestPurchase = async (id) => {
         const body = { id };
-        console.log(body);
-
         const res = await axios.put("/Listing/requestpurchase", body);
-        console.log(res);
+
         if (res) {
-            // move to mypurchases & adjust status to pending
+            const newPurchase = { ...res, status: "Pending" };
+            setMyPurchases([...myPurchases, newPurchase]);
+            setSessionStorage(STORAGE_KEYS.MY_PURCHASES_KEY, [
+                ...myPurchases,
+                newPurchase,
+            ]);
         }
     };
 

@@ -32,8 +32,6 @@ export default function AccountInformation() {
     const handleEditUser = (e) => {
         e.preventDefault();
         if (!phoneError) {
-            console.log("Editing user...");
-
             const body = {
                 firstName,
                 lastName,

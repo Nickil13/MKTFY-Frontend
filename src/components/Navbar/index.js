@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import MktfyWordmark from "../../../assets/images/MKTFY_wordmark.svg";
+import MktfyWordmark from "../../assets/images/MKTFY_wordmark.svg";
 import { Link, useNavigate } from "react-router-dom";
-import { NAV_CATEGORIES } from "../../../data/variables";
-import { ReactComponent as AddCircle } from "../../../assets/images/add_circle_outline-24px.svg";
-import { ReactComponent as MenuIcon } from "../../../assets/images/menu-24px (1).svg";
+import { NAV_CATEGORIES } from "../../data/variables";
+import { ReactComponent as AddCircle } from "../../assets/images/add_circle_outline-24px.svg";
+import { ReactComponent as MenuIcon } from "../../assets/images/menu-24px (1).svg";
 import Searchbar from "./Searchbar";
 import Notifications from "./Notifications";
 import UserMenu from "./UserMenu";
 import MobileCategoriesMenu from "./MobileCategoriesMenu";
-import { CITY_OPTIONS } from "../../../data/variables";
-import { useUserContext } from "../../../context/UserContext";
+import { CITY_OPTIONS } from "../../data/variables";
+import { useUserContext } from "../../context/UserContext";
 import MobileUserMenu from "./MobileUserMenu";
 
 const MOBILE_WIDTH_BREAKPOINT = "800";

@@ -1,10 +1,10 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ReactComponent as SignoutIcon } from "../../../assets/images/exit_to_app-24px.svg";
-import { useUserContext } from "../../../context/UserContext";
-import { USER_MENU_LINKS } from "../../../data/variables";
-import { ReactComponent as CloseIcon } from "../../../assets/images/icon_close.svg";
-import { ReactComponent as AddCircle } from "../../../assets/images/add_circle_outline-24px.svg";
+import { ReactComponent as SignoutIcon } from "../../assets/images/exit_to_app-24px.svg";
+import { useUserContext } from "../../context/UserContext";
+import { USER_MENU_LINKS } from "../../data/variables";
+import { ReactComponent as CloseIcon } from "../../assets/images/icon_close.svg";
+import { ReactComponent as AddCircle } from "../../assets/images/add_circle_outline-24px.svg";
 
 export default function MobileUserMenu({ closeMenu, showing }) {
     const { logout, user } = useUserContext();

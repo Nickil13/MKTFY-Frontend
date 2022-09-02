@@ -85,31 +85,24 @@ export const UserContextProvider = ({ children }) => {
     const getCurrentUserDetails = async () => {
         const userId = getIdFromToken();
 
-        try {
-            const res = await axios.get(`/User/${userId}`);
+        const res = await axios.get(`/User/${userId}`);
+        if (res) {
             setUser(res);
-        } catch (error) {
-            console.log(error);
         }
     };
 
+    // Get details of another user by Id
     const getUserDetails = async (id) => {
-        try {
-            const res = await axios.get(`/User/${id}`);
-            return res;
-        } catch (error) {
-            console.log(error);
-        }
+        const res = await axios.get(`/User/${id}`);
+        return res;
     };
 
     const createUser = async (id, userDetails) => {
         const body = { ...userDetails, id };
-        try {
-            const res = await axios.post("/User", body);
+        const res = await axios.post("/User", body);
+        if (res) {
             setUser(res);
             sessionStorage.removeItem("user_details");
-        } catch (error) {
-            console.log(error);
         }
     };
 
@@ -117,13 +110,10 @@ export const UserContextProvider = ({ children }) => {
         const userId = getIdFromToken();
         const body = { ...userDetails, id: userId };
 
-        try {
-            const res = await axios.put("/User", body);
+        const res = await axios.put("/User", body);
+        if (res) {
             setUser(res);
-
             toast.success("User info saved!");
-        } catch (error) {
-            toast.error("Error: did not save user info.");
         }
     };
 
@@ -184,7 +174,6 @@ export const UserContextProvider = ({ children }) => {
                     setError(error.description);
                     console.log(error);
                 } else {
-                    console.log(res);
                     const body = {
                         firstName,
                         lastName,
@@ -237,6 +226,8 @@ export const UserContextProvider = ({ children }) => {
                 editUser,
                 changePassword,
                 getUserDetails,
+                setIsLoading,
+                isLoading,
             }}
         >
             {children}

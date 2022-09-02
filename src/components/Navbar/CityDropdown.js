@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Dropdown from "../../Dropdown";
-import { ReactComponent as DropdownArrow } from "../../../assets/images/dropdown.svg";
-import { ReactComponent as SearchIcon } from "../../../assets/images/search-24px.svg";
-import { CITY_OPTIONS } from "../../../data/variables";
+import Dropdown from "../Dropdown";
+import { ReactComponent as DropdownArrow } from "../../assets/images/dropdown.svg";
+import { ReactComponent as SearchIcon } from "../../assets/images/search-24px.svg";
+import { CITY_OPTIONS } from "../../data/variables";
 
 export default function CityDropdown({
     className,

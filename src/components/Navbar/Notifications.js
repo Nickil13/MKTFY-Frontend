@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import AlertBell from "../../../assets/images/Group 1553.svg";
-import Dropdown from "../../Dropdown";
+import AlertBell from "../../assets/images/Group 1553.svg";
+import Dropdown from "../Dropdown";
 
 function NotificationItem({ children, date, bg }) {
     return (

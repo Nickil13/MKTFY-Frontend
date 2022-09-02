@@ -42,13 +42,13 @@ export default function Login() {
 
                 <div className="flex flex-col items-center mt-14 w-full">
                     <button
-                        className="btn-gold mb-4 md:w-btn"
+                        className="btn-gold-new max-w-btn mb-4"
                         onClick={() => navigate("login")}
                     >
                         Login
                     </button>
                     <button
-                        className="btn-purple md:w-btn"
+                        className="btn-purple-new max-w-btn"
                         onClick={() => navigate("register")}
                     >
                         Create Account
